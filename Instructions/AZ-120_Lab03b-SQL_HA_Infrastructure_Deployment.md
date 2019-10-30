@@ -636,4 +636,4 @@ In this exercise, you will remove resources provisioned in this lab.
 1. Close the **Cloud Shell** prompt at the bottom of the portal.
 
 
-> **Review**: After you completed this exercise, you have removed the resources used in this lab.
+> **Result**: After you completed this exercise, you have removed the resources used in this lab.

@@ -4,8 +4,6 @@
 
 *	There is a GitHub repository for the course AZ-120, Planning and Administering Microsoft Azure for SAP Workloads.
 
-*	Within each repository there are lab guides in PDF format. If appropriate, there are accompanying zipped files with any additional files that are needed to complete the lab. Not every course has a zipped file. 
-
 *	For each delivery, trainers should download the latest files from GitHub. Trainers should also check the Issues tab to see if other MCTs have reported any errors.  
 
 *	Lab timing estimates are provided but trainers should check to ensure this is accurate based on the audience.

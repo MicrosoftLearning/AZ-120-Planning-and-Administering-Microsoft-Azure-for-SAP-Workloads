@@ -61,7 +61,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 1.  On the **Edit template** blade, set the value of the **adVMSize** variable to **Standard_D4S_v3** and click **Save**.
 
     ```
-    "adVMSize": "Standard_D4S_v3"
+    "adVMSize": "Standard_D4s_v3"
 
     ```
 

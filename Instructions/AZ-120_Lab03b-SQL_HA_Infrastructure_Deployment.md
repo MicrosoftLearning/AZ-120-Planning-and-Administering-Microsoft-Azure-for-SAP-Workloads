@@ -125,11 +125,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 3: Deploy Azure Resource Manager template provisioning Azure VMs running Windows Server 2016 that will host a highly available SAP NetWeaver deployment
 
-1.  On the lab computer, start a browser and browse to [**https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-md**](https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-md)
+1.  On the lab computer, in the Azure portal, search for and select **Template deployment (deploy using custom template)**.
+
+1.  On the **Custom deployment** blade, in the **Select a template (disclaimer)** drop-down list, type **sap-3-tier-marketplace-image-md** and click **Select template**.
 
     > **Note**: Make sure to use Microsoft Edge or a third party browser. Do not use Internet Explorer.
-
-1.  On the page titled **SAP NetWeaver 3-tier compatible template using a Marketplace image - MD**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
 
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
 

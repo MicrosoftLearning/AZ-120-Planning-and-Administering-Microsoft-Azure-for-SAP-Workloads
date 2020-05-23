@@ -814,7 +814,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1.  Connect to the newly provisioned Azure VM via RDP. 
 
-1.  Within the RDP session to az12001b-vm2, ensure that you can establish SSH session to both az12001b-cl-vm0 and az12001b-cl-vm1 via their private IP addresses (10.0.1.4 and 10.0.1.5, respectively). 
+1.  Within the RDP session to az12001b-vm2, ensure that you can establish RDP session to both az12001b-cl-vm0 and az12001b-cl-vm1 via their private IP addresses (10.0.1.4 and 10.0.1.5, respectively). 
 
 > **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP NetWeaver deployments
 

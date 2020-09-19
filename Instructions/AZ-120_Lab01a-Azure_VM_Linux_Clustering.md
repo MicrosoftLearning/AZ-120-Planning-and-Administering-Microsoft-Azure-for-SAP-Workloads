@@ -38,11 +38,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Deploy Azure VMs running Linux SUSE
 
-1.  From the lab computer, start a Web browser, and navigate to the Azure portal at https://portal.azure.com
+1. From the lab computer, start a Web browser, and navigate to the Azure portal at https://portal.azure.com
 
-1.  If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
+1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
-1.  In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Proximity placement groups** blade and, on the **Proximity placement groups** blade, select **+ Add**.
+1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Proximity placement groups** blade and, on the **Proximity placement groups** blade, select **+ Add**.
 
 1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings and select **Review + create**:
 
@@ -56,11 +56,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
 
-    > **Note**: Wait for the provisioning to complete. This should take less than a minute.
+   > **Note**: Wait for the provisioning to complete. This should take less than a minute.
 
-1.  In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
+1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
 
-1.  On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
+1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
 
    - Subscription: *the name of your Azure subscription*
 
@@ -74,7 +74,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Availability set: *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains*
 
-   - Image: **GEN2: SUSE Enterprise Linux for SAP 15 (BYOS) - Gen2**
+   - Image: **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**
 
    - Azure Spot Instance: **No**
 
@@ -86,13 +86,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Password: **Pa55w.rd1234**
 
-1.  On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
 
    - OS disk type: **Premium SSD**
 
    - Encryption type: **(Default) Encryption at rest with a platform-managed key**
 
-1.  On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
 
    - Virtual network: *a new virtual network named* **az12001a-RG-vnet**
 
@@ -108,11 +108,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: This image has preconfigured NSG rules
 
-   - Accelerated networking: **Off**
+   - Accelerated networking: **On**
 
    - Place this virtual machine behind an existing load balancing solutions: **No**
 
-1.  On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Advanced >** (leave all other settings with their default value):
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Advanced >** (leave all other settings with their default value):
 
    - Enable basic plan for free: **No**
 
@@ -126,17 +126,17 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Enable auto-shutdown: **Off**
 
-1.  On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings and select **Review + create** (leave all other settings with their default value):
+1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings and select **Review + create** (leave all other settings with their default value):
 
    - Proximity placement group: **az12001a-ppg**
 
 1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
 
-    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
+   > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
-1.  In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
+1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
 
-1.  On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
+1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
 
    - Subscription: *the name of your Azure subscription*
 
@@ -150,7 +150,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Availability set: **az12001a-avset**
 
-   - Image: **GEN2: SUSE Enterprise Linux for SAP 15 (BYOS) - Gen2**
+   - Image: **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**
 
    - Azure Spot Instance: **No**
 
@@ -162,13 +162,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Password: **Pa55w.rd1234**
 
-1.  On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
 
    - OS disk type: **Premium SSD**
 
    - Encryption type: **(Default) Encryption at rest with a platform-managed key**
 
-1.  On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
 
    - Virtual network: **az12001a-RG-vnet**
 
@@ -180,11 +180,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: This image has preconfigured NSG rules
 
-   - Accelerated networking: **Off**
+   - Accelerated networking: **On**
 
    - Place this virtual machine behind an existing load balancing solutions: **No**
 
-1.  On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Advanced >** (leave all other settings with their default value):
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Advanced >** (leave all other settings with their default value):
 
    - Enable basic plan for free: **No**
 
@@ -198,22 +198,22 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Enable auto-shutdown: **Off**
 
-1.  On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings and select **Review + create** (leave all other settings with their default value):
+1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings and select **Review + create** (leave all other settings with their default value):
 
    - Proximity placement group: **az12001a-ppg**
 
 1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
 
-    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
+   > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
 
 ### Task 2: Create and configure Azure VMs disks
 
-1.  In the Azure Portal, start a Bash session in Cloud Shell. 
+1. In the Azure Portal, start a Bash session in Cloud Shell. 
 
    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1.  In the Cloud Shell pane, run the following command, to create the first set of 8 managed disks that you will attach to the first Azure VM you deployed in the previous task:
+1. In the Cloud Shell pane, run the following command, to create the first set of 8 managed disks that you will attach to the first Azure VM you deployed in the previous task:
 
    ```cli
    RESOURCE_GROUP_NAME='az12001a-RG'
@@ -223,17 +223,17 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm0-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
    ```
 
-1.  In the Cloud Shell pane, run the following command, to create the second set of 8 managed disks that you will attach to the second Azure VM you deployed in the previous task:
+1. In the Cloud Shell pane, run the following command, to create the second set of 8 managed disks that you will attach to the second Azure VM you deployed in the previous task:
 
    ```cli
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm1-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
    ```
 
-1.  In the Azure portal, navigate to the blade of the first Azure VM you provisioned in the previous task (**az12001a-vm0**).
+1. In the Azure portal, navigate to the blade of the first Azure VM you provisioned in the previous task (**az12001a-vm0**).
 
-1.  From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 - Disks** blade.
+1. From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 \| Disks** blade.
 
-1.  From the **az12001a-vm0 - Disks** blade, attach data disks with the following settings to az12001a-vm0:
+1. On the **az12001a-vm0 \| Disks** blade, select **Attach existing disks** and attach data disk with the following settings to az12001a-vm0:
 
    - LUN: **0**
 
@@ -241,17 +241,17 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Resource group: **az12001a-RG**
 
-   - HOST CACHING: **None**
+   - HOST CACHING: **Read-only**
 
-1.  Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm0-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name.
+1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm0-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
 
-1.  Save your changes. 
+1. Save your changes. 
 
-1.  In the Azure portal, navigate to the blade of the second Azure VM you provisioned in the previous task (**az12001a-vm1**).
+1. In the Azure portal, navigate to the blade of the second Azure VM you provisioned in the previous task (**az12001a-vm1**).
 
-1.  From the **az12001a-vm1** blade, navigate to the **az12001a-vm1 - Disks** blade.
+1. From the **az12001a-vm1** blade, navigate to the **az12001a-vm1 \| Disks** blade.
 
-1.  From the **az12001a-vm1 - Disks** blade, attach data disks with the following settings to az12001a-vm1:
+1. From the **az12001a-vm1 \| Disks** blade, attach data disks with the following settings to az12001a-vm1:
 
    - LUN: **0**
 
@@ -261,9 +261,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - HOST CACHING: **Read-only**
 
-1.  Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
+1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
 
-1.  Save your changes. 
+1. Save your changes. 
 
 > **Result**: After you completed this exercise, you have provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
 
@@ -276,9 +276,9 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 ### Task 1: Connect to Azure Linux VMs
 
-1.  In the Azure Portal, start a Bash session in Cloud Shell. 
+1. In the Azure Portal, start a Bash session in Cloud Shell. 
 
-1.  In the Cloud Shell pane, run the following command, to identify the public IP address of the first Azure VM you deployed in the previous exercise:
+1. In the Cloud Shell pane, run the following command, to identify the public IP address of the first Azure VM you deployed in the previous exercise:
 
    ```cli
    RESOURCE_GROUP_NAME='az12001a-RG'
@@ -286,123 +286,123 @@ In this exercise, you will configure operating system and storage on Azure VMs r
    PIP=$(az network public-ip show --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm0-ip --query ipAddress --output tsv)
    ```
 
-1.  In the Cloud Shell pane, run the following command, to establish an SSH session to the IP address you identified in the previou step:
+1. In the Cloud Shell pane, run the following command, to establish an SSH session to the IP address you identified in the previou step:
 
    ```cli
    ssh student@$PIP
    ```
 
-1.  When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
+1. When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
 
-1.  When prompted for the password, type `Pa55w.rd1234` and press the **Enter** key. 
+1. When prompted for the password, type `Pa55w.rd1234` and press the **Enter** key. 
 
-1.  Open another Cloud Shell Bash session by clicking the **Open new session** icon in the Cloud Shell toolbar.
+1. Open another Cloud Shell Bash session by clicking the **Open new session** icon in the Cloud Shell toolbar.
 
-1.  In the newly opened Cloud Shell Bash session, repeat all of the steps in this tasks to connect to the **az12001a-vm1** Azure VM via its IP address **az12001a-vm0-ip**.
+1. In the newly opened Cloud Shell Bash session, repeat all of the steps in this tasks to connect to the **az12001a-vm1** Azure VM via its IP address **az12001a-vm0-ip**.
 
 
 ### Task 2: Configure storage of Azure VMs running Linux
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, run the following command to elevate privileges  and, when prompted, providing the password for the Student user account: 
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, run the following command to elevate privileges: 
 
-    ```cli
-    sudo su -
-    ```
+   ```cli
+   sudo su -
+   ```
 
-1.  When prompted for the password, type `Pa55w.rd1234` and press the **Enter** key. 
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, run the following command to identify the mapping between the newly attached devices and their LUN numbers:
+   
+   ```cli
+   lsscsi
+   ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, run `lsscsi` to identify the mapping between the newly adttached devices and their LUN numbers:
-    
-    ```cli
-    lsscsi
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, create physical volumes for 6 (out of 8) data disks by running:
+   
+   ```cli
+   pvcreate /dev/sdc
+   pvcreate /dev/sdd
+   pvcreate /dev/sde
+   pvcreate /dev/sdf
+   pvcreate /dev/sdg
+   pvcreate /dev/sdh
+   ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, create physical volumes for 6 (out of 8) data disks by running:
-    
-    ```cli
-    pvcreate /dev/sdc
-    pvcreate /dev/sdd
-    pvcreate /dev/sde
-    pvcreate /dev/sdf
-    pvcreate /dev/sdg
-    pvcreate /dev/sdh
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, create volume groups by running:
+   
+   ```cli
+   vgcreate vg_hana_data /dev/sdc /dev/sdd
+   vgcreate vg_hana_log /dev/sde /dev/sdf
+   vgcreate vg_hana_backup /dev/sdg /dev/sdh
+   ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, create volume groups by running:
-    
-    ```cli
-    vgcreate vg_hana_data /dev/sdc /dev/sdd
-    vgcreate vg_hana_log /dev/sde /dev/sdf
-    vgcreate vg_hana_backup /dev/sdg /dev/sdh
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, create logical volumes by running:
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, create logical volumes by running:
-
-    ```cli
-    lvcreate -l 100%FREE -n hana_data vg_hana_data
-    lvcreate -l 100%FREE -n hana_log vg_hana_log
-    lvcreate -l 100%FREE -n hana_backup vg_hana_backup
-    ```
+   ```cli
+   lvcreate -l 100%FREE -n hana_data vg_hana_data
+   lvcreate -l 100%FREE -n hana_log vg_hana_log
+   lvcreate -l 100%FREE -n hana_backup vg_hana_backup
+   ```
 
    > **Note**: We are creating a single logical volume per each volume group
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, format the logical volumes by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, format the logical volumes by running:
 
-    ```cli
-    mkfs.xfs /dev/vg_hana_data/hana_data
-    mkfs.xfs /dev/vg_hana_log/hana_log
-    mkfs.xfs /dev/vg_hana_backup/hana_backup
-    ```
+   ```cli
+   mkfs.xfs /dev/vg_hana_data/hana_data -m crc=1
+   mkfs.xfs /dev/vg_hana_log/hana_log -m crc=1
+   mkfs.xfs /dev/vg_hana_backup/hana_backup -m crc=1
+   ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, partition the **/dev/sdi** disk by running:
+   > **Note**: Starting with SUSE Linux Enterprise Server 12, you have the option to use the new on-disk format (v5) of the XFS file system, which offers automatic checksums of XFS metadata, file type support, and an increased limit on the number of access control lists per file. The new format applies automatically when using YaST to create the XFS file systems. To create an XFS file system in the older format for compatibility reasons, use the mkfs.xfs command without the `-m crc=1` option. 
 
-    ```cli
-    fdisk /dev/sdi
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, partition the **/dev/sdi** disk by running:
 
-1.  When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice, and then type `w` to complete the write.
+   ```cli
+   fdisk /dev/sdi
+   ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, partition the **/dev/sdj** disk by running:
+1. When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice, and then type `w` to complete the write.
 
-    ```cli
-    fdisk /dev/sdj
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, partition the **/dev/sdj** disk by running:
 
-1.  When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice, and then type `w` to complete the write.
+   ```cli
+   fdisk /dev/sdj
+   ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, format the newly created partition by running:
+1. When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice, and then type `w` to complete the write.
 
-    ```cli
-    mkfs.xfs /dev/sdi -f
-    mkfs.xfs /dev/sdj -f
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, format the newly created partition by running (type `y` and press the **Enter** key when prompted for confirmation)	:
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, create the directories that will serve as mount points by running:
+   ```cli
+   mkfs.xfs /dev/sdi -m crc=1 -f
+   mkfs.xfs /dev/sdj -m crc=1 -f
+   ```
 
-    ```cli
-    mkdir -p /hana/data
-    mkdir -p /hana/log
-    mkdir -p /hana/backup
-    mkdir -p /hana/shared
-    mkdir -p /usr/sap
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, create the directories that will serve as mount points by running:
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, display the ids of logical volumes by running:
+   ```cli
+   mkdir -p /hana/data
+   mkdir -p /hana/log
+   mkdir -p /hana/backup
+   mkdir -p /hana/shared
+   mkdir -p /usr/sap
+   ```
 
-    ```cli
-    blkid
-    ```
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, display the ids of logical volumes by running:
+
+   ```cli
+   blkid
+   ```
 
    > **Note**: Identify the **UUID** values associated with the newly created volume groups and partitions, including **/dev/sdi** (to be used for **/hana/shared**) and **dev/sdj** (to be used for **/usr/sap**).
 
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, open **/etc/fstab** in the vi editor (you are free to use any other editor) by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, open **/etc/fstab** in the vi editor (you are free to use any other editor) by running:
 
-    ```cli
-    vi /etc/fstab
-    ```
+   ```cli
+   vi /etc/fstab
+   ```
 
-1.  In the editor, add the following entries to **/etc/fstab** (where `\<UUID of /dev/vg\_hana\_data-hana\_data\>`, `\<UUID of /dev/vg\_hana\_log-hana\_log\>`, `\<UUID of /dev/vg\_hana\_backup-hana\_backup\>`, `\<UUID of /dev/vg_hana_shared-hana_shared (/dev/sdi)\>`, and `\<UUID of /dev/vg_usr_sap-usr_sap (/dev/sdj)\>`, represent the ids you identified in the previous step):
+1. In the editor, add the following entries to **/etc/fstab** (where `\<UUID of /dev/vg\_hana\_data-hana\_data\>`, `\<UUID of /dev/vg\_hana\_log-hana\_log\>`, `\<UUID of /dev/vg\_hana\_backup-hana\_backup\>`, `\<UUID of /dev/vg_hana_shared-hana_shared (/dev/sdi)\>`, and `\<UUID of /dev/vg_usr_sap-usr_sap (/dev/sdj)\>`, represent the ids you identified in the previous step):
 
    ```cli
    /dev/disk/by-uuid/<UUID of /dev/vg_hana_data-hana_data> /hana/data xfs  defaults,nofail  0  2
@@ -412,189 +412,189 @@ In this exercise, you will configure operating system and storage on Azure VMs r
    /dev/disk/by-uuid/<UUID of /dev/vg_usr_sap-usr_sap (/dev/sdj)> /usr/sap xfs  defaults,nofail  0  2
    ```
 
-1.  Save the changes and close the editor.
+1. Save the changes and close the editor.
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, mount the new volumes by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, mount the new volumes by running:
 
    ```cli
    mount -a
    ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, verify that the mount was successful by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, verify that the mount was successful by running:
 
    ```cli
    df -h
    ```
 
-1.  Switch to the Cloud Shell Bash session to az12001a-vm1 and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
+1. Switch to the Cloud Shell Bash session to az12001a-vm1 and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
 
 
 ### Task 3: Enable cross-node password-less SSH access
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, generate passphrase-less SSH key by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -tdsa
    ```
 
-1.  When prompted, press **Enter** three times and then display the public key by running: 
+1. When prompted, press **Enter** three times and then display the public key by running: 
 
    ```cli
    cat /root/.ssh/id_dsa.pub
    ```
 
-1.  Copy the value of the key into Clipboard.
+1. Copy the value of the key into Clipboard.
 
-1.  Switch to the Cloud Shell pane containing the SSH session to **az12001a-vm1** and create the directory **/root/.ssh/** by running:
+1. Switch to the Cloud Shell pane containing the SSH session to **az12001a-vm1** and create the directory **/root/.ssh/** by running:
 
    ```cli
    mkdir /root/.ssh
    ```
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm1, create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm1, create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
    ```
 
-1.  In the editor window, paste the key you generated on az12001a-vm0.
+1. In the editor window, paste the key you generated on az12001a-vm0.
 
-1.  Save the changes and close the editor.
+1. Save the changes and close the editor.
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm1, generate passphrase-less SSH key by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm1, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -tdsa
    ```
 
-1.  When prompted, press **Enter** three times and then display the public key by running: 
+1. When prompted, press **Enter** three times and then display the public key by running: 
 
    ```cli
    cat /root/.ssh/id_dsa.pub
    ```
 
-1.  Copy the value of the key into Clipboard.
+1. Copy the value of the key into Clipboard.
 
-1.  Switch to the Cloud Shell pane containing the SSH session to az12001a-vm0 and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Cloud Shell pane containing the SSH session to az12001a-vm0 and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
    ```
 
-1.  In the editor window, paste the key you generated on az12001a-vm1.
+1. In the editor window, paste the key you generated on az12001a-vm1.
 
-1.  Save the changes and close the editor.
+1. Save the changes and close the editor.
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, generate passphrase-less SSH key by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -t rsa
    ```
 
-1.  When prompted, press **Enter** three times and then display the public key by running: 
+1. When prompted, press **Enter** three times and then display the public key by running: 
 
    ```cli
    cat /root/.ssh/id_rsa.pub
    ```
 
-1.  Copy the value of the key into Clipboard.
+1. Copy the value of the key into Clipboard.
 
-1.  Switch to the Cloud Shell pane containing the SSH session to **az12001a-vm1** and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Cloud Shell pane containing the SSH session to **az12001a-vm1** and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
    ```
 
-1.  In the editor window, starting from a new line, paste the key you generated on az12001a-vm0.
+1. In the editor window, starting from a new line, paste the key you generated on az12001a-vm0.
 
-1.  Save the changes and close the editor.
+1. Save the changes and close the editor.
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm1, generate passphrase-less SSH key by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm1, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -t rsa
    ```
 
-1.  When prompted, press **Enter** three times and then display the public key by running: 
+1. When prompted, press **Enter** three times and then display the public key by running: 
 
    ```cli
    cat /root/.ssh/id_rsa.pub
    ```
 
-1.  Copy the value of the key into Clipboard.
+1. Copy the value of the key into Clipboard.
 
-1.  Switch to the Cloud Shell pane containing the SSH session to az12001a-vm0 and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Cloud Shell pane containing the SSH session to az12001a-vm0 and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
    ```
 
-1.  In the editor window, starting from a new line, paste the key you generated on az12001a-vm1.
+1. In the editor window, starting from a new line, paste the key you generated on az12001a-vm1.
 
-1.  Save the changes and close the editor.
+1. Save the changes and close the editor.
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, open the file **/etc/ssh/sshd\_config** in the vi editor (you are free to use any other editor) by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, open the file **/etc/ssh/sshd\_config** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /etc/ssh/sshd_config
    ```
 
-1.  In the **/etc/ssh/sshd\_config** file, locate the **PermitRootLogin** and **AuthorizedKeysFile** entries, and configure them as follows (remove the leading **#** character if needed:
+1. In the **/etc/ssh/sshd\_config** file, locate the **PermitRootLogin** and **AuthorizedKeysFile** entries, and configure them as follows (remove the leading **#** character if needed:
 
    ```cli
    PermitRootLogin yes
    AuthorizedKeysFile  /root/.ssh/authorized_keys
    ```
 
-1.  Save the changes and close the editor.
+1. Save the changes and close the editor.
 
-1.  In the Cloud Shell pane, in the SSH session to az12001a-vm0, restart sshd daemon by running:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, restart sshd daemon by running:
 
    ```cli
    systemctl restart sshd
    ```
 
-1.  Repeat the previous four steps on az12001a-vm1.
+1. Repeat the previous four steps on az12001a-vm1.
 
-1.  To verify that the configuration was successful, in the Cloud Shell pane, in the SSH session to az12001a-vm0, establish an SSH session as **root** from az12001a-vm0 to az12001a-vm1 by running: 
+1. To verify that the configuration was successful, in the Cloud Shell pane, in the SSH session to az12001a-vm0, establish an SSH session as **root** from az12001a-vm0 to az12001a-vm1 by running: 
 
    ```cli
    ssh root@az12001a-vm1
    ```
 
-1.  When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
+1. When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
 
-1.  Ensure that you are not prompted for the password.
+1. Ensure that you are not prompted for the password.
 
-1.  Close the SSH session from az12001a-vm0 to az12001a-vm1 by running: 
-
-   ```cli
-   exit
-   ```
-
-1.  Sign out from az12001a-vm0 by running the following twice:
+1. Close the SSH session from az12001a-vm0 to az12001a-vm1 by running: 
 
    ```cli
    exit
    ```
 
-1.  To verify that the configuration was successful, in the Cloud Shell pane, in the SSH session to az12001a-vm1, establish an SSH session as **root** from az12001a-vm1 to az12001a-vm0 by running: 
+1. Sign out from az12001a-vm0 by running the following twice:
+
+   ```cli
+   exit
+   ```
+
+1. To verify that the configuration was successful, in the Cloud Shell pane, in the SSH session to az12001a-vm1, establish an SSH session as **root** from az12001a-vm1 to az12001a-vm0 by running: 
 
    ```cli
    ssh root@az12001a-vm0
    ```
 
-1.  When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
+1. When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
 
-1.  Ensure that you are not prompted for the password.
+1. Ensure that you are not prompted for the password.
 
-1.  Close the SSH session from az12001a-vm1 to az12001a-vm0 by running: 
+1. Close the SSH session from az12001a-vm1 to az12001a-vm0 by running: 
 
    ```cli
    exit
    ```
 
-1.  Sign out from az12001a-vm1 by running the following twice:
+1. Sign out from az12001a-vm1 by running the following twice:
 
    ```cli
    exit
@@ -614,44 +614,44 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    > **Note**: Since you will be setting up a pair of Azure Load Balancer of the Stardard SKU, you need to first remove the public IP addresses associated with network adapters of two Azure VMs that will be serving as the load-balanced backend pool.
 
-1.  In the Azure portal, navigate to the blade of the **az12001a-vm0** Azure VM.
+1. In the Azure portal, navigate to the blade of the **az12001a-vm0** Azure VM.
 
-1.  From the **az12001a-vm0** blade, navigate to the blade of the public IP address **az12001a-vm0-ip** associated with its network adapter.
+1. From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 \| Networking** blade and, on the **az12001a-vm0 \| Networking** blade, select the entry representing the public IP address **az12001a-vm0-ip** associated with its network adapter.
 
-1.  From the **az12001a-vm0-ip** blade, first disassociate the public IP address from the network interface and then delete it.
+1. On the **az12001a-vm0-ip** blade, select **Dissociate** to disconnect the public IP address from the network interface and then select **Delete** to delete it.
 
-1.  In the Azure portal, navigate to the blade of the **az12001a-vm1** Azure VM.
+1. In the Azure portal, navigate to the blade of the **az12001a-vm1** Azure VM.
 
-1.  From the **az12001a-vm1** blade, navigate to the blade of the public IP address **az12001a-vm1-ip** associated with its network adapter.
+1. From the **az12001a-vm1** blade, navigate to the **az12001a-vm1 \| Networking** blade and, on the **az12001a-vm1 \| Networking** blade, select the entry representing the public IP address **az12001a-vm1-ip** associated with its network adapter.
 
-1.  From the **az12001a-vm1-ip** blade, first disassociate the public IP address from the network interface and then delete it.
+1. On the **az12001a-vm1-ip** blade, select **Dissociate** to disconnect the public IP address from the network interface and then select **Delete** to delete it.
 
-1.  In the Azure portal, navigate to the blade of the **az12001a-vm0** Azure VM.
+1. In the Azure portal, navigate to the blade of the **az12001a-vm0** Azure VM.
 
-1.  From the **az12001a-vm0** blade, navigate to its **Networking** blade. 
+1. From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 \| Networking** blade. 
 
-1.  From the **az12001a-vm0 - Networking** blade, navigate to the network interface of the az12001a-vm0. 
+1. From the **az12001a-vm0 \| Networking** blade, select the entry representing the network interface of the az12001a-vm0. 
 
-1.  From the blade of the network interface of the az12001a-vm0, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
+1. From the blade of the network interface of the az12001a-vm0, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
 
-1.  On the **ipconfig1** blade, set the private IP address assignment to **Static** and save the change.
+1. On the **ipconfig1** blade, set the private IP address assignment to **Static** and save the change.
 
-1.  In the Azure portal, navigate to the blade of the **az12001a-vm1** Azure VM.
+1. In the Azure portal, navigate to the blade of the **az12001a-vm1** Azure VM.
 
-1.  From the **az12001a-vm1** blade, navigate to its **Networking** blade. 
+1. From the **az12001a-vm1** blade, navigate to the **az12001a-vm1 \| Networking** blade. 
 
-1.  From the **az12001a-vm1 - Networking** blade, navigate to the network interface of the az12001a-vm1. 
+1. From the **az12001a-vm1 \| Networking** blade, navigate to the network interface of the az12001a-vm1. 
 
-1.  From the blade of the network interface of the az12001a-vm1, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
+1. From the blade of the network interface of the az12001a-vm1, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
 
-1.  On the **ipconfig1** blade, set the private IP address assignment to **Static** and save the change.
+1. On the **ipconfig1** blade, set the private IP address assignment to **Static** and save the change.
 
 
 ### Task 2: Create and configure Azure Load Balancers handling inbound traffic
 
-1.  In the Azure portal, click **+ Create a resource**.
+1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Load balancers** blade and, on the **Load balancers** blade, select **+ Add**.
 
-1.  From the **New** blade, initiate creation of a new Azure Load Balancer with the following settings:
+1. From the **Basics** tab of the **Create load balancer** blade, specify the following settings and select **Review + create** (leave others with their default values):
 
    - Subscription: *the name of your Azure subscription*
 
@@ -675,19 +675,23 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Availability zone: **Zone redundant**
 
-1.  Wait until the load balancer is provisioned and then navigate to its blade in the Azure portal.
+1. On the **Review + create** blade, select **Create**.
 
-1.  From the **az12001a-lb0** blade, add a backend pool with the following settings:
+   > **Note**: Wait until the load balancer is provisioned. This shoudl take less than a minute. 
+
+1. In the Azure portal, navigate to the blade displaying the properties of the newly provisioned **az12001a-lb0** load balancer. 
+
+1. On the **az12001a-lb0** blade, select **Backend pools**, select **+ Add**, and, on the **Add backend pool** specify the following settings (leave others with their default values):
 
    - Name: **az12001a-lb0-bepool**
 
-   - Virtual network: **az12001a-rg-vnet**
+   - IP version: **IPv4**
 
-   - VIRTUAL MACHINE: **az12001a-vm0**  IP ADDRESS: **ipconfig1**
+   - Virtual machine: **az12001a-vm0**  IP Configuration: **ipconfig1 (192.168.0.4)**
 
-   - VIRTUAL MACHINE: **az12001a-vm1**  IP ADDRESS: **ipconfig1**
+   - Virtual machine: **az12001a-vm1**  IP Configuration: **ipconfig1  (192.168.0.5)**
 
-1.  From the **az12001a-lb0** blade, add a health probe with the following settings:
+1. On the **az12001a-lb0** blade, select **Health probes** select **+ Add**, and, on the **Add health probe** blade, specify the following settings (leave others with their defaults):
 
    - Name: **az12001a-lb0-hprobe**
 
@@ -699,11 +703,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Unhealthy threshold: **2** *consecutive failures*
 
-1.  From the **az12001a-lb0** blade, add a network load balancing rule with the following settings:
+1. On the **az12001a-lb0** blade, select **Load balancing rules**, select **+ Add**, and, on the **Add load balancing rule** blade, specify the following settings (leave others with their defaults):
 
    - Name: **az12001a-lb0-lbruleAll**
 
-   - IP version: **IPv4**
+   - IP Version: **IPv4**
 
    - Frontend IP address: **192.168.0.240 (LoadBalancerFrontEnd)**
 
@@ -717,13 +721,15 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Idle timeout (minutes): **4**
 
+   - TCP reset: **Disabled**
+
    - Floating IP (direct server return): **Enabled**
 
 ### Task 3: Create and configure Azure Load Balancers handling outbound traffic
 
-1.  In the Azure Portal, start a Bash session in Cloud Shell. 
+1. In the Azure Portal, start a Bash session in Cloud Shell. 
 
-1.  In the Cloud Shell pane, run the following command to create the public IP address to be used by the second load balancer:
+1. In the Cloud Shell pane, run the following command to create the public IP address to be used by the second load balancer:
 
    ```cli
    RESOURCE_GROUP_NAME='az12001a-RG'
@@ -735,7 +741,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    az network public-ip create --resource-group $RESOURCE_GROUP_NAME --name $PIP_NAME --sku Standard --location $LOCATION
    ```
 
-1.  In the Cloud Shell pane, run the following command to create the second load balancer:
+1. In the Cloud Shell pane, run the following command to create the second load balancer:
 
    ```cli
    LB_NAME='az12001a-lb1'
@@ -747,7 +753,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    az network lb create --resource-group $RESOURCE_GROUP_NAME --name $LB_NAME --sku Standard --backend-pool-name $LB_BE_POOL_NAME --frontend-ip-name $LB_FE_IP_NAME --location $LOCATION --public-ip-address $PIP_NAME
    ```
 
-1.  In the Cloud Shell pane, run the following command to create the outbound rule of the second load balancer:
+1. In the Cloud Shell pane, run the following command to create the outbound rule of the second load balancer:
 
    ```cli
    LB_RULE_OUTBOUND='az12001a-lb1-ruleoutbound'
@@ -755,31 +761,29 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    az network lb outbound-rule create --resource-group $RESOURCE_GROUP_NAME --lb-name $LB_NAME --name $LB_RULE_OUTBOUND --frontend-ip-configs $LB_FE_IP_NAME --protocol All --idle-timeout 4 --outbound-ports 1000 --address-pool $LB_BE_POOL_NAME
    ```
 
-1.  Close the Cloud Shell pane.
+1. Close the Cloud Shell pane.
 
-1.  In the Azure portal, navigate to the blade displaying the properties of the Azure Load Balancer **az12001a-lb1**.
+1. In the Azure portal, navigate to the blade displaying the properties of the newly created Azure Load Balancer **az12001a-lb1**.
 
-1.  On the **az12001a-lb1** blade, click **Backend pools**.
+1. On the **az12001a-lb1** blade, click **Backend pools**.
 
-1.  On the **az12001a-lb1 - Backend pools** blade, click **az12001a-lb1-bepool**.
+1. On the **az12001a-lb1 \| Backend pools** blade, click **az12001a-lb1-bepool**.
 
-1.  On the **az12001a-lb1-bepool** blade, specify the following settings and click **Save**:
+1. On the **az12001a-lb1-bepool** blade, specify the following settings and click **Save**:
 
    - Virtual network: **az12001a-rg-vnet (2 VM)**
 
-   - VIRTUAL MACHINE: **az12001a-vm0**  IP ADDRESS: **ipconfig1**
+   - Virtual machine: **az12001a-vm0**  IP Configuration: **ipconfig1 (192.168.0.4)**
 
-   - VIRTUAL MACHINE: **az12001a-vm1**  IP ADDRESS: **ipconfig1**
+   - Virtual machine: **az12001a-vm1**  IP Configuration: **ipconfig1 (192.168.0.5)**
 
 ### Task 4: Deploy a jump host
 
    > **Note**: Since two clustered Azure VMs are no longer directly accessible from Internet, you will deploy an Azure VM running Windows Server 2019 Datacenter that will serve as a jump host. 
 
-1.  From the lab computer, in the Azure portal, click **+ Create a resource**.
+1. From the lab computer, in the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
 
-1.  From the **New** blade, initiate creation of a new Azure VM based on the **Windows Server 2019 Datacenter** image.
-
-1.  Provision a Azure VM with the following settings:
+1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
 
    - Subscription: *the name of your Azure subscription*
 
@@ -791,9 +795,9 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Availability options: **No infrastructure redundancy required**
 
-   - Image: **Windows Server 2019 Datacenter**
+   - Image: **Windows Server 2019 Datacenter - Gen1**
 
-   - Size: **Standard DS1 v2**
+   - Azure Spot Instance: **No**
 
    - Username: **Student**
 
@@ -803,9 +807,15 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Selected inbound ports: **RDP (3389)**
 
-   - Already have a Windows license?: **No**
+   - Would you like to use an existing Windows Server license?: **No**
+
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
 
    - OS disk type: **Standard HDD**
+
+   - Encryption type: **(Default) Encryption at rest with a platform-managed key**
+
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
 
    - Virtual network: **az12001a-RG-vnet**
 
@@ -823,31 +833,35 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Place this virtual machine behind an existing load balancing solutions: **No**
 
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Advanced >** (leave all other settings with their default value):
+
    - Enable basic plan for free: **No**
 
-   - Boot diagnostics: **Off**
+   > **Note**: This setting is not available if you have already selected the Azure Security Center plan.
+
+   - Boot diagnostics: **Enable with managed storage account (recommended)**
 
    - OS guest diagnostics: **Off**
 
    - System assigned managed identity: **Off**
 
-   - Login with AAD credentials (Preview): **Off**
-
    - Enable auto-shutdown: **Off**
 
    - Enable backup: **Off**
 
-   - Extensions: *None*
+   - Guest OS updates: **Manual patching: Install patches yourself or through a different patching solution**
 
-   - Tags: **None**
+1. On the **Advanced** tab of the **Create a virtual machine** blade, select **Review + create** (leave all other settings with their default value):
 
-1.  Wait for the provisioning to complete. This should take a few minutes.
+1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
 
-1.  Connect to the newly provisioned Azure VM via RDP. 
+   > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
-1.  Within the RDP session to az12001a-vm2, download PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+1. Connect to the newly provisioned Azure VM via RDP. 
 
-1.  Ensure that you can establish SSH session to both az12001a-vm0 and az12001a-vm1 via their private IP addresses (192.168.0.4 and 192.168.0.5, respectively). 
+1. Within the RDP session to az12001a-vm2, download PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+
+1. Ensure that you can establish SSH session to both az12001a-vm0 and az12001a-vm1 via their private IP addresses (192.168.0.4 and 192.168.0.5, respectively). 
 
 > **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments
 
@@ -879,6 +893,5 @@ In this exercise, you will remove resources provisioned in this lab.
    ```
 
 1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
 
 > **Result**: After you completed this exercise, you have removed the resources used in this lab.

@@ -90,17 +90,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  On the page titled **SAP NetWeaver 3-tier compatible template using a Marketplace image - MD**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
 
-1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, click **Edit template**
-
-1.  On the **Edit template** blade, locate the variable named **images**, locate the **SLES 12** section within the variable definition, and change the value of the `sku` key to `12-SP4`, so it looks as follows:
-
-    ```
-    "sku": "12-SP4", 
-    ```
-
-1.  Click **Save**. 
-
-1.  Back on the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
+1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -137,6 +127,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     -   _artifacts Location Sas Token: *leave blank*
 
 1.  Do not Wait for the deployment to complete but instead proceed to the next task. 
+
+    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
+
+       - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
+       - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
+       - in the Azure portal, navigate to the **az12003a-sap-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12003a-sap-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+
 
 ### Task 3: Deploy a jump host
 

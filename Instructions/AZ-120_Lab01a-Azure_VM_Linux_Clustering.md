@@ -75,6 +75,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    - Availability set: *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains*
 
    - Image: **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**
+   
+   > **Note**: To locate the image, click the **Browse all public and private images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**.
 
    - Azure Spot Instance: **No**
 
@@ -151,6 +153,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    - Availability set: **az12001a-avset**
 
    - Image: **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**
+   
+   > **Note**: To locate the image, click the **Browse all public and private images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**.   
 
    - Azure Spot Instance: **No**
 

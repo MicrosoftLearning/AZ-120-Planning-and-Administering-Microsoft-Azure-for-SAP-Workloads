@@ -43,29 +43,17 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  In the Azure portal, click **+ Create a resource**.
 
-1.  From the **New** blade, initiate creation of a new **Template deployment (deploy using custom template)**
+1.  From the **New** blade, initiate creation of a new **Template deployment (deploy using custom template)**.
 
-1.  From the **Custom deployment** blade, in the **Load a GitHub quickstart template** drop-down list, select the entry **active-directory-new-domain-ha-2-dc**, and click **Select template**.
+1.  Back on the **Custom deployment** blade, in the **Load a GitHub quickstart template** drop-down list, select the entry **active-directory-new-domain-ha-2-dc**, and click **Select template**.
 
     > **Note**: Alternatively, you can launch the deployment by navigating to Azure Quickstart Templates page at <https://github.com/Azure/azure-quickstart-templates>, locating the template named **Create 2 new Windows VMs, create a new AD Forest, Domain, and 2 DCs in an availability set**, and initiating its deployment by clicking **Deploy to Azure** button.
 
-1.  On the **Create a new AD Domain with 2 Domain Controllers** blade, click **Edit template**. 
+1.  On the **Custom deployment** blade, click **Edit template**.
 
-1.  On the **Edit template** blade, locate the line that assigns the value to the **adVMSize** variable:
+1.  On the **Edit template** blade, scroll down to the variables section, replace `"imageSKU": "2016-Datacenter",` with `"imageSKU": "2019-Datacenter",` and click **Save**.
 
-    ```
-    "adVMSize": "Standard_DS2_v2"
-
-    ```
-
-1.  On the **Edit template** blade, set the value of the **adVMSize** variable to **Standard_D4S_v3** and click **Save**.
-
-    ```
-    "adVMSize": "Standard_D4s_v3"
-
-    ```
-
-1.  Back on the **Create a new AD Domain with 2 Domain Controllers** blade, specify the following settings and click **Purchase** to initiate the deployment:
+1.  Back on the **Create a new AD Domain with 2 Domain Controllers** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -90,8 +78,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     -   _artifacts Location Sas Token: *leave blank*
 
     -   Location: **[resourceGroup().location]**
-
-    -   I agree to the terms and conditions stated above: *enabled*
+    
+    -   Ad VM Size: **Standard_D4s_v3**
 
     > **Note**: The deployment should take about 35 minutes. Wait for the deployment to complete before you proceed to the next task.
 

@@ -154,7 +154,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Image: **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**
    
-   > **Note**: To locate the image, click the **Browse all public and private images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**.   
+   > **Note**: To locate the image, click the **Browse all public and private images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS**, in the list of results, on the **SUSE Enterprise Linux for SAP 12 & 15 - BYOS** tile, click **Select** and, in the drop-down list, select **SUSE Enterprise Linux for SAP 12 SP3 - BYOS**.   
 
    - Azure Spot Instance: **No**
 

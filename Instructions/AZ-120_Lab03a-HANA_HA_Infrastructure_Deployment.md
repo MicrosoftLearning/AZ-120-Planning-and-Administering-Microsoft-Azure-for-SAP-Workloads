@@ -1,7 +1,7 @@
 # AZ 120 Module 3: Implementing SAP on Azure
 # Lab 3a: Implement SAP architecture on Azure VMs running Linux
 
-Estimated Time: 120 minutes
+Estimated Time: 100 minutes
 
 All tasks in this lab are performed from the Azure portal (including the Bash Cloud Shell session)  
 
@@ -25,7 +25,7 @@ After completing this lab, you will be able to:
 
 ## Requirements
 
--   A Microsoft Azure subscription with the sufficient number of available DSv3 vCPUs (2 x 4) and DSv2 (1 x 1) vCPUs in an Azure region that supports availability zones
+-   A Microsoft Azure subscription with the sufficient number of available Dsv3 vCPUs (total of 18, to accommodate five Standard_D2s_v3 VMs and two Standard_D4s_v3 VMs) in an Azure region that supports availability zones
 
 -   A lab computer running Windows 10, Windows Server 2016, or Windows Server 2019 with access to Azure
 
@@ -46,11 +46,17 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1.  In the Cloud Shell pane, run the following command to specify the Azure region that supports availability zones and where you want to create resources for this lab (replace `<region>` with the name of the Azure region):
+1.  In the Cloud Shell pane, run the following command to specify the Azure region that supports availability zones and where you want to create resources for this lab (replace `<region>` with the name of the Azure region which supports availablity zones):
 
     ```
     LOCATION='<region>'
     ```
+
+      > **Note**: Ensure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)
+      
+      > **Note**: To identify Azure regions where you can provision Azure VMs, refer to [https://azure.microsoft.com/en-us/regions/offers/](https://azure.microsoft.com/en-us/regions/offers/)
+
+      > **Note**: To identify Azure regions which support availability zones, refer to [https://docs.microsoft.com/en-us/azure/availability-zones/az-region](https://docs.microsoft.com/en-us/azure/availability-zones/az-region)
 
 1.  In the Cloud Shell pane, run the following command to create a resource group in the region you specified:
 
@@ -90,6 +96,10 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  On the page titled **SAP NetWeaver 3-tier compatible template using a Marketplace image - MD**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
 
+1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, select **Edit template**.
+
+1.  On the **Edit template** blade, scroll down to the line **197**, replace `"dbvmSize": "Standard_E8s_v3",` with `"dbvmSize": "Standard_D4s_v3",`, and select **Save**.
+
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
 
     -   Subscription: *the name of your Azure subscription*
@@ -126,7 +136,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   _artifacts Location Sas Token: *leave blank*
 
-1.  Do not Wait for the deployment to complete but instead proceed to the next task. 
+1.  Do not wait for the deployment to complete but instead proceed to the next task. 
 
     > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
 
@@ -173,7 +183,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Virtual network: **az12003a-sap-vnet**
 
-    -   Subnet: *a new subnet named* **bastionSubnet (10.3.255.0/24)**
+    -   Subnet: a new subnet named **bastionSubnet (10.3.255.0/24)**
 
     -   Public IP: *a new IP address named* **az12003a-vm0-ip**
 
@@ -268,7 +278,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
      sudo su -
      ```
 
-1.  When prompted for the password, type **Pa55w.rd1234** and press the **Enter** key. 
+1.  If prompted for the password, type **Pa55w.rd1234** and press the **Enter** key. 
 
 1.  In the SSH session to i20-db-0, verify that all of the SAP HANA related volumes (including **/usr/sap**, **/hana/shared**, **/hana/backup**, **/hana/data**, and **/hana/logs**) are propertly mounted by running:
 
@@ -281,86 +291,10 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 ### Task 4: Enable cross-node password-less SSH access
 
-1.  In the SSH session to i20-db-0, open the file **/etc/ssh/sshd\_config** in the vi editor by running (alternatively, you can use any other editor):
-
-    ```
-    vi /etc/ssh/sshd_config
-    ```
-
-1.  In the **/etc/ssh/sshd\_config** file, locate the **PermitRootLogin** and **AuthorizedKeysFile** entries, and configure them as follows:
-    ```
-    PermitRootLogin yes
-    AuthorizedKeysFile      /root/.ssh/authorized_keys
-    ```
-
-1.  Save the changes and close the editor.
-
-1.  In the SSH session to i20-db-0, restart sshd daemon by running:
-
-    ```
-    systemctl restart sshd
-    ```
-
-1.  Repeat the previous four steps on the i20-db-1 Azure VM.
-
 1.  In the SSH session to i20-db-0, generate passphrase-less SSH key by running:
 
     ```
-    ssh-keygen -tdsa
-    ```
-
-1.  When prompted, press **Enter** three times and then display the key by running: 
-
-    ```
-    cat /root/.ssh/id_dsa.pub
-    ```
-
-1.  Copy the value of the key into Clipboard.
-
-1.  In the SSH session to i20-db-1, create the directory **/root/.ssh/** by running:
-
-    ```
-    mkdir /root/.ssh
-    ```
-
-1.  In the SSH session to i20-db-1, open the file **/root/.ssh/authorized\_keys** in the vi editor by running:
-
-    ```
-    vi /root/.ssh/authorized_keys
-    ```
-
-1.  In the editor window, paste the key you generated on i20-db-1.
-
-1.  Save the changes and close the editor.
-
-1.  In the SSH session to i20-db-1, generate passphrase-less SSH key by running:
-
-    ```
-    ssh-keygen -tdsa
-    ```
-
-1.  When prompted, press **Enter** three times and then display the key by running: 
-
-    ```
-    cat /root/.ssh/id_dsa.pub
-    ```
-
-1.  Copy the value of the key into Clipboard.
-
-1.  In the SSH session to i20-db-0, open the file **/root/.ssh/authorized\_keys** in the vi editor by running:
-
-    ```
-    vi /root/.ssh/authorized_keys
-    ```
-
-1.  In the editor window, paste the key you generated on i20-db-1.
-
-1.  Save the changes and close the editor.
-
-1.  In the SSH session to i20-db-0, generate passphrase-less SSH key by running:
-
-    ```
-    ssh-keygen -t rsa
+    ssh-keygen
     ```
 
 1.  When prompted, press **Enter** three times and then display the key by running: 
@@ -371,20 +305,20 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  Copy the value of the key into Clipboard.
 
-1.  In the SSH session to i20-db-1, open the file **/root/.ssh/authorized\_keys** in the vi editor by running:
+1.  In the SSH session to i20-db-1, create the file **/root/.ssh/authorized\_keys** in the vi editor by running:
 
     ```
     vi /root/.ssh/authorized_keys
     ```
 
-1.  In the editor window, paste the key you generated on i20-db-0 starting from a new line.
+1.  In the vi editor, paste the key you generated on i20-db-0.
 
 1.  Save the changes and close the editor.
 
 1.  In the SSH session to i20-db-1, generate passphrase-less SSH key by running:
 
     ```
-    ssh-keygen -t rsa
+    ssh-keygen
     ```
 
 1.  When prompted, press **Enter** three times and then display the key by running: 
@@ -395,13 +329,13 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  Copy the value of the key into Clipboard.
 
-1.  In the SSH session to i20-db-0, open the file **/root/.ssh/authorized\_keys** in the vi editor by running:
+1.  In the SSH session to i20-db-0, create the file **/root/.ssh/authorized\_keys** in the vi editor by running:
 
     ```
     vi /root/.ssh/authorized_keys
     ```
 
-1.  In the editor window, paste the key you generated on i20-db-1 starting from a new line.
+1.  In the vi editor, paste the key you generated on i20-db-1 starting from a new line.
 
 1.  Save the changes and close the editor.
 
@@ -455,19 +389,55 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
     zypper update
     ```
 
-1. In the SSH session to i20-db-0, run the following to update HA extensions dependencies (when prompted, type **y**, press the **Enter** key, read through the **SUSE End User License Agreement**, type **q**, type **yes** to agree with the terms of the licensing terms, and press the **Enter** key again).
+1.  In the SSH session to i20-db-0, run the following to install the packages required by cluster resources (when prompted, type **y** and press the **Enter** key):
 
     ```
-    zypper install sle-ha-release fence-agents
+    zypper in socat
     ```
 
-1. Repeat the previous steps on i20-db-1.
+1.  In the SSH session to i20-db-0, run the following to install the azure-lb component required by cluster resources:
+
+    ```
+    zypper in resource-agents
+    ```
+
+1.  In the SSH session to i20-db-0, open the file **/etc/systemd/system.conf** in the vi editor by running:
+
+    ```
+    vi /etc/systemd/system.conf
+    ```
+
+1.  In the vi editor, replace `#DefaultTasksMax=512` with `DefaultTasksMax=4096`. 
+
+    > **Note**: In some cases, Pacemaker might create many processes, reaching the default limit imposed on their number and triggering a failover. This change increases the maximum number of allowed processes.
+
+1.  Save the changes and close the editor.
+
+1.  In the SSH session to i20-db-0, run the following to activate the configuration change:
+
+    ```
+    systemctl daemon-reload
+    ```
+
+1. In the SSH session to i20-db-0, run the following to install the fence agents package:
+
+    ```
+    zypper install fence-agents
+    ```
+
+1. In the SSH session to i20-db-0, run the following to install Azure Python SDK required by the fence agent (when prompted, type **y** and press the **Enter** key):
+
+    ```
+    zypper install python-azure-mgmt-compute
+    ```
+
+1. Repeat the previous steps in this task on i20-db-1.
 
 > **Result**: After you completed this exercise, you have onfigured operating system of Azure VMs running Linux to support a highly available SAP NetWeaver deployment
 
 ## Exercise 3: Configure clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
 
-Duration: 60 minutes
+Duration: 30 minutes
 
 In this exercise, you will configure clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment.
 
@@ -476,14 +446,12 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 1.  Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, run the following to initiate configuration of an HA cluster on i20-db-0:
 
     ```
-    ha-cluster-init
+    ha-cluster-init -u
     ```
 
 1.  When prompted, provide the following answers:
 
     -   Do you want to continue anyway (y/n)?: **y**
-
-    -   /root/.ssh/id_rsa already exists - overwrite (y/n)? **n**
 
     -   Address for ring0 [10.3.0.20]: **ENTER**
 
@@ -493,7 +461,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
     -   Do you wish to configure a virtual IP address (y/n)?: **n**
 
-   > **Note**: The clustering setup generates an **hacluster** account with its password set to **linux**. You will chane it later in this task.
+    > **Note**: The clustering setup generates an **hacluster** account with its password set to **linux**. You will change it later in this task.
 
 1.  Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-1, run the following to join the HA cluster on i20-db-0 from i20-db-1:
 
@@ -507,29 +475,25 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
     -   IP address or hostname of existing node (e.g.: 192.168.1.1) \[\]: **i20-db-0**
 
-    -   /root/.ssh/id\_rsa already exists - overwrite (y/n)? **n**
-
-    -   /root/.ssh/id\_dsa already exists - overwrite (y/n)? **n**
-
     -   Address for ring0 [10.3.0.21]: **ENTER**
 
 1.  In the PuTTY-based SSH session to i20-db-0, run the following to set the password of the **hacluster** account to **Pa55w.rd1234** (type the new password when prompted): 
+
     ```
     passwd hacluster
-
     ```
 
 1.  Repeat the previous step on i20-db-1.
 
 ### Task 2: Review corosync configuration
 
-1.  Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, review content of the **/etc/corosync/corosync.conf** file by running:
+1.  Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, open the **/etc/corosync/corosync.conf** file by running:
 
     ```
-    cat /etc/corosync/corosync.conf
+    vi /etc/corosync/corosync.conf
     ```
 
-1.  Note the `transport: udpu` entry and the `nodelist` section:
+1.  In the vi editor, note the `transport: udpu` entry and the `nodelist` section:
     ```
     [...]
        interface { 
@@ -551,35 +515,16 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
         [...]
     ```
 
-1.  Repeat the previous steps on i20-db-1.
+1.  In the vi editor, replace the entry `token: 5000` with `token: 30000`.
 
-
-### Task 3: Configure STONITH clustering options
-
-1.  Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, create a new file named **crm-defaults.txt** with the following content:
-
-    ```
-    property $id="cib-bootstrap-options" \
-      no-quorum-policy="ignore" \
-      stonith-enabled="true" \
-      stonith-action="reboot" \
-      stonith-timeout="150s"
-    rsc_defaults $id="rsc-options" \
-      resource-stickiness="1000" \
-      migration-threshold="5000"
-    op_defaults $id="op-options" \
-      timeout="600"
-    ```
+    > **Note**: This change allows for memory preserving maintenance. For more information, refer to [Microsoft documentation regarding maintenance of virtual machines in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/maintenance-and-updates#maintenance-that-doesnt-require-a-reboot)
 
 1.  Save the changes and close the editor.
 
-1.  In the PuTTY-based SSH session to i20-db-0, apply the settings in the newly created file by running:
+1.  Repeat the previous steps on i20-db-1.
 
-    ```
-    crm configure load update crm-defaults.txt
-    ```
 
-### Task 4: Identify the value of the Azure subscription Id and the Azure AD tenant Id
+### Task 3: Identify the value of the Azure subscription Id and the Azure AD tenant Id
 
 1.  From the lab computer, in the browser window, in the Azure portal at **https://portal.azure.com**, ensure that you are signed in with the user account that has the Global Administrator role in the Azure AD tenant associated with your subscription.
 
@@ -594,7 +539,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 1.  Copy the resulting values to Notepad. You will need it in the next task.
 
 
-### Task 5: Create an Azure AD application for the STONITH device
+### Task 4: Create an Azure AD application for the STONITH device
 
 1.  In the Azure portal, navigate to the Azure Active Directory blade.
 
@@ -617,7 +562,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 1.  Copy the resulting secret value to Notepad (this entry is displayed only once, after you click **Add**). This will be referred to as **password** later in this exercise:
 
 
-### Task 6: Grant permissions to Azure VMs to the service principal of the STONITH app 
+### Task 5: Grant permissions to Azure VMs to the service principal of the STONITH app 
 
 1.  In the Azure portal, navigate to the blade of the **i20-db-0** Azure VM
 
@@ -625,33 +570,35 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 1.  From the **i20-db-0 - Access control (IAM)** blade, add a role assignment with the following settings:
 
-    -   Role: **Owner**
+    -   Role: **Virtual Machine Contributor**
 
     -   Assign access to: **Azure AD user, group, or service principal**
 
     -   Select: **Stonith app**
 
-1.  Repeat the previous steps to assign the Stonith app the Owner role to the **i20-db-1** Azure VM
+1.  Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure VM
 
 
-### Task 7: Configure the STONITH cluster device 
+### Task 6: Configure the STONITH cluster device 
 
-1.  Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, create a new file named **crm-fencing.txt** with the following content (where `subscription_id`, `tenant_id`, `login_id,` and `password` are placeholders for the values you identified in Exercise 3 Task 5:
+1.  Within the RDP session to az12003a-vm0, switch to the PuTTY-based SSH session to i20-db-0.
+
+1.  Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, run the following commands (make sure to replace the `subscription_id`, `tenant_id`, `login_id,` and `password` placeholders with the values you identified in Exercise 3 Task 4:
 
     ```
-    primitive rsc_st_azure_1 stonith:fence_azure_arm \
-         params subscriptionId="subscription_id" resourceGroup="az12003a-sap-RG" tenantId="tenant_id" login="login_id" passwd="password"
-    primitive rsc_st_azure_2 stonith:fence_azure_arm \
-         params subscriptionId="subscription_id" resourceGroup="az12003a-sap-RG" tenantId="tenant_id" login="login_id" passwd="password"
-    colocation col_st_azure -2000: rsc_st_azure_1:Started rsc_st_azure_2:Started
+    crm configure property stonith-enabled=true
+
+    crm configure property concurrent-fencing=true
+
+    crm configure primitive rsc_st_azure stonith:fence_azure_arm \
+      params subscriptionId="subscription_id" resourceGroup="az12003a-sap-RG" tenantId="tenant_id" login="login_id" passwd="password" \
+      pcmk_monitor_retries=4 pcmk_action_limit=3 power_timeout=240 pcmk_reboot_timeout=900 \
+      op monitor interval=3600 timeout=120
+
+    sudo crm configure property stonith-timeout=900
     ```
 
-1.  From the SSH session on s03-db-0, apply the settings in the file by running **crm configure load update crm-fencing.txt**:
-    ```
-    crm configure load update crm-fencing.txt
-    ```
-
-### Task 8: Review clustering configuration on Azure VMs running Linux by using Hawk
+### Task 7: Review clustering configuration on Azure VMs running Linux by using Hawk
 
 1.  Within the RDP session to az12003a-vm0, start Internet Explorer and navigate to **https://i20-db-0:7630**. This should display the SUSE Hawk sign-in page.
 

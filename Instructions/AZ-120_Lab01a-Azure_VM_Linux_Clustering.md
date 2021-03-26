@@ -29,7 +29,6 @@ After completing this lab, you will be able to:
 
 - A lab computer running Windows 10, Windows Server 2016, or Windows Server 2019 with access to Azure
 
-
 ## Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
 
 Duration: 30 minutes
@@ -48,9 +47,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Subscription: *the name of your Azure subscription*
 
-   - Resource group: *a new resource group named* **az12001a-RG**
+   - Resource group: Resource group: *the name of a new resource group* **az12001a-RG**
 
-   - Region: *an Azure region where you can deploy Azure VMs and which is close to the lab location*
+   > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
+
+   - Region: *an Azure region where you can deploy Azure VMs*
 
    - Proximity placement group name: **az12001a-ppg**
 
@@ -64,19 +65,19 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Subscription: *the name of your Azure subscription*
 
-   - Resource group: *a new resource group named* **az12001a-RG**
+   - Resource group: *the name of the resource group you used earlier in this task*
 
    - Virtual machine name: **az12001a-vm0**
 
-   - Region: *an Azure region where you can deploy Azure VMs and which is close to the lab location*
+   - Region: *the same Azure region you chose when creating the proximity placement group*
 
    - Availability options: **Availability set**
 
    - Availability set: *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains*
 
-   - Image: **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**
+   - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**
    
-   > **Note**: To locate the image, click the **Browse all public and private images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**.
+   > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**.
 
    - Azure Spot Instance: **No**
 
@@ -142,19 +143,19 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Subscription: *the name of your Azure subscription*
 
-   - Resource group: **az12001a-RG**
+   - Resource group: *the name of the resource group you used earlier in this task*
 
    - Virtual machine name: **az12001a-vm1**
 
-   - Region: *an Azure region where you can deploy Azure VMs and which is close to the lab location*
+   - Region: *the same Azure region you chose when creating the first Azure VM*
 
    - Availability options: **Availability set**
 
    - Availability set: **az12001a-avset**
 
-   - Image: **SUSE Enterprise Linux for SAP 12 SP3 - BYOS - Gen1**
+   - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**
    
-   > **Note**: To locate the image, click the **Browse all public and private images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS**, in the list of results, on the **SUSE Enterprise Linux for SAP 12 & 15 - BYOS** tile, click **Select** and, in the drop-down list, select **SUSE Enterprise Linux for SAP 12 SP3 - BYOS**.   
+   > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**.
 
    - Azure Spot Instance: **No**
 
@@ -217,17 +218,21 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1. In the Cloud Shell pane, run the following command, to create the first set of 8 managed disks that you will attach to the first Azure VM you deployed in the previous task:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous task:
 
    ```cli
    RESOURCE_GROUP_NAME='az12001a-RG'
+   ```
 
+1. In the Cloud Shell pane, run the following command to create the first set of 8 managed disks that you will attach to the first Azure VM you deployed in the previous task:
+
+   ```cli
    LOCATION=$(az group list --query "[?name == '$RESOURCE_GROUP_NAME'].location" --output tsv)
 
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm0-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
    ```
 
-1. In the Cloud Shell pane, run the following command, to create the second set of 8 managed disks that you will attach to the second Azure VM you deployed in the previous task:
+1. In the Cloud Shell pane, run the following command to create the second set of 8 managed disks that you will attach to the second Azure VM you deployed in the previous task:
 
    ```cli
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm1-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
@@ -243,7 +248,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Disk name: **az12001a-vm0-DataDisk0**
 
-   - Resource group: **az12001a-RG**
+   - Resource group: *the name of the resource group you used earlier in this task*
 
    - HOST CACHING: **Read-only**
 
@@ -261,7 +266,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Disk name: **az12001a-vm1-DataDisk0**
 
-   - Resource group: **az12001a-RG**
+   - Resource group: *the name of the resource group you used earlier in this task*
 
    - HOST CACHING: **Read-only**
 
@@ -282,15 +287,19 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. In the Azure Portal, start a Bash session in Cloud Shell. 
 
-1. In the Cloud Shell pane, run the following command, to identify the public IP address of the first Azure VM you deployed in the previous exercise:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous exercise:
 
    ```cli
    RESOURCE_GROUP_NAME='az12001a-RG'
+   ```
 
+1. In the Cloud Shell pane, run the following command to identify the public IP address of the first Azure VM you deployed in the previous exercise:
+
+   ```cli
    PIP=$(az network public-ip show --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm0-ip --query ipAddress --output tsv)
    ```
 
-1. In the Cloud Shell pane, run the following command, to establish an SSH session to the IP address you identified in the previou step:
+1. In the Cloud Shell pane, run the following command to establish an SSH session to the IP address you identified in the previou step:
 
    ```cli
    ssh student@$PIP
@@ -659,7 +668,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Subscription: *the name of your Azure subscription*
 
-   - Resource group: **az12001a-RG**
+   - Resource group: *the name of the resource group you used earlier in this lab*
 
    - Name: **az12001a-lb0**
 
@@ -733,11 +742,15 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1. In the Azure Portal, start a Bash session in Cloud Shell. 
 
-1. In the Cloud Shell pane, run the following command to create the public IP address to be used by the second load balancer:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the first exercise of this lab:
 
    ```cli
    RESOURCE_GROUP_NAME='az12001a-RG'
+   ```
 
+1. In the Cloud Shell pane, run the following command to create the public IP address to be used by the second load balancer:
+
+   ```cli
    LOCATION=$(az group list --query "[?name == '$RESOURCE_GROUP_NAME'].location" --output tsv)
 
    PIP_NAME='az12001a-lb1-pip'
@@ -791,7 +804,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Subscription: *the name of your Azure subscription*
 
-   - Resource group: **az12001a-RG**
+   - Resource group: *the name of the resource group you used earlier in this lab*
 
    - Virtual machine name: **az12001a-vm2**
 
@@ -800,6 +813,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    - Availability options: **No infrastructure redundancy required**
 
    - Image: **Windows Server 2019 Datacenter - Gen1**
+
+   - Size: **Standard DS1 v2*** or similar*
 
    - Azure Spot Instance: **No**
 
@@ -880,22 +895,28 @@ In this exercise, you will remove resources provisioned in this lab.
 
 1. At the top of the portal, click the **Cloud Shell** icon to open Cloud Shell pane and choose Bash as the shell.
 
-1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to list all resource groups you created in this lab:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_PREFIX` to the prefix of the name of the resource group containing the resources you provisioned in this lab:
 
    ```cli
-   az group list --query "[?starts_with(name,'az12001a-')]".name --output tsv
+   RESOURCE_GROUP_PREFIX='az12001a-'
    ```
 
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
+1. In the Cloud Shell pane, run the following command to list all resource groups you created in this lab:
+
+   ```cli
+   az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv
+   ```
+
+1. Verify that the output contains only the resource group you created in this lab. This resource group with all of their resources will be deleted in the next task.
 
 #### Task 2: Delete resource groups
 
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
+1. In the Cloud Shell pane, run the following command to delete the resource group and their resources.
 
    ```cli
-   az group list --query "[?starts_with(name,'az12001a-')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
+   az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
    ```
 
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
+1. Close the Cloud Shell pane.
 
 > **Result**: After you completed this exercise, you have removed the resources used in this lab.

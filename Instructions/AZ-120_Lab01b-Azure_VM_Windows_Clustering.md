@@ -25,9 +25,11 @@ After completing this lab, you will be able to:
 
 ## Requirements
 
--   A Microsoft Azure subscription with the sufficient number of available DSv3 vCPUs (4 x 4) and DSv2 (1 x 1) vCPUs
+-   A Microsoft Azure subscription with the sufficient number of available DSv2 and Dsv3 vCPUs (one Standard_DS1_v2 VM with 1 vCPU and four Standard_D4s_v3 VMs with 4 vCPUs each) in the Azure region you intend to use for this lab
 
 -   A lab computer running Windows 10, Windows Server 2016, or Windows Server 2019 with access to Azure
+
+> **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
 
 ## Exercise 1: Provision Azure compute resources necessary to support highly available SAP NetWeaver deployments
 
@@ -51,15 +53,21 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  On the **Custom deployment** blade, click **Edit template**.
 
-1.  On the **Edit template** blade, scroll down to the variables section, replace `"imageSKU": "2016-Datacenter",` with `"imageSKU": "2019-Datacenter",` and click **Save**.
+1.  On the **Edit template** blade, apply the following changes and select **Save**:
+
+    -   in the line **66**, replace `"adVMSize": "Standard_DS2_v2",` with `"adVMSize": "Standard_D4s_v3",`
+
+    -   in the line **78**, replace `"imageSKU": "2016-Datacenter",` with `"imageSKU": "2019-Datacenter",`.
 
 1.  Back on the **Create a new AD Domain with 2 Domain Controllers** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: *a new resource group named* **az12001b-ad-RG**
+    -   Resource group: *the name of a new resource group* **az12001b-ad-RG**
 
-    -   Location: *an Azure region where you can deploy Azure VMs and which is closest to the lab location*
+    -   Location: *an Azure region where you can deploy Azure VMs*
+
+    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
 
     -   Admin Username: **Student**
 
@@ -91,7 +99,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: *a new resource group named* **az12001b-cl-RG**
+    -   Resource group: *the name of a new resource group* **az12001b-cl-RG**
 
     -   Virtual machine name: **az12001b-cl-vm0**
 
@@ -159,11 +167,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: **az12001b-cl-RG**
+    -   Resource group: *the name of the resource group you used when deploying the first **Windows Server 2019 Datacenter** Azure VM in this task*
 
     -   Virtual machine name: **az12001b-cl-vm1**
 
-    -   Region: *the same Azure region where you deployed the Azure VMs in the previous task*
+    -   Region: *the same Azure region where you deployed the first **Windows Server 2019 Datacenter** Azure VM in this task*
 
     -   Availability options: **Availability set**
 
@@ -227,11 +235,15 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1.  In the Cloud Shell pane, run the following command, to create the first set of 4 managed disks that you will attach to the first Azure VM you deployed in the previous task:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the resources you provisioned in the previous task:
 
     ```
     $resourceGroupName = 'az12001b-cl-RG'
+    ```
 
+1.  In the Cloud Shell pane, run the following command, to create the first set of 4 managed disks that you will attach to the first Azure VM you deployed in the previous task:
+
+    ```
     $location = (Get-AzResourceGroup -Name $resourceGroupName).Location
 
     $diskConfig = New-AzDiskConfig -Location $location -DiskSizeGB 128 -AccountType Premium_LRS -OsType Windows -CreateOption Empty
@@ -255,7 +267,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Disk name: **az12001b-cl-vm0-DataDisk0**
 
-    -   Resource group: **az12001b-cl-RG**
+    -   Resource group: *the name of the resource group you used when deploying the pair of **Windows Server 2019 Datacenter** Azure VMs in the previous task*
 
     -   HOST CACHING: **Read-only**
 
@@ -273,7 +285,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Disk name: **az12001b-cl-vm1-DataDisk0**
 
-    -   Resource group: **az12001b-cl-RG**
+    -   Resource group: *the name of the resource group you used when deploying the pair of **Windows Server 2019 Datacenter** Azure VMs in the previous task*
 
     -   HOST CACHING: **Read-only**
 
@@ -298,11 +310,15 @@ Duration: 40 minutes
 
 1.  In the Azure Portal, start a PowerShell session in Cloud Shell. 
 
-1.  In the Cloud Shell pane, run the following command, to join the Windows Server 2019 Azure VMs you deployed in the second task of the previous exercise to the **adatum.com** Active Directory domain:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the pair of **Windows Server 2019 Datacenter** Azure VMs you provisioned in the previous exercise:
 
     ```
     $resourceGroupName = 'az12001b-cl-RG'
+    ```
 
+1.  In the Cloud Shell pane, run the following command, to join the Windows Server 2019 Azure VMs you deployed in the second task of the previous exercise to the **adatum.com** Active Directory domain:
+
+    ```
     $location = (Get-AzureRmResourceGroup -Name $resourceGroupName).Location
 
     $settingString = '{"Name": "adatum.com", "User": "adatum.com\\Student", "Restart": "true", "Options": "3"}'
@@ -417,7 +433,7 @@ Duration: 40 minutes
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: **az12001b-cl-RG**
+    -   Resource group: *the name of the resource group containing the pair of **Windows Server 2019 Datacenter** Azure VMs you provisioned in the previous exercise*
 
     -   Storage account name: *any unique name consisting of between 3 and 24 letters and digits*
 
@@ -568,7 +584,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: **az12001b-cl-RG**
+    -   Resource group: *the name of the resource group containing the pair of **Windows Server 2019 Datacenter** Azure VMs you provisioned in the first exercise of this lab*
 
     -   Name: **az12001b-cl-lb0**
 
@@ -586,7 +602,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   IP address: **10.0.1.240**
 
-    -   Availability zone: **Zone redundant**
+    -   Availability zone: **No Zone**
 
 1.  Wait until the load balancer is provisioned and then navigate to its blade in the Azure portal.
 
@@ -642,11 +658,15 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1.  From the Azure Portal, start a PowerShell session in Cloud Shell. 
 
-1.  In the Cloud Shell pane, run the following command to create the public IP address to be used by the second load balancer:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the pair of **Windows Server 2019 Datacenter** Azure VMs you provisioned in the first exercise of this lab:
 
     ```
     $resourceGroupName = 'az12001b-cl-RG'
+    ```
 
+1.  In the Cloud Shell pane, run the following command to create the public IP address to be used by the second load balancer:
+
+    ```
     $location = (Get-AzResourceGroup -Name $resourceGroupName).Location
 
     $pipName = 'az12001b-cl-lb0-pip'
@@ -740,7 +760,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: **az12001b-cl-RG**
+    -   Resource group: *the name of the resource group containing the pair of **Windows Server 2019 Datacenter** Azure VMs you provisioned in the first exercise of this lab*
 
     -   Virtual machine name: **az12001b-vm2**
 
@@ -750,7 +770,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Image: **Windows Server 2019 Datacenter**
 
-    -   Size: **Standard DS1 v2**
+    -   Size: **Standard DS1 v2*** or similar*
 
     -   Username: **student**
 
@@ -816,23 +836,28 @@ In this exercise, you will remove resources provisioned in this lab.
 
 1. At the top of the portal, click the **Cloud Shell** icon to open Cloud Shell pane and choose PowerShell as the shell.
 
-1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to list all resource groups you created in this lab:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the pair of **Windows Server 2019 Datacenter** Azure VMs you provisioned in the first exercise of this lab:
 
     ```
-    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like 'az12001b-*'} | Select-Object ResourceGroupName
+    $resourceGroupNamePrefix = 'az12001b-'
+    ```
+
+1. In the Cloud Shell pane, run the following command to list all resource groups you created in this lab:
+
+    ```
+    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like "$resourceGroupNamePrefix*"} | Select-Object ResourceGroupName
     ```
 
 1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
 
 #### Task 2: Delete resource groups
 
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
+1. In the Cloud Shell pane, run the following command to delete the resource groups you created in this lab
 
     ```
-    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like 'az12001b-*'} | Remove-AzResourceGroup -Force  
+    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like "$resourceGroupNamePrefix*"} | Remove-AzResourceGroup -Force  
     ```
 
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
+1. Close the Cloud Shell pane.
 
 > **Result**: After you completed this exercise, you have removed the resources used in this lab.

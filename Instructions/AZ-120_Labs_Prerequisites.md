@@ -3,13 +3,13 @@
 
 ## vCPU core requirements
 
--   To complete the last lab of this course, you will need a Microsoft Azure subscription with at least 34 vCPU available in the Azure region that supports availability zones where the Azure VMs deployed in this lab will reside.
+-   To complete the last lab of this course, you will need a Microsoft Azure subscription with at least 28 vCPU available in the Azure region that supports availability zones where the Azure VMs deployed in this lab will reside.
 
-    -   5 x Standard_D2s_v3 (2 vCPUs each) = 10
+    -   4 x Standard_DS1_v2 (1 vCPUs each) = 4
 
-    -   4 x Standard_D4s_v3 (4 vCPUs each) = 16
+    -   6 x Standard_D4s_v3 (4 vCPUs each) = 24
 
-    -   2 x Standard_E4s_v3 (4 vCPUs each) = 8
+    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
 
     > **Note**: To identify the Azure regions that support availability zones, refer to [https://docs.microsoft.com/en-us/azure/availability-zones/az-overview]<https://docs.microsoft.com/en-us/azure/availability-zones/az-overview>
 
@@ -27,13 +27,12 @@ Timeframe: 120 minutes
 
     > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1.  In the Azure portal, in the **Cloud Shell**, at the PowerShell prompt, run the following: where `<Azure_region>` designates the target Azure region that you intend to use for this lab (e.g. `westus2`):
+1.  In the Azure portal, in the **Cloud Shell** pane, at the PowerShell prompt, run the following: where `<Azure_region>` designates the target Azure region that you intend to use for this lab (e.g. `eastus`):
 
-    ```
-    Get-AzVMUsage -Location westus2 | Where-Object {$_.Name.Value -eq 'StandardDSv3Family'}
+    ```powershell
+    Get-AzVMUsage -Location '<Azure_region>' | Where-Object {$_.Name.Value -eq 'StandardDSv3Family'}
 
-    Get-AzVMUsage -Location westus2 | Where-Object {$_.Name.Value -eq 'StandardESv3Family'}
-
+    Get-AzVMUsage -Location '<Azure_region>' | Where-Object {$_.Name.Value -eq 'StandardDSv2Family'}
     ``` 
 
     > **Note**: To identify the names of Azure regions, in the **Cloud Shell**, at the Bash prompt, run `(Get-AzLocation).Location`
@@ -60,7 +59,7 @@ Timeframe: 120 minutes
 
     -   Location: the target Azure region you intend to use in this lab
 
-    -   SKU family: **DSv3 Series** and **ESv3 Series**
+    -   SKU family: **DSv3 Series** and **DSv2 Series**
 
 1.  On the **Details** blade, specify the new limit for each SKU series and click **Next: Review + create**:
 

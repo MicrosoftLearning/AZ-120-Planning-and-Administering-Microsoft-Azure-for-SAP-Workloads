@@ -25,7 +25,7 @@ After completing this lab, you will be able to:
 
 ## Requirements
 
--   A Microsoft Azure subscription
+-   A Microsoft Azure subscription with the sufficient number of available DSv2 and Dsv3 vCPUs (four Standard_DS1_v2 VM with 1 vCPU and six Standard_D4s_v3 VMs with 4 vCPUs each) in an Azure region that supports availability zones
 
 -   A lab computer running Windows 10, Windows Server 2016, or Windows Server 2016 with access to Azure
 
@@ -54,9 +54,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: *a new resource group named* **az12003b-ad-RG**
+    -   Resource group: *the name of a new resource group* **az12003b-ad-RG**
 
-    -   Location: *an Azure region where you can deploy Azure VMs and which is closest to the lab location*
+    -   Location: *an Azure region where you can deploy Azure VMs*
+
+    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
 
     -   Admin Username: **Student**
 
@@ -81,7 +83,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
 
        - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
+
        - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
+
        - in the Azure portal, navigate to the **az12003b-sap-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12003b-sap-RG**) and provide the password for the root account (**Pa55w.rd1234**).
 
 ### Task 2: Provision subnets that will host Azure VMs running highly available SAP NetWeaver deployment and the S2D cluster.
@@ -108,11 +112,15 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1.  In the Cloud Shell pane, run the following command to identify the virtual network created in the previous task:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the resources you provisioned in the previous task:
 
     ```
     $resourceGroupName = 'az12003b-ad-RG'
+    ```
 
+1.  In the Cloud Shell pane, run the following command to identify the virtual network created in the previous task:
+
+    ```
     $vNetName = 'adVNet'
 
     $subnetName = 'sapSubnet'
@@ -136,11 +144,21 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: Make sure to use Microsoft Edge or a third party browser. Do not use Internet Explorer.
 
-1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
+1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, select **Edit template**.
+
+1.  On the **Edit template** blade, apply the following changes and select **Save**:
+
+    -   in the line **197**, replace `"dbVMSize": "Standard_E8s_v3",` with `"dbVMSize": "Standard_D4s_v3",`
+
+    -   in the line **198**, replace `"ascsVMSize": "Standard_D2s_v3",` with `"ascsVMSize": "Standard_DS1_v2",`
+
+    -   in the line **199**, replace `"diVMSize": "Standard_D2s_v3",` with `"diVMSize": "Standard_DS1_v2",`
+
+1.  Back on the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: *a new resource group named* **az12003b-sap-RG**
+    -   Resource group: *the name of a new resource group* **az12003b-sap-RG**
 
     -   Location: *the same Azure region that you specified in the first task of this exercise*
 
@@ -190,7 +208,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     -   Subscription: **Your Azure subscription name**.
 
-    -   Resource group: *a new resource group named* **az12003b-s2d-RG**
+    -   Resource group: *the name of a new resource group* **az12003b-s2d-RG**
 
     -   Region: *the same Azure region where you deployed Azure VMs in the previous tasks of this exercise*
 
@@ -254,7 +272,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: *a new resource group named* **az12003b-dmz-RG**
+    -   Resource group: *the name of a new resource group* **az12003b-dmz-RG**
 
     -   Virtual machine name: **az12003b-vm0**
 
@@ -264,7 +282,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     -   Image: **Windows Server 2019 Datacenter**
 
-    -   Size: **Standard D2s v3**
+    -   Size: **Standard DS1 v2**
 
     -   Username: **Student**
 
@@ -331,11 +349,15 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
 1.  In the Azure Portal, start a PowerShell session in Cloud Shell. 
 
-1.  In the Cloud Shell pane, run the following command, to join the Windows Server Azure VMs you deployed in the third task of the previous exercise to the **adatum.com** Active Directory domain:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the resources you provisioned in the previous task:
 
     ```
     $resourceGroupName = 'az12003b-sap-RG'
+    ```
 
+1.  In the Cloud Shell pane, run the following command, to join the Windows Server Azure VMs you deployed in the third task of the previous exercise to the **adatum.com** Active Directory domain:
+
+    ```
     $location = (Get-AzResourceGroup -Name $resourceGroupName).Location
 
     $settingString = '{"Name": "adatum.com", "User": "adatum.com\\Student", "Restart": "true", "Options": "3"}'
@@ -390,7 +412,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: **az12003b-sap-RG**
+    -   Resource group: *the name of the resource group into which you deployed the Azure VMs which will host highly available SAP NetWeaver deployment*
 
     -   Storage account name: *any unique name consisting of between 3 and 24 letters and digits*
 
@@ -471,11 +493,15 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
     > **Note**: When prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you are using for this lab.
 
-1.  Within the Windows PowerShell ISE session, set the Cloud Witness quorum of the new cluster by running the following:
+1.  Within the Windows PowerShell ISE session, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the storage account you provisioned in the previous task:
 
     ```
     $resourceGroupName = 'az12003b-sap-RG'
+    ```
 
+1.  Within the Windows PowerShell ISE session, run the following to set the Cloud Witness quorum of the new cluster:
+
+    ```
     $cwStorageAccountName = (Get-AzStorageAccount -ResourceGroupName $resourceGroupName)[0].StorageAccountName
 
     $cwStorageAccountKey = (Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -Name $cwStorageAccountName).Value[0]
@@ -548,11 +574,15 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
     > **Note**: When prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you are using for this lab.
 
-1.  Within the Windows PowerShell ISE session, set the Cloud Witness quorum of the new cluster by running the following:
+1.  Within the Windows PowerShell ISE session, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the storage account you provisioned earlier in this exercise:
 
     ```
-    $resourceGroupName = 'az12003b-sap-RG'liveid
+    $resourceGroupName = 'az12003b-sap-RG'
+    ```
 
+1.  Within the Windows PowerShell ISE session, run the following to set the Cloud Witness quorum of the cluster:
+
+    ```
     $cwStorageAccountName = (Get-AzStorageAccount -ResourceGroupName $resourceGroupName)[0].StorageAccountName
 
     $cwStorageAccountKey = (Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -Name $cwStorageAccountName).Value[0]
@@ -622,23 +652,28 @@ In this exercise, you will remove resources provisioned in this lab.
 
 1. At the top of the portal, click the **Cloud Shell** icon to open Cloud Shell pane and choose PowerShell as the shell.
 
-1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to list all resource groups you created in this lab:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$resourceGroupName` to the name of the resource group containing the pair of **Windows Server 2019 Datacenter** Azure VMs you provisioned in the first exercise of this lab:
 
     ```
-    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like 'az12003b-*'} | Select-Object ResourceGroupName
+    $resourceGroupNamePrefix = 'az12003b-'
+    ```
+
+1. In the Cloud Shell pane, run the following command to list all resource groups you created in this lab:
+
+    ```
+    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like "$resourceGroupNamePrefix*"} | Select-Object ResourceGroupName
     ```
 
 1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
 
 #### Task 2: Delete resource groups
 
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
+1. In the Cloud Shell pane, run the following command to delete the resource groups you created in this lab
 
     ```
-    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like 'az12003b-*'} | Remove-AzResourceGroup -Force  
+    Get-AzResourceGroup | Where-Object {$_.ResourceGroupName -like "$resourceGroupNamePrefix*"} | Remove-AzResourceGroup -Force  
     ```
 
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
+1. Close the Cloud Shell pane.
 
 > **Result**: After you completed this exercise, you have removed the resources used in this lab.

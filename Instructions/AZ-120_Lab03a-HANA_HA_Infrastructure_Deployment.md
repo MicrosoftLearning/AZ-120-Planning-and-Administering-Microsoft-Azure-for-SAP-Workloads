@@ -25,7 +25,7 @@ After completing this lab, you will be able to:
 
 ## Requirements
 
--   A Microsoft Azure subscription with the sufficient number of available Dsv3 vCPUs (total of 18, to accommodate five Standard_D2s_v3 VMs and two Standard_D4s_v3 VMs) in an Azure region that supports availability zones
+-   A Microsoft Azure subscription with the sufficient number of available DSv2 and Dsv3 vCPUs (four Standard_DS1_v2 VMs with 1 vCPU each and two Standard_D4s_v3 VMs with 4 vCPUs each) in an Azure region that supports availability zones
 
 -   A lab computer running Windows 10, Windows Server 2016, or Windows Server 2019 with access to Azure
 
@@ -48,27 +48,31 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  In the Cloud Shell pane, run the following command to specify the Azure region that supports availability zones and where you want to create resources for this lab (replace `<region>` with the name of the Azure region which supports availablity zones):
 
-    ```
+    ```cli
     LOCATION='<region>'
     ```
 
-      > **Note**: Ensure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)
-      
-      > **Note**: To identify Azure regions where you can provision Azure VMs, refer to [https://azure.microsoft.com/en-us/regions/offers/](https://azure.microsoft.com/en-us/regions/offers/)
+    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
 
-      > **Note**: To identify Azure regions which support availability zones, refer to [https://docs.microsoft.com/en-us/azure/availability-zones/az-region](https://docs.microsoft.com/en-us/azure/availability-zones/az-region)
+    > **Note**: Ensure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)
+
+    > **Note**: To identify Azure regions which support availability zones, refer to [https://docs.microsoft.com/en-us/azure/availability-zones/az-region](https://docs.microsoft.com/en-us/azure/availability-zones/az-region)
+
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous task:
+
+    ```cli
+    RESOURCE_GROUP_NAME='az12003a-sap-RG'
+    ```
 
 1.  In the Cloud Shell pane, run the following command to create a resource group in the region you specified:
 
-    ```
-    RESOURCE_GROUP_NAME='az12003a-sap-RG'
-
+    ```cli
     az group create --resource-group $RESOURCE_GROUP_NAME --location $LOCATION
     ```
 
 1.  In the Cloud Shell pane, run the following command to create a virtual network with a single subnet in the resource group you created:
 
-    ```
+    ```cli
     VNET_NAME='az12003a-sap-vnet'
 
     VNET_PREFIX='10.3.0.0/16'
@@ -82,7 +86,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  In the Cloud Shell pane, run the following command to identify the Resource Id of the subnet of the newly created virtual network:
 
-    ```
+    ```cli
     az network vnet subnet list --resource-group $RESOURCE_GROUP_NAME --vnet-name $VNET_NAME --query "[?name == '$SUBNET_NAME'].id" --output tsv
     ```
 
@@ -98,13 +102,19 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, select **Edit template**.
 
-1.  On the **Edit template** blade, scroll down to the line **197**, replace `"dbvmSize": "Standard_E8s_v3",` with `"dbvmSize": "Standard_D4s_v3",`, and select **Save**.
+1.  On the **Edit template** blade, apply the following changes and select **Save**:
+
+    -   in the line **197**, replace `"dbVMSize": "Standard_E8s_v3",` with `"dbVMSize": "Standard_D4s_v3",`
+
+    -   in the line **198**, replace `"ascsVMSize": "Standard_D2s_v3",` with `"ascsVMSize": "Standard_DS1_v2",`
+
+    -   in the line **199**, replace `"diVMSize": "Standard_D2s_v3",` with `"diVMSize": "Standard_DS1_v2",`
 
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
 
     -   Subscription: *the name of your Azure subscription*
 
-    -   Resource group: **az12003a-sap-RG**
+    -   Resource group: *the name of the resource group you used in the previous task*
 
     -   Location: *the same Azure region that you specified in the first task of this exercise*
 
@@ -141,7 +151,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
 
        - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
+
        - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
+
        - in the Azure portal, navigate to the **az12003a-sap-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12003a-sap-RG**) and provide the password for the root account (**Pa55w.rd1234**).
 
 
@@ -167,7 +179,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Image: **Windows Server 2019 Datacenter**
 
-    -   Size: **Standard D2s v3**
+    -   Size: **Standard DS1 v2*** or similar*
 
     -   Username: **Student**
 
@@ -274,9 +286,9 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  From within the PuTTY SSH session to i20-db-0 Azure VM, run the following command to elevate privileges: 
 
-     ```
-     sudo su -
-     ```
+    ```
+    sudo su -
+    ```
 
 1.  If prompted for the password, type **Pa55w.rd1234** and press the **Enter** key. 
 
@@ -532,7 +544,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 1.  In the Cloud Shell pane, run the following command to identify the id of your Azure subscription and the id of the corresponding Azure AD tenant:
 
-    ```
+    ```cli
     az account show --query '{id:id, tenantId:tenantId}' --output json
     ```
 
@@ -625,23 +637,28 @@ In this exercise, you will remove resources provisioned in this lab.
 
 1. At the top of the portal, click the **Cloud Shell** icon to open Cloud Shell pane and choose Bash as the shell.
 
-1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to list all resource groups you created in this lab:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_PREFIX` to the prefix of the name of the resource group containing the resources you provisioned in this lab:
 
-    ```
-    az group list --query "[?starts_with(name,'az12003a-')]".name --output tsv
+    ```cli
+    RESOURCE_GROUP_PREFIX='az12003a-'
     ```
 
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
+1. In the Cloud Shell pane, run the following command to list all resource groups you created in this lab:
+
+    ```cli
+    az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv
+    ```
+
+1. Verify that the output contains only the resource group you created in this lab. This resource group with all of their resources will be deleted in the next task.
 
 #### Task 2: Delete resource groups
 
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
+1. In the Cloud Shell pane, run the following command to delete the resource group and their resources.
 
+    ```cli
+    az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
     ```
-    az group list --query "[?starts_with(name,'az12003a-')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
 
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
+1. Close the Cloud Shell pane.
 
 > **Result**: After you completed this exercise, you have removed the resources used in this lab.

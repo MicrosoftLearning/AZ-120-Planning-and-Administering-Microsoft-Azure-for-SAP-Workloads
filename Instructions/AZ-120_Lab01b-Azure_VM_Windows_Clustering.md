@@ -27,7 +27,7 @@ After completing this lab, you will be able to:
 
 -   A Microsoft Azure subscription with the sufficient number of available DSv2 and Dsv3 vCPUs (one Standard_DS1_v2 VM with 1 vCPU and four Standard_D4s_v3 VMs with 4 vCPUs each) in the Azure region you intend to use for this lab
 
--   A lab computer running Windows 10, Windows Server 2016, or Windows Server 2019 with access to Azure
+-   A lab computer with an Azure Cloud Shell-compatible web browser and access to Azure
 
 > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
 

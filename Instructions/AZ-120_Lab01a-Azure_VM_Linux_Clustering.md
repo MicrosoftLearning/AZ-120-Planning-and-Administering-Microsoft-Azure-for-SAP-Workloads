@@ -27,7 +27,7 @@ After completing this lab, you will be able to:
 
 - A Microsoft Azure subscription with the sufficient number of available DSv3 vCPUs (2 x 4) and DSv2 (1 x 1) vCPUs
 
-- A lab computer running Windows 10, Windows Server 2016, or Windows Server 2019 with access to Azure
+- A lab computer with an Azure Cloud Shell-compatible web browser and access to Azure
 
 ## Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
 

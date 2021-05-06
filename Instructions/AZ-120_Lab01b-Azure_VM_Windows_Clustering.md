@@ -35,7 +35,7 @@ After completing this lab, you will be able to:
 
 Duration: 50 minutes
 
-In this exercise, you will deploy Azure infrastructure compute components necessary to configure Failover Clustering on Azure VMs running Windows Server 2019. This will involve deploying a pair of Active Directory domain controllers, followed by a pair of Azure VMs running Windows Server 2019 in the same availability set within the same virtual network. To automate the deployment of domain controllers, you will use an Azure Resource Manager QuickStart template available from <https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc>
+In this exercise, you will deploy Azure infrastructure compute components necessary to configure Failover Clustering on Azure VMs running Windows Server 2019. This will involve deploying a pair of Active Directory domain controllers, followed by a pair of Azure VMs running Windows Server 2019 in the same availability set within the same virtual network. To automate the deployment of domain controllers, you will use an Azure Resource Manager QuickStart template available from <https://github.com/polichtm/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc>
 
 ### Task 1: Deploy a pair of Azure VMs running highly available Active Directory domain controllers by using an Azure Resource Manager template
 
@@ -49,17 +49,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  Back on the **Custom deployment** blade, in the **Load a GitHub quickstart template** drop-down list, select the entry **active-directory-new-domain-ha-2-dc**, and click **Select template**.
 
-    > **Note**: Alternatively, you can launch the deployment by navigating to Azure Quickstart Templates page at <https://github.com/Azure/azure-quickstart-templates>, locating the template named **Create 2 new Windows VMs, create a new AD Forest, Domain, and 2 DCs in an availability set**, and initiating its deployment by clicking **Deploy to Azure** button.
+    > **Note**: Alternatively, you can launch the deployment by navigating to Azure Quickstart Templates page at <https://github.com/polichtm/azure-quickstart-templates>, locating the template named **Create 2 new Windows VMs, create a new AD Forest, Domain, and 2 DCs in an availability set**, and initiating its deployment by clicking **Deploy to Azure** button.
 
-1.  On the **Custom deployment** blade, click **Edit template**.
-
-1.  On the **Edit template** blade, apply the following changes and select **Save**:
-
-    -   in the line **66**, replace `"adVMSize": "Standard_DS2_v2",` with `"adVMSize": "Standard_D4s_v3",`
-
-    -   in the line **78**, replace `"imageSKU": "2016-Datacenter",` with `"imageSKU": "2019-Datacenter",`.
-
-1.  Back on the **Create a new AD Domain with 2 Domain Controllers** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
+1.  On the **Custom deployment** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -85,11 +77,16 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   _artifacts Location Sas Token: *leave blank*
 
-    -   Location: **[resourceGroup().location]**
-    
-    -   Ad VM Size: **Standard_D4s_v3**
-
     > **Note**: The deployment should take about 35 minutes. Wait for the deployment to complete before you proceed to the next task.
+
+    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
+
+       - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
+
+       - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
+
+       - in the Azure portal, navigate to the **az12003b-ad-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12003b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2016 in the same availability set.
 

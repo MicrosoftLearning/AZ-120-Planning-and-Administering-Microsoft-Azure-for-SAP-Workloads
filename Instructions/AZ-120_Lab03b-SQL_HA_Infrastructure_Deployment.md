@@ -260,7 +260,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
 1.  The deployment might take about 20 minutes. Do not wait for the deployment to complete but instead proceed to the next task.
 
-### Task 5: Deploy a jump host
+### Task 6: Deploy a jump host
 
    > **Note**: Since Azure VMs you deployed in the previous task are not accessible from Internet, you will deploy an Azure VM running Windows Server 2016 Datacenter that will serve as a jump host. 
 

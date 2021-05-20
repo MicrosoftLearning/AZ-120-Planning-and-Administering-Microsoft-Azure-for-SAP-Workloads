@@ -79,10 +79,10 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
        - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
 
-       - in the Azure portal, navigate to the **az12003b-ad-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12003b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+       - in the Azure portal, navigate to the **az12001b-ad-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
 
 
-### Task 2: Deploy a pair of Azure VMs running Windows Server 2016 in the same availability set.
+### Task 2: Deploy a pair of Azure VMs running Windows Server 2019 in a new availability set.
 
 1.  From the lab computer, in the Azure portal, click **+ Create a resource**.
 
@@ -262,7 +262,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   HOST CACHING: **Read-only**
 
-1.  Repeat the previous step to attach the remaining 3 disks with the prefix **az12001b-cl-vm0-DataDisk** (for the total of 4). Assign the LUN number matching the last character of the disk name. For the last disk (LUN **4**), set HOST CACHING to **None**.
+1.  Repeat the previous step to attach the remaining 3 disks with the prefix **az12001b-cl-vm0-DataDisk** (for the total of 4). Assign the LUN number matching the last character of the disk name. For the last disk (LUN **3**), set HOST CACHING to **None**.
 
 1.  Save your changes. 
 
@@ -280,7 +280,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   HOST CACHING: **Read-only**
 
-1.  Repeat the previous step to attach the remaining 3 disks with the prefix **az12001b-cl-vm1-DataDisk** (for the total of 4). Assign the LUN number matching the last character of the disk name. For the last disk (LUN **4**), set HOST CACHING to **None**.
+1.  Repeat the previous step to attach the remaining 3 disks with the prefix **az12001b-cl-vm1-DataDisk** (for the total of 4). Assign the LUN number matching the last character of the disk name. For the last disk (LUN **3**), set HOST CACHING to **None**.
 
 1.  Save your changes. 
 
@@ -593,7 +593,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   IP address: **10.0.1.240**
 
-    -   Availability zone: **No Zone**
+    -   Availability zone: **Zone-redundant**
 
 1.  Wait until the load balancer is provisioned and then navigate to its blade in the Azure portal.
 

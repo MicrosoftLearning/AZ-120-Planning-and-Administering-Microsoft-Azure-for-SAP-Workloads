@@ -165,7 +165,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  From the **New** blade, initiate creation of a new Azure VM based on the **Windows Server 2019 Datacenter** image.
 
-1.  Provision a Azure VM with the following settings:
+1.  Provision a Azure VM with the following settings (leave all others with their default values):
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -177,9 +177,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Availability options: **No infrastructure redundancy required**
 
-    -   Image: **Windows Server 2019 Datacenter**
+    -   Image: **Windows Server 2019 Datacenter - Gen 1**
 
-    -   Size: **Standard DS1 v2*** or similar*
+    -   Size: **Standard DS1 v2** or similar
 
     -   Username: **Student**
 
@@ -209,9 +209,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Place this virtual machine behind an existing load balancing solutions: **No**
 
-    -   Enable basic plan for free: **No**
-
-    -   Boot diagnostics: **Off**
+    -   Boot diagnostics: **Disable**
 
     -   OS guest diagnostics: **Off**
 
@@ -223,9 +221,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Enable backup: **Off**
 
-    -   Extensions: *None*
+    -   Patch orchestration options **Manual updates**
 
-    -   Tags: *None*
+    -   Extensions: **None**
+
+    -   Tags: **None**
 
 1.  Wait for the provisioning to complete. This should take a few minutes.
 

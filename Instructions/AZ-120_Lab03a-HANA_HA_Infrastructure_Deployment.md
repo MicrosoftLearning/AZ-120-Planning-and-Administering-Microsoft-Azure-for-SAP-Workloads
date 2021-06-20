@@ -440,6 +440,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 1. In the SSH session to i20-db-0, run the following to install Azure Python SDK required by the fence agent (when prompted, type **y** and press the **Enter** key):
 
     ```
+    SUSEConnect -p sle-module-public-cloud/12/x86_64
     zypper install python-azure-mgmt-compute
     ```
 

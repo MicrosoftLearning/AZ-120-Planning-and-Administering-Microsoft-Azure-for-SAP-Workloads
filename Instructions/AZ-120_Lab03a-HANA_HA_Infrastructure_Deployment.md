@@ -569,7 +569,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 1.  On the **Stonith app - Certificates & secrets** blade, click **+ New client secret**.
 
-1.  In the **Add a client secret** pane, in the **Description** text box, type **STONITH app key**, in the **Expires** section, leave the default **In 1 year**, and then click **Add**.
+1.  In the **Add a client secret** pane, in the **Description** text box, type **STONITH app key**, in the **Expires** section, leave the default **Recommended: 6 months**, and then click **Add**.
 
 1.  Copy the resulting secret value to Notepad (this entry is displayed only once, after you click **Add**). This will be referred to as **password** later in this exercise:
 

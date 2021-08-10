@@ -59,7 +59,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: Wait for the provisioning to complete. This should take less than a minute.
 
-1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
+1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Create** and, in the drop-down menu, select **Virtual machine**.
 
 1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
 
@@ -133,11 +133,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Proximity placement group: **az12001a-ppg**
 
-1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
+1. On the **Review + create** tab of the **Create a virtual machine** blade, select **Create**.
 
    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
-1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
+1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Create** and, in the drop-down menu, select **Virtual machine**.
 
 1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
 
@@ -207,7 +207,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Proximity placement group: **az12001a-ppg**
 
-1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
+1. On the **Review + create** tab of the **Create a virtual machine** blade, select **Create**.
 
    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
@@ -662,7 +662,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 ### Task 2: Create and configure Azure Load Balancers handling inbound traffic
 
-1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Load balancers** blade and, on the **Load balancers** blade, select **+ Add**.
+1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Load balancers** blade and, on the **Load balancers** blade, select **+ Create**.
 
 1. From the **Basics** tab of the **Create load balancer** blade, specify the following settings and select **Review + create** (leave others with their default values):
 
@@ -728,7 +728,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Backend pool: **az12001a-lb0-bepool (2 virtual machines)**
 
-   - Health probe:**az12001a-lb0-hprobe (TCP:62504)**
+   - Health probe:**az12001a-lb0-hprobe (TCP:62500)**
 
    - Session persistence: **None**
 
@@ -798,7 +798,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    > **Note**: Since two clustered Azure VMs are no longer directly accessible from Internet, you will deploy an Azure VM running Windows Server 2019 Datacenter that will serve as a jump host. 
 
-1. From the lab computer, in the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Add** and, in the drop-down menu, select **Virtual machine**.
+1. From the lab computer, in the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Virtual machines** blade, then, on the **Virtual machines** blade, select **+ Create** and, in the drop-down menu, select **Virtual machine**.
 
 1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
 
@@ -868,11 +868,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Enable backup: **Off**
 
-   - Guest OS updates: **Manual patching: Install patches yourself or through a different patching solution**
+   - Guest OS updates: **Manual updates**
 
 1. On the **Advanced** tab of the **Create a virtual machine** blade, select **Review + create** (leave all other settings with their default value):
 
-1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
+1. On the **Review + create** tab of the **Create a virtual machine** blade, select **Create**.
 
    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 

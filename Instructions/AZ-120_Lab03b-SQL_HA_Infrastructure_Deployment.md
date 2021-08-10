@@ -46,7 +46,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  From the **New** blade, initiate creation of a new **Template deployment (deploy using custom templates)**
 
-1.  From the **Custom deployment** blade, in the **Load a GitHub quickstart template** drop-down list, select the entry **active-directory-new-domain-ha-2-dc-zones**, and click **Select template**.
+1.  From the **Custom deployment** blade, in the **Quickstart template (disclaimer)** drop-down list, select the entry **active-directory-new-domain-ha-2-dc-zones**, and click **Select template**.
 
     > **Note**: Alternatively, you can launch the deployment by navigating to Azure Quickstart Templates page at <https://github.com/Azure/azure-quickstart-templates>, locating the template named **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones**, and initiating its deployment by clicking **Deploy to Azure** button.
 
@@ -140,7 +140,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  On the lab computer, in the Azure portal, search for and select **Template deployment (deploy using custom template)**.
 
-1.  On the **Custom deployment** blade, in the **Select a template (disclaimer)** drop-down list, type **sap-3-tier-marketplace-image-md** and click **Select template**.
+1.  On the **Custom deployment** blade, in the **Quickstart template (disclaimer)** drop-down list, type **sap-3-tier-marketplace-image-md** and click **Select template**.
 
     > **Note**: Make sure to use Microsoft Edge or a third party browser. Do not use Internet Explorer.
 
@@ -266,7 +266,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
 1.  From the lab computer, in the Azure portal interface, click **+ Create a resource**.
 
-1.  From the **New** blade, initiate creation of a new Azure VM based on the **Windows Server 2019 Datacenter** image.
+1.  From the **New** blade, initiate creation of a new Azure VM based on the **Windows Server 2019 Datacenter - Gen1** image.
 
 1.  Provision a Azure VM with the following settings:
 

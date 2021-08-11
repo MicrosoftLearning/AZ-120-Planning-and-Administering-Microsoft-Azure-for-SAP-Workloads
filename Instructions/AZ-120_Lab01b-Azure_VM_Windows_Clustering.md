@@ -100,7 +100,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Availability set: *a new availability set named* **az12001b-cl-avset** *with 2 fault domains and 5 update domains*
 
-    -   Image: **Windows Server 2019 Datacenter**
+    -   Image: **Windows Server 2019 Datacenter - Gen1**
 
     -   Size: **Standard D4s v3**
 
@@ -112,7 +112,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Select inbound ports: **RDP (3389)**
 
-    -   You already have a Windows license?: **No**
+    -   Would you like to use an existing Windows Server license?: **No**
 
     -   OS disk type: **Premium SSD**
 
@@ -136,13 +136,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Enable basic plan for free: **No**
 
-    -   Boot diagnostics: **Off**
+    -   Boot diagnostics: **Disable**
 
     -   OS guest diagnostics: **Off**
 
     -   System assigned managed identity: **Off**
 
-    -   Login with AAD credentials (Preview): **Off**
+    -   Login with Azure AD: **Off**
 
     -   Enable auto-shutdown: **Off**
 
@@ -168,7 +168,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Availability set: **az12001b-cl-avset**
 
-    -   Image: **Windows Server 2019 Datacenter**
+    -   Image: **Windows Server 2019 Datacenter - Gen1**
 
     -   Size: **Standard D4s v3**
 
@@ -180,7 +180,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Select inbound ports: **RDP (3389)**
 
-    -   You already have a Windows license?: **No**
+    -   Would you like to use an existing Windows Server license?: **No**
 
     -   OS disk type: **Premium SSD**
 
@@ -202,13 +202,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Enable basic plan for free: **No**
 
-    -   Boot diagnostics: **Off**
+    -   Boot diagnostics: **Disable**
 
     -   OS guest diagnostics: **Off**
 
     -   System assigned managed identity: **Off**
 
-    -   Login with AAD credentials (Preview): **Off**
+    -   Login with Azure AD: **Off**
 
     -   Enable auto-shutdown: **Off**
 

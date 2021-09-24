@@ -4,7 +4,7 @@ In this demo you will use the Azure portal and your username and password to cre
 
 ## Prerequisites
 
-To complete this demo, you will require an Azure virtual network containing a Linux VM. For more information about how to create one, see [Demonstration: Connect to Linux virtual machines](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Demos/demo-connect-linux-virtual-machines.md).
+To complete this demo, you will require an Azure virtual network containing a Linux VM. For more information about how to create an Azure VM, see [Demonstration: Create a virtual machine in the portal](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Demos/demo-create-virtual-machine-portal.md), or [Demonstration: Create a virtual machine with PowerShell](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Demos/demo-create-virtual-machine-powershell.md).
 
 Make sure that you have set up an Azure Bastion host for the virtual network in which the VM resides. For more information, see [Create an Azure Bastion host](https://docs.microsoft.com/azure/bastion/tutorial-create-host-portal). Once the Bastion service is provisioned and deployed in your virtual network, you can use it to connect to any VM in this virtual network. 
 
@@ -37,4 +37,3 @@ In order to connect to the Linux VM via SSH, you must have the following ports o
     ![Screenshot shows Password authentication](Images/azure-bastion-password.png)
 
 1. Select **Connect** to connect to the VM.
-

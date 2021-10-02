@@ -142,7 +142,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Location: **[resourceGroup().location]**
 
-    -   _artifacts Location: **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/sap-3-tier-marketplace-image-md/**
+    -   _artifacts Location: **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/sap/sap-3-tier-marketplace-image-md/**
 
     -   _artifacts Location Sas Token: *leave blank*
 

@@ -194,7 +194,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  Do not wait for the deployment to complete but instead proceed to the next task. 
 
-### Task 5: Deploy the Scale-Out File Server (SOFS) cluster
+### Task 4: Deploy the Scale-Out File Server (SOFS) cluster
 
 In this task, you will deploy the scale-out file server (SOFS) cluster that will be hosting a file share for the SAP ASCS servers by using an Azure Resource Manager QuickStart template from GitHub available at [**https://github.com/robotechredmond/301-storage-spaces-direct-md**](https://github.com/robotechredmond/301-storage-spaces-direct-md). 
 
@@ -260,7 +260,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
 1.  The deployment might take about 20 minutes. Do not wait for the deployment to complete but instead proceed to the next task.
 
-### Task 6: Deploy a jump host
+### Task 5: Deploy a jump host
 
    > **Note**: Since Azure VMs you deployed in the previous task are not accessible from Internet, you will deploy an Azure VM running Windows Server 2016 Datacenter that will serve as a jump host. 
 

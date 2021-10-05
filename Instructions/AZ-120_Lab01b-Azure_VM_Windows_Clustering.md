@@ -330,7 +330,7 @@ Duration: 40 minutes
 
 1.  From the **az12001b-cl-vm0** blade, connect to the virtual machine guest operating system by using Remote Desktop. When prompted to authenticate, provide the following credentials:
 
-    -   User name: **ADATUM\Student**
+    -   User name: **Student**
 
     -   Password: **Pa55w.rd1234**
 
@@ -452,7 +452,7 @@ Duration: 40 minutes
 
 1.  From the **az12001b-cl-vm0** blade, connect to the virtual machine guest operating system by using Remote Desktop. When prompted to authenticate, provide the following credentials:
 
-    -   User name: **ADATUM\\Student**
+    -   User name: **Student**
 
     -   Password: **Pa55w.rd1234**
 

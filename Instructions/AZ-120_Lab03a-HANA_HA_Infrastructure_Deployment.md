@@ -506,7 +506,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
     vi /etc/corosync/corosync.conf
     ```
 
-1.  In the vi editor, note the `transport: udpu` entry and the `nodelist` section:
+1.  In the vi editor, notice the `transport: udpu` entry and the `nodelist` section:
     ```
     [...]
        interface { 

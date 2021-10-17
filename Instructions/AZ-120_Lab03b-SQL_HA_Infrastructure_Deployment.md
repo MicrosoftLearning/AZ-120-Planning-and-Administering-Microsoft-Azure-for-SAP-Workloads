@@ -68,15 +68,14 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Domain Name: **adatum.com**
 
-    -   DnsPrefix: *accept the default value*
+    -   DnsPrefix: *Use any unique valid DNS prefix*
 
     -   Vm Size: **Standard D4S\_v3**
 
-    -   _artifacts Location: *accept the default value*
+    -   _artifacts Location: *https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/*
 
     -   _artifacts Location Sas Token: *leave blank*
 
-    -   I agree to the terms and conditions stated above: *enabled*
 
     > **Note**: The deployment should take about 35 minutes. Wait for the deployment to complete before you proceed to the next task.
 
@@ -186,11 +185,10 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Location: **[resourceGroup().location]**
 
-    -   _artifacts Location: **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/sap-3-tier-marketplace-image-md/**
+    -   _artifacts Location: **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/sap/sap-3-tier-marketplace-image-md/**
 
     -   _artifacts Location Sas Token: *leave blank*
 
-    -   I agree to the terms and conditions stated above: *enabled*
 
 1.  Do not wait for the deployment to complete but instead proceed to the next task. 
 
@@ -282,7 +280,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     -   Image: **Windows Server 2019 Datacenter**
 
-    -   Size: **Standard DS1 v2**
+    -   Size: **Standard_DS4_v2**
 
     -   Username: **Student**
 
@@ -456,7 +454,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
     ```
     $nodes = @('i20-db-0','i20-db-1')
 
-    New-Cluster -Name az12003b-db-cl0 -Node $nodes -NoStorage -StaticAddress 10.0.1.6
+    New-Cluster -Name az12003b-db-cl0 -Node $nodes -NoStorage -StaticAddress 10.0.1.15
     ```
 
 1.  Within the RDP session to i20-db-0.adatum.com, switch to the **Active Directory Administrative Center** console.
@@ -467,7 +465,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
 1.  On the **Security** tab, click the **Advanced** button to open the **Advanced Security Settings for Clusters** window. 
 
-1.  On the **Permissions** tab of the **Advanced Security Settings for Computers** window, click **Add**.
+1.  On the **Permissions** tab of the **Advanced Security Settings for Clusters** window, click **Add**.
 
 1.  In the **Permission Entry for Clusters** window, click **Select Principal**
 
@@ -480,6 +478,8 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 1.  Within the Windows PowerShell ISE session, install the Az PowerShell module by running the following:
 
     ```
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    
     Install-PackageProvider -Name NuGet -Force
 
     Install-Module -Name Az -Force
@@ -537,7 +537,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
     ```
     $nodes = @('i20-ascs-0','i20-ascs-1')
 
-    New-Cluster -Name az12003b-ascs-cl0 -Node $nodes -NoStorage -StaticAddress 10.0.1.7
+    New-Cluster -Name az12003b-ascs-cl0 -Node $nodes -NoStorage -StaticAddress 10.0.1.16
     ```
 
 1.  Within the RDP session to i20-ascs-0.adatum.com, switch to the **Active Directory Administrative Center** console.
@@ -561,6 +561,8 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 1.  Within the Windows PowerShell ISE session, install the Az PowerShell module by running the following:
 
     ```
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    
     Install-PackageProvider -Name NuGet -Force
 
     Install-Module -Name Az -Force

@@ -208,7 +208,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     -   Name Prefix: **i20**
 
-    -   Vm Size: **Standard D4S\_v3**
+    -   Vm Size: **Standard D4s\_v3**
 
     -   Enable Accelerated Networking: **true**
 
@@ -274,7 +274,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     -   Image: **Windows Server 2019 Datacenter**
 
-    -   Size: **Standard_DS4_v2**
+    -   Size: **Standard_D2s_v3**
 
     -   Username: **Student**
 

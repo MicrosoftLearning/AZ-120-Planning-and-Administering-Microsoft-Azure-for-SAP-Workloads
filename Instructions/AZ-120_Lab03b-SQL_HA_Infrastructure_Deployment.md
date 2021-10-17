@@ -50,7 +50,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: Alternatively, you can launch the deployment by navigating to Azure Quickstart Templates page at <https://github.com/Azure/azure-quickstart-templates>, locating the template named **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones**, and initiating its deployment by clicking **Deploy to Azure** button.
 
-1.  On the blade **Create a new AD Domain with 2 DCs using Availability Zones**, specify the following settings and click **Review + create** and then click **Create** to initiate the deployment:
+1.  On the blade **Create a new AD Domain with 2 DCs using Availability Zones**, specify the following settings, click **Review + create**, and then click **Create** to initiate the deployment:
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -139,21 +139,17 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  On the lab computer, in the Azure portal, search for and select **Template deployment (deploy using custom template)**.
 
-1.  On the **Custom deployment** blade, in the **Quickstart template (disclaimer)** drop-down list, type **sap-3-tier-marketplace-image-md** and click **Select template**.
+1.  On the **Custom deployment** blade, in the **Quickstart template (disclaimer)** drop-down list, type **application-workloads/sap/sap-3-tier-marketplace-image-md** and click **Select template**.
 
     > **Note**: Make sure to use Microsoft Edge or a third party browser. Do not use Internet Explorer.
 
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, select **Edit template**.
 
-1.  On the **Edit template** blade, apply the following changes and select **Save**:
+1.  On the **Edit template** blade, apply the following change and select **Save**:
 
     -   in the line **197**, replace `"dbVMSize": "Standard_E8s_v3",` with `"dbVMSize": "Standard_D4s_v3",`
 
-    -   in the line **198**, replace `"ascsVMSize": "Standard_D2s_v3",` with `"ascsVMSize": "Standard_DS1_v2",`
-
-    -   in the line **199**, replace `"diVMSize": "Standard_D2s_v3",` with `"diVMSize": "Standard_DS1_v2",`
-
-1.  Back on the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
+1.  Back on the **SAP NetWeaver 3-tier (managed disk)** blade, specify the following settings, click **Review + create**, and then click **Create** to initiate the deployment:
 
     -   Subscription: *the name of your Azure subscription*
 

@@ -1,12 +1,14 @@
 # Demonstration: Explore the Azure Portal
 
-## Explore help and keyboard shortcuts
+## Prepare for the demo
 
-1. Access the Azure Portal.
-2. Click the **?** Help and Support icon on the top banner.
-3. Select **Launch Guided Tour** and click **Start Tour**. Review the help information.
-4. Select **Keyboard Shortcuts** and read through the available shortcuts. Do any seem of interest?
-5. Close the Help page, and hold **G** and press **D** to go your Dashboard.
+1. Access the [**Azure Portal**](https://portal.azure.com/#home)
+1. Review the topics: [**Getting around the portal**](https://docs.microsoft.com/azure/azure-portal/azure-portal-overview#getting-around-the-portal) and [**Navigate the portal**](https://docs.microsoft.com/learn/modules/tour-azure-portal/3-navigate-the-portal)
+
+## Using Keyboard shortcuts
+
+- Review [**Keyboard Shortcuts**](https://docs.microsoft.com/azure/azure-portal/azure-portal-keyboard-shortcuts#actions) and read through the available shortcuts.
+
 
 ## Customize your experience
 

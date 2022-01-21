@@ -75,7 +75,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Availability set: *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains*
 
-   - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**
+   - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1**
    
    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**.
 
@@ -153,7 +153,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - Availability set: **az12001a-avset**
 
-   - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**
+   - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1**
    
    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**.
 
@@ -458,12 +458,6 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Copy the value of the key into Clipboard.
 
-1. Switch to the Cloud Shell pane containing the SSH session to **az12001a-vm1** and create the directory **/root/.ssh/** by running:
-
-   ```cli
-   mkdir /root/.ssh
-   ```
-
 1. In the Cloud Shell pane, in the SSH session to az12001a-vm1, create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
@@ -674,10 +668,13 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Region: *the same Azure region where you deployed Azure VMs in the first exercise of this lab*
 
+   - SKU: **Standard**
+   
    - Type: **Internal**
 
-   - SKU: **Standard**
-
+1. Click **Next: Frontend IP Configuration**. On the **Frontend IP configuration** screen, click **Add a frontend IP configuration** and then click **Add**.
+   - Name: frontend1
+   
    - Virtual network: **az12001a-RG-vnet**
 
    - Subnet: **subnet-0**
@@ -688,9 +685,9 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Availability zone: **Zone redundant**
 
-1. On the **Review + create** blade, select **Create**.
+1. Select **Review + create**, and then select **Create**.
 
-   > **Note**: Wait until the load balancer is provisioned. This shoudl take less than a minute. 
+   > **Note**: Wait until the load balancer is provisioned. This should take less than a minute. 
 
 1. In the Azure portal, navigate to the blade displaying the properties of the newly provisioned **az12001a-lb0** load balancer. 
 

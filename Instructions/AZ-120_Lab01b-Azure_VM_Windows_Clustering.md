@@ -35,7 +35,7 @@ After completing this lab, you will be able to:
 
 Duration: 50 minutes
 
-In this exercise, you will deploy Azure infrastructure compute components necessary to configure Failover Clustering on Azure VMs running Windows Server 2019. This will involve deploying a pair of Active Directory domain controllers, followed by a pair of Azure VMs running Windows Server 2019 in the same availability set within the same virtual network. To automate the deployment of domain controllers, you will use an Azure Resource Manager QuickStart template available from <https://github.com/polichtm/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc>
+In this exercise, you will deploy Azure infrastructure compute components necessary to configure Failover Clustering on Azure VMs running Windows Server 2019. This will involve deploying a pair of Active Directory domain controllers, followed by a pair of Azure VMs running Windows Server 2019 in the same availability set within the same virtual network. To automate the deployment of domain controllers, you will use an Azure Resource Manager QuickStart template available from <https://aka.ms/az120-1bdeploy>
 
 ### Task 1: Deploy a pair of Azure VMs running highly available Active Directory domain controllers by using an Azure Resource Manager template
 
@@ -43,7 +43,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
-1.  Open a new web browser tab, navigate to Azure Quickstart Templates page at <https://github.com/polichtm/azure-quickstart-templates>, locate the template named **Create 2 new Windows VMs, create a new AD Forest, Domain, and 2 DCs in an availability set**, and initiate its deployment by clicking **Deploy to Azure** button.
+1.  Open a new web browser tab, navigate to Azure Quickstart Templates page at <https://aka.ms/az120-1bdeploy>, locate the template named **Create 2 new Windows VMs, create a new AD Forest, Domain, and 2 DCs in an availability set**, and initiate its deployment by clicking **Deploy to Azure** button.
 
 1.  On the **Custom deployment** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
 
@@ -79,7 +79,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
        - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
 
-       - in the Azure portal, navigate to the **az12001b-ad-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+       - Navigate to the GitHub quickstart template at <https://aka.ms/az120-1bdeploy>, and select **Deploy to Azure**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
 
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2019 in a new availability set.
@@ -100,7 +100,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Availability set: *a new availability set named* **az12001b-cl-avset** *with 2 fault domains and 5 update domains*
 
-    -   Image: **Windows Server 2019 Datacenter - Gen1**
+    -   Image: **Windows Server 2019 Datacenter - Gen2**
 
     -   Size: **Standard D4s v3**
 
@@ -432,17 +432,15 @@ Duration: 40 minutes
 
     -   Performance: **Standard**
 
-    -   Account kind: **Storage (general purpose v1)**
-
     -   Replication: **Locally-redundant storage (LRS)**
 
     -   Connectivity method: **Public endpoint (all networks)**
 
-    -   Secure transfer required: **Enabled**
+    -   Require secure transfer for REST API operations: **Enabled**
 
     -   Large file shares: **Disabled**
 
-    -   Blob soft delete: **Disabled**
+    -   Soft delete for blobs, containers, and files: **Disabled**
 
     -   Hierarchical namespace: **Disabled**
 
@@ -585,6 +583,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   SKU: **Standard**
 
+    -   Frontend IP name: **frontend-ip1**
+    
     -   Virtual network: **adVNET**
 
     -   Subnet: **clSubnet**
@@ -759,7 +759,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Availability options: **No infrastructure redundancy required**
 
-    -   Image: **Windows Server 2019 Datacenter**
+    -   Image: **Windows Server 2019 Datacenter - Gen2**
 
     -   Size: **Standard DS1 v2*** or similar*
 

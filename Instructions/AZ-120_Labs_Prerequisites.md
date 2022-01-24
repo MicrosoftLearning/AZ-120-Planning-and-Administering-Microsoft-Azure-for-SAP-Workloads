@@ -17,7 +17,7 @@ While the vCPU requirements for the first three labs of this course are lower, w
 
 ## Before the hands-on lab
 
-Timeframe: 120 minutes
+Timeframe: 30 minutes
 
 ### Task 1: Validate sufficient number of vCPU cores
 
@@ -43,7 +43,7 @@ Timeframe: 120 minutes
 
 1.  On the subscription's **Usage + quotas** blade, click **Request Increase**.
 
-1.  On the **Basic** blade, specify the following and click **Next**:
+1.  On the **Problem description** blade, specify the following:
 
     -   Issue type: **Service and subscription limits (quotas)**
 
@@ -51,22 +51,16 @@ Timeframe: 120 minutes
 
     -   Quota type: **Compute/VM (cores/vCPUs) subscription limit increases**
 
-1.  On the **Details** blade, click the **Provide details** blade. 
+1. Click **Manage Quota**.
 
-1.  On the **Quota details** blade, specify the following and click **Save and continue**:
+1. Use the location dropdown menu to filter the results to the Azure region that you plan to use. It is recommended to use **East US** or **East US2**.
 
-    -   Deployment model: **Resource Manager**
+1. Locate the **Standard DSv3 Family vCPUs** quota type and select the edit pencil.
 
-    -   Location: the target Azure region you intend to use in this lab
+1. In the New Limit field, specify **40** and click **Save and Continue**.
 
-    -   SKU family: **DSv3 Series** and **DSv2 Series**
+1. Locate the **Total Regional vCPUs** quota type and select the edit pencil.
 
-1.  On the **Details** blade, specify the new limit for each SKU series and click **Next: Review + create**:
+1. In the New Limit field, specify **40** and click **Save and Continue**.
 
-    -   Severity: **C - Minimal impact**
-
-    -   Preferred contact method: choose your preferred option and provide contact details
-
-1.  On the **Review + create** blade, click **Create**
-
-   > **Note**: Quota increase requests are typically completed during the same business day.
+   > **Note**: The quota increase request should be approved automatically. If the request is denied, proceed to open a support ticket to request the quota increase.

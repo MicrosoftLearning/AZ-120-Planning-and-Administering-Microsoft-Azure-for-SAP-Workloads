@@ -272,7 +272,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     -   Availability options: **No infrastructure redundancy required**
 
-    -   Image: **Windows Server 2019 Datacenter**
+    -   Image: **Windows Server 2019 Datacenter Gen2**
 
     -   Size: **Standard_D2s_v3**
 
@@ -412,17 +412,15 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
     -   Performance: **Standard**
 
-    -   Account kind: **Storage (general purpose v1)**
-
     -   Replication: **Locally-redundant storage (LRS)**
 
     -   Connectivity method: **Public endpoint (all networks)**
 
-    -   Secure transfer required: **Enabled**
+    -   Require secure transfer for REST API operations: **Enabled**
 
     -   Large file shares: **Disabled**
 
-    -   Blob soft delete: **Disabled**
+    -   Blob, container, and file share soft delete: **Disabled**
 
     -   Hierarchical namespace: **Disabled**
 

@@ -809,7 +809,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Availability options: **No infrastructure redundancy required**
 
-   - Image: **Windows Server 2019 Datacenter - Gen1**
+   - Image: **Windows Server 2019 Datacenter - Gen 2**
 
    - Size: **Standard DS1 v2*** or similar*
 

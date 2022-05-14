@@ -625,13 +625,13 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1. From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 \| Networking** blade and, on the **az12001a-vm0 \| Networking** blade, select the entry representing the public IP address **az12001a-vm0-ip** associated with its network adapter.
 
-1. On the **az12001a-vm0-ip** blade, select **Dissociate** to disconnect the public IP address from the network interface and then select **Delete** to delete it.
+1. On the **az12001a-vm0-ip** blade, select **Dissociate**, and then select **Yes** to disconnect the public IP address from the network interface and then select **Delete** and then **Yes** to delete it.
 
 1. In the Azure portal, navigate to the blade of the **az12001a-vm1** Azure VM.
 
 1. From the **az12001a-vm1** blade, navigate to the **az12001a-vm1 \| Networking** blade and, on the **az12001a-vm1 \| Networking** blade, select the entry representing the public IP address **az12001a-vm1-ip** associated with its network adapter.
 
-1. On the **az12001a-vm1-ip** blade, select **Dissociate** to disconnect the public IP address from the network interface and then select **Delete** to delete it.
+1. On the **az12001a-vm1-ip** blade, select **Dissociate**, and then select **Yes** to disconnect the public IP address from the network interface and then select **Delete** and then **Yes** to delete it.
 
 1. In the Azure portal, navigate to the blade of the **az12001a-vm0** Azure VM.
 

@@ -1,7 +1,7 @@
 ---
 lab:
-    title: '00 - Lab prerequisites'
-    module: 'Module 00 - Lab prerequisites'
+    title: '01 - Lab prerequisites'
+    module: 'Module 01 - Lab prerequisites'
 ---
 
 

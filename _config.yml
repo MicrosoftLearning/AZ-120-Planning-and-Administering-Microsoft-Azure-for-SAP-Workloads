@@ -1,0 +1,19 @@
+remote_theme: MicrosoftLearning/Jekyll-Theme
+exclude:
+  - readme.md
+  - .github/
+header_pages:
+  - index.html
+author: Dave Rendon
+twitter_username: daverndn
+github_username:  daverendon
+plugins:
+  - jekyll-sitemap
+  - jekyll-mentions
+  - jemoji
+markdown: kramdown
+kramdown:
+   syntax_highlighter_opts:
+      disable : true
+
+theme: jekyll-theme-slate

@@ -1,3 +1,9 @@
+---
+lab:
+    title: '00 - Lab prerequisites'
+    module: 'Module 00 - Lab prerequisites'
+---
+
 
 # AZ 120: Lab prerequisites
 

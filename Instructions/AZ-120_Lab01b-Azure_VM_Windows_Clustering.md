@@ -1,11 +1,11 @@
 ---
 lab:
-    title: '01b - Implement Windows clustering on Azure VMs'
+    title: '02b - Implement Windows clustering on Azure VMs'
     module: 'Module 02 - Explore the foundations of IaaS for SAP on Azure'
 ---
 
 # AZ 120 Module 2: Explore the foundations of IaaS for SAP on Azure
-# Lab 1b: Implement Windows clustering on Azure VMs
+# Lab 2b: Implement Windows clustering on Azure VMs
 
 Estimated Time: 120 minutes
 

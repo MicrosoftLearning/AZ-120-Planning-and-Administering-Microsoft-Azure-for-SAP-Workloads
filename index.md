@@ -4,7 +4,7 @@ permalink: index.html
 layout: home
 ---
 
-# Content Directory
+# Content Directory: AZ-120: Planning and Administering Microsoft Azure for SAP Workloads
 
 Required labs files can be [downloaded here](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads
 /archive/master.zip)

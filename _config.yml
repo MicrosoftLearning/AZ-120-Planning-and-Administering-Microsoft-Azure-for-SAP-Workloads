@@ -4,9 +4,10 @@ exclude:
   - .github/
 header_pages:
   - index.html
-author: Dave Rendon
-twitter_username: daverndn
-github_username:  daverendon
+author: Microsoft Learning
+twitter_username: mslearning
+github_username:  MicrosoftLearning
+
 plugins:
   - jekyll-sitemap
   - jekyll-mentions

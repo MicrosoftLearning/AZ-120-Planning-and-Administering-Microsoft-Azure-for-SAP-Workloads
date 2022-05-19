@@ -6,6 +6,8 @@ layout: home
 
 # Content Directory
 
+Hyperlinks to each of the lab exercises are listed below.
+
 Required labs files can be [downloaded here](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads
 /archive/master.zip)
 

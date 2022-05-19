@@ -7,6 +7,7 @@ header_pages:
 author: Microsoft Learning
 twitter_username: mslearning
 github_username:  MicrosoftLearning
+
 plugins:
   - jekyll-sitemap
   - jekyll-mentions
@@ -15,3 +16,5 @@ markdown: kramdown
 kramdown:
    syntax_highlighter_opts:
       disable : true
+
+theme: jekyll-theme-slate

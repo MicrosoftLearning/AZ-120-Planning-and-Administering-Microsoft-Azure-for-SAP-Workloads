@@ -17,7 +17,7 @@ lab:
 
     > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
 
-    > **Note**: To identify the Azure regions that support availability zones, refer to [https://docs.microsoft.com/en-us/azure/availability-zones/az-overview]<https://docs.microsoft.com/en-us/azure/availability-zones/az-overview>
+    > **Note**: To identify the Azure regions that support availability zones, refer to <https://docs.microsoft.com/en-us/azure/availability-zones/az-overview>
 
 While the vCPU requirements for the first three labs of this course are lower, we recommend that you request increase of quotas to satisfy requirements for all of the labs, since the process of increasing quotas might take some time (even though quota increase requests are typically completed during the same business day).
 

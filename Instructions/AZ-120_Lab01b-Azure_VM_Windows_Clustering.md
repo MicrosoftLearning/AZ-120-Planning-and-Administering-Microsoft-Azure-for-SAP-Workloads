@@ -35,7 +35,7 @@ After completing this lab, you will be able to:
 
 -   A lab computer with an Azure Cloud Shell-compatible web browser and access to Azure
 
-> **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
+> **Note**: Make sure that the Azure region you choose for deployment of your resources supports availability zones. For the list of such regions, refer to (https://docs.microsoft.com/en-us/azure/availability-zones/az-overview). Consider using **East US** or **East US2**.
 
 ## Exercise 1: Provision Azure compute resources necessary to support highly available SAP NetWeaver deployments
 
@@ -49,7 +49,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
-1.  Open a new web browser tab, navigate to Azure Quickstart Templates page at <https://aka.ms/az120-1bdeploy>, locate the template named **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones**, and initiate its deployment by clicking **Deploy to Azure** button.
+1.  Open a new web browser tab, navigate to Azure Quickstart Templates page **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones** at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones)](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and initiate its deployment by clicking **Deploy to Azure** button.
 
 1.  On the **Custom deployment** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
 
@@ -57,11 +57,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Resource group: *the name of a new resource group* **az12001b-ad-RG**
 
-    -   Location: *an Azure region where you can deploy Azure VMs*
-
-    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
+    -   Region: *the Azure regions in which you have sufficient quotas to deploy the lab VMs*
 
     -   Admin Username: **Student**
+
+    -   Location: *the Azure regions in which you have sufficient quotas to deploy the lab VMs*
+
+    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
 
     -   Password: **Pa55w.rd1234**
 
@@ -85,7 +87,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
        - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
 
-       - Navigate to the GitHub quickstart template at https://github.com/polichtm/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc-zones, and select **Deploy to Azure**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+       - Navigate to the GitHub quickstart template at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones)](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and select **Deploy to Azure**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
 
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2019 in a new availability set.

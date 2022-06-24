@@ -1,11 +1,11 @@
 ---
 lab:
-    title: '02b - Implement Windows clustering on Azure VMs'
-    module: 'Module 02 - Explore the foundations of IaaS for SAP on Azure'
+    title: '01b - Implement Windows clustering on Azure VMs'
+    module: 'Module 01 - Explore the foundations of IaaS for SAP on Azure'
 ---
 
-# AZ 120 Module 2: Explore the foundations of IaaS for SAP on Azure
-# Lab 2b: Implement Windows clustering on Azure VMs
+# AZ 120 Module 1: Explore the foundations of IaaS for SAP on Azure
+# Lab 1b: Implement Windows clustering on Azure VMs
 
 Estimated Time: 120 minutes
 
@@ -35,13 +35,13 @@ After completing this lab, you will be able to:
 
 -   A lab computer with an Azure Cloud Shell-compatible web browser and access to Azure
 
-> **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
+> **Note**: Make sure that the Azure region you choose for deployment of your resources supports availability zones. For the list of such regions, refer to (https://docs.microsoft.com/en-us/azure/availability-zones/az-overview). Consider using **East US** or **East US2**.
 
 ## Exercise 1: Provision Azure compute resources necessary to support highly available SAP NetWeaver deployments
 
 Duration: 50 minutes
 
-In this exercise, you will deploy Azure infrastructure compute components necessary to configure Failover Clustering on Azure VMs running Windows Server 2019. This will involve deploying a pair of Active Directory domain controllers, followed by a pair of Azure VMs running Windows Server 2019 in the same availability set within the same virtual network. To automate the deployment of domain controllers, you will use an Azure Resource Manager QuickStart template available from <https://aka.ms/az120-1bdeploy>
+In this exercise, you will deploy Azure infrastructure compute components necessary to configure Failover Clustering on Azure VMs running Windows Server 2019. This will involve deploying a pair of Active Directory domain controllers, followed by a pair of Azure VMs running Windows Server 2019, each VM will be created as a DC for the new domain and will be placed in separate availability zones, within the same virtual network. To automate the deployment of domain controllers, you will use an Azure Resource Manager QuickStart template available from <https://aka.ms/az120-1bdeploy>
 
 ### Task 1: Deploy a pair of Azure VMs running highly available Active Directory domain controllers by using an Azure Resource Manager template
 
@@ -49,7 +49,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
-1.  Open a new web browser tab, navigate to Azure Quickstart Templates page at <https://aka.ms/az120-1bdeploy>, locate the template named **Create 2 new Windows VMs, create a new AD Forest, Domain, and 2 DCs in an availability set**, and initiate its deployment by clicking **Deploy to Azure** button.
+1.  Open a new web browser tab, navigate to Azure Quickstart Templates page **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones** at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones)](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and initiate its deployment by clicking **Deploy to Azure** button.
 
 1.  On the **Custom deployment** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
 
@@ -57,11 +57,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Resource group: *the name of a new resource group* **az12001b-ad-RG**
 
-    -   Location: *an Azure region where you can deploy Azure VMs*
-
-    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
+    -   Region: *the Azure regions in which you have sufficient quotas to deploy the lab VMs*
 
     -   Admin Username: **Student**
+
+    -   Location: *the Azure regions in which you have sufficient quotas to deploy the lab VMs*
+
+    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
 
     -   Password: **Pa55w.rd1234**
 
@@ -73,7 +75,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Bdc RDP Port: **13389**
 
-    -   _artifacts Location: **https://raw.githubusercontent.com/polichtm/azure-quickstart-templates/master/active-directory-new-domain-ha-2-dc/**
+    -   _artifacts Location: **https://raw.githubusercontent.com/polichtm/azure-quickstart-templates/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/**
 
     -   _artifacts Location Sas Token: *leave blank*
 
@@ -81,11 +83,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
 
-       - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
+       - In the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
 
-       - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
+       - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
 
-       - Navigate to the GitHub quickstart template at <https://aka.ms/az120-1bdeploy>, and select **Deploy to Azure**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+       - Navigate to the GitHub quickstart template at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and select **Deploy to Azure**. Once your browser session is redirected to the Azure portal, repeat the last step of this task.
 
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2019 in a new availability set.

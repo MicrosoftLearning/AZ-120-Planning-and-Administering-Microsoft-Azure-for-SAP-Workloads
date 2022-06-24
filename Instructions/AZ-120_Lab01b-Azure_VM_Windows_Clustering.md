@@ -49,7 +49,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
-1.  Open a new web browser tab, navigate to Azure Quickstart Templates page **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones** at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones)](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and initiate its deployment by clicking **Deploy to Azure** button.
+1.  Open a new web browser tab, navigate to Azure Quickstart Templates page **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones** at [https://aka.ms/az120-1bdeployzone](https://aka.ms/az120-1bdeployzone), and initiate its deployment by clicking **Deploy to Azure** button.
 
 1.  On the **Custom deployment** blade, specify the following settings and click **Review + create**, followed by **Create** to initiate the deployment:
 
@@ -87,7 +87,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
        - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
 
-       - Navigate to the GitHub quickstart template at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and select **Deploy to Azure**. Once your browser session is redirected to the Azure portal, repeat the last step of this task.
+       - Navigate to the GitHub quickstart template at [https://aka.ms/az120-1bdeployzone](https://aka.ms/az120-1bdeployzone), and select **Deploy to Azure**. Once your browser session is redirected to the Azure portal, repeat the last step of this task.
 
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2019 in a new availability set.

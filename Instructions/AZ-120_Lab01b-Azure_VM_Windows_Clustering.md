@@ -1,11 +1,11 @@
 ---
 lab:
-    title: '02b - Implement Windows clustering on Azure VMs'
-    module: 'Module 02 - Explore the foundations of IaaS for SAP on Azure'
+    title: '01b - Implement Windows clustering on Azure VMs'
+    module: 'Module 01 - Explore the foundations of IaaS for SAP on Azure'
 ---
 
-# AZ 120 Module 2: Explore the foundations of IaaS for SAP on Azure
-# Lab 2b: Implement Windows clustering on Azure VMs
+# AZ 120 Module 1: Explore the foundations of IaaS for SAP on Azure
+# Lab 1b: Implement Windows clustering on Azure VMs
 
 Estimated Time: 120 minutes
 
@@ -87,7 +87,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
        - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
 
-       - Navigate to the GitHub quickstart template at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones)](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and select **Deploy to Azure**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+       - Navigate to the GitHub quickstart template at [https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones](https://github.com/polichtm/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones), and select **Deploy to Azure**. Once your browser session is redirected to the Azure portal, repeat the last step of this task.
 
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2019 in a new availability set.

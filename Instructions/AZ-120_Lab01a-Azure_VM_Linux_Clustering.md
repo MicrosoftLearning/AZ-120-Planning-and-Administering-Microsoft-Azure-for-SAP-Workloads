@@ -671,6 +671,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    - Type: **Internal**
 
 1. Click **Next: Frontend IP Configuration**. On the **Frontend IP configuration** screen, click **Add a frontend IP configuration** and then click **Add**.
+
    - Name: frontend1
    
    - Virtual network: **az12001a-RG-vnet**
@@ -693,11 +694,13 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
    - Name: **az12001a-lb0-bepool**
 
-   - IP version: **IPv4**
+   - Virtual network: **az12001a-RG-vnet**
 
-   - Virtual machine: **az12001a-vm0**  IP Configuration: **ipconfig1 (192.168.0.4)**
+   - Backend Pool Configuration: **IP address**
 
-   - Virtual machine: **az12001a-vm1**  IP Configuration: **ipconfig1  (192.168.0.5)**
+   - IP address: **192.168.0.4** Resource name: **az12001a-vm0**
+
+   - IP address: **192.168.0.5** Resource name: **az12001a-vm1**
 
 1. On the **az12001a-lb0** blade, select **Health probes** select **+ Add**, and, on the **Add health probe** blade, specify the following settings (leave others with their defaults):
 

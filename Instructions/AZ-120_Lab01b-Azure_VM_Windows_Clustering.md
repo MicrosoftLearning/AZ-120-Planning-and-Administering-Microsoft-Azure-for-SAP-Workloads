@@ -75,7 +75,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Bdc RDP Port: **13389**
 
-    -   _artifacts Location: **https://aka.ms/az120-1bdeployzoneraw**
+    -   _artifacts Location: **https://raw.githubusercontent.com/polichtm/azure-quickstart-templates/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/**
 
     -   _artifacts Location Sas Token: *leave blank*
 

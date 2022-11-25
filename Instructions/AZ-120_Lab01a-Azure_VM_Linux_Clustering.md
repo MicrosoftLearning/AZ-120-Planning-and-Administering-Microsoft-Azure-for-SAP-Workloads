@@ -99,13 +99,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - OS disk type: **Premium SSD**
 
-   - Encryption type: **(Default) Encryption at rest with a platform-managed key**
+   - Key management: **Platform-managed key**
 
 1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
 
-   - Virtual network: *a new virtual network named* **az12001a-RG-vnet**
+   - Virtual network: *select* **Create new** *and create a new virtual network named* **az12001a-RG-vnet**
 
-   - Address space: **192.168.0.0/20**
+   - Address space: *set the address space of the new virtual network to* **192.168.0.0/20**
 
    - Subnet name: **subnet-0**
 
@@ -127,11 +127,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: This setting is not available if you have already selected the Azure Security Center plan.
 
-   - Boot diagnostics: **Enable with managed storage account (recommended)**
-
-   - OS guest diagnostics: **Off**
-
-   - System assigned managed identity: **Off**
+   - Enable system assigned managed identity: **Off**
 
    - Enable auto-shutdown: **Off**
 
@@ -177,7 +173,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    - OS disk type: **Premium SSD**
 
-   - Encryption type: **(Default) Encryption at rest with a platform-managed key**
+   - Key management: **Platform-managed key**
 
 1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
 
@@ -201,11 +197,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: This setting is not available if you have already selected the Azure Security Center plan.
 
-   - Boot diagnostics: **Enable with managed storage account (recommended)**
-
-   - OS guest diagnostics: **Off**
-
-   - System assigned managed identity: **Off**
+   - Enabley system assigned managed identity: **Off**
 
    - Enable auto-shutdown: **Off**
 

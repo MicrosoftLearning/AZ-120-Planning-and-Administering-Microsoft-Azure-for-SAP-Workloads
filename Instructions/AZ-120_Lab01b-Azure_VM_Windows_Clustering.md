@@ -587,9 +587,9 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Region: *the same Azure region where you deployed Azure VMs in the first exercise of this lab*
 
-    -   Type: **Internal**
-
     -   SKU: **Standard**
+
+    -   Type: **Internal**
 
     -   Frontend IP name: **frontend-ip1**
     
@@ -611,9 +611,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Virtual network: **adVNET**
 
-    -   VIRTUAL MACHINE: **az12001b-cl-vm0**  IP ADDRESS: **ipconfig1**
+    -   Backend Pool Configuration: **IP address**
 
-    -   VIRTUAL MACHINE: **az12001b-cl-vm1**  IP ADDRESS: **ipconfig1**
+    -   IP address: **10.0.1.4** Resource Name **az1201b-cl-vm0**
+
+    -   IP address: **10.0.1.5** Resource Name **az1201b-cl-vm1**
 
 1.  From the **az12001b-cl-lb0** blade, add a health probe with the following settings:
 

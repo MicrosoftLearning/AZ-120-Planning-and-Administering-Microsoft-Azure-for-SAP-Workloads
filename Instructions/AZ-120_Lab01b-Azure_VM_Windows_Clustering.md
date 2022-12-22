@@ -348,7 +348,7 @@ Duration: 40 minutes
 
 1.  From the **az12001b-cl-vm0** blade, connect to the virtual machine guest operating system by using Remote Desktop. When prompted to authenticate, provide the credentials of the administrative user account you specified when deploying the Bicep template in the first exercise of this lab. 
 
-   > **Note**: Make sure to sign in using the **ADATUM** domain account, rather than the operating system level account (i.e. ensure that the user name is preceded by the **ADATUM\\** prefix.
+    > **Note**: Make sure to sign in using the **ADATUM** domain account, rather than the operating system level account (i.e. ensure that the user name is preceded by the **ADATUM\\** prefix.
 
 1.  Within the RDP session to az12001b-cl-vm0, in Server Manager, navigate to the **File and Storage Services** -> **Servers** node. 
 

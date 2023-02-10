@@ -109,7 +109,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
        - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension.
 
-       - Rerun the previous step of this task.
+       - Rerun the steps 10 and 11 of this task.
 
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2022 in a new availability set.

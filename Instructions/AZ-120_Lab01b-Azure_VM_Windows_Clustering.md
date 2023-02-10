@@ -68,7 +68,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     $rgName = 'az12001b-ad-RG'
     ```
 
-1.  In the Cloud Shell pane, run the following command to set the value of the variable `$location` to the name of the Azure regions where you intend to deploy the lab VMs (replace the `<Azure_region>` placeholder with the name of that region):
+1.  In the Cloud Shell pane, run the following command to set the value of the variable `$location` to the name of the Azure regions which supports availability zones and where you intend to deploy the lab VMs (replace the `<Azure_region>` placeholder with the name of that region):
 
     ```
     $location = '<Azure_region>'
@@ -112,7 +112,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
        - Rerun the steps 10 and 11 of this task.
 
 
-### Task 2: Deploy a pair of Azure VMs running Windows Server 2022 in a new availability set.
+### Task 2: Deploy a pair of Azure VMs running Windows Server 2022 into different availability zones
 
 1.  From the lab computer, in the Azure portal, navigate to the **Virtual machines** blade, click **+ Create**, and, from the drop-down menu, select **Azure virtual machine**.
 

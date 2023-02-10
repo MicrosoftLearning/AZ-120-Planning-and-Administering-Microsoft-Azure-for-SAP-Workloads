@@ -103,7 +103,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: The deployment should take about 35 minutes. Wait for the deployment to complete before you proceed to the next task.
 
-    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps to remediate this issue:
+    > **Note**: If the deployment fails with an error referencing an issue wtih extension processing, use the following steps to remediate this issue:
 
        - In the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed.
 

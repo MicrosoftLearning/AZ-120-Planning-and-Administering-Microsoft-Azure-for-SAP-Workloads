@@ -43,7 +43,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Deploy Azure VMs running Linux SUSE
 
-1. From the lab computer, start a Web browser, and navigate to the Azure portal at https://portal.azure.com
+1. From the lab computer, start a Web browser, and navigate to the Azure portal at `https://portal.azure.com`
 
 1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
@@ -85,7 +85,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    
    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**.
 
-   - Azure Spot Instance: **No**
+   - Run with Azure Spot Discount: **No**
 
    - Size: **Standard D4s v3**
 
@@ -117,11 +117,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: This image has preconfigured NSG rules
 
-   - Accelerated networking: **On**
+   - Enable accelerated networking: **On**
 
-   - Place this virtual machine behind an existing load balancing solutions: **No**
+   - Load balancing Options: **None**
 
-1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Advanced >** (leave all other settings with their default value):
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Monitoring >** (leave all other settings with their default value):
 
    - Enable basic plan for free: **No**
 
@@ -130,6 +130,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    - Enable system assigned managed identity: **Off**
 
    - Enable auto-shutdown: **Off**
+
+1. On the **Monitoring** tab of the **Create a virtual machine** blade, select **Next: Advanced >** (leave all settings with their default value)
 
 1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings and select **Review + create** (leave all other settings with their default value):
 
@@ -187,11 +189,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: This image has preconfigured NSG rules
 
-   - Accelerated networking: **On**
+   - Enable accelerated networking: **On**
 
-   - Place this virtual machine behind an existing load balancing solutions: **No**
+   - Load balancing Options: **None**
 
-1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Advanced >** (leave all other settings with their default value):
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Monitoring >** (leave all other settings with their default value):
 
    - Enable basic plan for free: **No**
 
@@ -200,6 +202,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    - Enabley system assigned managed identity: **Off**
 
    - Enable auto-shutdown: **Off**
+
+1. On the **Monitoring** tab of the **Create a virtual machine** blade, select **Next: Advanced >** (leave all settings with their default value)
 
 1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings and select **Review + create** (leave all other settings with their default value):
 

@@ -45,7 +45,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Deploy a pair of Azure VMs running highly available Active Directory domain controllers by using a Bicep template
 
-1.  From the lab computer, start a Web browser, and navigate to the Azure portal at https://portal.azure.com
+1.  From the lab computer, start a Web browser, and navigate to the Azure portal at `https://portal.azure.com`
 
 1.  If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
@@ -160,25 +160,25 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Select inbound ports: **RDP (3389)**
 
-    -   Accelerated networking: **On**
+    -   Enable accelerated networking: **On**
 
-    -   Place this virtual machine behind an existing load balancing solutions: **No**
-
-    -   Boot diagnostics: **Disable**
+    -   Load balancing Options: **None**
 
     -   Login with Azure AD: **Off**
 
     -   Enable auto-shutdown: **Off**
 
-    -   Patch orchestration options: **Manual**
+    -   Patch orchestration options: **Manual Updates**
+
+    -   Boot diagnostics: **Disable**
 
     -   Extensions: *None*
 
     -   Tags: *None*
 
-1.  Do not wait for the provisioning to complete but continue to the next step.
+2.  Do not wait for the provisioning to complete but continue to the next step.
 
-1.  Provision another **Windows Server 2022 Datacenter: Azure Edition - Gen2** Azure VM with the following settings:
+3.  Provision another **Windows Server 2022 Datacenter: Azure Edition - Gen2** Azure VM with the following settings:
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -220,17 +220,17 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Select inbound ports: **RDP (3389)**
 
-    -   Accelerated networking: **On**
+    -   Enable accelerated networking: **On**
 
-    -   Place this virtual machine behind an existing load balancing solutions: **No**
-
-    -   Boot diagnostics: **Disable**
+    -   Load balancing Options: **None**
 
     -   Login with Azure AD: **Off**
 
     -   Enable auto-shutdown: **Off**
 
-    -   Patch orchestration options: **Manual**
+    -   Patch orchestration options: **Manual Updates**
+  
+    -   Boot diagnostics: **Disable**
 
     -   Enable backup: **Off**
 
@@ -238,7 +238,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   Tags: *None*
 
-1.  Wait for the provisioning to complete. This should take a few minutes.
+4.  Wait for the provisioning to complete. This should take a few minutes.
 
 ### Task 3: Create and configure Azure VMs disks
 

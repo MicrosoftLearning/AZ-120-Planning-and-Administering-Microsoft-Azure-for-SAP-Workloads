@@ -27,7 +27,7 @@ Timeframe: 30 minutes
 
 ### Task 1: Validate sufficient number of vCPU cores
 
-1.  In the Azure portal at `http://portal.azure.com`.
+1.  In the Azure portal at **http://portal.azure.com**.
 
 2.  In the Azure Portal, start a PowerShell session in Cloud Shell. 
 

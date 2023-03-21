@@ -771,10 +771,9 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     | **Virtual machine name** | **az12001a-vm2** |
     | **Region** | *the same Azure region where you deployed Azure VMs in the first exercise of this lab* |
     | **Availability options** | **No infrastructure redundancy required** |
-    | **Availability set** | **az12001a-avset** |
     | **Image** | *select* **Windows Server 2019 Datacenter - Gen 2** |
     | **Run with Azure Spot Discount** | **No** |
-    | **Size** | **Standard DS1 v2*** or similar* |
+    | **Size** | **Standard DS1 v2** or similar |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
     | **Password** | **Pa55w.rd1234** |

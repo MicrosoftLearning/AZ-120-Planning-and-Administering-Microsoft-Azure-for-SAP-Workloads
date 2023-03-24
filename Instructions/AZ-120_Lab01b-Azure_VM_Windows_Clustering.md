@@ -93,6 +93,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     $adminPassword = ConvertTo-SecureString '<password>' -AsPlainText -Force
     ```
 
+    > **Note**: Make sure that the password satisfies the complexity requirements applicable to deployment of Azure VMs running Windows (the lenght of at least 12 characters containing lower and upper case letters, digits, and special characters).
+
 1. In the Cloud Shell pane, run the following command to run the deployment:
 
     ```

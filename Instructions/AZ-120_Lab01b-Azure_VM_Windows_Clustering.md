@@ -422,7 +422,7 @@ Duration: 40 minutes
 
 1. On the **Security** tab, click the **Advanced** button to open the **Advanced Security Settings for Clusters** window. 
 
-1. On the **Permissions** tab of the **Advanced Security Settings for Computers** window, click **Add**.
+1. On the **Permissions** tab of the **Advanced Security Settings for Clusters** window, click **Add**.
 
 1. In the **Permission Entry for Clusters** window, click **Select Principal**
 

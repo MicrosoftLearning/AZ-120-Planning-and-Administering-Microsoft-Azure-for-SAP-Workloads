@@ -560,7 +560,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     |   --    |  --   |
     | **Name** | **az12001b-cl-lb0-lbruletcp1433** |
     | **IP Version** | **IPv4** |
-    | **Frontend IP address** | **192.168.0.240 (LoadBalancerFrontEnd)** |
+    | **Frontend IP address** | **10.0.1.240 (LoadBalancerFrontEnd)** |
     | **HA Ports** | **Disabled** |
     | **Protocol** | **TCP** |
     | **Port** | **1433** |

@@ -90,60 +90,55 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     az network vnet create --resource-group $RESOURCE_GROUP_NAME --location $LOCATION --name $VNET_NAME --address-prefixes $VNET_PREFIX --subnet-name $SUBNET_NAME --subnet-prefixes $SUBNET_PREFIX
     ```
 
-1. In the Cloud Shell pane, run the following command to identify the Resource Id of the subnet of the newly created virtual network:
+1.  In the Cloud Shell pane, run the following command to identify the Resource Id of the subnet of the newly created virtual network and store it in the SUBNET_ID variable:
 
     ```cli
-    az network vnet subnet list --resource-group $RESOURCE_GROUP_NAME --vnet-name $VNET_NAME --query "[?name == '$SUBNET_NAME'].id" --output tsv
+    SUBNET_ID=$(az network vnet subnet list --resource-group $RESOURCE_GROUP_NAME --vnet-name $VNET_NAME --query "[?name == '$SUBNET_NAME'].id" --output tsv)
     ```
 
-1. Copy the resulting value to Clipboard. You will need it in the next task.
+### Task 2: Deploy a Bicep template that provisions Azure VMs running Linux SUSE which will host a highly available SAP NetWeaver deployment
 
-### Task 2: Deploy Azure Resource Manager template provisioning Azure VMs running Linux SUSE that will host a highly available SAP NetWeaver deployment
+1.  On the lab computer, in the Cloud Shell pane, run the following commands to create a shallow clone of the repository hosting the Bicep template you will use for deployment of a pair of Azure VMs that will host a highly available installation of SAP HANA and set the current directory to the location of that template and its parameter file:
 
-1. On the lab computer, start a browser and browse to [**https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/sap/sap-3-tier-marketplace-image-md**](https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/sap/sap-3-tier-marketplace-image-md)
+    ```
+    cd $HOME
+    rm ./azure-quickstart-templates -rf
+    git clone --depth 1 https://github.com/polichtm/azure-quickstart-templates
+    cd ./azure-quickstart-templates/application-workloads/sap/sap-3-tier-marketplace-image-md/
+    ```
 
-    > **Note**: Make sure to use Microsoft Edge or a third party browser. Do not use Internet Explorer.
+1.  In the Cloud Shell pane, run the following commands to set the name of the administrative user account and its password:
 
-1. On the page titled **SAP NetWeaver 3-tier compatible template using a Marketplace image - MD**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
+    ```
+    ADMINUSERNAME='student'
+    ADMINPASSWORD='Pa55w.rd1234'
+    ```
 
-1. On the **SAP NetWeaver 3-tier (managed disk)** blade, select **Edit template**.
+1.  In the Cloud Shell pane, run the following command to identify resources that will be included in the upcoming deployment:
 
-1. On the **Edit template** blade, apply the following changes and select **Save**:
+    ```
+    DEPLOYMENT_NAME='az1203a-'$RANDOM
+    az deployment group what-if --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file ./main.bicep --parameters ./azuredeploy.parameters03a.json --parameters adminUsername=$ADMINUSERNAME adminPasswordOrKey=$ADMINPASSWORD subnetId=$SUBNET_ID
+    ```
 
-    -   in the line **197**, replace `"dbVMSize": "Standard_E8s_v3",` with `"dbVMSize": "Standard_D4s_v3",`
+1.  Review the output of the command and verify that it does not include any errors and warnings. Next, in the Cloud Shell pane, run the following command to start the deployment:
 
-1. On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
-    
-    | Setting | Value |
-    |   --    |  --   |
-    | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** | *the name of the resource group you used in the previous task* |
-    | **Location** | *the same Azure region that you specified in the first task of this exercise* |
-    | **SAP System Id** | **I20** |
-    | **Stack Type** | **ABAP** |
-    | **Os Type** | **SLES 12** |
-    | **Dbtype** | **HANA** |
-    | **Sap System Size** | **Demo** |
-    | **System Availability** | **HA** |
-    | **Admin Username** | **student** |
-    | **Authentication Type** | **password** |
-    | **Admin Password Or Key** | **Pa55w.rd1234** |
-    | **Subnet Id** | *the value you copied into Clipboard in the previous task* |
-    | **Availability Zones** | **1,2** |
-    | **Location** | **[resourceGroup().location]** |
-    | **_artifacts Location** | **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/sap/sap-3-tier-marketplace-image-md/** |
-    | **_artifacts Location Sas Token** | *leave blank* |
+    ```
+    DEPLOYMENT_NAME='az1203a-'$RANDOM
+    az deployment group create --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file ./main.bicep --parameters ./azuredeploy.parameters.json --parameters adminUsername=$ADMINUSERNAME adminPasswordOrKey=$ADMINPASSWORD subnetId=$SUBNET_ID
+    ```
 
-1. Do not wait for the deployment to complete but instead proceed to the next task. 
+1.  Review the output of the command and verify that it does not include any errors and warnings. When prompted, press the **Enter** key to proceed with the deployment.
 
-    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
+1.  Do not wait for the deployment to complete but instead proceed to the next task. 
 
-    - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
+    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps to remediate this issue:
 
-    - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
+       - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
 
-    - in the Azure portal, navigate to the **az12003a-sap-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12003a-sap-RG**) and provide the password for the root account (**Pa55w.rd1234**).
+       - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
 
+       - Rerun the previous step of this task.
 
 ### Task 3: Deploy a jump host
 

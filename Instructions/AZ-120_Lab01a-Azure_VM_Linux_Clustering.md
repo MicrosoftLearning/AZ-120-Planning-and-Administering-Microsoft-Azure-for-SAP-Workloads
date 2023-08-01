@@ -55,10 +55,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
     | **Resource group** section | Select **Create new**, enter **az12001a-RG**, and then select **OK** |
-    | **Region** | *an Azure region where you can deploy Azure VMs* |
+    | **Region** | *Azure region of az12001a-RG is recommended* |
     | **Proximity placement group name** | Select **az12001a-ppg** |
+    | **Intent details** | **Standard D4s v3** |
 
-   > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
+   > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
 
 1. On the **Review + create** tab of the **Create Proximity Placement Groups** blade, select **Create**.
 
@@ -71,35 +72,36 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | Setting | Value |
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** | *the name of the resource group you used earlier in this task* |
+    | **Resource group** | *select the name of the resource group you used earlier in this task* |
     | **Virtual machine name** | *select* **az12001a-vm0** |
-    | **Region** | *the same Azure region you chose when creating the proximity placement group* |
+    | **Region** | *the **same Azure region** you chose when creating the proximity placement group* |
     | **Availability options** | *select* **Availability set** |
     | **Availability set** | *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains* |
-    | **Image** | *select* **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1** |
+    | **Security type** | *select* **Standard** |
+    | **Image** | *select* **SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** |
     | **Run with Azure Spot Discount** | **No** |
     | **Size** | **Standard D4s v3** |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
     | **Password** | **Pa55w.rd1234** |
    
-    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**.
+    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** and select **Generation 2**.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
 
     | Setting | Value |
     |   --    |  --   |
-    | **OS disk type** | **Premium SSD**  |
+    | **OS disk type** | **Premium SSD (locally-redundant storage)**  |
     | **Key management** | **Platform-managed key** |
 
 1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
 
     | Setting | Value |
     |   --    |  --   |
-    | **Virtual network** | *select* **Create new** *and create a new virtual network named* **az12001a-RG-vnet**  |
+    | **Virtual network** | *select* **Create new** *and create a new virtual network named* **az12001a-RG-vnet**, continue next steps in "Create virtual network."  |
     | **Address space** | *set the address space of the new virtual network to* **192.168.0.0/20** |
     | **Subnet name** | **subnet-0** |
-    | **Subnet address range** | **192.168.0.0/24** |
+    | **Subnet address range** | **192.168.0.0/24**, select "ok" to continue on "Create a virtual machine."|
     | **Public IP address** | *a new IP address named* **az12001a-vm0-ip** |
     | **NIC network security group** | **Advanced**  |
     | **Enable accelerated networking** | **On** |
@@ -136,19 +138,20 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | Setting | Value |
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** | *the name of the resource group you used earlier in this task* |
+    | **Resource group** | *select the name of the resource group you used earlier in this task* |
     | **Virtual machine name** | *select* **az12001a-vm1** |
     | **Region** | *the same Azure region you chose when creating the proximity placement group* |
     | **Availability options** | *select* **Availability set** |
     | **Availability set** | **az12001a-avset** |
-    | **Image** | *select* **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1** |
+    | **Security type** | *select* **Standard** |
+    | **Image** | *select* ***SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** |
     | **Run with Azure Spot Discount** | **No** |
     | **Size** | **Standard D4s v3** |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
     | **Password** | **Pa55w.rd1234** |
    
-   > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux for SAP 12 BYOS** and, in the list of results, click **SUSE Enterprise Linux for SAP 12 SP5 - BYOS**.
+   > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** and select **Generation 2**.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
 
@@ -229,7 +232,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    |   --    |  --   |
    | **LUN** | **0** |
    | **Disk name** | **az12001a-vm0-DataDisk0** |
-   | **Resource group** | *the name of the resource group you used earlier in this task* |
+   | **Resource group** | *select the name of the resource group you used earlier in this task* |
    | **HOST CACHING** | **Read-only** |
 
 2. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm0-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
@@ -246,7 +249,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    |   --    |  --   |
    | **LUN** | **0** |
    | **Disk name** | **az12001a-vm1-DataDisk0** |
-   | **Resource group** | *the name of the resource group you used earlier in this task* |
+   | **Resource group** | *select the name of the resource group you used earlier in this task* |
    | **HOST CACHING** | **Read-only** |
 
 7. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
@@ -362,7 +365,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice, and then type `w` to complete the write.
 
-1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, format the newly created partition by running (type `y` and press the **Enter** key when prompted for confirmation)	:
+1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, format the newly created partition by running (type `y` and press the **Enter** key when prompted for confirmation):
 
    ```cli
    mkfs.xfs /dev/sdi -m crc=1 -f
@@ -642,7 +645,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    | Setting | Value |
    |   --    |  --   |
    | **Subscription** | *the name of your Azure subscription* |
-   | **Resource group** | *the name of the resource group you used earlier in this lab* |
+   | **Resource group** | *select the name of the resource group you used earlier in this lab* |
    | **Name** | **az12001a-lb0** |
    | **Region** | *the same Azure region where you deployed Azure VMs in the first exercise of this lab* |
    | **SKU** | **Standard** |
@@ -767,7 +770,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     | Setting | Value |
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** | *the name of the resource group you used earlier in this tlab* |
+    | **Resource group** | *select the name of the resource group you used earlier in this lab* |
     | **Virtual machine name** | **az12001a-vm2** |
     | **Region** | *the same Azure region where you deployed Azure VMs in the first exercise of this lab* |
     | **Availability options** | **No infrastructure redundancy required** |

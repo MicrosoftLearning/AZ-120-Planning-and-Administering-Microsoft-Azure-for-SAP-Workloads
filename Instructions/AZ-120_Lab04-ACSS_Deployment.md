@@ -11,8 +11,6 @@ Estimated Time: 100 minutes
 
 All tasks in this lab are performed from the Azure portal
 
-# Lab - Automate deployment by using Azure Center for SAP solutions
-
 ## Objectives
 
 After completing this lab, you will be able to:

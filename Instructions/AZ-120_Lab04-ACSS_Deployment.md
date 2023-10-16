@@ -55,7 +55,7 @@ The exercise consists of the following tasks:
 
 >**Note**: To minimize the vCPU and memory requirements for the database VMs, you can change the VM SKU to Standard_M32ts (32 vCPUs and 192 GiB of memory each).
 
-1. On the lab computer, start Microsoft Edge and navigate to [the Azure portal](https://portal.azure.com).
+1. From the lab computer, start a Web browser, and navigate to the Azure portal at `https://portal.azure.com`.
 1. In the Azure Portal, select the **Cloud Shell** icon and start a PowerShell session in Cloud Shell. 
 
     > **Note**: If this is the first time you are launching Cloud Shell in the Azure subscription you will be using in this lab, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
@@ -74,7 +74,7 @@ The exercise consists of the following tasks:
 1. Review the output to identify the current vCPU usage and the vCPU limit. Ensure that the difference between them is sufficient to accommodate vCPUs of Azure VMs that you will be deployed in this lab. Take into account both VM family-specific and total regional vCPU numbers. 
 1. If the number of vCPUs is not sufficient, close the Cloud Shell pane, in the Azure portal, in the **Search** text box, search for and select **Quotas**.
 1. On the **Quotas** page, select **Compute**.
-1. On the **Quotas \| Compute ** page, use the **Region** filter to select the Azure region to which you intend to deploy resources in this lab.
+1. On the **Quotas \| Compute** page, use the **Region** filter to select the Azure region to which you intend to deploy resources in this lab.
 1. In the **Quota name** column, locate and select the VM SKU name that requires a quota increase. 
 1. In the same row, check the entry in the **Adjustable** column. The next step depends on whether the column contains **Yes** or **No** entry.
 
@@ -99,7 +99,7 @@ The exercise consists of the following tasks:
 
 ### Task 2: Configure Azure role-based access control (RBAC) role assignments for the Microsoft Entra ID user account that will be used to perform the deployment
 
-1. On the lab computer, start Microsoft Edge and navigate to [the Azure portal](https://portal.azure.com).
+1. On the lab computer, start Microsoft Edge, and navigate to the Azure portal at `https://portal.azure.com`.
 1. When prompted to authenticate, sign in by using the Microsoft Entra ID credentials with the Owner role in the Azure subscription you will be using for this lab. 
 1. In the Azure portal, in the **Search** text box, search for and select **Subscriptions**.
 1. On the **Subscriptions** page, select the entry representing the Azure subscription you will be using for this lab. 
@@ -107,15 +107,15 @@ The exercise consists of the following tasks:
 1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions administrator** entry, and the select **Next**.
 1. On the **Members** tab of the **Add role assignment** page, click **+ Select members**. 
-1. On the Select members** pane, in the **Select** text box, enter the name of the Microsoft Entra ID user account you used to access the Azure subscription you are using for this lab, select it in the list of results matching your entry, and then click **Select**.
+1. On the **Select members** pane, in the **Select** text box, enter the name of the Microsoft Entra ID user account you used to access the Azure subscription you are using for this lab, select it in the list of results matching your entry, and then click **Select**.
 1. Back on the **Members** tab, select **Review + assign**.
 1. On the **Review + assign** tab, select **Review + assign**.
 1. Repeat the previous six steps to assign the role of **Managed Identity Operator** to the user account you are using for this lab.
 
 ### Task 3: Create a storage account associated with the Azure Center for SAP solutions used for the deployment
 
-1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Storage**.
-1. On the **Storage** page, select **+ Create**.
+1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Storage accounts**.
+1. On the **Storage accounts** page, select **+ Create**.
 1. On the **Basics** tab of the **Create a storage account** page, specify the following settings and select **Next: Advanced >**.
 
     |Setting|Value|
@@ -160,10 +160,10 @@ The exercise consists of the following tasks:
     |---|---|
     |Scope|**Subscription**|
     |Subscription|The name of the Azure subscription you are using in this lab|
-    |Resource group|**Azure Center for SAP solutions service role**|
+    |Role|**Azure Center for SAP solutions service role**|
 
-1. Back on the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
-1. On the **+ Add role assignment (Preview)** pane, specify the following settings and select **Save**:
+2. Back on the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
+3. On the **+ Add role assignment (Preview)** pane, specify the following settings and select **Save**:
 
     |Setting|Value|
     |---|---|
@@ -193,7 +193,7 @@ The exercise consists of the following tasks:
 
 1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Route tables**.
 1. On the **Route tables** page, select **+ Create**.
-1. On the **Basics** tab of the **Create network security group** page, specify the following settings and then select **Review + create**:
+1. On the **Basics** tab of the **Create Route table** page, specify the following settings and then select **Review + create**:
 
     |Setting|Value|
     |---|---|
@@ -347,6 +347,7 @@ The exercise consists of the following tasks:
     |Destination Type|**IP Address**|
     |Destination|*|
 
+1. Select the **Add** button to save all rules.
 1. Back on the **Rules** tab, select **Next: IDPS >**.
 1. On the **IDPS** tab, select **Next: Threat intelligence >**.
 
@@ -449,9 +450,7 @@ The exercise consists of the following tasks:
 
 Duration: 40 minutes
 
-In this exercise, you will use Azure Center for SAP solutions to deploy the infrastructure that will host SAP workloads into the Azure subscription you used in the previous exercise. This will include the following task:
-- Creating a virtual instance for SAP solutions
-
+In this exercise, you will use Azure Center for SAP solutions to deploy the infrastructure that will host SAP workloads into the Azure subscription you used in the previous exercise.
 The exercise consists of the following task:
 
 - Task 1: Create Virtual Instance for SAP solutions

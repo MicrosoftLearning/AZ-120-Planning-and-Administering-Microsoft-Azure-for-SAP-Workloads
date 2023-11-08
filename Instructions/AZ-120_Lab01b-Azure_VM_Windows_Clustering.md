@@ -107,11 +107,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: If the deployment fails with an error referencing an issue wtih extension processing, use the following steps to remediate this issue:
 
-       - In the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed.
+    - In the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed.
 
-       - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension.
+    - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension.
 
-       - Rerun the steps 10 and 11 of this task.
+    - Rerun the steps 10 and 11 of this task.
 
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2022 into different availability zones

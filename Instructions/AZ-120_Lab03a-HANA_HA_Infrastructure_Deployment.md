@@ -121,7 +121,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     az deployment group what-if --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file ./main.bicep --parameters ./azuredeploy.parameters03a.json --parameters adminUsername=$ADMINUSERNAME adminPasswordOrKey=$ADMINPASSWORD subnetId=$SUBNET_ID
     ```
 
-1.  Review the output of the command and verify that it does not include any errors and warnings. Next, in the Cloud Shell pane, run the following command to start the deployment:
+1.  Review the output of the command and verify that it does not include any errors (ignore any warnings). Next, in the Cloud Shell pane, run the following command to start the deployment:
 
     ```
     DEPLOYMENT_NAME='az1203a-'$RANDOM

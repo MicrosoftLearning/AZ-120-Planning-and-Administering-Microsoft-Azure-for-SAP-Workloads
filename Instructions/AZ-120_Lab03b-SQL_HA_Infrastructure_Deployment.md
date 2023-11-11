@@ -65,12 +65,14 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | **Location** | *an Azure region where you can deploy Azure VMs* |
     | **Admin Username** | **Student** |
     | **Location** | *the same Azure region you specified above* |
-    | **Password** | **Pa55w.rd1234** |
+    | **Password** | *any complex password of your choice of at least 12 characters in length* |
     | **Domain Name** | **adatum.com** |
     | **DnsPrefix** | *Use any unique valid DNS prefix* |
     | **Vm Size** | **Standard D2s_v3** |
     | **_artifacts Location** | **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/** |
     | **_artifacts Location Sas Token** | *leave blank* |
+
+    > **Note**: Make sure you remember the password you specified during deployment. You will need it later in this lab.
 
     > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
     
@@ -189,7 +191,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | **System Availability** | **HA** |
     | **Admin Username** | **Student** |
     | **Authentication Type** | **password** |
-    | **Admin Password Or Key** | **Pa55w.rd1234** |
+    | **Admin Password Or Key** | *the same password you specified earlier in this lab* |
     | **Subnet Id** | *the value you copied into Clipboard in the previous task* |
     | **Availability Zones** | **1,2** |
     | **Location** | **[resourceGroup().location]** |
@@ -224,7 +226,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
     | **VM Disk Count** | **3** |
     | **Existing Domain Name** | **adatum.com** |
     | **Admin Username** | **Student** |
-    | **Admin Password** | **Pa55w.rd1234** |
+    | **Admin Password** | *the same password you specified earlier in this lab* |
     | **Existing Virtual Network RG Name** | **az12003b-ad-RG** |
     | **Existing Virtual Network Name** | **adVNet** |
     | **Existing Subnet Name** | **s2dSubnet** |
@@ -242,21 +244,21 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 
     > **Note**: If the deployment fails with the **Conflict** error message during deployment of the i20-s2d-1/s2dPrep or i20-s2d-0/s2dPrep component, use the following steps  to remediate this issue:
 
-       - In the Azure portal, navigate to the **i20-s2d-0** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button:
+       - In the Azure portal, navigate to the **i20-s2d-0** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button (make sure to replace the `<password>` placeholder with the password you specified earlier in this lab):
 
        ```
        $domain = 'adatum.com'
-       $password = 'Pa55w.rd1234' | ConvertTo-SecureString -asPlainText -Force
+       $password = '<password>' | ConvertTo-SecureString -asPlainText -Force
        $username = "Student@$domain" 
        $credential = New-Object System.Management.Automation.PSCredential($username,$password)
        Add-Computer -DomainName $domain -Credential $credential -Restart -Force
        ```
 
-       - Navigate to the blade of the **i20-s2d-1** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button:
+       - Navigate to the blade of the **i20-s2d-1** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button (make sure to replace the `<password>` placeholder with the password you specified earlier in this lab):
 
        ```
        $domain = 'adatum.com'
-       $password = 'Pa55w.rd1234' | ConvertTo-SecureString -asPlainText -Force
+       $password = '<password>' | ConvertTo-SecureString -asPlainText -Force
        $username = "Student@$domain" 
        $credential = New-Object System.Management.Automation.PSCredential($username,$password)
        Add-Computer -DomainName $domain -Credential $credential -Restart -Force
@@ -284,7 +286,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
     | **Image** | *select* **Windows Server 2019 Datacenter - Gen2** |
     | **Size** | **Standard D2s_v3** |
     | **Username** | **Student** |
-    | **Password** | **Pa55w.rd1234** |
+    | **Password** | *the same password you specified earlier in this lab* |
     | **Public inbound ports** | **Allow selected ports** |
     | **Selected inbound ports** | **RDP (3389)** |
     | **Would you like to use an existing Windows Server license?** | **No** |
@@ -334,14 +336,14 @@ In this exercise, you will configure operating system of Azure VMs running Windo
     $resourceGroupName = 'az12003b-sap-RG'
     ```
 
-1. In the Cloud Shell pane, run the following command, to join the Windows Server Azure VMs you deployed in the third task of the previous exercise to the **adatum.com** Active Directory domain:
+1. In the Cloud Shell pane, run the following command, to join the Windows Server Azure VMs you deployed in the third task of the previous exercise to the **adatum.com** Active Directory domain (make sure to replace the `<password>` placeholder with the password you specified earlier in this lab):
 
     ```
     $location = (Get-AzResourceGroup -Name $resourceGroupName).Location
 
     $settingString = '{"Name": "adatum.com", "User": "adatum.com\\Student", "Restart": "true", "Options": "3"}'
 
-    $protectedSettingString = '{"Password": "Pa55w.rd1234"}'
+    $protectedSettingString = '{"Password": "<password>"}'
 
     $vmNames = @('i20-ascs-0','i20-ascs-1','i20-db-0','i20-db-1','i20-di-0','i20-di-1')
 
@@ -356,13 +358,13 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
     -   Login as: **student**
 
-    -   Password: **Pa55w.rd1234**
+    -   Password: *the same password you specified earlier in this lab*
 
 1. From the RDP session to az12003b-vm0, use Remote Desktop to connect to **i20-db-0.adatum.com** Azure VM. When prompted, provide the following credentials:
 
     -   Login as: **ADATUM\\Student**
 
-    -   Password: **Pa55w.rd1234**
+    -   Password: *the same password you specified earlier in this lab*
 
 1. Use Remote Desktop to connect to **i20-db-1.adatum.com** Azure VM with the same credentials.
 
@@ -410,7 +412,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
     -   Login as: **ADATUM\\Student**
 
-    -   Password: **Pa55w.rd1234**
+    -   Password: *the same password you specified earlier in this lab*
 
 1. Within the RDP session to i20-db-0.adatum.com, in Server Manager, navigate to the **Local Server** view and turn off **IE Enhanced Security Configuration**.
 
@@ -493,7 +495,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
     -   Login as: **ADATUM\\Student**
 
-    -   Password: **Pa55w.rd1234**
+    -   Password: *the same password you specified earlier in this lab*
 
 1. Within the RDP session to i20-ascs-0.adatum.com, in Server Manager, navigate to the **Local Server** view and turn off **IE Enhanced Security Configuration**.
 

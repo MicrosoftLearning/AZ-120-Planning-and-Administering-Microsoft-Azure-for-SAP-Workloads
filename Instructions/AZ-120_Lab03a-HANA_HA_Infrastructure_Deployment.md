@@ -160,7 +160,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | **Image** | *select* **Windows Server 2019 Datacenter - Gen2** |
     | **Size** | **Standard D2s_v3** or similar |
     | **Username** | **Student** |
-    | **Password** | **Pa55w.rd1234** |
+    | **Password** | any complex password of your choice |
     | **Public inbound ports** | **Allow selected ports** |
     | **Selected inbound ports** | **RDP (3389)** |
     | **Would you like to use an existing Windows Server license?** | **No** |
@@ -182,6 +182,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | **Enable OS guest diagnostics** | **Off** |
     | **Extensions** | *None* |
     | **Tags** | *None* |
+
+   > **Note**: Make sure you remember the password you specified during deployment. You will need it later in this lab.
 
 1. Wait for the provisioning to complete. This should take a few minutes.
 
@@ -223,7 +225,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1. From the lab computer, in the Azure portal, navigate to the **az12003a-vm0** blade.
 
-1. From the **az12003a-vm0** blade, connect to the Azure VM az12003a-vm0 via Remote Desktop. 
+1. From the **az12003a-vm0** blade, connect to the Azure VM az12003a-vm0 via Remote Desktop. When prompted to authenticate, enter the username and the password you set during the deployment of this VM.
 
 1. Within the RDP session to az12003a-vm0, in Server Manager, navigate to the **Local Server** view and turn off **IE Enhanced Security Configuration**.
 

@@ -83,8 +83,10 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | **Size** | **Standard D4s v3** |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
-    | **Password** | **Pa55w.rd1234** |
+    | **Password** | any complex password of your choice |
    
+    > **Note**: Make sure you remember the password you specified during deployment. You will need it later in this lab.
+
     > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** and select **Generation 2**.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
@@ -149,7 +151,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | **Size** | **Standard D4s v3** |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
-    | **Password** | **Pa55w.rd1234** |
+    | **Password** | the same password you specified during the first deployment |
    
    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** and select **Generation 2**.
 
@@ -289,7 +291,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
 
-1. When prompted for the password, type `Pa55w.rd1234` and press the **Enter** key. 
+1. When prompted for the password, enter the password you specified during deployment and press the **Enter** key. 
 
 1. Open another Cloud Shell Bash session by clicking the **Open new session** icon in the Cloud Shell toolbar.
 
@@ -779,19 +781,21 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     | **Size** | **Standard DS1 v2** or similar |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
-    | **Password** | **Pa55w.rd1234** |
+    | **Password** | any complex password of your choice |
     | **Public inbound ports** | **Allow selected ports** |
     | **Selected inbound ports** | **RDP (3389)** |
     | **Would you like to use an existing Windows Server license?** | **No** |
 
-2. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
+    > **Note**: Make sure you remember the password you specified during deployment. You will need it later in this lab.
+
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
     
     | Setting | Value |
     |   --    |  --   |
     | **OS disk type** | **Standard HDD**  |
     | **Key management** | **Platform-managed key** |
  
-3. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
     
     | Setting | Value |
     |   --    |  --   |
@@ -822,17 +826,17 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    | **Boot diagnostics** | **Enable with managed storage account (recommended)** |
    | **Enable OS guest diagnostics** | **Off** |
 
-2. On the **Advanced** tab of the **Create a virtual machine** blade, select **Review + create** (leave all other settings with their default value):
+1. On the **Advanced** tab of the **Create a virtual machine** blade, select **Review + create** (leave all other settings with their default value):
 
-3. On the **Review + create** tab of the **Create a virtual machine** blade, select **Create**.
+1. On the **Review + create** tab of the **Create a virtual machine** blade, select **Create**.
 
    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
-4. Connect to the newly provisioned Azure VM via RDP. 
+1. Connect to the newly provisioned Azure VM via RDP. 
 
-5. Within the RDP session to az12001a-vm2, download PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+1. Within the RDP session to az12001a-vm2, download PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
-6. Ensure that you can establish SSH session to both az12001a-vm0 and az12001a-vm1 via their private IP addresses (192.168.0.4 and 192.168.0.5, respectively). 
+1. Ensure that you can establish SSH session to both az12001a-vm0 and az12001a-vm1 via their private IP addresses (192.168.0.4 and 192.168.0.5, respectively). 
 
 > **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments
 

@@ -63,10 +63,14 @@ The exercise consists of the following tasks:
 1. In the Azure portal, in the **Cloud Shell** pane, at the PowerShell prompt, run the following: where `<Azure_region>` designates the Azure region to which you intend to deploy resources in this lab (e.g., `eastus`):
 
     ```powershell
-    Get-AzVMUsage -Location '<Azure_region>' | Where-Object {$_.Name.Value -eq 'standardEDSv4Family'}
-    Get-AzVMUsage -Location '<Azure_region>' | Where-Object {$_.Name.Value -eq 'standardDSv4Family'}
-    Get-AzVMUsage -Location '<Azure_region>' | Where-Object {$_.Name.Value -eq 'standardMSFamily'}
-    Get-AzVMUsage -Location '<Azure_region>' | Where-Object {$_.Name.Value -eq 'cores'}
+    Set-Variable -Name "Azure_region" -Value ("eastus") -Option constant -Scope global -Description "All processes" -PassThru
+    ```
+
+    ```powershell
+    Get-AzVMUsage -Location $Azure_region | Where-Object {$_.Name.Value -eq 'standardEDSv4Family'}
+    Get-AzVMUsage -Location $Azure_region | Where-Object {$_.Name.Value -eq 'standardDSv4Family'}
+    Get-AzVMUsage -Location $Azure_region | Where-Object {$_.Name.Value -eq 'standardMSFamily'}
+    Get-AzVMUsage -Location $Azure_region | Where-Object {$_.Name.Value -eq 'cores'}
     ```
 
     > **Note**: To identify the names of Azure regions, in the **Cloud Shell**, at the Bash prompt, run `(Get-AzLocation).Location`

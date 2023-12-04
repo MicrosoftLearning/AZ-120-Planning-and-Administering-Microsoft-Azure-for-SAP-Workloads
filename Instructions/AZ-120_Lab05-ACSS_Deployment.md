@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Automate deployment by using Azure Center for SAP solutions'
+    title: '05 - Automate deployment by using Azure Center for SAP solutions'
     module: 'Design and implement an infrastructure to support SAP workloads on Azure'
 ---
 
@@ -46,6 +46,8 @@ The exercise consists of the following tasks:
 - Task 9: Deploy Azure Bastion into the virtual network that will host the deployment
 
 ### Task 1: Address the vCPU requirements in the target Azure subscription
+
+>**Note**: You do not need to complete this task if you have already implemented all of [the AZ-120 lab prerequisites](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Instructions/AZ-120_Lab00_Prerequisites.md).
 
 >**Note**: To complete this lab (as described), you will need a Microsoft Azure subscription with the vCPU quotas that accommodate deployment of the following VMs:
 
@@ -123,7 +125,7 @@ The exercise consists of the following tasks:
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|the name of a **new** resource group **ACSS-DEMO**|
     |Storage account name|any globally unique name between 3 and 24 in length consisting of letters and digits|
-    |Region|**East US**|
+    |Region|the name of the Azure region in which you have sufficient vCPU quotas to run this lab|
     |Performance|**Standard**|
     |Redundancy|**Geo-redundant storage (GRS)**|
     |Make read access to data available in the event of regional availability|Disabled|
@@ -144,7 +146,7 @@ The exercise consists of the following tasks:
     |---|---|
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**ACSS-DEMO**|
-    |Region|**East US**|
+    |Region|the name of the Azure region in which you provisioned the storage account earlier in this lab|
     |Name|**Contoso-MSI**|
 
 1. On the **Review** tab, wait for the validation process to complete and select **Create**.
@@ -183,7 +185,7 @@ The exercise consists of the following tasks:
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|The name of a **new** resource group **CONTOSO-VNET-RG**|
     |Name|**ACSS-DEMO-NSG**|
-    |Region|**East US**|
+    |Region|the name of the Azure region in which you provisioned the storage account earlier in this lab|
 
 1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
 
@@ -199,7 +201,7 @@ The exercise consists of the following tasks:
     |---|---|
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**CONTOSO-VNET-RG**|
-    |Region|**East US**|
+    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
     |Name|**ACSS-ROUTE**|
     |Propagate gateway routes|**No**|
 
@@ -216,7 +218,7 @@ The exercise consists of the following tasks:
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**CONTOSO-VNET-RG**|
     |Virtual network name|**CONTOSO-VNET**|
-    |Region|**(US) East US**|
+    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
 
 1. On the **Security** tab, accept the default settings and select **Next**.
 
@@ -282,7 +284,7 @@ The exercise consists of the following tasks:
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**CONTOSO-VNET-RG**|
     |Name|**FirewallPolicy_contoso-firewall**|
-    |Region|**East US**|
+    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
     |Policy tier|**Standard**|
     |Parent policy|**None**|
 
@@ -366,7 +368,7 @@ The exercise consists of the following tasks:
     |---|---|
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**CONTOSO-VNET-RG**|
-    |Region|**(US) East US**|
+    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
     |Name|**contoso-firewal-pip**|
     |IP Version|**IPv4**|
     |SKU|**Standard**|
@@ -389,7 +391,7 @@ The exercise consists of the following tasks:
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**CONTOSO-VNET-RG**|
     |Name|**contoso-firewall**|
-    |Region|**East US**|
+    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
     |Availability zone|**None**|
     |Firewall SKU|**Standard**|
     |Firewall management|**Use a Firewall Policy to manage this firewall**|
@@ -432,7 +434,7 @@ The exercise consists of the following tasks:
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**CONTOSO-VNET-RG**|
     |Name|**ACSS-BASTION**|
-    |Region|**East US**|
+    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
     |Tier|**Basic**|
     |Instance count|**2**|
     |Virtual network|**CONTOSO-VNET**|
@@ -450,10 +452,14 @@ The exercise consists of the following tasks:
 
 Duration: 40 minutes
 
-In this exercise, you will use Azure Center for SAP solutions to deploy the infrastructure that will host SAP workloads into the Azure subscription you used in the previous exercise.
+In this exercise, you will use Azure Center for SAP solutions to deploy the infrastructure that will host SAP workloads into the Azure subscription you used in the previous exercise. Following the successful deployment, you can either proceed with installing SAP software by using Azure Center for SAP solutions or deleting the Azure resources provisioned in this lab.
+
+>**Note**: For information regarding installing SAP software by using Azure Center for SAP solutions, refer to the Microsoft Learn documentation that describes how to [Get SAP installation media](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-sap-installation-media) and [Install SAP software](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/install-software). Instructions for deleting the Azure resources provisioned in this lab are included in the second task of this exercise.
+
 The exercise consists of the following task:
 
 - Task 1: Create Virtual Instance for SAP solutions
+- Task 2: Delete the Azure resources provisioned in this lab
 
 ### Task 1: Create Virtual Instance for SAP solutions
 
@@ -466,7 +472,7 @@ The exercise consists of the following task:
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|The name of a **new** resource group **Contoso-SAP-C1S**|
     |Name (SID)|**C1S**|
-    |Region|**(US) East US**|
+    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
     |Environment type|**Production**|
     |SAP product|**S/4HANA**|
     |Database|**HANA**|
@@ -522,10 +528,78 @@ The exercise consists of the following task:
 
     >**Note**: Wait for the deployment to complete. This might take about 25 minutes.
 
->**Note**: Following the deployment, proceed to the next step, which involves installing SAP software by using Azure Center for SAP solutions.
+>**Note**: Following the deployment, either proceed to installing SAP software by using Azure Center for SAP solutions or delete the lab resources by following instructions in the next task.
 
->**Important**: The cost of the resources you deployed is significant, so ensure that you deprovision the lab if you don't intend to use it beyond this point. Note that deleting the virtual instance for SAP solutions will not delete the underlying infrastructure resources. To delete the resources, you should delete the following resource groups (in this sequence) that were created in the course of this lab :
+### Task 2: Delete the Azure resources provisioned in this lab
+
+>**Important**: The cost of the resources you deployed is significant, so ensure that you deprovision the lab if you don't intend to use it beyond this point. Deleting the virtual instance for SAP solutions will not delete the underlying infrastructure resources. To delete the resources, you should use the procedure described in this task, which targets resources in three resource groups:
 
 - **Contoso-SAP-C1S**
 - **CONTOSO-VNET-RG**
 - **ACSS-DEMO**
+
+1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, select the **Cloud Shell** icon and start a PowerShell session in Cloud Shell. 
+
+    > **Note**: If this is the first time you are launching Cloud Shell in the Azure subscription you will be using in this lab, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
+
+1. In the Azure portal, in the **Cloud Shell** pane, at the PowerShell prompt, run the following commands to stop and deallocate all Azure VMs deployed in this lab:
+
+    ```powershell
+    $resourceGroupName = 'Contoso-SAP-C1S'
+    $vms = Get-AzVM -ResourceGroupName $resourceGroupName
+    foreach ($vm in $vms) {
+       Stop-AzVM -ResourceGroupName $resourceGroupName -Name $vm.Name -Force 
+    }
+    ```
+
+1. At the PowerShell prompt, run the following commands to detach all data disks from all Azure VMs deployed in this lab:
+
+    ```powershell
+    foreach ($vm in $vms) {  
+       $vmDisks = $vm.StorageProfile.DataDisks
+       foreach ($vmDisk in $vmDisks) {
+          Remove-AzVMDataDisk -VM $vm -Name $vmDisk.Name
+       }
+       Update-AzVM -ResourceGroupName $resourceGroupName -VM $vm -ErrorAction SilentlyContinue
+    }
+    ```
+
+1. At the PowerShell prompt, run the following commands to enable the delete option for network interfaces and disks attached to all Azure VMs deployed in this lab:
+
+    ```powershell
+    foreach ($vm in $vms) {
+       $vmConfig = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vm.Name
+       $vmConfig.StorageProfile.OsDisk.DeleteOption = 'Delete'
+       $vmConfig.StorageProfile.DataDisks | ForEach-Object { $_.DeleteOption = 'Delete' }
+       $vmConfig.NetworkProfile.NetworkInterfaces | ForEach-Object { $_.DeleteOption = 'Delete' }
+       $vmConfig | Update-AzVM
+    }	
+    ```
+
+1. At the PowerShell prompt, run the following commands to delete all Azure VMs deployed in this lab:
+
+    ```powershell
+    foreach ($vm in $vms) {
+       Remove-AzVm -ResourceGroupName $resourceGroupName -Name $vm.Name -ForceDeletion $true -Force
+    }
+    ```
+
+1. At the PowerShell prompt, run the following commands to delete the **Contoso-SAP-C1S** resource group and all of its remaining resources:
+
+    ```powershell
+    Remove-AzResourceGroup -Name 'Contoso-SAP-C1S' -Force -AsJob
+    ```
+
+1. At the PowerShell prompt, run the following commands to delete the **CONTOSO-VNET-RG** resource group and all of its remaining resources:
+
+    ```powershell
+    Remove-AzResourceGroup -Name 'CONTOSO-VNET-RG' -Force -AsJob
+    ```
+
+1. At the PowerShell prompt, run the following commands to delete the **ACSS-DEMO** resource group and all of its remaining resources:
+
+    ```powershell
+    Remove-AzResourceGroup -Name 'ACSS-DEMO' -Force -AsJob
+    ```
+
+    >**Note**: The last three command execute asynchronously (as determined by the -AsJob parameter), so while you will be able to run the next PowerShell command immediately afterwards within the same PowerShell session, it will take a few minutes before the resource groups and their resources are actually removed.

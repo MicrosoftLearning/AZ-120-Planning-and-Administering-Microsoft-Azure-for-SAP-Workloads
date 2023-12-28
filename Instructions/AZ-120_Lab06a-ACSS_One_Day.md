@@ -77,7 +77,13 @@ In this task, you will create a Microsoft Entra user-assigned managed identity t
 
 ##### Task 2: Create the virtual network
 
-In this task, you will create the Azure virtual network that will host all of the Azure virtual machines included in the deployment.
+In this task, you will create the Azure virtual network that will host all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you will create the following subnets:
+
+- AzureFirewallSubnet - intended for deployment of Azure Firewall
+- AzureBastionSubnet - intended for deployment of Azure Bastion
+- dmz - intended for deployment of the Azure VM that will be used to deploy SAP software
+- app - intended for hosting the SAP application and SAP Central Services instance servers
+- db - intended for hosting the SAP database tier
 
 1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Virtual networks**. 
 1. On the **Virtual networks** page, select **+ Create**.
@@ -156,7 +162,33 @@ In this task, you will create the Azure virtual network that will host all of th
 
    >**Note**: Do not wait for the provisioning process to complete but instead proceed to the next task. The provisioning should take just a few seconds.
 
-##### Task 3: Create an Azure Storage General Purpose v2 account 
+##### Task 3: Create an Azure Bastion resource
+
+In this task, you will create an Azure Bastion resource to secure connectivity to Azure VMs from the internet.
+
+1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Bastions**. 
+1. On the **Bastions** page, select **+ Create**.
+1. On the **Basics** tab of the **Bastions** page, specify the following settings and select **Next : Advanced >**:
+
+   |Setting|Value|
+   |---|---|
+   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Resource group|**acss-infra-RG**|
+   |Name|**acss-infra-BASTION**|
+   |Region|the name of the same Azure region you used earlier in this exercise|
+   |Tier|**Basic**|
+   |Instance count|**2**|
+   |Virtual network|**acss-infra-VNET**|
+   |Subnet|**AzureBastionSubnet (10.0.1.0/24)**|
+   |Public IP address|**Create new**|
+   |Public IP address name|**acss-bastion-PIP**|
+
+1. On the **Advanced** tab, review the available options without making any changes and then select **Review + create**.
+1. On the **Review + create** tab, wait for the validation process to complete and then select **Create**.
+
+   >**Note**: Do not wait for the provisioning to complete, but instead, proceed to the next task. The provisioning might take about 5 minutes.
+
+##### Task 4: Create an Azure Storage General Purpose v2 account 
 
 In this task, you will create an Azure Storage General Purpose v2 account that will be associated with the Azure Center for SAP solutions used for the deployment. This storage account will be used to host the SAP installation media to accommodate installing SAP software through the Azure Center for SAP solutions.
 
@@ -193,13 +225,12 @@ In this task, you will create an Azure Storage General Purpose v2 account that w
 
    >**Note**: The **sapbits** container will host the SAP installation media.
 
-##### Task 4: Configure authorization of the Microsoft Entra user-assigned managed identity
-
-authorized access to the Azure Storage General Purpose v2 account
+##### Task 5: Configure authorization of the Microsoft Entra user-assigned managed identity
 
 In this task, you will use an Azure role-based access control (RBAC) role assignment to grant the Microsoft Entra user-assigned managed identity that will be used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account created in the previous task.
 
-1. In the Azure portal, navigate to the **Managed Identities** page and select the **acss-infra-MI** entry.
+1. In the Azure portal, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Managed Identities**.
+1. On the **Managed Identities** page and select the **acss-infra-MI** entry.
 1. On the **acss-infra-MI** page, in the vertical navigation menu on the left side, select **Azure role assignments**.
 1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
 1. On the **+ Add role assignment (Preview)** pane, specify the following settings and select **Save**:
@@ -220,7 +251,7 @@ In this task, you will use an Azure role-based access control (RBAC) role assign
    |Resource|The name of the Azure Storage account you created in the previous task|
    |Role|**Reader and Data Access**|
 
-##### Task 5: Create an Azure Premium file shares account
+##### Task 6: Create an Azure Premium file shares account
 
 In this task, you will create an Azure Premium file shares account that will be used to implement SAP Transport Directory.
 
@@ -238,7 +269,7 @@ In this task, you will create an Azure Premium file shares account that will be 
    |Premium account type|**File shares**|
    |Redundancy|**Zone-redundant storage (ZRS)**|
 
-1. On the **Advanced** tab, disable the **Secure transfer required** setting and select **Next: Networking >**.
+1. On the **Advanced** tab, disable the **Require secure transfer for REST API operations** setting and select **Next: Networking >**.
 
    >**Note**: The NFS protocol does not support encryption and relies on network-level security instead. This setting must be disabled for NFS to work.
 
@@ -272,7 +303,7 @@ In this task, you will create an Azure Premium file shares account that will be 
 
 1. On the **Connect to this NFS share from Linux** page, in the **Select your linux distribution** drop-down list, select **SUSE** in the Linux distribution drop-down list, and review the sample commands to mount this NFS share.
 
-##### Task 6: Create and configure a network security group
+##### Task 7: Create and configure a network security group
 
 In this task, you will create and configure a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
 
@@ -304,13 +335,12 @@ In this task, you will create and configure a network security group (NSG) that 
    >**Note**: By default, the built-in rules of network security groups allow all outbound traffic, all traffic within the same virtual network, as well as all traffic between peered virtual networks. From the security standpoint, you should consider restricting this default behavior. The proposed configuration restricts outbound connectivity to the internet and Azure. You can also use NSG rules to restrict connectivity within a virtual network.
 
 1. On the **acss-infra-NSG** page, in the vertical navigation menu on the left side, in the **Settings** section, select **Outbound security rules**.
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. On the **Add outbound security rule** pane, specify the following settings and select **Add**:
 
    >**Note**: The following rule should be added to explicitly allow connectivity to Red Hat update infrastructure endpoints.
 
-   >**Note**: To identify the IP addresses to use for RHEL, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network)
-
-1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
-1. On the **Add outbound security rule** pane, specify the following settings and select **Add**:
+   >**Note**: To identify the IP addresses to use for RHEL, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network#allowlist-suse-or-red-hat-endpoints)
 
    |Setting|Value|
    |---|---|
@@ -326,12 +356,12 @@ In this task, you will create and configure a network security group (NSG) that 
    |Name|**AllowAnyRHELOutbound**|
    |Description|**Allow outbound connectivity to RHEL update infrastructure endpoints**|
 
-   >**Note**: The following rule should be added to explicitly allow connectivity to SUSE update infrastructure endpoints.
-
-   >**Note**: To identify the IP addresses to use for SUSE, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network)
-
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 1. In the **Add outbound security rule** pane, specify the following settings and select **Add**:
+
+   >**Note**: The following rule should be added to explicitly allow connectivity to SUSE update infrastructure endpoints.
+
+   >**Note**: To identify the IP addresses to use for SUSE, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network#allowlist-suse-or-red-hat-endpoints)
 
    |Setting|Value|
    |---|---|
@@ -439,7 +469,7 @@ In this task, you will create and configure a network security group (NSG) that 
    |Service|**Custom**|
    |Destination port ranges|*|
    |Protocol|**Any**|
-   |Action|**Block**|
+   |Action|**Deny**|
    |Priority|**1000**|
    |Name|**DenyAnyCustomInternetOutbound**|
    |Description|**Deny outbound connectivity to Internet**|
@@ -451,9 +481,9 @@ In this task, you will create and configure a network security group (NSG) that 
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **app**, and then select **OK**.
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **db**, and then select **OK**.
 
-##### Task 7: Create an Azure Firewall resource
+##### Task 8: Create an Azure Firewall resource
 
-In this task, you will create and configure an Azure Firewall resource in the virtual network that will host the deployment to restrict outbound access from subnets of the virtual network that will host the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
+In this task, you will create and configure an Azure Firewall resource in the virtual network that will host the deployment to restrict outbound access from subnets of the virtual network that will host the deployment. You can accomplish this by blocking connectivity to the internet but explicitly allowing connections to the following services:
 
 - SUSE or Red Hat update infrastructure endpoints
 - Azure Storage
@@ -549,14 +579,14 @@ In this task, you will create and configure an Azure Firewall resource in the vi
    |Subscription|The name of the Azure subscription you are using in this lab|
    |Resource group|**acss-infra-RG**|
    |Region|the name of the same Azure region you used earlier in this exercise|
-   |Name|**acss-firewal-PIP**|
+   |Name|**acss-firewall-PIP**|
    |IP Version|**IPv4**|
    |SKU|**Standard**|
    |Availability zone|**No zone**|
    |Tier|**Regional**|
    |Routing preference|**Microsoft network**|
    |Idle timeout (minutes)|**4**|
-   |DNS name label|not set|
+   |DNS name label|any regionally unique valid DNS name |
 
    >**Note**: In general, you should use the **Zone-redundant** option as long as you are planning a zone redundant deployment.
 
@@ -596,7 +626,7 @@ In this task, you will create and configure an Azure Firewall resource in the vi
 
    >**Note**: You will need the value of this IP address in order to configure routing in the next task of this lab.
 
-##### Task 8: Create and configure an Azure route table
+##### Task 9: Create and configure an Azure route table
 
 In this task, you will create and configure an Azure route table to be used within subnets of the virtual network that will host the deployment to route the traffic via the Azure Firewall resource.
 
@@ -647,32 +677,6 @@ In this task, you will create and configure an Azure route table to be used with
    |---|---|
    |Virtual network|**acss-intra-VNET (acss-infra-RG)**|
    |Subnet|**db**|
-
-##### Task 9: Create an Azure Bastion resource
-
-In this task, you will create an Azure Bastion resource to secure connectivity to Azure VMs from the internet.
-
-1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Bastions**. 
-1. On the **Bastions** page, select **+ Create**.
-1. On the **Basics** tab of the **Bastions** page, specify the following settings and select **Next : Advanced >**:
-
-   |Setting|Value|
-   |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
-   |Resource group|**acss-infra-RG**|
-   |Name|**acss-infra-BASTION**|
-   |Region|the name of the same Azure region you used earlier in this exercise|
-   |Tier|**Basic**|
-   |Instance count|**2**|
-   |Virtual network|**acss-infra-VNET**|
-   |Subnet|**AzureBastionSubnet (10.0.1.0/24**|
-   |Public IP address|**Create new**|
-   |Public IP address name|**acss-bastion-PIP**|
-
-1. On the **Advanced** tab, review the available options without making any changes and then select **Review + create**.
-1. On the **Review + create** tab, wait for the validation process to complete and then select **Create**.
-
-   >**Note**: Do not wait for the provisioning to complete, but instead, proceed to the next task. The provisioning might take about 5 minutes.
 
 ##### Task 10: Create an Azure virtual machine
 

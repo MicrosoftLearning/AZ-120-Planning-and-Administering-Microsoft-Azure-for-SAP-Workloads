@@ -103,16 +103,21 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1. Review the output of the command and verify that it does not include any errors and warnings. When prompted, press the **Enter** key to proceed with the deployment.
 
-    > **Note**: The deployment should take about 35 minutes. Wait for the deployment to complete before you proceed to the next task.
+    > **Note**: The deployment should take about 30 minutes. Wait for the deployment to complete before you proceed to the next task.
 
-    > **Note**: If the deployment fails with an error referencing an issue wtih extension processing, use the following steps to remediate this issue:
+    > **Note**: If the deployment fails with an error including the statement `PowerShell DSC resource MSFT_xADDomainController failed to execute Set-TargetResource functionality with error message: Domain 'adatum.com' could not be found`, use the following steps to remediate this issue:
 
-    - In the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed.
+    - In the Azure portal, navigate to the blade of the **adBDC** VM, in the vertical navigation menu on the left side, in the **Settings** section, select **Extensions + applications**, in the **Extensions + applications** pane, select **PrepareBDC**, and, in the **Prepare BDC** pane, select **Uninstall**. 
 
-    - In the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension.
+    - Navigate back to the **adBDC** VM blade and restart the Azure VM.
 
-    - Rerun the steps 10 and 11 of this task.
+    - Navigate to the **az1201b-ad-RG** blade, in the vertical navigation menu on the left side, in the **Settings** section, select **Deployments**.
 
+    - On the **az1201b-ad-RG \| Deployments** blade, select the deployment which name starts with the **az1201b** prefix and, on the deployment blade, select **Redeploy**.
+
+    - On the **Custom deployment** blade, in the **Admin Password** text box, enter the same password you used during the original deployment, select **Review + create**, and then select **Create**.
+
+    - Do not wait for redeployment to complete but instead proceed to the next task. The redeployment should take about 3 minutes.
 
 ### Task 2: Deploy a pair of Azure VMs running Windows Server 2022 into different availability zones
 

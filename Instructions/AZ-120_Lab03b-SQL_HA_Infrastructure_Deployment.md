@@ -48,71 +48,75 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
 
-1. In the Azure portal interface, click **+ Create a resource**.
+1. In the Azure Portal, start a PowerShell session in Cloud Shell. 
 
-1. From the **New** blade, initiate creation of a new **Template deployment (deploy using custom templates)**
+    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1. From the **Custom deployment** blade, in the **Quickstart template (disclaimer)** drop-down list, select the entry **application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones**, and click **Select template**.
-
-    > **Note**: Alternatively, you can launch the deployment by navigating to Azure Quickstart Templates page at <https://github.com/Azure/azure-quickstart-templates>, locating the template named **Create 2 new Windows VMs, a new AD Forest, Domain and 2 DCs in separate availability zones**, and initiating its deployment by clicking **Deploy to Azure** button.
-
-1. On the blade **Create a new AD Domain with 2 DCs using Availability Zones**, specify the following settings, click **Review + create**, and then click **Create** to initiate the deployment:
-     
-    | Setting | Value |
-    |   --    |  --   |
-    | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** | *the name of a new resource group* **az12003b-ad-RG** |
-    | **Location** | *an Azure region where you can deploy Azure VMs* |
-    | **Admin Username** | **Student** |
-    | **Location** | *the same Azure region you specified above* |
-    | **Password** | *any complex password of your choice of at least 12 characters in length* |
-    | **Domain Name** | **adatum.com** |
-    | **DnsPrefix** | *Use any unique valid DNS prefix* |
-    | **Vm Size** | **Standard D2s_v3** |
-    | **_artifacts Location** | **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/** |
-    | **_artifacts Location Sas Token** | *leave blank* |
-
-    > **Note**: Make sure you remember the password you specified during deployment. You will need it later in this lab.
-
-    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
-    
-    > **Note**: The deployment should take about 35 minutes. Wait for the deployment to complete before you proceed to the next task.
-
-    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
-
-       - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
-
-       - in the Azure portal, navigate to the blade of the VM(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension
-
-       - in the Azure portal, navigate to the **az12003b-sap-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12003b-sap-RG**) and provide the password for the root account (**Pa55w.rd1234**).
-
-1. After the deployment completes, in the Azure portal, navigate to the blade of the **adPDC** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button:
+1. In the Cloud Shell pane, run the following commands to create a shallow clone of the repository hosting the Bicep template you will use for deployment of a pair of Azure VMs running highly available Active Directory domain controllers and set the current directory to the location of that template and its parameter file:
 
     ```
-    New-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters\' -Name 'DisabledComponents' -Value 0xffffffff -PropertyType 'DWord'
-    Restart-Computer -Force
+    cd $HOME
+    rm ./azure-quickstart-templates -rf
+    git clone --depth 1 https://github.com/polichtm/azure-quickstart-templates
+    cd ./azure-quickstart-templates/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/
     ```
 
-1. Wait until the **adPDC** virtual machine is running again, navigate to the blade of the **adBDC** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$rgName` to `az12001b-ad-RG`:
 
     ```
-    New-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters\' -Name 'DisabledComponents' -Value 0xffffffff -PropertyType 'DWord'
-    Restart-Computer -Force
+    $rgName = 'az12003b-ad-RG'
     ```
-    
-1. Wait until the **adBDC** virtual machine is running again, navigate to the blade of the **adPDC** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button:
+
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$location` to the name of the Azure regions which supports availability zones and where you intend to deploy the lab VMs (replace the `<Azure_region>` placeholder with the name of that region):
 
     ```
-    repadmin /syncall /APeD
+    $location = '<Azure_region>'
     ```
-    
-1. Navigate to the blade of the **adBDC** virtual machine, in the vertical navigation menu, in the **Operations** section, select **Run command**, on the **Run Command Script** pane, in the **PowerShell Script** text box, enter the following script and select the **Run** button:
+
+1. In the Cloud Shell pane, run the following command to create a resource group named **az12001b-ad-RG** in the Azure region you chose:
 
     ```
-    repadmin /syncall /APeD
+    New-AzResourceGroup -Name $rgName -Location $location
     ```
-    
-    > **Note**: These additional steps disable IPv6 which causes in this case name resolution issues and, subsequently, force replication between the two domain controllers.  
+
+1. In the Cloud Shell pane, run the following command to set the value of the variable `$deploymentName`:
+
+    ```
+    $deploymentName = 'az1203b-' + $(Get-Date -Format 'yyyy-MM-dd-hh-mm')
+    ```
+
+1. In the Cloud Shell pane, run the following commands to set the name of the administrative user account and its password (replace the `<username>` and `<password>` placeholders with the name of the administrative user account and the value of its password, respectively):
+
+    ```
+    $adminUsername = '<username>'
+    $adminPassword = ConvertTo-SecureString '<password>' -AsPlainText -Force
+    ```
+
+    > **Note**: Make sure that the password satisfies the complexity requirements applicable to deployment of Azure VMs running Windows (the lenght of at least 12 characters containing lower and upper case letters, digits, and special characters).
+
+1. In the Cloud Shell pane, run the following command to run the deployment:
+
+    ```
+    New-AzResourceGroupDeployment -Name $deploymentName -ResourceGroupName $rgName -TemplateFile .\main.bicep -TemplateParameterFile .\azuredeploy.parameters.json -adminUsername $adminUsername -adminPassword $adminPassword -c
+    ```
+
+1. Review the output of the command and verify that it does not include any errors and warnings. When prompted, press the **Enter** key to proceed with the deployment.
+
+    > **Note**: The deployment should take about 30 minutes. Wait for the deployment to complete before you proceed to the next task.
+
+    > **Note**: If the deployment fails with an error including the statement `PowerShell DSC resource MSFT_xADDomainController failed to execute Set-TargetResource functionality with error message: Domain 'adatum.com' could not be found`, use the following steps to remediate this issue:
+
+    - In the Azure portal, navigate to the blade of the **adBDC** VM, in the vertical navigation menu on the left side, in the **Settings** section, select **Extensions + applications**, in the **Extensions + applications** pane, select **PrepareBDC**, and, in the **Prepare BDC** pane, select **Uninstall**. 
+
+    - Navigate back to the **adBDC** VM blade and restart the Azure VM.
+
+    - Navigate to the **az1203b-ad-RG** blade, in the vertical navigation menu on the left side, in the **Settings** section, select **Deployments**.
+
+    - On the **az1203b-ad-RG \| Deployments** blade, select the deployment which name starts with the **az1203b** prefix and, on the deployment blade, select **Redeploy**.
+
+    - On the **Custom deployment** blade, in the **Admin Password** text box, enter the same password you used during the original deployment, select **Review + create**, and then select **Create**.
+
+    - Do not wait for redeployment to complete but instead proceed to the next task. The redeployment should take about 3 minutes.
 
 ### Task 2: Provision subnets that will host Azure VMs running highly available SAP NetWeaver deployment and the S2D cluster.
 

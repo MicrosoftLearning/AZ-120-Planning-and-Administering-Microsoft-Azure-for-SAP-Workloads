@@ -5,7 +5,7 @@ lab:
 ---
 
 # AZ 1006 Module: Design and implement an infrastructure to support SAP workloads on Azure
-# AZ-1006 1-day course lab: Overview of deployment and maintenance of Azure Center for SAP solutions (ACSS)
+# AZ-1006 1-day course lab: Overview of prerequisites for deployment of SAP workloads with Azure Center for SAP solutions (ACSS)
 
 Estimated Time: 100 minutes
 

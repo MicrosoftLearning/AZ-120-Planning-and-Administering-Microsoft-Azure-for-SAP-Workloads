@@ -426,7 +426,7 @@ These activities correspond to the following tasks of this exercise:
    |Cross Region Restore|**Enable**|
 
 1. On the **Vault properties** tab, review the **Enable immutability** setting without enabling it and select **Next : Networking**
-1. On the **Networking** tab, accept the default option to **Allow public access from all networks and select **Review + create**
+1. On the **Networking** tab, accept the default option to **Allow public access from all networks** and select **Review + create**
 1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
 
    >**Note**: Wait for the provisioning process to complete. The provisioning might take about 2 minutes.
@@ -525,7 +525,7 @@ These activities correspond to the following tasks of this exercise:
    |Backup Storage Redundancy|**Locally-redundant**|
 
 1. On the **Vault properties** tab, review the **Enable immutability** setting without enabling it and select **Next : Networking**
-1. On the **Networking** tab, accept the default option to **Allow public access from all networks and select **Review + create**
+1. On the **Networking** tab, accept the default option to **Allow public access from all networks** and select **Review + create**
 1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
 
    >**Note**: Do not wait for the provisioning process to complete but instead proceed to the next step. The provisioning might take about 2 minutes.

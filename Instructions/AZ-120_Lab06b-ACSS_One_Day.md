@@ -13,7 +13,7 @@ All tasks in this AZ-1006 1-day course lab are performed from the Azure portal
 
 ## Objectives
 
-After completing this lab, you will be able to:
+After completing this lab, you'll be able to:
 
 - Deploy and maintain the infrastructure hosting SAP workloads in Azure by using Azure Center for SAP solutions
 
@@ -23,14 +23,14 @@ After completing this lab, you will be able to:
 
 Duration: 30 minutes
 
-In this exercise, you will implement the minimum prerequisites for evaluating deploying SAP workloads in Azure by using Azure Center for SAP solutions. This will include the following activities:
+In this exercise, you implement the minimum prerequisites for evaluating deploying SAP workloads in Azure by using Azure Center for SAP solutions. This includes the following activities:
 
 >**Important**: The prerequisites implemented in this exercise are *not* meant to represent the best practices for deploying SAP workloads in Azure by using Azure Center for SAP solutions. Their purpose is to minimize time, cost, and resources required to evaluate the mechanics of deploying SAP workloads in Azure by using Azure Center for SAP solutions and performing post-deployment management and maintenance tasks. Implementing the prerequisites includes the following activities:
 
 - Creating a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
-- Creating the Azure virtual network that will host all of the Azure virtual machines included in the deployment.
-- Granting the Microsoft Entra user-assigned managed identity that will be used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account
-- Creating and configuring a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment.
+- Creating the Azure virtual network that hosts all of the Azure virtual machines included in the deployment.
+- Granting the Microsoft Entra user-assigned managed identity that is used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account
+- Creating and configuring a network security group (NSG) that is used to restrict outbound access from subnets of the virtual network that hosts the deployment.
 
 These activities correspond to the following tasks of this exercise:
 
@@ -41,18 +41,18 @@ These activities correspond to the following tasks of this exercise:
 
 #### Task 1: Create a Microsoft Entra user-assigned managed identity
 
-In this task, you will create a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
+In this task, you create a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
 
-1. From the lab computer, start a web browser, navigate to the Azure portal at `https://portal.azure.com`, and authenticate by using a Microsoft Account or Microsoft Entra ID account with the Owner role in the Azure subscription you will be using in this lab.
+1. From the lab computer, start a web browser, navigate to the Azure portal at `https://portal.azure.com`, and authenticate by using a Microsoft Account or Microsoft Entra ID account with the Owner role in the Azure subscription you use in this lab.
 1. In the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Managed Identities**.
 1. On the **Managed Identities** page, select **+ Create**.
 1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings and then select **Review + Create**:
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-infra-RG**|
-   |Region|the name of the Azure region which you will use for the ACSS deployment|
+   |Region|the name of the Azure region that you use for the ACSS deployment|
    |Name|**acss-infra-MI**|
 
 1. On the **Review** tab, wait for the validation process to complete and select **Create**.
@@ -63,7 +63,7 @@ In this task, you will create a Microsoft Entra user-assigned managed identity t
 
 #### Task 2: Create the virtual network
 
-In this task, you will create the Azure virtual network that will host all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you will create the following subnets:
+In this task, you create the Azure virtual network that hosts all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you create the following subnets:
 
 - app - intended for hosting the SAP application and SAP Central Services instance servers
 - db - intended for hosting the SAP database tier
@@ -74,7 +74,7 @@ In this task, you will create the Azure virtual network that will host all of th
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-infra-RG**|
    |Virtual network name|**acss-infra-VNET**|
    |Region|the name of the same Azure region you used in the previous task of this exercise|
@@ -115,7 +115,7 @@ In this task, you will create the Azure virtual network that will host all of th
 
 #### Task 3: Create and configure a network security group
 
-In this task, you will create and configure a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
+In this task, you create and configure a network security group (NSG) that used to restrict outbound access from subnets of the virtual network that hosts the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
 
 - SUSE or Red Hat update infrastructure endpoints
 - Azure Storage
@@ -131,7 +131,7 @@ In this task, you will create and configure a network security group (NSG) that 
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|The name of a **new** resource group **acss-infra-RG**|
    |Name|**acss-infra-NSG**|
    |Region|the name of the same Azure region you used earlier in this exercise|
@@ -291,11 +291,11 @@ In this task, you will create and configure a network security group (NSG) that 
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **app**, and then select **OK**.
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **db**, and then select **OK**.
 
-### Exercise 2: Deploy the infrastructure that will host SAP workloads in Azure by using Azure Center for SAP solutions
+### Exercise 2: Deploy the infrastructure that hosts SAP workloads in Azure by using Azure Center for SAP solutions
 
 Duration: 40 minutes
 
-In this exercise, you will perform deployment of Azure Center for SAP solutions. This will include the following activity:
+In this exercise, you perform deployment of Azure Center for SAP solutions. This includes the following activity:
 
 - Use Azure Center for SAP solutions to deploy the infrastructure capable of hosting SAP workloads into an Azure subscription.
 
@@ -315,7 +315,7 @@ This activity corresponds to the following task of this exercise:
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|The name of a **new** resource group **acss-vi-RG**|
    |Name (SID)|**VI1**|
    |Region|the name of the Azure region hosting the ACSS-registered SAP deployment or another region in the same geography|
@@ -380,7 +380,7 @@ This activity corresponds to the following task of this exercise:
 
 Duration: 60 minutes
 
-In this exercise, you will review post-deployment management and monitoring of SAP workloads by using Azure Center for SAP solutions. This will include the following activities:
+In this exercise, you review post-deployment management and monitoring of SAP workloads by using Azure Center for SAP solutions. This includes the following activities:
 
 - Implementing prerequisites for backup of SAP workloads managed by Azure Center for SAP solutions 
 - Implementing prerequisites for disaster recovery of SAP workloads managed by Azure Center for SAP solutions 
@@ -401,7 +401,7 @@ These activities correspond to the following tasks of this exercise:
 1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Azure Center for SAP Solutions**.
 1. On the **Azure Center for SAP Solutions \| Overview** page, in the vertical navigation menu on the left side, select **Virtual instances for SAP solutions** and, in the list of virtual instances, select the instance you deployed in the previous exercise.
 1. On the virtual instance page, in the vertical navigation menu on the left side, in the **Operations** section, select **Backup (preview)**.
-1. Note the message indicating that backup can't be setup since SAP software installation/registration for this SAP system is not complete.
+1. Note the message indicating that backup can't be set up since SAP software installation/registration for this SAP system isn't complete.
 
    >**Note**: This is expected. You will not able to set up backup this way until the installation of SAP software is completed. However, completing the setup also involves additional prerequisites, including creation of vaults and backup policies, which we'll review here. 
 
@@ -413,7 +413,7 @@ These activities correspond to the following tasks of this exercise:
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|The name of a **new** resource group **acss-mgmt-RG**|
    |Vault name|**acss-backup-RSV**|
    |Region|the name of the Azure region hosting the ACSS-registered SAP deployment|
@@ -441,7 +441,7 @@ These activities correspond to the following tasks of this exercise:
 1. On the **Select policy type** page, select **Azure Virtual Machine**.
 1. On the **Create policy** page, review the differences between the **Standard** and **Enhanced** policy sub types and select **Enhanced**.
 
-   >**Note**: You should base your choice on your resiliency needs. Similarly, you should adjust the values listed below according to your needs.
+   >**Note**: You should base your choice on your resiliency needs. Similarly, you should adjust the following values listed according to your needs.
 
 1. In the **Policy name** text box, enter **acss-vm-enhanced-backup-policy**.
 1. Set the backup schedule frequency to **Hourly**, start time to **6:00PM**, schedule to **Every 6 hours**, duration to **12 hours**, and timezone to your local time zone.
@@ -476,13 +476,13 @@ These activities correspond to the following tasks of this exercise:
 1. Set the frequency of snapshot backup to 1:30 PM of your current time zone.
 1. Configure to retain instant recovery snapshot for **5** days.
 1. Keep the default selection of the snapshot resource group, which should be set to **acss-mgmt-RG**.
-1. In the **Managed Identity** section, select **Create Managed Identity**. This will automatically open another tab in the web browser window, displaying the **Managed Identities** page in the Azure portal.
+1. In the **Managed Identity** section, select **Create Managed Identity**. This automatically opens another tab in the web browser window, displaying the **Managed Identities** page in the Azure portal.
 1. On the **Managed Identities** page, select **+ Create**.
 1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings and then select **Review + Create**:
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-mgmt-RG**|
    |Region|the name of the Azure region hosting the ACSS deployment|
    |Name|**acss-mgmt-MI**|
@@ -511,7 +511,7 @@ These activities correspond to the following tasks of this exercise:
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|The name of a **new** resource group **acss-dr-RG**|
    |Vault name|**acss-dr-RSV**|
    |Region|the name of the Azure region that is paired up with the ACSS-registered SAP deployment|
@@ -541,7 +541,7 @@ These activities correspond to the following tasks of this exercise:
    |Setting|Value|
    |---|---|
    |Region|the name of the Azure region hosting your Virtual Instance for SAP (VIS)|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-vi-RG**|
    |Virtual machine deployment model|**Resource Manager**|
    |Disaster recovery between availability zones|**No**|
@@ -555,7 +555,7 @@ These activities correspond to the following tasks of this exercise:
 1. On the **Replication settings** tab, perform the following actions:
 
    1. If needed, in the **Target location** drop-down list, select the Azure region in which you created the **acss-dr-RSV** Recovery Services vault.
-   1. Ensure that the name of the Azure subscription you are using in this lab appears in the **Target subscription** drop-down list.
+   1. Ensure that the name of the Azure subscription used in this lab appears in the **Target subscription** drop-down list.
    1. In the **Target resource group** drop-down list, select **acss-dr-RG**.
    1. Below the **Failover virtual network** drop-down list, select **Create new**.
    1. In the **Create virtual network** pane, in the **Name** text box, enter **CONTOSO-VNET-asr**
@@ -565,9 +565,9 @@ These activities correspond to the following tasks of this exercise:
    1. In the **Create virtual network** pane, select **OK**.
    1. Back on the **Enable replication** page, ensure that the **(new) app (10.10.0.0/24)** entry appears in the **Failover subnet** drop-down list.
    1. In the **Storage** section, select the **View/edit storage configuration** link.
-   1. On the **Customize target settings** page, review the resulting configuration but do not make any changes and select **Cancel**.
+   1. On the **Customize target settings** page, review the resulting configuration but don't make any changes and select **Cancel**.
    1. In the **Availability options** section, select the **View/edit availability options** link.
-   1. On the **Availability options** page, note that you have the option of implementing proximity placement groups for target resources but do not make any changes and select **Cancel**.
+   1. On the **Availability options** page you have the option of implementing proximity placement groups for target resources but don't make any changes and select **Cancel**.
 
    >**Note**: You also have the option of configuring capacity reservation.
 
@@ -578,7 +578,7 @@ These activities correspond to the following tasks of this exercise:
 
    1. Below the **Replication policy** drop-down list, select **Create new**.
    1. In the **Create replication policy** pane, in the **Name** text box, enter **2-day-retention-policy**, in the **Retention period (in days)** text box, enter **2**, and then select **OK**.
-   1. Note that you have the option of creating replication groups. This option is not applicable to our use case.
+   1. You have the option of creating replication groups. This option isn't applicable to our use case.
    1. Leave **Update settings** option of **Extension settings** configured to **Allow ASR to manage**.
    1. Accept the default, automatically assigned name of the **Automation account**.
 
@@ -593,7 +593,7 @@ These activities correspond to the following tasks of this exercise:
    |Setting|Value|
    |---|---|
    |Region|the name of the Azure region hosting your Virtual Instance for SAP (VIS)|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-vi-RG**|
    |Virtual machine deployment model|**Resource Manager**|
    |Disaster recovery between availability zones|**No**|
@@ -607,14 +607,14 @@ These activities correspond to the following tasks of this exercise:
 1. On the **Replication settings** tab, perform the following actions:
 
    1. If needed, in the **Target location** drop-down list, select the Azure region in which you created the **acss-dr-RSV** Recovery Services vault.
-   1. Ensure that the name of the Azure subscription you are using in this lab appears in the **Target subscription** drop-down list.
+   1. Ensure that the name of the Azure subscription used in this lab appears in the **Target subscription** drop-down list.
    1. In the **Target resource group** drop-down list, select **acss-dr-RG**.
    1. In the **Failover virtual network** drop-down list, select **CONTOSO-VNET**.
    1. In the **Failover subnet** drop-down list, select **app (10.10.0.0/24)**.
    1. In the **Storage** section, select the **View/edit storage configuration** link.
-   1. On the **Customize target settings** page, review the resulting configuration but do not make any changes and select **Cancel**.
+   1. On the **Customize target settings** page, review the resulting configuration but don't make any changes and select **Cancel**.
    1. In the **Availability options** section, select the **View/edit availability options** link.
-   1. On the **Availability options** page, note that you have the option of implementing proximity placement groups for target resources but do not make any changes and select **Cancel**.
+   1. On the **Availability options** page, you have the option of implementing proximity placement groups for target resources but don't make any changes and select **Cancel**.
 
    >**Note**: You also have the option of configuring capacity reservation.
 
@@ -623,7 +623,7 @@ These activities correspond to the following tasks of this exercise:
 
    1. Below the **Replication policy** drop-down list, select **Create new**.
    1. In the **Create replication policy** pane, in the **Name** text box, enter **2-day-retention-policy**, in the **Retention period (in days)** text box, enter **2**, and then select **OK**.
-   1. Note that you have the option of creating replication groups. This option is not applicable to our use case.
+   1. You have the option of creating replication groups. This option isn't applicable to our use case.
    1. Leave **Update settings** option of **Extension settings** configured to **Allow ASR to manage**.
    1. Accept the default, automatically assigned name of the **Automation account**.
 
@@ -632,7 +632,7 @@ These activities correspond to the following tasks of this exercise:
 
    >**Note**: Initial replication might take a considerable time to complete. Considering the limited time allocated to this lab, refer to the instructor regarding any extra steps to be performed as part of this task. In absence of any specific guidance, proceed directly to the next task.
 
-   >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you should instead automate their provisioning as part of your disaster recovery failover procedure. This will minimize charges associated with maintaining the disaster recovery environment. The same should apply to other components of that environment that mirror the configuration of the primary Virtual Instance for SAP, such as Azure Premium file shares and custom routing. 
+   >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you should instead automate their provisioning as part of your disaster recovery failover procedure. This will minimize charges associated with maintaining the disaster recovery environment. The same should apply to other components of that environment that mirror the configuration of the primary Virtual Instance for SAP, such as Azure Premium file shares and custom routing.
 
 #### Task 3: Review monitoring options for SAP workloads managed by Azure Center for SAP solutions 
 
@@ -657,6 +657,6 @@ These activities correspond to the following tasks of this exercise:
 
 1. On the **VI1 \| Quality insights \| Workbook 1** page, select the **Configuration Checks** tab and review the content of the **Accelerated Networking**, **Public IP**, **Backup**, and **Load Balancer** tabs. This content provides a quick overview of the performance and security related settings of compute and network components of the Virtual Instance for SAP solutions. The **Load Balancer** tab includes **Load Balancer Monitor** information that displays key load balancer metrics.
 1. On the **VI1** page, in the vertical navigation menu on the left side, in the **Monitoring** section, select **Azure Monitor for SAP solutions**.
-1. On the **VI1 \| Azure Monitor for SAP solutions** page, note the message stating that AMS cannot be setup since SAP software installation\registration for VIS is not complete.
+1. On the **VI1 \| Azure Monitor for SAP solutions** page, note the message stating that AMS can't be set up since SAP software installation\registration for VIS isn't complete.
 
    >**Note**: Once you install SAP software, you will be able to integrate it with a new or existing Azure Monitor for SAP solutions resource. Azure Monitor for SAP solutions relies on the Azure Monitor capabilities of Log Analytics and workbooks to provide a comprehensive monitoring of SAP workloads hosted on Azure VMs, including support for custom visualizations, queries, and alerts.

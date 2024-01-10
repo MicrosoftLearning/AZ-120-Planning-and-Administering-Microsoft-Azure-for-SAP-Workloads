@@ -13,7 +13,7 @@ All tasks in this AZ-1006 1-day course lab are performed from the Azure portal
 
 ## Objectives
 
-After completing this lab, you will be able to:
+After completing this lab, you'll be able to:
 
 - Implement prerequisites for deploying SAP workloads in Azure by using Azure Center for SAP solutions
 
@@ -23,19 +23,17 @@ After completing this lab, you will be able to:
 
 Duration: 60 minutes
 
-In this exercise, you will review and implement prerequisites for deploying SAP workloads in Azure by using Azure Center for SAP solutions. This will include the following activities:
+In this exercise, you review and implement prerequisites for deploying SAP workloads in Azure by using Azure Center for SAP solutions. This includes the following activities:
 
 - Creating a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
-- Creating the Azure virtual network that will host all of the Azure virtual machines included in the deployment.
-- Creating an Azure Storage General Purpose v2 account that will be associated with the Azure Center for SAP solutions used for the deployment
-- Granting the Microsoft Entra user-assigned managed identity that will be used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account
-- Creating an Azure Premium file shares account that will be used to implement SAP Transport Directory
-- Creating and configuring a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment.
-- Creating an Azure Firewall resource in the virtual network that will host the deployment to restrict outbound access from subnets of the virtual network that will host the deployment.
-- Creating and configuring an Azure route table to be used within subnets of the virtual network that will host the deployment to route the traffic via the Azure Firewall resource.
+- Creating the Azure virtual network that hosts all of the Azure Virtual Machines included in the deployment.
 - Creating an Azure Bastion resource to secure connectivity to Azure VMs from the internet.
-- Creating an Azure virtual machine (VM) to be used for SAP software installation as part of an Azure Center for SAP solutions deployment.
-- Connecting to the Azure VM by using Azure Bastion and configuring it for the SAP software installation. 
+- Creating an Azure Storage General Purpose v2 account that is associated with the Azure Center for SAP solutions used for the deployment
+- Granting the Microsoft Entra user-assigned managed identity that is used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account
+- Creating an Azure Premium file shares account that is used to implement SAP Transport Directory
+- Creating and configuring a network security group (NSG) used to restrict outbound access from subnets of the virtual network that hosts the deployment.
+- Creating an Azure Virtual Machine (VM) to be used for SAP software installation as part of an Azure Center for SAP solutions deployment.
+- Connecting to the Azure VM by using Azure Bastion and configuring it for the SAP software installation.
 - Deleting all Azure resources provisioned in this lab.
 
 These activities correspond to the following tasks of this exercise:
@@ -47,24 +45,24 @@ These activities correspond to the following tasks of this exercise:
 - Task 5: Configure authorization of the Microsoft Entra user-assigned managed identity
 - Task 6: Create an Azure Premium file shares account
 - Task 7: Create and configure a network security group
-- Task 8: Create an Azure virtual machine
-- Task 9: Configure the Azure VM
+- Task 8: Create an Azure Virtual Machine
+- Task 9: Configure the Azure Virtual Machine
 - Task 10: Remove Azure resources
 
 #### Task 1: Create a Microsoft Entra user-assigned managed identity
 
-In this task, you will create a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
+In this task, you create a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
 
-1. From the lab computer, start a web browser, navigate to the Azure portal at `https://portal.azure.com`, and authenticate by using a Microsoft Account or Microsoft Entra ID account with the Owner role in the Azure subscription you will be using in this lab.
+1. From the lab computer, start a web browser, navigate to the Azure portal at `https://portal.azure.com`, and authenticate by using a Microsoft Account or Microsoft Entra ID account with the Owner role in the Azure subscription you use in this lab.
 1. In the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Managed Identities**.
 1. On the **Managed Identities** page, select **+ Create**.
 1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings and then select **Review + Create**:
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription you use in this lab|
    |Resource group|**acss-infra-RG**|
-   |Region|the name of the Azure region which you will use for the ACSS deployment|
+   |Region|the name of the Azure region, which you use for the ACSS deployment|
    |Name|**acss-infra-MI**|
 
 1. On the **Review** tab, wait for the validation process to complete and select **Create**.
@@ -75,11 +73,11 @@ In this task, you will create a Microsoft Entra user-assigned managed identity t
 
 #### Task 2: Create the virtual network
 
-In this task, you will create the Azure virtual network that will host all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you will create the following subnets:
+In this task, you create the Azure virtual network that hosts all of the Azure Virtual Machines included in the deployment. In addition, within the virtual network, you create the following subnets:
 
 - AzureFirewallSubnet - intended for deployment of Azure Firewall
 - AzureBastionSubnet - intended for deployment of Azure Bastion
-- dmz - intended for deployment of the Azure VM that will be used to deploy SAP software
+- dmz - intended for deployment of the Azure VM used to deploy SAP software
 - app - intended for hosting the SAP application and SAP Central Services instance servers
 - db - intended for hosting the SAP database tier
 
@@ -89,7 +87,7 @@ In this task, you will create the Azure virtual network that will host all of th
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription you use in this lab|
    |Resource group|**acss-infra-RG**|
    |Virtual network name|**acss-infra-VNET**|
    |Region|the name of the same Azure region you used in the previous task of this exercise|
@@ -162,7 +160,7 @@ In this task, you will create the Azure virtual network that will host all of th
 
 #### Task 3: Create an Azure Bastion resource
 
-In this task, you will create an Azure Bastion resource to secure connectivity to Azure VMs from the internet.
+In this task, you create an Azure Bastion resource to secure connectivity to Azure VMs from the internet.
 
 1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Bastions**. 
 1. On the **Bastions** page, select **+ Create**.
@@ -170,7 +168,7 @@ In this task, you will create an Azure Bastion resource to secure connectivity t
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription you use in this lab|
    |Resource group|**acss-infra-RG**|
    |Name|**acss-infra-BASTION**|
    |Region|the name of the same Azure region you used earlier in this exercise|
@@ -188,7 +186,7 @@ In this task, you will create an Azure Bastion resource to secure connectivity t
 
 #### Task 4: Create an Azure Storage General Purpose v2 account
 
-In this task, you will create an Azure Storage General Purpose v2 account that will be associated with the Azure Center for SAP solutions used for the deployment. This storage account will be used to host the SAP installation media to accommodate installing SAP software through the Azure Center for SAP solutions.
+In this task, you create an Azure Storage General Purpose v2 account that is associated with the Azure Center for SAP solutions used for the deployment. This storage account is used to host the SAP installation media to accommodate installing SAP software through the Azure Center for SAP solutions.
 
 1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Storage accounts**.
 1. On the **Storage accounts** page, select **+ Create**.
@@ -196,7 +194,7 @@ In this task, you will create an Azure Storage General Purpose v2 account that w
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription you use in this lab|
    |Resource group|**acss-infra-RG**|
    |Storage account name|any globally unique name between 3 and 24 in length consisting of letters and digits|
    |Region|the name of the same Azure region you used earlier in this exercise|
@@ -208,7 +206,7 @@ In this task, you will create an Azure Storage General Purpose v2 account that w
 1. On the **Networking** tab, perform the following actions and then select **Review**.
 
    1. Select **Enable public access from selected virtual networks and IP addresses**.
-   1. In the **Virtual networks** section, ensure that the **Virtual network subscription** drop-down list displays the name of the Azure subscription you are using in this lab.
+   1. In the **Virtual networks** section, ensure that the **Virtual network subscription** drop-down list displays the name of the Azure subscription you use in this lab.
    1. In the **Virtual networks** section, in the **Virtual network** drop-down list, select **acss-infra-VNET**.
    1. In the **Subnets** drop-down list, select the **app**, **db**, and **dmz** subnets.
 
@@ -225,10 +223,10 @@ In this task, you will create an Azure Storage General Purpose v2 account that w
 
 #### Task 5: Configure authorization of the Microsoft Entra user-assigned managed identity
 
-In this task, you will use an Azure role-based access control (RBAC) role assignment to grant the Microsoft Entra user-assigned managed identity that will be used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account created in the previous task.
+In this task, you use an Azure role-based access control (RBAC) role assignment to grant the Microsoft Entra user-assigned managed identity. The managed identity is used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account created in the previous task.
 
 1. In the Azure portal, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Managed Identities**.
-1. On the **Managed Identities** page and select the **acss-infra-MI** entry.
+1. On the Managed Identities page and, select the **acss-infra-MI** entry.
 1. On the **acss-infra-MI** page, in the vertical navigation menu on the left side, select **Azure role assignments**.
 1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
 1. On the **+ Add role assignment (Preview)** pane, specify the following settings and select **Save**:
@@ -236,7 +234,7 @@ In this task, you will use an Azure role-based access control (RBAC) role assign
    |Setting|Value|
    |---|---|
    |Scope|**Subscription**|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription you use in this lab|
    |Role|**Azure Center for SAP solutions service role**|
 
 1. Back on the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
@@ -245,13 +243,13 @@ In this task, you will use an Azure role-based access control (RBAC) role assign
    |Setting|Value|
    |---|---|
    |Scope|**Storage**|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription you use in this lab|
    |Resource|The name of the Azure Storage account you created in the previous task|
    |Role|**Reader and Data Access**|
 
 #### Task 6: Create an Azure Premium file shares account
 
-In this task, you will create an Azure Premium file shares account that will be used to implement SAP Transport Directory.
+In this task, you create an Azure Premium file shares account used to implement SAP Transport Directory.
 
 1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Storage accounts**.
 1. On the **Storage accounts** page, select **+ Create**.
@@ -259,7 +257,7 @@ In this task, you will create an Azure Premium file shares account that will be 
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-infra-RG**|
    |Storage account name|any globally unique name between 3 and 24 in length consisting of letters and digits|
    |Region|the name of the same Azure region you used earlier in this exercise|
@@ -274,11 +272,11 @@ In this task, you will create an Azure Premium file shares account that will be 
 1. On the **Networking** tab, perform the following actions and then select **Review**.
 
    1. Select **Enable public access from selected virtual networks and IP addresses**.
-   1. In the **Virtual networks** section, ensure that the **Virtual network subscription** drop-down list displays the name of the Azure subscription you are using in this lab.
+   1. In the **Virtual networks** section, ensure that the **Virtual network subscription** drop-down list displays the name of the Azure subscription used in this lab.
    1. In the **Virtual networks** section, in the **Virtual network** drop-down list, select **acss-infra-VNET**.
    1. In the **Subnets** drop-down list, select the **app**, **db**, and **dmz** subnets.
 
-   >**Note**: In general, you should avoid allowing access to your internal resources form perimeter subnets. In this case, the only reason to do so is to allow for validating this access later in this lab. 
+   >**Note**: In general, avoid allowing access to your internal resources from perimeter subnets. In this case, the only reason to do so is to allow for validating this access later in this lab.
 
 1. On the **Review** tab, wait for the validation process to complete and select **Create**.
 
@@ -303,7 +301,7 @@ In this task, you will create an Azure Premium file shares account that will be 
 
 #### Task 7: Create and configure a network security group
 
-In this task, you will create and configure a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
+In this task, you create and configure a network security group (NSG) used to restrict outbound access from subnets of the virtual network that hosts the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
 
 - SUSE or Red Hat update infrastructure endpoints
 - Azure Storage
@@ -319,7 +317,7 @@ In this task, you will create and configure a network security group (NSG) that 
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|The name of a **new** resource group **acss-infra-RG**|
    |Name|**acss-infra-NSG**|
    |Region|the name of the same Azure region you used earlier in this exercise|
@@ -479,17 +477,17 @@ In this task, you will create and configure a network security group (NSG) that 
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **app**, and then select **OK**.
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **db**, and then select **OK**.
 
-#### Task 8: Create an Azure virtual machine
+#### Task 8: Create an Azure Virtual Machine
 
-In this task, you will create an Azure virtual machine (VM) that will be used for SAP software installation as part of an Azure Center for SAP solutions deployment. 
+In this task, you create an Azure Virtual Machine (VM) used for SAP software installation as part of an Azure Center for SAP solutions deployment.
 
-1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Virtual machines**. 
-1. On the **Virtual machines** page, select **+ Create** and, in the drop-down menu, select **Azure virtual machine**.
+1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Virtual machines**.
+1. On the **Virtual machines** page, select **+ Create** and, in the drop-down menu, select **Azure Virtual Machine**.
 1. On the **Basics** tab of the **Create a virtual machine** page, specify the following settings and select **Next: Disks >** (leave all other settings with their default value):
 
    |Setting|Value|
    |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-infra-RG**|
    |Virtual machine name|**acss-infra-vm0**|
    |Region|the name of the same Azure region you used earlier in this exercise|
@@ -521,13 +519,13 @@ In this task, you will create an Azure virtual machine (VM) that will be used fo
 1. On the **Management** tab, leave all settings with their default value and select **Next: Monitoring >**
 1. On the **Monitoring** tab, set **Boot diagnostics** to **Disable** and select **Next: Advanced >** (leave all other settings with their default value)
 1. On the **Advanced** tab, select **Review + create** (leave all settings with their default value).
-1. On the **Review + create** tab of the **Create a virtual machine** blade, select **Create**.
+1. On the **Review + create** tab of the **Create a virtual machine** menu, select **Create**.
 
    > **Note**: Wait for the provisioning to complete. The provisioning might take about 3 minutes.
 
 #### Task 9: Configure the Azure VM
 
-In this task, you will connect to the Azure VM by using Azure Bastion and configure it for the SAP software installation. 
+In this task, you connect to the Azure VM by using Azure Bastion and configure it for the SAP software installation. 
 
 > **Note**: Before you start this task, ensure that the Azure Bastion provisioning has completed.
 
@@ -592,7 +590,7 @@ In this task, you will connect to the Azure VM by using Azure Bastion and config
 
 #### Task 10: Remove Azure resources
 
-In this task, you will remove all Azure resources provisioned in this lab.
+In this task, you remove all Azure resources provisioned in this lab.
 
 1. On the lab computer, in the web browser window displaying the Azure portal, select the **Cloud Shell** icon to open the Cloud Shell pane. If needed, select **Bash** to start a Bash shell session. 
 
@@ -604,6 +602,6 @@ In this task, you will remove all Azure resources provisioned in this lab.
    az group delete --name 'acss-infra-RG' --no-wait --yes
    ```
 
-   > **Note**: The command executes asynchronously (as determined by the --nowait parameter), so while the shell prompt will appear immediately after invoking it, a few minutes will pass before the resource group and its resources are actually removed.
+   > **Note**: The command executes asynchronously (as determined by the `--nowait` parameter), so while the shell prompt will appear immediately after invoking it, a few minutes will pass before the resource group and its resources are actually removed.
 
 1. Close the Cloud Shell pane.

@@ -51,7 +51,7 @@ These activities correspond to the following tasks of this exercise:
 - Task 9: Configure the Azure VM
 - Task 10: Remove Azure resources
 
-##### Task 1: Create a Microsoft Entra user-assigned managed identity
+#### Task 1: Create a Microsoft Entra user-assigned managed identity
 
 In this task, you will create a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
 
@@ -73,7 +73,7 @@ In this task, you will create a Microsoft Entra user-assigned managed identity t
 
    >**Note**: In one of the upcoming tasks, you will authorize access of the managed identity to the storage account hosting the SAP installation media to accommodate installing SAP software through the Azure Center for SAP solutions.
 
-##### Task 2: Create the virtual network
+#### Task 2: Create the virtual network
 
 In this task, you will create the Azure virtual network that will host all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you will create the following subnets:
 
@@ -160,7 +160,7 @@ In this task, you will create the Azure virtual network that will host all of th
 
    >**Note**: Do not wait for the provisioning process to complete but instead proceed to the next task. The provisioning should take just a few seconds.
 
-##### Task 3: Create an Azure Bastion resource
+#### Task 3: Create an Azure Bastion resource
 
 In this task, you will create an Azure Bastion resource to secure connectivity to Azure VMs from the internet.
 
@@ -186,7 +186,7 @@ In this task, you will create an Azure Bastion resource to secure connectivity t
 
    >**Note**: Do not wait for the provisioning to complete, but instead, proceed to the next task. The provisioning might take about 5 minutes.
 
-##### Task 4: Create an Azure Storage General Purpose v2 account
+#### Task 4: Create an Azure Storage General Purpose v2 account
 
 In this task, you will create an Azure Storage General Purpose v2 account that will be associated with the Azure Center for SAP solutions used for the deployment. This storage account will be used to host the SAP installation media to accommodate installing SAP software through the Azure Center for SAP solutions.
 
@@ -223,7 +223,7 @@ In this task, you will create an Azure Storage General Purpose v2 account that w
 
    >**Note**: The **sapbits** container will host the SAP installation media.
 
-##### Task 5: Configure authorization of the Microsoft Entra user-assigned managed identity
+#### Task 5: Configure authorization of the Microsoft Entra user-assigned managed identity
 
 In this task, you will use an Azure role-based access control (RBAC) role assignment to grant the Microsoft Entra user-assigned managed identity that will be used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account created in the previous task.
 
@@ -249,7 +249,7 @@ In this task, you will use an Azure role-based access control (RBAC) role assign
    |Resource|The name of the Azure Storage account you created in the previous task|
    |Role|**Reader and Data Access**|
 
-##### Task 6: Create an Azure Premium file shares account
+#### Task 6: Create an Azure Premium file shares account
 
 In this task, you will create an Azure Premium file shares account that will be used to implement SAP Transport Directory.
 
@@ -301,7 +301,7 @@ In this task, you will create an Azure Premium file shares account that will be 
 
 1. On the **Connect to this NFS share from Linux** page, in the **Select your linux distribution** drop-down list, select **SUSE** in the Linux distribution drop-down list, and review the sample commands to mount this NFS share.
 
-##### Task 7: Create and configure a network security group
+#### Task 7: Create and configure a network security group
 
 In this task, you will create and configure a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
 
@@ -479,7 +479,7 @@ In this task, you will create and configure a network security group (NSG) that 
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **app**, and then select **OK**.
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **db**, and then select **OK**.
 
-##### Task 8: Create an Azure virtual machine
+#### Task 8: Create an Azure virtual machine
 
 In this task, you will create an Azure virtual machine (VM) that will be used for SAP software installation as part of an Azure Center for SAP solutions deployment. 
 
@@ -525,7 +525,7 @@ In this task, you will create an Azure virtual machine (VM) that will be used fo
 
    > **Note**: Wait for the provisioning to complete. The provisioning might take about 3 minutes.
 
-##### Task 9: Configure the Azure VM
+#### Task 9: Configure the Azure VM
 
 In this task, you will connect to the Azure VM by using Azure Bastion and configure it for the SAP software installation. 
 
@@ -590,7 +590,7 @@ In this task, you will connect to the Azure VM by using Azure Bastion and config
 
 1. When prompted, select **Close**.
 
-##### Task 10: Remove Azure resources
+#### Task 10: Remove Azure resources
 
 In this task, you will remove all Azure resources provisioned in this lab.
 

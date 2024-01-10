@@ -19,250 +19,279 @@ After completing this lab, you will be able to:
 
 ## Instructions
 
-### Exercise 0: Create and configure the virtual network that will host the deployment
+### Exercise 1: Implement the minimum prerequisites for evaluating deployment of SAP workloads in Azure by using Azure Center for SAP solutions
 
-  >**Note**: Check with your Instructor if you will use a bicep scripted solution for exercise zero.
+Duration: 30 minutes
 
-1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Virtual networks**.
+In this exercise, you will implement the minimum prerequisites for evaluating deploying SAP workloads in Azure by using Azure Center for SAP solutions. This will include the following activities:
+
+>**Important**: The prerequisites implemented in this exercise are *not* meant to represent the best practices for deploying SAP workloads in Azure by using Azure Center for SAP solutions. Their purpose is to minimize time, cost, and resources required to evaluate the mechanics of deploying SAP workloads in Azure by using Azure Center for SAP solutions and performing post-deployment management and maintenance tasks. Implementing the prerequisites includes the following activities:
+
+- Creating a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
+- Creating the Azure virtual network that will host all of the Azure virtual machines included in the deployment.
+- Granting the Microsoft Entra user-assigned managed identity that will be used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account
+- Creating and configuring a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment.
+
+These activities correspond to the following tasks of this exercise:
+
+- Task 1: Create a Microsoft Entra user-assigned managed identity
+- Task 2: Create the Azure virtual network
+- Task 3: Configure authorization of the Microsoft Entra user-assigned managed identity
+- Task 4: Create and configure a network security group
+
+#### Task 1: Create a Microsoft Entra user-assigned managed identity
+
+In this task, you will create a Microsoft Entra user-assigned managed identity to be used by Azure Center for SAP solutions for Azure Storage access during its deployment.
+
+1. From the lab computer, start a web browser, navigate to the Azure portal at `https://portal.azure.com`, and authenticate by using a Microsoft Account or Microsoft Entra ID account with the Owner role in the Azure subscription you will be using in this lab.
+1. In the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Managed Identities**.
+1. On the **Managed Identities** page, select **+ Create**.
+1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings and then select **Review + Create**:
+
+   |Setting|Value|
+   |---|---|
+   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Resource group|**acss-infra-RG**|
+   |Region|the name of the Azure region which you will use for the ACSS deployment|
+   |Name|**acss-infra-MI**|
+
+1. On the **Review** tab, wait for the validation process to complete and select **Create**.
+
+   >**Note**: Do not wait for the provisioning process to complete but instead proceed to the next task. The provisioning should take just a few seconds.
+
+   >**Note**: In one of the upcoming tasks, you will authorize access of the managed identity to the storage account hosting the SAP installation media to accommodate installing SAP software through the Azure Center for SAP solutions.
+
+#### Task 2: Create the virtual network
+
+In this task, you will create the Azure virtual network that will host all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you will create the following subnets:
+
+- app - intended for hosting the SAP application and SAP Central Services instance servers
+- db - intended for hosting the SAP database tier
+
+1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Virtual networks**. 
 1. On the **Virtual networks** page, select **+ Create**.
 1. On the **Basics** tab of the **Create virtual network** page, specify the following settings and select **Next**:
 
-    |Setting|Value|
-    |---|---|
-    |Subscription|The name of the Azure subscription you are using in this lab|
-    |Resource group|**CONTOSO-VNET-RG**|
-    |Virtual network name|**CONTOSO-VNET**|
-    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
+   |Setting|Value|
+   |---|---|
+   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Resource group|**acss-infra-RG**|
+   |Virtual network name|**acss-infra-VNET**|
+   |Region|the name of the same Azure region you used in the previous task of this exercise|
 
 1. On the **Security** tab, accept the default settings and select **Next**.
 
-    >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you will provision them separately once the virtual network is created.
+   >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you will provision them separately once the virtual network is created.
 
 1. On the **IP addresses** tab, specify the following settings and then select **Review + create**:
 
-    |Setting|Value|
-    |---|---|
-    |IP address space|**10.5.0.0/16 (65,536 addresses)**|
+   |Setting|Value|
+   |---|---|
+   |IP address space|**10.0.0.0/16 (65,536 addresses)**|
 
-    >**Note**: Delete any pre-created subnet entries. You will add subnets after the virtual network is created.
+1. In the list of subnets, select the trash bin icon to delete the **default** subnet.
+1. Select **+ Add a subnet**.
+1. In the **Add a subnet** pane, specify the following settings and then select **Add** (leave others with their default values):
 
-1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
-1. Navigate back to the **Virtual networks** page, select the **CONTOSO-VNET** entry. 
-1. On the **CONTOSO-VNET** page, in the vertical menu bar on the left side of the page, select **Subnets**.
-1. On the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**. 
-1. On the **Add subnet** pane, specify the following settings and select **Save**:
+   |Setting|Value|
+   |---|---|
+   |Name|**app**|
+   |Starting address|**10.0.2.0**|
+   |Size|**/24 (256 addresses)**|
 
-    |Setting|Value|
-    |---|---|
-    |Name|**app**|
-    |Subnet address range|**10.5.0.0/24**|
-    |Network security group|**ACSS-DEMO-NSG**|
-    |Route table|**ACSS-ROUTE**|
+1. Select **+ Add a subnet**.
+1. In the **Add a subnet** pane, specify the following settings and then select **Add** (leave others with their default values):
 
-1. Back on the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**. 
-1. On the **Add subnet** pane, specify the following settings and select **Save**:
+   |Setting|Value|
+   |---|---|
+   |Name|**db**|
+   |Starting address|**10.0.3.0**|
+   |Size|**/24 (256 addresses)**|
 
-    |Setting|Value|
-    |---|---|
-    |Name|**AzureBastionSubnet**|
-    |Subnet address range|**10.5.1.0/26**|
+1. On the **IP addresses** tab, select **Review + create**:
+1. On the **Review + create** tab, wait for the validation process to complete and then select **Create**.
 
-1. Back on the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**. 
-1. On the **Add subnet** pane, specify the following settings and select **Save**:
+   >**Note**: Do not wait for the provisioning process to complete but instead proceed to the next task. The provisioning should take just a few seconds.
 
-    |Setting|Value|
-    |---|---|
-    |Name|**db**|
-    |Subnet address range|**10.5.2.0/24**|
-    |Network security group|**ACSS-DEMO-NSG**|
-    |Route table|**ACSS-ROUTE**|
+#### Task 3: Create and configure a network security group
 
-1. Back on the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**. 
-1. On the **Add subnet** pane, specify the following settings and select **Save**:
+In this task, you will create and configure a network security group (NSG) that will be used to restrict outbound access from subnets of the virtual network that will host the deployment. You can accomplish this by blocking connectivity the internet but explicitly allowing connections to the following services:
 
-    |Setting|Value|
-    |---|---|
-    |Name|**AzureFirewallSubnet**|
-    |Subnet address range|**10.5.3.0/24**|
+- SUSE or Red Hat update infrastructure endpoints
+- Azure Storage
+- Azure Key Vault
+- Microsoft Entra ID
+- Azure Resource Manager
 
-### Task 8: Deploy Azure Firewall into the virtual network that will host the deployment
+>**Note**: In general, you should consider using Azure Firewall instead of NSGs to secure network connectivity for your SAP deployment. 
 
->**Note**: Before you deploy an Azure Firewall instance, you will first create a firewall policy and a public IP address to be used by the instance.
+1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Network security groups**.
+1. On the **Network security groups** page, select **+ Create**.
+1. On the **Basics** tab of the **Create network security group** page, specify the following settings and then select **Review + create**:
 
-1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Firewall Policies**.
-1. On the **Firewall Policies** page, select **+ Create**.
-1. On the **Basics** tab of the **Create an Azure Firewall Policy** page, specify the following settings and select **Next: DNS Settings >**:
-
-    |Setting|Value|
-    |---|---|
-    |Subscription|The name of the Azure subscription you are using in this lab|
-    |Resource group|**CONTOSO-VNET-RG**|
-    |Name|**FirewallPolicy_contoso-firewall**|
-    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
-    |Policy tier|**Standard**|
-    |Parent policy|**None**|
-
-1. On the **DNS Settings** tab, accept the default **Disabled** option and select **Next: TLS inspection >**.
-1. On the **TLS inspection** tab, select **Next: Rules >**.
-1. On the **Rules** tab, select **+ Add a rule collection**.
-1. On the **Add a rule collection** pane, specify the following settings:
-
-    |Setting|Value|
-    |---|---|
-    |Name|**AllowOutbound**|
-    |Rule collection type|**Network**|
-    |Priority|**101**|
-    |Rule collection action|**Allow**|
-    |Rule collection group|**DefaultNetworkRuleCollectionGroup**|
-
-1. On the **Add a rule collection** pane, in the **Rules** section, add a rule with the following settings:
-
-    |Setting|Value|
-    |---|---|
-    |Name|**RHEL**|
-    |Source type|**IP Address**|
-    |Source|*|
-    |Protocol|**Any**|
-    |Destination Ports|*|
-    |Destination Type|**IP Address**|
-    |Destination|**13.91.47.76,40.85.190.91,52.187.75.218,52.174.163.213,52.237.203.198**|
-
-    >**Note**: To identify the IP addresses to use for RHEL, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network)
-
-    |Setting|Value|
-    |---|---|
-    |Name|**ServiceTags**|
-    |Source type|**IP Address**|
-    |Source|*|
-    |Protocol|**Any**|
-    |Destination Ports|*|
-    |Destination Type|**Service Tag**|
-    |Destination|**AzureActiveDirectory,AzureKeyVault,Storage**|
-
-    >**Note**: If preferred, it is possible to use service tags with regional scopes. 
-
-    |Setting|Value|
-    |---|---|
-    |Name|**SUSE**|
-    |Source type|**IP Address**|
-    |Source|*|
-    |Protocol|**Any**|
-    |Destination Ports|*|
-    |Destination Type|**IP Address**|
-    |Destination|**52.188.224.179,52.186.168.210,52.188.81.163,40.121.202.140**|
-
-    >**Note**: To identify the IP addresses to use for SUSE, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network)
-
-    |Setting|Value|
-    |---|---|
-    |Name|**AllowOutbound**|
-    |Source type|**IP Address**|
-    |Source|*|
-    |Protocol|**TCP,UDP,ICMP,Any**|
-    |Destination Ports|*|
-    |Destination Type|**IP Address**|
-    |Destination|*|
-
-1. Select the **Add** button to save all rules.
-1. Back on the **Rules** tab, select **Next: IDPS >**.
-1. On the **IDPS** tab, select **Next: Threat intelligence >**.
-
-    >**Note**: The IDPS functionality requires the Premium SKU.
-
-1. On the **Threat intelligence** tab, review the available settings without making any changes and then select **Review + create**.
-1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
-
-    >**Note**: Wait for the provisioning of the Firewall Policy to complete. The provisioning should take about 1 minute.
-
-1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Public IP addresses**.
-1. On the **Public IP addresses** page, select **+ Create**.
-1. On the **Basics** tab of the **Create a public IP address** page, specify the following settings and then select **Review + create**:
-
-    |Setting|Value|
-    |---|---|
-    |Subscription|The name of the Azure subscription you are using in this lab|
-    |Resource group|**CONTOSO-VNET-RG**|
-    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
-    |Name|**contoso-firewal-pip**|
-    |IP Version|**IPv4**|
-    |SKU|**Standard**|
-    |Availability zone|**No zone**|
-    |Tier|**Regional**|
-    |Routing preference|**Microsoft network**|
-    |Idle timeout (minutes)|**4**|
-    |DNS name label|not set|
+   |Setting|Value|
+   |---|---|
+   |Subscription|The name of the Azure subscription you are using in this lab|
+   |Resource group|The name of a **new** resource group **acss-infra-RG**|
+   |Name|**acss-infra-NSG**|
+   |Region|the name of the same Azure region you used earlier in this exercise|
 
 1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
 
-    >**Note**: Wait for the provisioning of the public IP address to complete. The provisioning should take a few seconds.
+   >**Note**: Wait for the provisioning process to complete. The provisioning should take less than 1 minute.
 
-1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Firewalls**.
-1. On the **Firewalls** page, select **+ Create**.
-1. On the **Basics** tab of the **Create a firewall** page, specify the following settings and then select **Review + create**:
+1. On the **Your deployment is complete** page, select **Go to resource**.
 
-    |Setting|Value|
-    |---|---|
-    |Subscription|The name of the Azure subscription you are using in this lab|
-    |Resource group|**CONTOSO-VNET-RG**|
-    |Name|**contoso-firewall**|
-    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
-    |Availability zone|**None**|
-    |Firewall SKU|**Standard**|
-    |Firewall management|**Use a Firewall Policy to manage this firewall**|
-    |Firewall policy|**FirewallPolicy_contoso-firewall**|
-    |Choose a virtual network|**Use existing**|
-    |Virtual network|**CONTOSO-VNET**|
-    |Public IP address|**contoso-firewall-pip**|
-    |Forced tunneling|**Disabled**|
+   >**Note**: By default, the built-in rules of network security groups allow all outbound traffic, all traffic within the same virtual network, as well as all traffic between peered virtual networks. From the security standpoint, you should consider restricting this default behavior. The proposed configuration restricts outbound connectivity to the internet and Azure. You can also use NSG rules to restrict connectivity within a virtual network.
 
-    >**Note**: Wait for the provisioning of the Azure Firewall to complete. The provisioning might take about 3 minutes.
+1. On the **acss-infra-NSG** page, in the vertical navigation menu on the left side, in the **Settings** section, select **Outbound security rules**.
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. On the **Add outbound security rule** pane, specify the following settings and select **Add**:
 
-1. In the Azure portal, navigate back to the **Firewalls** page.
-1. On the **Firewalls** page, select the **contoso-firewall** entry.
-1. On the **contoso-firewall** page, note the **Private IP** entry set to **10.5.3.4** representing the private IP address of the Azure Firewall instance.
+   >**Note**: The following rule should be added to explicitly allow connectivity to Red Hat update infrastructure endpoints.
 
-    >**Note**: In order for the network traffic to be routed via Azure Firewall, you need to add user defined routes to the route tables associated with the app and db subnets of the virtual network that will host the SAP deployment.
+   >**Note**: To identify the IP addresses to use for RHEL, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network#allowlist-suse-or-red-hat-endpoints)
 
-1. In the Azure portal, in the **Search** text box, search for and select **Route tables**.
-1. On the **Route tables** page, select the **ACSS-ROUTE** entry.
-1. On the **ACSS-ROUTE** page, select **Routes**.
-1. On the **ACSS-ROUTE \| Routes** page, select **+ Add**.
-1. On the **Add route** pane, specify the following settings and then select **Add**:
+   |Setting|Value|
+   |---|---|
+   |Source|**Any**|
+   |Source port ranges|*|
+   |Destination|**IP addresses**|
+   |Destination IP addresses/CIDR ranges|**13.91.47.76,40.85.190.91,52.187.75.218,52.174.163.213,52.237.203.198**|
+   |Service|**Custom**|
+   |Destination port ranges|*|
+   |Protocol|**Any**|
+   |Action|**Allow**|
+   |Priority|**300**|
+   |Name|**AllowAnyRHELOutbound**|
+   |Description|**Allow outbound connectivity to RHEL update infrastructure endpoints**|
 
-    |Setting|Value|
-    |---|---|
-    |Route name|**Firewall**|
-    |Destination type|**IP Addresses**|
-    |Destination IP Addresses/CIDR ranges|**0.0.0.0/0**|
-    |Next hop type|**Virtual appliance**|
-    |Next hop address|**10.5.3.4**|
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. In the **Add outbound security rule** pane, specify the following settings and select **Add**:
 
-### Task 9: Deploy Azure Bastion into the virtual network that will host the deployment
+   >**Note**: The following rule should be added to explicitly allow connectivity to SUSE update infrastructure endpoints.
 
-1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Bastions**. 
-1. On the **Bastions** page, select **+ Create**.
-1. On the **Basics** tab of the **Bastions** page, specify the following settings and select **Next : Tags >**:
+   >**Note**: To identify the IP addresses to use for SUSE, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network#allowlist-suse-or-red-hat-endpoints)
 
-    |Setting|Value|
-    |---|---|
-    |Subscription|The name of the Azure subscription you are using in this lab|
-    |Resource group|**CONTOSO-VNET-RG**|
-    |Name|**ACSS-BASTION**|
-    |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
-    |Tier|**Basic**|
-    |Instance count|**2**|
-    |Virtual network|**CONTOSO-VNET**|
-    |Subnet|**AzureBastionSubnet**|
-    |Public IP address|**Create new**|
-    |Public IP address name|**ACSS-BASTION-PIP**|
+   |Setting|Value|
+   |---|---|
+   |Source|**Any**|
+   |Source port ranges|*|
+   |Destination|**IP addresses**|
+   |Destination IP addresses/CIDR ranges|**52.188.224.179,52.186.168.210,52.188.81.163,40.121.202.140**|
+   |Service|**Custom**|
+   |Destination port ranges|*|
+   |Protocol|**Any**|
+   |Action|**Allow**|
+   |Priority|**305**|
+   |Name|**AllowAnySUSEOutbound**|
+   |Description|**Allow outbound connectivity to SUSE update infrastructure endpoints**|
 
-1. On the **Tags** tab, select **Next : Advanced >**
-1. On the **Advanced** tab, review the available settings without making any changes and then select **Next : Review + create >**
-1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
+   >**Note**: The following rule should be added to explicitly allow connectivity to Azure Storage.
 
-    >**Note**: Do not wait for the provisioning of the Bastion host to complete. Instead, proceed to the next task. The provisioning might take about 15 minutes.
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. In the **Add outbound security rule** pane, specify the following settings and select **Add**:
 
-### Exercise 1: Deploy the infrastructure that will host SAP workloads in Azure by using Azure Center for SAP solutions
+   |Setting|Value|
+   |---|---|
+   |Source|**Any**|
+   |Source port ranges|*|
+   |Destination|**Service Tag**|
+   |Destination service tag|**Storage**|
+   |Service|**Custom**|
+   |Destination port ranges|*|
+   |Protocol|**Any**|
+   |Action|**Allow**|
+   |Priority|**400**|
+   |Name|**AllowAnyCustomStorageOutbound**|
+   |Description|**Allow outbound connectivity to Azure Storage**|
+
+   >**Note**: You could replace the **Storage** service tag with one which is region-specific, such as **Storage.EastUS**.
+
+   >**Note**: The following rule should be added to explicitly allow connectivity to Azure Key Vault.
+
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. In the **Add outbound security rule** pane, specify the following settings and select **Add**:
+
+   |Setting|Value|
+   |---|---|
+   |Source|**Any**|
+   |Source port ranges|*|
+   |Destination|**Service Tag**|
+   |Destination service tag|**AzureKeyVault**|
+   |Service|**Custom**|
+   |Destination port ranges|*|
+   |Protocol|**Any**|
+   |Action|**Allow**|
+   |Priority|**500**|
+   |Name|**AllowAnyCustomKeyVaultOutbound**|
+   |Description|**Allow outbound connectivity to Azure Key Vault**|
+
+   >**Note**: The following rule should be added to explicitly allow connectivity to Microsoft Entra ID.
+
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. In the **Add outbound security rule** pane, specify the following settings and select **Add**:
+
+   |Setting|Value|
+   |---|---|
+   |Source|**Any**|
+   |Source port ranges|*|
+   |Destination|**Service Tag**|
+   |Destination service tag|**AzureActiveDirectory**|
+   |Service|**Custom**|
+   |Destination port ranges|*|
+   |Protocol|**Any**|
+   |Action|**Allow**|
+   |Priority|**600**|
+   |Name|**AllowAnyCustomEntraIDOutbound**|
+   |Description|**Allow outbound connectivity to Microsoft Entra ID**|
+
+   >**Note**: The following rule should be added to explicitly allow connectivity to Azure Resource Manager.
+
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. In the **Add outbound security rule** pane, specify the following settings and select **Add**:
+
+   |Setting|Value|
+   |---|---|
+   |Source|**Any**|
+   |Source port ranges|*|
+   |Destination|**Service Tag**|
+   |Destination service tag|**AzureResourceManager**|
+   |Service|**Custom**|
+   |Destination port ranges|*|
+   |Protocol|**Any**|
+   |Action|**Allow**|
+   |Priority|**700**|
+   |Name|**AllowAnyCustomARMOutbound**|
+   |Description|**Allow outbound connectivity to Azure Resource Manager**|
+
+   >**Note**: The last rule should be added to explicitly block connectivity to the internet.
+
+1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
+1. In the **Add outbound security rule** pane, specify the following settings and select **Add**:
+
+   |Setting|Value|
+   |---|---|
+   |Source|**Any**|
+   |Source port ranges|*|
+   |Destination|**Service Tag**|
+   |Destination service tag|**Internet**|
+   |Service|**Custom**|
+   |Destination port ranges|*|
+   |Protocol|**Any**|
+   |Action|**Deny**|
+   |Priority|**1000**|
+   |Name|**DenyAnyCustomInternetOutbound**|
+   |Description|**Deny outbound connectivity to Internet**|
+
+   >**Note**: Finally, you need to assign the NSG to the relevant subnets of the virtual network that will host the SAP deployment.
+
+1. In the **Add outbound security rule** pane, in the vertical navigation menu on the left side, in the **Settings** section, select **Subnets**.
+1. On the **acss-infra-NSG \| Subnets** page, select **+ Associate**.
+1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **app**, and then select **OK**.
+1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **db**, and then select **OK**.
+
+### Exercise 2: Deploy the infrastructure that will host SAP workloads in Azure by using Azure Center for SAP solutions
 
 Duration: 40 minutes
 
@@ -278,7 +307,7 @@ This activity corresponds to the following task of this exercise:
 
 >**Note**: For information regarding installing SAP software by using Azure Center for SAP solutions, refer to the Microsoft Learn documentation that describes how to [Get SAP installation media](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-sap-installation-media) and [Install SAP software](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/install-software). 
 
-### Task 1: Create Virtual Instance for SAP (VIS) solutions
+#### Task 1: Create Virtual Instance for SAP (VIS) solutions
 
 1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Azure Center for SAP Solutions**. 
 1. On the **Azure Center for SAP Solutions \| Overview** page, select **Create a new SAP system**.
@@ -347,7 +376,7 @@ This activity corresponds to the following task of this exercise:
 
    >**Note**: Following the deployment, you could proceed to installing SAP software by using Azure Center for SAP solutions. In this lab, you will explore the capabilities of the Azure Center for SAP solutions without installing SAP software.
 
-### Exercise 2: Maintain SAP workloads in Azure by using Azure Center for SAP solutions
+### Exercise 3: Maintain SAP workloads in Azure by using Azure Center for SAP solutions
 
 Duration: 60 minutes
 

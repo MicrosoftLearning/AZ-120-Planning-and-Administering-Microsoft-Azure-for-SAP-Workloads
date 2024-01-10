@@ -501,7 +501,7 @@ These activities correspond to the following tasks of this exercise:
 
 #### Task 2: Implement prerequisites for disaster recovery of SAP workloads managed by Azure Center for SAP solutions 
 
->**Note**: While Azure Center for SAP solutions service is a zone redundant service, there is no Microsoft initiated failover in the event of a region outage. To remediate such scenarios, you should configure disaster recovery for SAP systems that you deploy using Azure Center for SAP solutions by following guidance described in [Disaster recovery overview and infrastructure guidelines for SAP workload](https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-overview-guide), which involves the use of Azure Site Recovery (ASR). In this task, you'll step through the process of implementing an ASR-based disaster recovery solution which relies on that guidance.
+>**Note**: While Azure Center for SAP solutions service is a zone redundant service, there is no Microsoft initiated failover in the event of a region outage. To remediate such scenario, you should configure disaster recovery for SAP systems deployed using Azure Center for SAP solutions by following guidance described in [Disaster recovery overview and infrastructure guidelines for SAP workload](https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-overview-guide), which involves the use of Azure Site Recovery (ASR). In this task, you'll step through the process of implementing an ASR-based disaster recovery solution which relies on that guidance.
 
 >**Note**: ASR is the recommended solution for application servers and SAP Central Services instances. For database servers, you should consider using native their replication functionality.
 
@@ -532,53 +532,6 @@ These activities correspond to the following tasks of this exercise:
 
    >**Note**: Now you will set up the disaster recovery environment in the paired up region in which you created the Recovery Services vault. This environment will include a virtual network that will host replicas of the Azure VMs currently hosted in the primary region where you provisioned Virtual Instance for SAP. 
 
-1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Virtual networks**. 
-1. On the **Virtual networks** page, select **+ Create**.
-1. On the **Basics** tab of the **Create virtual network** page, specify the following settings and select **Next**:
-
-   |Setting|Value|
-   |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
-   |Resource group|**acss-dr-RG**|
-   |Virtual network name|**CONTOSO-VNET**|
-   |Region|the name of the same Azure region you used when creating the Recovery Services vault earlier in this task|
-
-1. On the **Security** tab, accept the default settings and select **Next**.
-
-   >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you should instead automate their provisioning as part of your disaster recovery failover procedure. This will minimize charges associated with maintaining the disaster recovery environment. The same should apply to other components of that environment that mirror the configuration of the primary Virtual Instance for SAP, such as Azure Premium file shares and custom routing.
-
-1. On the **IP addresses** tab, specify the following settings and then select **Review + create**:
-
-   |Setting|Value|
-   |---|---|
-   |IP address space|**10.10.0.0/16 (65,536 addresses)**|
-
-   >**Important**: Note that the IP address spaces differ between the virtual network in the primary and secondary regions. This is intentional, since it will allow connecting the two virtual network together, which is necessary in order to configure replication between database servers hosted in the two regions. Such connection can be established by using virtual network peering. 
-
-1. In the list of subnets, select the trash bin icon to delete the **default** subnet.
-1. Select **+ Add a subnet**.
-1. In the **Add a subnet** pane, specify the following settings and then select **Add** (leave others with their default values):
-
-   |Setting|Value|
-   |---|---|
-   |Name|**app**|
-   |Starting address|**10.10.0.0**|
-   |Size|**/24 (256 addresses)**|
-
-1. Select **+ Add a subnet**.
-1. In the **Add a subnet** pane, specify the following settings and then select **Add** (leave others with their default values):
-
-   |Setting|Value|
-   |---|---|
-   |Name|**db**|
-   |Starting address|**10.10.2.0**|
-   |Size|**/24 (256 addresses)**|
-
-1. On the **IP addresses** tab, select **Review + create**:
-1. On the **Review + create** tab, wait for the validation process to complete and then select **Create**.
-
-   >**Note**: Do not wait for the provisioning process to complete but instead proceed to the next task. The provisioning should take just a few seconds.
-
 1. On the lab computer, in the Microsoft Edge window displaying the Azure portal, in the **Search** text box, search for and select **Recovery Services vaults**.
 1. On the **Recovery Services vaults** page, select **acss-dr-RSV**.
 1. On the **acss-dr-RSV** page, in the vertical navigation menu on the left side, in the **Getting started** section, select **Site Recovery**.
@@ -604,14 +557,21 @@ These activities correspond to the following tasks of this exercise:
    1. If needed, in the **Target location** drop-down list, select the Azure region in which you created the **acss-dr-RSV** Recovery Services vault.
    1. Ensure that the name of the Azure subscription you are using in this lab appears in the **Target subscription** drop-down list.
    1. In the **Target resource group** drop-down list, select **acss-dr-RG**.
-   1. In the **Failover virtual network** drop-down list, select **CONTOSO-VNET**.
-   1. In the **Failover subnet** drop-down list, select **app (10.10.0.0/24)**.
+   1. Below the **Failover virtual network** drop-down list, select **Create new**.
+   1. In the **Create virtual network** pane, in the **Name** text box, enter **CONTOSO-VNET-asr**
+   1. In the **Address space** section, in the **Address range** text box, replace the default entry with **10.10.0.0/16**.
+   1. In the **Subnets** section, in the **Subnet name** text box, enter **app** and, in the **Address range** text box, enter **10.10.0.0/24**.
+   1. Below the newly added subnet entry, in the **Subnets** section, in the **Subnet name** text box, enter **db** and, in the **Address range** text box, enter **10.10.2.0/24**.
+   1. In the **Create virtual network** pane, select **OK**.
+   1. Back on the **Enable replication** page, ensure that the **(new) app (10.10.0.0/24)** entry appears in the **Failover subnet** drop-down list.
    1. In the **Storage** section, select the **View/edit storage configuration** link.
    1. On the **Customize target settings** page, review the resulting configuration but do not make any changes and select **Cancel**.
    1. In the **Availability options** section, select the **View/edit availability options** link.
    1. On the **Availability options** page, note that you have the option of implementing proximity placement groups for target resources but do not make any changes and select **Cancel**.
 
    >**Note**: You also have the option of configuring capacity reservation.
+
+   >**Important**: Note that the IP address spaces differ between the virtual network in the primary and secondary regions. This is intentional, since it will allow connecting the two virtual network together, which is necessary in order to configure replication between database servers hosted in the two regions. Such connection can be established by using virtual network peering.
 
 1. Back on the **Replication settings** tab of the **Enable replication** page, select **Next**.
 1. On the **Manage** tab of the **Enable replication** page, perform the following actions:
@@ -670,18 +630,9 @@ These activities correspond to the following tasks of this exercise:
 1. On the **Manage** tab of the **Enable replication** page, select **Next**.
 1. On the **Review** tab of the **Enable replication** page, select **Enable replication**.
 
-   >**Note**: Initial replication might take a considerable time to complete. Considering the limited time allocated to this lab, it is not feasible to illustrate the actual failover, so the remaining steps of this exercise are optional and dependent primarily on the amount of time remaining till the end of the session.
+   >**Note**: Initial replication might take a considerable time to complete. Considering the limited time allocated to this lab, refer to the instructor regarding any extra steps to be performed as part of this task. In absence of any specific guidance, proceed directly to the next task.
 
-1. On the **acss-dr-RSV** page, in the vertical navigation menu on the left side, in the **Protected items** section, select **Replicated items**.
-1. On the **acss-dr-RSV \| Replicated items** page, review the replication status of the four Azure VMs.
-
-   >**Note**: It might take a few minutes before the replication status is displayed. The status should be initially set to **Enabling replication** and then transition to **x% Synchronized**, until the synchronization process completes. At that stage, the status will change to **Waiting for first recovery point** and finally switch to **Protected**. Wait until the status of the Azure VMs listed on the **acss-dr-RSV \| Replicated items** page changes to **Protected**. This indicates readiness to initiate either a test failover (if you intend to validate the resulting setup without invoking a disaster recovery) or a failover (if you want to transition the workload hosted on the primary instance to its replica). Either form of the failover will provision and bring online replicas of the primary region Azure VMs in the disaster recovery region. 
-
-1. To perform a test failover or failover, on the **acss-dr-RSV \| Replicated items** page, select the entry representing one of the protected Azure VMs and then, on the **Replicated items** page of that Azure VM, select either **Test Failover** or **Failover**. 
-
-   >**Note**: If you select **Test Failover**, you will be prompted to provide the recovery point to use and the Azure virtual network to which the replica Azure VM should be connected. You could potentially use for this purpose the **CONTOSO-VNET** Azure virtual network. Alternatively, you could implement a fully isolated test environment, although keep in mind that you'll need to provide connectivity to a database server replica in order to perform a more comprehensive testing.
-
-   >**Note**: Once a test failover is completed, you invoke **Cleanup test failover** from individual **Replicated items** pages to simply delete the replica Azure VM. If you invoked a failover, you'll need to **Commit** your changes to the replica Azure VM once the failover completes, and then **Re-protect** it by reversing the direction of replication, effectively treating your primary region as the new disaster recovery site. To return to the original arrangement, perform another failover, this time from the secondary region to the primary one.
+   >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you should instead automate their provisioning as part of your disaster recovery failover procedure. This will minimize charges associated with maintaining the disaster recovery environment. The same should apply to other components of that environment that mirror the configuration of the primary Virtual Instance for SAP, such as Azure Premium file shares and custom routing. 
 
 #### Task 3: Review monitoring options for SAP workloads managed by Azure Center for SAP solutions 
 

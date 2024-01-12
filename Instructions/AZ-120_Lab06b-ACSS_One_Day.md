@@ -362,8 +362,6 @@ This activity corresponds to the following task of this exercise:
    |Database OS image options|**Use a marketplace image**|
    |Database OS image|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 latest**|
    |SAP transport option|**Don't include SAP transport directory**|
-   |Transport resource group|**acss-infra-RG**|
-   |Storage account name|no entry|
    |Authentication type|**SSH public**|
    |Username|**contososapadmin**|
    |SSH public key source|**Generate new key pair**|

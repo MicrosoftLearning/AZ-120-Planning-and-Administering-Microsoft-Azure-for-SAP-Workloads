@@ -69,15 +69,27 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 1. On the **Subscriptions** page, select the entry representing the Azure subscription you will be using for this lab. 
 1. On the page displaying the properties of the Azure subscription, select **Access control (IAM)**.
 1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
-1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions administrator** entry, and the select **Next**.
+1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions service role** entry, and the select **Next**.
+1. On the **Members** tab of the **Add role assignment** page, for **Assign access to**, select **Managed Identity** and then click **+ Select members**.
+1. In the **Select managed identities** pane, specifiy the following settings:
 
-1. On the **Members** tab of the **Add role assignment** page, for **Assign access to**, select **Managed Identity**.
-1. Click **+ Select members**.
-1. On the **Select members** pane, in the **Select** text box, enter the name of the Microsoft Entra ID user account you used to access the Azure subscription you are using for this lab, select it in the list of results matching your entry, and then click **Select**.
+   |Setting|Value|
+   |---|---|
+   |Subscription|The name of the Azure subscription used in this lab|
+   |Managed identity|**User-assigned managed identity**|
+   |Select|**acss-infra-MI**|
+   
+1. In the list of managed identities, select the **acss-infra-MI** entry and then click **Select**.
+1. Back on the **Members** tab, select **Review + assign**.
+1. On the **Review + assign** tab, select **Review + assign**.
+1. Back on the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
+1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions administrator** entry, and the select **Next**.
+1. On the **Members** tab, click **+ Select members**.
+1. In the **Select members** pane, in the **Select** text box, enter the name of the Microsoft Entra ID user account you used to access the Azure subscription you are using for this lab, select it in the list of results matching your entry, and then click **Select**.
 1. Back on the **Members** tab, select **Review + assign**.
 1. On the **Review + assign** tab, select **Review + assign**.
 1. Repeat the previous six steps to assign the role of **Managed Identity Operator** to the user account you are using for this lab.
-
+   
 #### Task 3: Create the virtual network
 
 In this task, you create the Azure virtual network that hosts all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you create the following subnets:

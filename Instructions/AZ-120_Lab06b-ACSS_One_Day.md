@@ -186,7 +186,7 @@ In this task, you create and configure a network security group (NSG) that used 
    |Source|**Any**|
    |Source port ranges|*|
    |Destination|**IP addresses**|
-   |Destination IP addresses/CIDR ranges|**13.91.47.76,40.85.190.91,52.187.75.218,52.174.163.213,52.237.203.198**|
+   |Destination IP addresses/CIDR ranges|**13.91.47.76,40.85.190.91,52.187.75.218,52.174.163.213,52.237.203.198,52.136.197.163,20.225.226.182,52.142.4.99,20.248.180.252,20.24.186.80**|
    |Service|**Custom**|
    |Destination port ranges|*|
    |Protocol|**Any**|

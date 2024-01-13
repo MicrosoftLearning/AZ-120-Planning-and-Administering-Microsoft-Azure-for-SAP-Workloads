@@ -31,6 +31,7 @@ In this exercise, you implement the minimum prerequisites for evaluating deployi
 - Granting the Microsoft Entra user-assigned managed identity that is used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account
 - Creating the Azure virtual network that hosts all of the Azure virtual machines included in the deployment.
 - Creating and configuring a network security group (NSG) that is used to restrict outbound access from subnets of the virtual network that hosts the deployment.
+- Creating and configuring a NAT gateway that will allow for outbound connectivity from Azure VMs that are part of the deployment.
 
 These activities correspond to the following tasks of this exercise:
 
@@ -38,6 +39,7 @@ These activities correspond to the following tasks of this exercise:
 - Task 2: Configure Azure role-based access control (RBAC) role assignments for the Microsoft Entra ID user-assigned managed identity
 - Task 3: Create the Azure virtual network
 - Task 4: Create and configure a network security group
+- Task 5: Create and configure a NAT gateway
 
 #### Task 1: Create a Microsoft Entra user-assigned managed identity
 
@@ -319,6 +321,30 @@ In this task, you create and configure a network security group (NSG) that used 
 1. On the **acss-infra-NSG \| Subnets** page, select **+ Associate**.
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **app**, and then select **OK**.
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**, in the **Subnet** drop-down list, select **db**, and then select **OK**.
+
+#### Task 5: Create and configure a NAT gateway
+
+In this task, you create and configure a network address translation (NAT) gateway that will allow Azure VMs included in the deployment to reach external services, such as SUSE and RHEL endpoints.
+
+1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **NAT Gateways**.
+1. On the **NAT gateways** page, select **+ Create**.
+1. On the **Basics** tab of the **Create network address translation (NAT) gateway** page, specify the following settings and then select **Next: Outbound IP >**:
+
+   |Setting|Value|
+   |---|---|
+   |Subscription|The name of the Azure subscription used in this lab|
+   |Resource group|**acss-infra-RG**|
+   |NAT gateway name|**acss-infra-NATGW**|
+   |Region|the name of the same Azure region you used earlier in this exercise|
+   |Availability zone|**No Zone**|
+   |TCP idle timeout (minutes)|**4**|
+
+1. On the **Outbound IP** tab, below the **Public IP addresses** drop-down list, select the **Create a new public IP address** link, in the **Add a public IP address** pane, in the **Name** text box, enter **acss-infra-NATWG-PIP**, and select **OK**.
+1. Back on the **Outbound IP** tab, select **Next: Subnet >**.
+1. On the **Subnet** tab, in the **Virtual network** drop-down list, select **acss-infra-VNET**, in the list of subnets, select the checkbox next to the **app** and **db** entries, and then select **Review + create**:
+1. On the **Review + create** tab, wait for the validation process to complete and select **Create**.
+
+   >**Note**: Wait for the provisioning process to complete. The provisioning should take about 1 minute.
 
 ### Exercise 2: Deploy the infrastructure that hosts SAP workloads in Azure by using Azure Center for SAP solutions
 

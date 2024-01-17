@@ -65,15 +65,13 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 #### Task 2: Configure Azure role-based access control (RBAC) role assignments for the Microsoft Entra ID user account that will be used to perform the deployment
 
-1. On the lab computer, start Microsoft Edge, and navigate to the Azure portal at `https://portal.azure.com`.
-1. When prompted to authenticate, sign in by using the Microsoft Entra ID credentials with the Owner role in the Azure subscription you will be using for this lab. 
-1. In the Azure portal, in the **Search** text box, search for and select **Subscriptions**.
+1. On the lab computer, in the web browser window displaying the Azure portal, in the **Search** text box, search for and select **Subscriptions**.
 1. On the **Subscriptions** page, select the entry representing the Azure subscription you will be using for this lab. 
 1. On the page displaying the properties of the Azure subscription, select **Access control (IAM)**.
 1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions service role** entry, and the select **Next**.
 1. On the **Members** tab of the **Add role assignment** page, for **Assign access to**, select **Managed Identity** and then click **+ Select members**.
-1. In the **Select managed identities** pane, specifiy the following settings:
+1. In the **Select managed identities** pane, specify the following settings:
 
    |Setting|Value|
    |---|---|

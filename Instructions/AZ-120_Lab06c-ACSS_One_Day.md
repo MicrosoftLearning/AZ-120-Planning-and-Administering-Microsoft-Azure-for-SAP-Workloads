@@ -386,7 +386,7 @@ These activities correspond to the following tasks of this exercise:
 1. In this exercise **do not** select **Create** as we are only reviewing.
 1. On the **Review + create** tab, wait for the validation process to complete and then return to the Azure Center for SAP solutions page (settings for backup will be lost).  
 
-   >**Note**: Azure Center for SAP solutions UI would be the preferred method for completing the backup configuration.
+   >**Note**: The [Backup (preview)](https://learn.microsoft.com/azure/sap/center-sap-solutions/acss-backup-integration) feature of Azure Center for SAP solutions UI will become a preferred method for completing the backup configuration after it is released to *General Availability* from *Preview*.
 
    >**Note**: When configuring backup at the VIS level in the Azure Center for SAP solutions interface, you will be able to leverage the existing vault and its policies.
 
@@ -464,66 +464,15 @@ These activities correspond to the following tasks of this exercise:
 
    >**Note**: You also have the option of configuring capacity reservation.
 
+   >**Note**: You also have the option of configuring replication policy settings.
+
    >**Important**: Note that the IP address spaces differ between the virtual network in the primary and secondary regions. This is intentional, since it will allow connecting the two virtual network together, which is necessary in order to configure replication between database servers hosted in the two regions. Such connection can be established by using virtual network peering.
 
-1. Back on the **Replication settings** tab of the **Enable replication** page, select **Next**.
-1. On the **Manage** tab of the **Enable replication** page, perform the following actions:
-
-   1. Below the **Replication policy** drop-down list, select **Create new**.
-   1. In the **Create replication policy** pane, in the **Name** text box, enter **2-day-retention-policy**, in the **Retention period (in days)** text box, enter **2**, and then select **OK**.
-   1. You have the option of creating replication groups. This option isn't applicable to our use case.
-   1. Leave **Update settings** option of **Extension settings** configured to **Allow ASR to manage**.
-   1. Accept the default, automatically assigned name of the **Automation account**.
-
+1. On the **Replication settings** tab of the **Enable replication** page, select **Next**.
 1. On the **Manage** tab of the **Enable replication** page, select **Next**.
-1. On the **Review** tab of the **Enable replication** page, select **Enable replication**.
+1. On the **Review** tab of the **Enable replication** page, Review the settings. For this exercise, we will **not enable** replication.
 
-   >**Note**: Now you will step through enabling replication for the remaining two Azure VMs hosting the database servers.
-
-1. Back on the **acss-dr-RSV \| Site Recovery** page, in the **Azure virtual machines** section, select **1. Enable replication**. 
-1. On the **Source** tab of the **Enable replication** page, specify the following settings and then select **Next**:
-
-   |Setting|Value|
-   |---|---|
-   |Region|the name of the Azure region hosting your Virtual Instance for SAP (VIS)|
-   |Subscription|The name of the Azure subscription used in this lab|
-   |Resource group|**acss-vi-RG**|
-   |Virtual machine deployment model|**Resource Manager**|
-   |Disaster recovery between availability zones|**No**|
-
-   >**Note**: The **Disaster recovery between availability zones** might be not configurable, depending on whether the source region supports availability zones.
-
-1. On the **Virtual machines** tab, select the first four virtual machines in the list (**vi1appvm0**, **vi1appvm1**, **vi1ascsvm0**, and **vi1ascsvm0**) and then select **Next**.
-
-   >**Note**: You need to configure replication for the remaining two Azure VMs separately, since they are connected to a different subnet.
-
-1. On the **Replication settings** tab, perform the following actions:
-
-   1. If needed, in the **Target location** drop-down list, select the Azure region in which you created the **acss-dr-RSV** Recovery Services vault.
-   1. Ensure that the name of the Azure subscription used in this lab appears in the **Target subscription** drop-down list.
-   1. In the **Target resource group** drop-down list, select **acss-dr-RG**.
-   1. In the **Failover virtual network** drop-down list, select **CONTOSO-VNET**.
-   1. In the **Failover subnet** drop-down list, select **app (10.10.0.0/24)**.
-   1. In the **Storage** section, select the **View/edit storage configuration** link.
-   1. On the **Customize target settings** page, review the resulting configuration but don't make any changes and select **Cancel**.
-   1. In the **Availability options** section, select the **View/edit availability options** link.
-   1. On the **Availability options** page, you have the option of implementing proximity placement groups for target resources but don't make any changes and select **Cancel**.
-
-   >**Note**: You also have the option of configuring capacity reservation.
-
-1. Back on the **Replication settings** tab of the **Enable replication** page, select **Next**.
-1. On the **Manage** tab of the **Enable replication** page, perform the following actions:
-
-   1. Below the **Replication policy** drop-down list, select **Create new**.
-   1. In the **Create replication policy** pane, in the **Name** text box, enter **2-day-retention-policy**, in the **Retention period (in days)** text box, enter **2**, and then select **OK**.
-   1. You have the option of creating replication groups. This option isn't applicable to our use case.
-   1. Leave **Update settings** option of **Extension settings** configured to **Allow ASR to manage**.
-   1. Accept the default, automatically assigned name of the **Automation account**.
-
-1. On the **Manage** tab of the **Enable replication** page, select **Next**.
-1. On the **Review** tab of the **Enable replication** page, select **Enable replication**.
-
-   >**Note**: Initial replication might take a considerable time to complete. Considering the limited time allocated to this lab, refer to the instructor regarding any extra steps to be performed as part of this task. In absence of any specific guidance, proceed directly to the next task.
+   >**Note**: Initial replication usually takes considerable time to complete. Considering the limited time allocated to this lab, refer to the instructor regarding any extra steps to be performed as part of this task. In absence of any specific guidance, proceed directly to the next task.
 
    >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you should instead automate their provisioning as part of your disaster recovery failover procedure. This will minimize charges associated with maintaining the disaster recovery environment. The same should apply to other components of that environment that mirror the configuration of the primary Virtual Instance for SAP, such as Azure Premium file shares and custom routing.
 

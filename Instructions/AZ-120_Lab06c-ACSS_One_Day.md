@@ -84,26 +84,27 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 #### Task 3: Configure Azure role-based access control (RBAC) role assignments for the Microsoft Entra ID user account that will be used to perform the deployment
 
+##### Add Identity: "Azure Center for SAP solutions service role"
+
 1. In the Azure portal, in the **Search** text box, search for and select **Subscriptions**.
 1. On the **Subscriptions** page, select the entry representing the Azure subscription you will be using for this lab. 
 1. On the page displaying the properties of the Azure subscription, select **Access control (IAM)**.
 1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions service role** entry, and the select **Next**.
 1. On the **Members** tab of the **Add role assignment** page, for **Assign access to**, select **Managed Identity** and then click **+ Select members**.
-1. In the **Select managed identities** pane, specifiy the following settings:
+1. In the **Select managed identities** pane, specify the following settings, and then click **Select**:
 
    |Setting|Value|
    |---|---|
    |Subscription|The name of the Azure subscription used in this lab|
    |Managed identity|**User-assigned managed identity**|
-   |Select|**acss-infra-MI**|
-   
-   ##### Add: "Azure Center for SAP solutions administrator Identity"
-   
-1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
-1. In the list of managed identities, select the **acss-infra-MI** entry and then click **Select**.
+   |Select|**acss-infra-RG/subscriptions/...**|
+
 1. Back on the **Members** tab, select **Review + assign**.
 1. On the **Review + assign** tab, select **Review + assign**.
+
+##### Add Identity: "Azure Center for SAP solutions administrator
+
 1. Back on the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions administrator** entry, and the select **Next**.
 1. On the **Members** tab
@@ -112,12 +113,9 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 1. In the **Select members** pane, in the **Select** text box, enter the name of the Microsoft Entra ID user account you used to access the Azure subscription you are using for this lab, select it in the list of results matching your entry, and then click **Select**.
 1. Back on the **Members** tab, select **Review + assign**.
 1. On the **Review + assign** tab, select **Review + assign**.
-   
-   ##### Add: "Managed Identity Operator"
-   
-1. In the list of managed identities, select the **acss-infra-MI** entry and then click **Select**.
-1. Back on the **Members** tab, select **Review + assign**.
-1. On the **Review + assign** tab, select **Review + assign**.
+
+##### Add Identity: "Managed Identity Operator"
+
 1. Back on the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Managed Identity Operator** entry, and the select **Next**.
 1. On the **Members** tab
@@ -259,9 +257,9 @@ This activity corresponds to the following task of this exercise:
 1. Review the size and the number of VMs for the ASCS, application, and database virtual machines.
 
    >**Note**: If needed, adjust the recommended sizes by selecting the **See all Sizes** link for each set of virtual machines and choosing an alternative size. By default, the distributed deployment type with high availability as well as the application tier SAPS and database memory size specified above results in the following minimum VM SKU recommendations:
-   - 2 x Standard_D4ds_v5 for the ASCS VMs (4 vCPUs and 16 GiB of memory each)
-   - 2 x Standard_D4ds_v5 for the application VMs (4 vCPUs and 16 GiB of memory each)
-   - 2 x Standard_E16ds_v5 for the database VMs (16 vCPUs and 128 GiB of memory each)
+   - 1 x Standard_D4ds_v4 for the ASCS VMs (4 vCPUs and 16 GiB of memory each)
+   - 1 x Standard_D4ds_v4 for the application VMs (4 vCPUs and 16 GiB of memory each)
+   - 1 x Standard_E16ds_v5 for the database VMs (16 vCPUs and 128 GiB of memory each)
 
    >**Note**: If needed, you can request quota increase by selecting the **Request Quota** link for a specific SKU of virtual machines and submitting a quota increase request. The processing of a request typically takes a few minutes.
 

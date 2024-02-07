@@ -61,7 +61,7 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
    |Setting|Value|
    |---|---|
    |Subscription|The name of the Azure subscription you use in this lab|
-   |Resource group|**acss-infra-RG**|
+`   |Resource group| Choose, or create new **acss-infra-RG**|
    |Region|the name of the Azure region, which you use for the ACSS deployment|
    |Name|**acss-infra-MI**|
 
@@ -96,7 +96,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
 
    >**Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you will provision them separately once the virtual network is created.
 
-1. On the **IP addresses** tab, specify the following settings and then select **Review + create**:
+1. On the **IP addresses** tab, specify the following subnet settings and then select **Review + create**:
 
    |Setting|Value|
    |---|---|
@@ -318,7 +318,7 @@ In this task, you create and configure a network security group (NSG) used to re
    |Setting|Value|
    |---|---|
    |Subscription|The name of the Azure subscription used in this lab|
-   |Resource group|The name of a **new** resource group **acss-infra-RG**|
+   |Resource group|**acss-infra-RG**|
    |Name|**acss-infra-NSG**|
    |Region|the name of the same Azure region you used earlier in this exercise|
 

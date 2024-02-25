@@ -25,6 +25,6 @@
 1. To use the Cloud Editor, type **code .**. You can also select the curly braces icon. 
 2. Select a file from the left navigation pane. For example, **.profile**.
 3. Notice on the editor top banner, selections for Settings (Text Size and Font) and Upload/Download files.
-4. Notice on the ellipses (**...**) on the far right for Save, Close Editor, and Open File.
+4. Notice on the ellipsis (**...**) on the far right for Save, Close Editor, and Open File.
 5. Experiment as you have time, then **close** the Cloud Editor. 
 6. Close the Cloud Shell.

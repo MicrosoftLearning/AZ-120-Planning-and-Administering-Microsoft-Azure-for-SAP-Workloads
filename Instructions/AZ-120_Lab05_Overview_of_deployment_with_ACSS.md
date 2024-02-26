@@ -1,12 +1,12 @@
 ---
 lab:
     title: 'Lab 05: Overview of deployment with Azure Center for SAP solutions'
-    learning path: 'AZ-120 Learning Path 4: Deploy SAP on Azure'
+    learning path: 'AZ-1006 Learning Path 4: Deploy SAP on Azure'
 ---
 
 # Lab 05: Overview of deployment with Azure Center for SAP solutions
 
-This lab is part of **AZ-120: Planning and Administering Microsoft Azure for SAP Workloads**.
+This lab is part of **AZ-1006: Migrate and Modernize SAP in the Microsoft Cloud**.
 
 ## Lab introduction
 

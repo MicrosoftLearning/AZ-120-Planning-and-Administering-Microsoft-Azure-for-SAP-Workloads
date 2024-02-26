@@ -289,12 +289,12 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 ### Task 3: Provision Azure Bastion
 
 > **Note**:
-> Azure Bastion allows for connection to the Azure virtual machines without public endpoints which you deployed in the previous task of this exercise, while providing protection against brute force exploits that target operating system level credentials.<br><br>
-> Ensure that your browser has the pop-up functionality enabled.
+> > **Note**: Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.<br><br>
+> To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
 
 1. In the browser window displaying the Azure portal, open another tab and navigate to the [Azure portal](https://portal.azure.com).
 
-1. Open the **Cloud Shell** pane by selecting on the toolbar icon directly to the right of the search textbox. <TODO image?>
+1. Open the **Cloud Shell** pane by selecting the toolbar icon directly to the right of the search textbox. <TODO image?>
 
 1. From the PowerShell session in the Cloud Shell pane, run the following to add a subnet named **AzureBastionSubnet** to the virtual network named **az12001a-RG-vnet** you created earlier in this exercise:
 

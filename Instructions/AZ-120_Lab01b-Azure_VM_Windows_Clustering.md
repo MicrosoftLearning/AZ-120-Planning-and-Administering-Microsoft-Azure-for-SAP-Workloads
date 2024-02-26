@@ -4,9 +4,9 @@ lab:
     learning path: 'AZ 120 Learning Path 1: Explore the foundations of IaaS for SAP on Azure'
 ---
 
-# Lab 01 - Implement Linux clustering on Azure virtual machines
+# Lab 01: Implement Linux clustering on Azure virtual machines
 
-This lab is part of AZ-120: Planning and Administering Microsoft Azure for SAP Workloads.
+This lab is part of **AZ-120: Planning and Administering Microsoft Azure for SAP Workloads**.
 
 ## Lab introduction
 

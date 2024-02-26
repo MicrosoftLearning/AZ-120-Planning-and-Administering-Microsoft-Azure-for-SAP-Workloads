@@ -4,17 +4,17 @@ February 23 2023 - See following lists for AZ-120 and AZ-1006 labs. Labs are und
 
 Labs for AZ-120 only:
 
-- AZ-120_Lab01a-Azure_VM_Linux_Clustering.md
-- AZ-120_Lab01b-Azure_VM_Windows_Clustering.md
-- AZ-120_Lab03a-HANA_HA_Infrastructure_Deployment.md
-- AZ-120_Lab03b-SQL_HA_Infrastructure_Deployment.md
-- AZ-120_Lab05-ACSS_Deployment.md
+- AZ-120_Lab01_Implement_Linux_clustering_on_Azure_VMs.md
+- AZ-120_Lab02_Implement_SAP_architecture_on_Azure_VMs_running_Linux.md
+- AZ-120_Lab03_Automate_deployment_by_using_ACSS.md
 
 Labs for AZ-1006 only:
 
 - AZ-120_Lab06a-ACSS_One_Day.md
-- AZ-120_Lab06c-ACSS_One_Day.md
+- AZ-120_Lab05_Overview_of_deployment_with_ACSS.md
 
 Unsupported lab:
 
 - AZ-120_Lab06b-ACSS_One_Day.md
+- AZ-120_Lab01b-Azure_VM_Windows_Clustering.md?
+- AZ-120_Lab03b-SQL_HA_Infrastructure_Deployment.md

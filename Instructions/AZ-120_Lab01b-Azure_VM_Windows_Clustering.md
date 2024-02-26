@@ -14,7 +14,7 @@ After completing this lab, you will be able to:
 
 - Provision Azure compute resources necessary to support highly available SAP HANA deployments.
 
-- Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
+- Configure the operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
 
 - Provision Azure network resources necessary to support highly available SAP HANA deployments.
 
@@ -38,7 +38,11 @@ In preparation for deployment of SAP HANA on Azure, Adatum Corporation wants to 
 
 There are several interactive lab simulations that you might find useful for this topic. The simulation lets you to click through a similar scenario at your own pace. There are differences between the interactive simulation and this lab, but many of the core concepts are the same. An Azure subscription is not required.
 
-- [TODO](https://TODO). TODO.
+- [Create a simple virtual network](https://mslearn.cloudguides.com/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%204). Create a virtual network with two virtual machines. Demonstrate the virtual machines can communicate.
+- [Design and implement a virtual network in Azure](https://mslabs.cloudguides.com/guides/AZ-700%20Lab%20Simulation%20-%20Design%20and%20implement%20a%20virtual%20network%20in%20Azure). Create a resource group and create virtual networks with subnets.
+- [Create and configure and Azure load balancer](https://mslabs.cloudguides.com/guides/AZ-700%20Lab%20Simulation%20-%20Create%20and%20configure%20an%20Azure%20load%20balancer). Create a virtual network, backend servers, load balancer, and then test the load balancer.
+- [Create a virtual machine with PowerShell](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%2010). Use Azure PowerShell to deploy a virtual machine. Review Azure Advisor recommendations.
+- [Create a virtual machine with the CLI](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%2011). Use the CLI to deploy a virtual machine. Review Azure Advisor recommendations.
   
 ## Architecture diagram
 
@@ -48,16 +52,19 @@ TODO
 
 ## Job skills
 
-- Task 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments.
-- Task 2: Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
-- Task 3: Provision Azure network resources necessary to support highly available SAP HANA deployments.
-- Task 4: Remove lab resources.
+- Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments.
+
+- Exercise 2: Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
+
+- Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments.
+
+- Exercise 4: Remove lab resources.
   
-## Task 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
+## Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
 
 In this task, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure virtual machines running Linux SUSE in the same availability set and provisioning Azure Bastion.
 
-### Deploy Azure virtual machines running Linux SUSE
+### Task 1: Deploy Azure virtual machines running Linux SUSE
 
 1. From the lab computer, open a Web browser and navigate to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
@@ -219,7 +226,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
-### Create and configure Azure virtual machines disks
+### Task 2: Create and configure Azure virtual machines disks
 
 1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
 
@@ -279,7 +286,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. Save your changes.
 
-### Provision Azure Bastion
+### Task 3: Provision Azure Bastion
 
 > **Note**:
 > Azure Bastion allows for connection to the Azure virtual machines without public endpoints which you deployed in the previous task of this exercise, while providing protection against brute force exploits that target operating system level credentials.<br><br>
@@ -325,15 +332,15 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
    > **Note**: Wait for the deployment to complete before you proceed to the next task of this exercise. The deployment might take about 5 minutes.
 
-### Task 1 result
+### Exercise 1 result
 
 After you complete this task, you have provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
 
-## Task 2: Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation
+## Exercise 2: Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation
 
 In this task, you will configure operating system and storage on Azure virtual machines running SUSE Linux Enterprise Server to accommodate clustered installations of SAP HANA.
 
-### Connect to Azure Linux virtual machines
+### Task 1: Connect to Azure Linux virtual machines
 
 1. From your lab computer, in the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**.
 
@@ -347,7 +354,7 @@ In this task, you will configure operating system and storage on Azure virtual m
 
 1. Repeat these steps to connect via Bastion to the **az12001a-vm1** Azure virtual machine.
 
-### Configure storage of Azure virtual machines running Linux
+### Task 2: Configure storage of Azure virtual machines running Linux
 
 1. Within the Bastion session to the **az12001a-vm0** Azure virtual machine, run the following command to elevate privileges:
 
@@ -473,7 +480,7 @@ In this task, you will configure operating system and storage on Azure virtual m
 
 1. Switch to the Bastion session to az12001a-vm1 and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
 
-### Enable cross-node password-less SSH access
+### Task 3: Enable cross-node password-less SSH access
 
 1. Within the Bastion session to the **az12001a-vm0** Azure virtual machine, generate passphrase-less SSH key by running:
 
@@ -638,15 +645,15 @@ In this task, you will configure operating system and storage on Azure virtual m
    exit
    ```
 
-### Task 2 result
+### Exercise 2 result
 
 After you complete this task, you have configured an operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
 
-## Task 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
+## Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
 
 In this task, you will implement Azure Load Balancers to accommodate clustered installations of SAP HANA.
 
-### Configure Azure virtual machines to facilitate load balancing setup
+### Task 1: Configure Azure virtual machines to facilitate load balancing setup
 
 <TODO images for these steps? Could use some rewrite but need to see the UI to write it>
 
@@ -658,7 +665,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 1. Set the private IP address assignment to **Static** and save the change.
 
-### Create and configure Azure Load Balancers handling inbound traffic
+### Task 2: Create and configure Azure Load Balancers handling inbound traffic
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Load balancers** blade.
 
@@ -733,7 +740,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **TCP reset** | **Disabled** |
    | **Floating IP (direct server return)** | **Enabled** |
 
-### Create and configure Azure Load Balancers handling outbound traffic
+### Task 2: Create and configure Azure Load Balancers handling outbound traffic
 
 1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
 
@@ -789,15 +796,15 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **Virtual machine** | **az12001a-vm0**  IP Configuration: **ipconfig1 (192.168.0.4)** |
    | **Virtual machine** | **az12001a-vm1**  IP Configuration: **ipconfig1 (192.168.0.5)** |
 
-### Task 3 result
+### Exercise 3 result
 
 After you complete this task, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments.
 
-## Task 4: Remove lab resources
+## Exercise 4: Remove lab resources
 
 In this task, you will remove resources provisioned in this lab.
 
-### List resource groups to be deleted
+### Task 1: List resource groups to be deleted
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the **Cloud Shell** icon to open Cloud Shell pane, and choose Bash as the shell.
 
@@ -815,7 +822,7 @@ In this task, you will remove resources provisioned in this lab.
 
 1. Verify that the output contains only the resource group you created in this lab. This resource group with all of their resources will be deleted in the next task.
 
-### Delete resource groups
+### Task 2: Delete resource groups
 
 1. In the Cloud Shell pane, run the following command to delete the resource group and their resources.
 
@@ -825,7 +832,7 @@ In this task, you will remove resources provisioned in this lab.
 
 1. Close the Cloud Shell pane.
 
-### Task 4 result
+### Exercise 4 result
 
 After you complete this task, you have removed the resources used in this lab.
 
@@ -835,7 +842,7 @@ Congratulations! Now that you have completed this lab, you know how to:
 
 - Provision Azure compute resources necessary to support highly available SAP HANA deployments.
 
-- Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
+- Configure the operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
 
 - Provision Azure network resources necessary to support highly available SAP HANA deployments.
 

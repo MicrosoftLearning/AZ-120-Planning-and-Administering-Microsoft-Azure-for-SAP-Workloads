@@ -260,9 +260,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 #### Task 3: Provision Azure Bastion 
 
-> **Note**: Azure Bastion allows for connection to the Azure VMs without public endpoints which you deployed in the previous task of this exercise, while providing protection against brute force exploits that target operating system level credentials.
+> **Note**: Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.
 
-> **Note**: Ensure that your browser has the pop-up functionality enabled.
+> **Note**: To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
 
 1. In the browser window displaying the Azure portal, open another tab and, in the browser tab, navigate to the [**Azure portal**](https://portal.azure.com).
 1. In the Azure portal, open **Cloud Shell** pane by selecting on the toolbar icon directly to the right of the search textbox.
@@ -312,7 +312,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. From your lab computer, in the Azure portal, search for and select **Virtual machines** and, from the **Virtual machines** blade, select the **az12001a-vm0** entry. This will open the **az12001a-vm0** blade.
 
-1. On the **az12001a-vm0** blade, select **Connect**, in the drop-down menu, select **Connect via Bastion**, on the **Bastion** tab of the **az12001a-vm0**, leave the **Authentication type** set to **VM Password**, provide the credentials you set when deploying the **az12001a-vm0** virtual machine, leave the checkbox **Open in new browser tab** enabled, and select **Connect**:
+1. On the **az12001a-vm0** blade, select **Connect**, in the drop-down menu, select **Connect via Bastion**, on the **Bastion** tab of the **az12001a-vm0**, leave the **Authentication type** set to **VM Password**, provide the credentials you set when deploying the **az12001a-vm0** virtual machine, leave the checkbox **Open in new browser tab** enabled, and select **Connect**.
 
 1. Repeat the two previous steps to connect via Bastion to the **az12001a-vm1** Azure VM.
 

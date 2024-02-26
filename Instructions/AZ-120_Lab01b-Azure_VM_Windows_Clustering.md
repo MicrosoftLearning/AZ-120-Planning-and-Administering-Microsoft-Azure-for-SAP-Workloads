@@ -6,6 +6,8 @@ lab:
 
 # Lab 01 - Implement Linux clustering on Azure virtual machines
 
+This lab is part of AZ-120: Planning and Administering Microsoft Azure for SAP Workloads.
+
 ## Lab introduction
 
 After completing this lab, you will be able to:

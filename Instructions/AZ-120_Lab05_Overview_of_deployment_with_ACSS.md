@@ -10,11 +10,13 @@ This lab is part of **AZ-1006: Migrate and Modernize SAP in the Microsoft Cloud*
 
 ## Lab introduction
 
+Azure Center for SAP Solutions (ACSS) offers a range of services and tools to help you deploy and manage your SAP environment effectively.
+
 After completing this lab, you'll be able to:
 
 - Deploy the infrastructure hosting SAP workloads in Azure by using Azure Center for SAP solutions.
 
-All tasks in this lab are performed from the [Azure portal](https://portal.azure.com) (including the Bash Cloud Shell session)  
+All tasks in this lab are performed from the [Azure portal](https://portal.azure.com) (including the Bash Cloud Shell session).
 
 ## Estimated time: 60 minutes
 

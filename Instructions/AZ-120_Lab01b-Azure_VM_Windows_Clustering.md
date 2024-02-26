@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Lab 01: Implement Linux clustering on Azure virtual machines'
-    learning path: 'AZ 120 Learning Path 1: Explore the foundations of IaaS for SAP on Azure'
+    learning path: 'AZ-120 Learning Path 1: Explore the foundations of IaaS for SAP on Azure'
 ---
 
 # Lab 01: Implement Linux clustering on Azure virtual machines

@@ -18,7 +18,7 @@ After completing this lab, you will be able to:
 
 - Deploy the infrastructure that will host SAP workloads in Azure by using Azure Center for SAP solutions.
 
-This lab requires TODO.
+All tasks in this lab are performed from the [Azure portal](https://portal.azure.com) (including the Bash Cloud Shell session)  
 
 ## Estimated time: 100 minutes
 

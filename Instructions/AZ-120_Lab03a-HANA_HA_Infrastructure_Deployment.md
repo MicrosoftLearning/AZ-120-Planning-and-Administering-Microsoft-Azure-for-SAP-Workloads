@@ -1,10 +1,10 @@
 ---
 lab:
-    title: 'Lab 03: Implement SAP architecture on Azure virtual machines running Linux'
+    title: 'Lab 02: Implement SAP architecture on Azure virtual machines running Linux'
     learning path: 'AZ-120 Learning Path 4: Deploy SAP on Azure'
 ---
 
-# Lab 03: Implement SAP architecture on Azure virtual machines running Linux
+# Lab 02: Implement SAP architecture on Azure virtual machines running Linux
 
 This lab is part of **AZ-120: Planning and Administering Microsoft Azure for SAP Workloads**.
 

@@ -1,10 +1,12 @@
 ---
 lab:
-    title: 'Lab 01: Implement Linux clustering on Azure VMs
-    module: 'Implement Linux clustering on Azure VMs'
+    title: 'Lab 01: Implement Linux clustering on Azure virtual machines'
+    learning path: 'AZ-120 Learning Path 1: Explore the foundations of IaaS for SAP on Azure'
 ---
 
-# Lab 01 - Implement Linux clustering on Azure VMs
+# Lab 01: Implement Linux clustering on Azure virtual machines
+
+This lab is part of **AZ-120: Planning and Administering Microsoft Azure for SAP Workloads**.
 
 ## Lab introduction
 
@@ -12,7 +14,7 @@ After completing this lab, you will be able to:
 
 - Provision Azure compute resources necessary to support highly available SAP HANA deployments.
 
-- Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation.
+- Configure the operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
 
 - Provision Azure network resources necessary to support highly available SAP HANA deployments.
 
@@ -30,13 +32,17 @@ All tasks in this lab are performed from the [Azure portal](https://portal.azure
 
 ## Lab scenario
 
-In preparation for deployment of SAP HANA on Azure, Adatum Corporation wants to explore the process of implementing clustering on Azure VMs running the SUSE distribution of Linux.
+In preparation for deployment of SAP HANA on Azure, Adatum Corporation wants to explore the process of implementing clustering on Azure virtual machines running the SUSE distribution of Linux.
 
 ## Interactive lab simulations
 
 There are several interactive lab simulations that you might find useful for this topic. The simulation lets you to click through a similar scenario at your own pace. There are differences between the interactive simulation and this lab, but many of the core concepts are the same. An Azure subscription is not required.
 
-- [TODO](https://TODO). TODO.
+- [Create a simple virtual network](https://mslearn.cloudguides.com/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%204). Create a virtual network with two virtual machines. Demonstrate the virtual machines can communicate.
+- [Design and implement a virtual network in Azure](https://mslabs.cloudguides.com/guides/AZ-700%20Lab%20Simulation%20-%20Design%20and%20implement%20a%20virtual%20network%20in%20Azure). Create a resource group and create virtual networks with subnets.
+- [Create and configure and Azure load balancer](https://mslabs.cloudguides.com/guides/AZ-700%20Lab%20Simulation%20-%20Create%20and%20configure%20an%20Azure%20load%20balancer). Create a virtual network, backend servers, load balancer, and then test the load balancer.
+- [Create a virtual machine with PowerShell](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%2010). Use Azure PowerShell to deploy a virtual machine. Review Azure Advisor recommendations.
+- [Create a virtual machine with the CLI](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%2011). Use the CLI to deploy a virtual machine. Review Azure Advisor recommendations.
   
 ## Architecture diagram
 
@@ -46,16 +52,19 @@ TODO
 
 ## Job skills
 
-- Task 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments.
-- Task 2: Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation.
-- Task 3: Provision Azure network resources necessary to support highly available SAP HANA deployments.
-- Task 4: Remove lab resources.
+- Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments.
+
+- Exercise 2: Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
+
+- Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments.
+
+- Exercise 4: Remove lab resources.
   
-## Task 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
+## Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
 
-In this task, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure VMs running Linux SUSE in the same availability set and provisioning Azure Bastion.
+In this task, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure virtual machines running Linux SUSE in the same availability set and provisioning Azure Bastion.
 
-### Deploy Azure VMs running Linux SUSE
+### Task 1: Deploy Azure virtual machines running Linux SUSE
 
 1. From the lab computer, open a Web browser and navigate to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
@@ -217,7 +226,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
-### Create and configure Azure VMs disks
+### Task 2: Create and configure Azure virtual machines disks
 
 1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
 
@@ -229,7 +238,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
    RESOURCE_GROUP_NAME='az12001a-RG'
    ```
 
-1. In the Cloud Shell pane, run the following command to create the first set of 8 managed disks that you will attach to the first Azure VM you deployed in the previous task:
+1. In the Cloud Shell pane, run the following command to create the first set of 8 managed disks that you will attach to the first Azure virtual machine you deployed in the previous task:
 
    ```cli
    LOCATION=$(az group list --query "[?name == '$RESOURCE_GROUP_NAME'].location" --output tsv)
@@ -237,13 +246,13 @@ In this task, you will deploy Azure infrastructure compute components necessary 
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm0-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
    ```
 
-1. In the Cloud Shell pane, run the following command to create the second set of 8 managed disks that you will attach to the second Azure VM you deployed in the previous task:
+1. In the Cloud Shell pane, run the following command to create the second set of 8 managed disks that you will attach to the second Azure virtual machine you deployed in the previous task:
 
    ```cli
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm1-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
    ```
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the first Azure VM you provisioned in the previous task (**az12001a-vm0**).
+1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the first Azure virtual machine you provisioned in the previous task (**az12001a-vm0**).
 
 1. From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 \| Disks** blade.
 
@@ -260,7 +269,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. Save your changes.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the second Azure VM you provisioned in the previous task (**az12001a-vm1**).
+1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the second Azure virtual machine you provisioned in the previous task (**az12001a-vm1**).
 
 1. From the **az12001a-vm1** blade, navigate to the **az12001a-vm1 \| Disks** blade.
 
@@ -277,15 +286,15 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. Save your changes.
 
-### Provision Azure Bastion
+### Task 3: Provision Azure Bastion
 
 > **Note**:
-> Azure Bastion allows for connection to the Azure VMs without public endpoints which you deployed in the previous task of this exercise, while providing protection against brute force exploits that target operating system level credentials.<br><br>
-> Ensure that your browser has the pop-up functionality enabled.
+> > **Note**: Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.<br><br>
+> To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
 
 1. In the browser window displaying the Azure portal, open another tab and navigate to the [Azure portal](https://portal.azure.com).
 
-1. Open the **Cloud Shell** pane by selecting on the toolbar icon directly to the right of the search textbox. <TODO image?>
+1. Open the **Cloud Shell** pane by selecting the toolbar icon directly to the right of the search textbox. <TODO image?>
 
 1. From the PowerShell session in the Cloud Shell pane, run the following to add a subnet named **AzureBastionSubnet** to the virtual network named **az12001a-RG-vnet** you created earlier in this exercise:
 
@@ -323,15 +332,15 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
    > **Note**: Wait for the deployment to complete before you proceed to the next task of this exercise. The deployment might take about 5 minutes.
 
-### Task 1 result
+### Exercise 1 result
 
-After you complete this task, you have provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
+After you complete this exercise, you have provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
 
-## Task 2: Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation
+## Exercise 2: Configure operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation
 
-In this task, you will configure operating system and storage on Azure VMs running SUSE Linux Enterprise Server to accommodate clustered installations of SAP HANA.
+In this task, you will configure operating system and storage on Azure virtual machines running SUSE Linux Enterprise Server to accommodate clustered installations of SAP HANA.
 
-### Connect to Azure Linux VMs
+### Task 1: Connect to Azure Linux virtual machines
 
 1. From your lab computer, in the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**.
 
@@ -343,11 +352,11 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Leave the **Authentication type** set to **VM Password**, leave the checkbox **Open in new browser tab** enabled, and then select **Connect**.
 
-1. Repeat these steps to connect via Bastion to the **az12001a-vm1** Azure VM.
+1. Repeat these steps to connect via Bastion to the **az12001a-vm1** Azure virtual machine.
 
-### Configure storage of Azure VMs running Linux
+### Task 2: Configure storage of Azure virtual machines running Linux
 
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, run the following command to elevate privileges:
+1. Within the Bastion session to the **az12001a-vm0** Azure virtual machine, run the following command to elevate privileges:
 
    ```cli
    sudo su -
@@ -471,9 +480,9 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Switch to the Bastion session to az12001a-vm1 and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
 
-### Enable cross-node password-less SSH access
+### Task 3: Enable cross-node password-less SSH access
 
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, generate passphrase-less SSH key by running:
+1. Within the Bastion session to the **az12001a-vm0** Azure virtual machine, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -tdsa
@@ -487,7 +496,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Copy the value of the key into Clipboard.
 
-1. Switch to the Bastion session to the **az12001a-vm1** Azure VM and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Bastion session to the **az12001a-vm1** Azure virtual machine and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
@@ -497,7 +506,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm1** Azure VM, generate passphrase-less SSH key by running:
+1. Within the Bastion session to the **az12001a-vm1** Azure virtual machine, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -tdsa
@@ -511,7 +520,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Copy the value of the key into Clipboard.
 
-1. Switch to the Bastion session to the **az12001a-vm0** Azure VM and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Bastion session to the **az12001a-vm0** Azure virtual machine and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
@@ -521,7 +530,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, generate passphrase-less SSH key by running:
+1. Within the Bastion session to the **az12001a-vm0** Azure virtual machine, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -t rsa
@@ -535,7 +544,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Copy the value of the key into Clipboard.
 
-1. Switch to the Bastion session to the **az12001a-vm1** Azure VM, and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Bastion session to the **az12001a-vm1** Azure virtual machine, and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
@@ -545,7 +554,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm1** Azure VM, generate passphrase-less SSH key by running:
+1. Within the Bastion session to the **az12001a-vm1** Azure virtual machine, generate passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -t rsa
@@ -559,7 +568,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Copy the value of the key into Clipboard.
 
-1. Switch to the Bastion session to the **az12001a-vm0** Azure VM and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Bastion session to the **az12001a-vm0** Azure virtual machine and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
@@ -569,7 +578,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, open the file **/etc/ssh/sshd\_config** in the vi editor (you are free to use any other editor) by running:
+1. Within the Bastion session to the **az12001a-vm0** Azure virtual machine, open the file **/etc/ssh/sshd\_config** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /etc/ssh/sshd_config
@@ -584,7 +593,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, restart sshd daemon by running:
+1. Within the Bastion session to the **az12001a-vm0** Azure virtual machine, restart sshd daemon by running:
 
    ```cli
    systemctl restart sshd
@@ -592,7 +601,7 @@ In this task, you will configure operating system and storage on Azure VMs runni
 
 1. Repeat the previous four steps on **az12001a-vm1**.
 
-1. To verify that the configuration was successful, in the Bastion session to the **az12001a-vm0** Azure VM,  establish an SSH session as **root** from az12001a-vm0 to az12001a-vm1 by running:
+1. To verify that the configuration was successful, in the Bastion session to the **az12001a-vm0** Azure virtual machine, establish an SSH session as **root** from az12001a-vm0 to az12001a-vm1 by running:
 
    ```cli
    ssh root@az12001a-vm1
@@ -636,19 +645,19 @@ In this task, you will configure operating system and storage on Azure VMs runni
    exit
    ```
 
-### Task 2 result
+### Exercise 2 result
 
-After you complete this task, you have configured an operating system of Azure VMs running Linux to support a highly available SAP HANA installation.
+After you complete this exercise, you have configured an operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
 
-## Task 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
+## Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
 
 In this task, you will implement Azure Load Balancers to accommodate clustered installations of SAP HANA.
 
-### Configure Azure VMs to facilitate load balancing setup
+### Task 1: Configure Azure virtual machines to facilitate load balancing setup
 
 <TODO images for these steps? Could use some rewrite but need to see the UI to write it>
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **az12001a-vm0** Azure VM.
+1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **az12001a-vm0** Azure virtual machine.
 
 1. Navigate to the **az12001a-vm0 \| Networking** blade, and the select the entry representing the network interface of **az12001a-vm0**.
 
@@ -656,7 +665,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 1. Set the private IP address assignment to **Static** and save the change.
 
-### Create and configure Azure Load Balancers handling inbound traffic
+### Task 2: Create and configure Azure Load Balancers handling inbound traffic
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Load balancers** blade.
 
@@ -669,7 +678,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **Subscription** | *the name of your Azure subscription* |
    | **Resource group** | *select the name of the resource group you used earlier in this lab* |
    | **Name** | **az12001a-lb0** |
-   | **Region** | *the same Azure region where you deployed Azure VMs in the first exercise of this lab* |
+   | **Region** | *the same Azure region where you deployed Azure virtual machines in the first exercise of this lab* |
    | **SKU** | **Standard** |
    | **Type** | **Internal** |
 
@@ -731,7 +740,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **TCP reset** | **Disabled** |
    | **Floating IP (direct server return)** | **Enabled** |
 
-### Create and configure Azure Load Balancers handling outbound traffic
+### Task 2: Create and configure Azure Load Balancers handling outbound traffic
 
 1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
 
@@ -787,15 +796,15 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **Virtual machine** | **az12001a-vm0**  IP Configuration: **ipconfig1 (192.168.0.4)** |
    | **Virtual machine** | **az12001a-vm1**  IP Configuration: **ipconfig1 (192.168.0.5)** |
 
-### Task 3 result
+### Exercise 3 result
 
-After you complete this task, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments.
+After you complete this exercise, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments.
 
-## Task 4: Remove lab resources
+## Exercise 4: Remove lab resources
 
 In this task, you will remove resources provisioned in this lab.
 
-### List resource groups to be deleted
+### Task 1: List resource groups to be deleted
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the **Cloud Shell** icon to open Cloud Shell pane, and choose Bash as the shell.
 
@@ -813,7 +822,7 @@ In this task, you will remove resources provisioned in this lab.
 
 1. Verify that the output contains only the resource group you created in this lab. This resource group with all of their resources will be deleted in the next task.
 
-### Delete resource groups
+### Task 2: Delete resource groups
 
 1. In the Cloud Shell pane, run the following command to delete the resource group and their resources.
 
@@ -823,9 +832,9 @@ In this task, you will remove resources provisioned in this lab.
 
 1. Close the Cloud Shell pane.
 
-### Task 4 result
+### Exercise 4 result
 
-After you complete this task, you have removed the resources used in this lab.
+After you complete this exercise, you have removed the resources used in this lab.
 
 ## Key takeaways
 
@@ -833,7 +842,7 @@ Congratulations! Now that you have completed this lab, you know how to:
 
 - Provision Azure compute resources necessary to support highly available SAP HANA deployments.
 
-- Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation.
+- Configure the operating system of Azure virtual machines running Linux to support a highly available SAP HANA installation.
 
 - Provision Azure network resources necessary to support highly available SAP HANA deployments.
 

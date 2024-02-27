@@ -10,7 +10,7 @@ Labs for AZ-120 only:
 
 Labs for AZ-1006 only:
 
-- AZ-120_Lab06a-ACSS_One_Day.md
+- AZ-120_Lab04_Overview_of_prerequisites_for_deployment_of_SAP_workloads_with_ACSS.md
 - AZ-120_Lab05_Overview_of_deployment_with_ACSS.md
 
 Unsupported lab:

@@ -68,7 +68,7 @@ In this exercise, you will implement prerequisites for deploying SAP workloads i
 
 ### Task 1: Address the vCPU requirements in the target Azure subscription
 
-You do not need to complete this task if you have already implemented all of [the AZ-120 lab prerequisites](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Instructions/AZ-120_Lab00_Prerequisites.md).
+You do not need to complete this task if you have already implemented all of [the AZ-120 lab prerequisites](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Instructions/AZ-120_Lab00_Prerequisites.md).<TODO - is this task necessary? If the prerequisites are provided, we should be able to assume they are being met, right?>
 
 To complete this lab (as described), you will need a Microsoft Azure subscription with the vCPU quotas that accommodate deployment of the following virtual machines:
 

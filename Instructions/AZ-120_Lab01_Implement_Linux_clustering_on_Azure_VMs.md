@@ -113,8 +113,8 @@ In this task, you will deploy Azure infrastructure compute components necessary 
     | **Password** | any complex password of your choice |
 
     > **Note**:
-    > Make sure you remember the password you specified during deployment. You will need it later in this lab.<br><br>
-    > To locate the image, select the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS**, and then select **Generation 2**.
+    >- Make sure you remember the password you specified during deployment. You will need it later in this lab.
+    >- To locate the image, select the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS**, and then select **Generation 2**.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values): <TODO image for this step?>
 

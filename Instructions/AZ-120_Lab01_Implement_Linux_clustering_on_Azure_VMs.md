@@ -288,9 +288,9 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 ### Task 3: Provision Azure Bastion
 
-> **Note**:
-> > **Note**: Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.<br><br>
-> To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
+Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.
+
+> **Note**: To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
 
 1. In the browser window displaying the Azure portal, open another tab and navigate to the [Azure portal](https://portal.azure.com).
 

@@ -1,10 +1,10 @@
 ---
 lab:
-    title: 'Lab 02: Implement SAP architecture on Azure virtual machines running Linux'
+    title: 'Lab 02: Implement SAP architecture on Azure Virtual Machines running Linux'
     learning path: 'AZ-120 Learning Path 4: Deploy SAP on Azure'
 ---
 
-# Lab 02: Implement SAP architecture on Azure virtual machines running Linux
+# Lab 02: Implement SAP architecture on Azure Virtual Machines running Linux
 
 This lab is part of **AZ-120: Planning and Administering Microsoft Azure for SAP Workloads**.
 
@@ -14,9 +14,9 @@ After completing this lab, you will be able to:
 
 - Provision Azure resources necessary to support a highly available SAP NetWeaver deployment.
 
-- Configure operating system of Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment.
+- Configure the operating system of Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
 
-- Configure clustering on Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment.
+- Configure clustering on Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
 
 This lab requires:
 
@@ -32,7 +32,7 @@ All tasks in this lab are performed from the [Azure portal](https://portal.azure
 
 ## Lab scenario
 
-In preparation for deployment of SAP NetWeaver on Azure, Adatum Corporation wants to implement a demo that will illustrate highly available implementation of SAP NetWeaver on Azure virtual machines running the SUSE distribution of Linux.
+In preparation for deployment of SAP NetWeaver on Azure, Adatum Corporation wants to implement a demo that will illustrate highly available implementation of SAP NetWeaver on Azure Virtual Machines running the SUSE distribution of Linux.
 
 ## Interactive lab simulations
 
@@ -42,22 +42,25 @@ There are several interactive lab simulations that you might find useful for thi
   
 ## Architecture diagram
 
-![TODO](../media/az120-lab03-architecture.png)
+![TODO](../media/az120-lab02-architecture.png)
 
 TODO
 
 ## Job skills
 
 - Exercise 1: Provision Azure resources necessary to support highly available SAP NetWeaver deployments.
-- Exercise 2: Configure Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment.
-- Exercise 3: Configure clustering on Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment.
+
+- Exercise 2: Configure Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
+
+- Exercise 3: Configure clustering on Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
+
 - Exercise 4: Remove lab resources.
   
 ## Exercise XX: TODO
 
 ## Exercise 1: Provision Azure resources necessary to support highly available SAP NetWeaver deployments
 
-In this exercise, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure virtual machines running Linux SUSE in the same availability set.
+In this exercise, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure Virtual Machines running Linux SUSE in the same availability set.
 
 ### Task 1: Create a virtual network that will host a highly available SAP NetWeaver deployment
 
@@ -112,9 +115,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     SUBNET_ID=$(az network vnet subnet list --resource-group $RESOURCE_GROUP_NAME --vnet-name $VNET_NAME --query "[?name == '$SUBNET_NAME'].id" --output tsv)
     ```
 
-### Task 2: Deploy a Bicep template that provisions Azure virtual machines running Linux SUSE which will host a highly available SAP NetWeaver deployment
+### Task 2: Deploy a Bicep template that provisions Azure Virtual Machines running Linux SUSE which will host a highly available SAP NetWeaver deployment
 
-1. On the lab computer, in the Cloud Shell pane, run the following commands. This will create a shallow clone of the repository hosting the Bicep template, that you will use for deployment of a pair of Azure virtual machines that will host a highly available installation of SAP HANA. It will also set the current directory to the location of that template and its parameter file:
+1. On the lab computer, in the Cloud Shell pane, run the following commands. This will create a shallow clone of the repository hosting the Bicep template, that you will use for deployment of a pair of Azure Virtual Machines that will host a highly available installation of SAP HANA. It will also set the current directory to the location of that template and its parameter file:
 
     ```cli
     cd $HOME
@@ -157,20 +160,20 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 3: Deploy a jump host
 
-Because the Azure virtual machines that you deployed in the previous task are not accessible from the Internet, you will deploy an Azure virtual machine running Windows Server 2019 Datacenter that will serve as a jump host.
+Because the Azure Virtual Machines that you deployed in the previous task are not accessible from the Internet, you will deploy an Azure Virtual Machine running Windows Server 2019 Datacenter that will serve as a jump host.
 
 1. From the lab computer, in the [Azure portal](https://portal.azure.com), select **+ Create a resource**.
 
-1. From the **New** blade, initiate creation of a new Azure virtual machine based on the **Windows Server 2019 Datacenter** image. <TODO does this need a more granular step?>
+1. From the **New** blade, initiate creation of a new Azure Virtual Machine based on the **Windows Server 2019 Datacenter** image. <TODO does this need a more granular step?>
 
-1. Provision a Azure virtual machine with the following settings (leave all others with their default values): <TODO image?>
+1. Provision a Azure Virtual Machine with the following settings (leave all others with their default values): <TODO image?>
 
     | Setting | Value |
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
     | **Resource group** | *the name of a new resource group* **az12003a-dmz-RG** |
     | **Virtual machine name** | **az12003a-vm0** |
-    | **Region** | *the same Azure region where you deployed Azure virtual machines in the previous tasks of this exercise* |
+    | **Region** | *the same Azure region where you deployed Azure Virtual Machines in the previous tasks of this exercise* |
     | **Availability options** | **No infrastructure redundancy required** |
     | **Image** | *select* **Windows Server 2019 Datacenter - Gen2** |
     | **Size** | **Standard D2s_v3** or similar |
@@ -206,15 +209,15 @@ Because the Azure virtual machines that you deployed in the previous task are no
 
 After you complete this exercise, you have provisioned Azure resources necessary to support highly available SAP NetWeaver deployments.
 
-## Exercise 2: Configure Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment
+## Exercise 2: Configure Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment
 
-In this exercise, you will configure Azure virtual machines running SUSE Linux Enterprise Server to accommodate a highly available SAP NetWeaver deployment.
+In this exercise, you will configure Azure Virtual Machines running SUSE Linux Enterprise Server to accommodate a highly available SAP NetWeaver deployment.
 
-### Task 1: Configure networking of the database tier Azure virtual machines
+### Task 1: Configure networking of the database tier Azure Virtual Machines
 
 Before you start this task, make sure that the template deployments you initiated in the previous exercise have completed successfully. <TODO images?>
 
-1. From the lab computer, in the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-0** Azure virtual machine.
+1. From the lab computer, in the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-0** Azure Virtual Machine.
 
 1. From the **i20-db-0** blade, navigate to its **Networking** blade.
 
@@ -224,7 +227,7 @@ Before you start this task, make sure that the template deployments you initiate
 
 1. On the **ipconfig1** blade, set the private IP address to **10.3.0.20**, change its assignment to **Static**, and save the change.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-1** Azure virtual machine.
+1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-1** Azure Virtual Machine.
 
 1. From the **i20-db-1** blade, navigate to its **Networking** blade.
 
@@ -234,27 +237,27 @@ Before you start this task, make sure that the template deployments you initiate
 
 1. On the **ipconfig1** blade, set the private IP address to **10.3.0.21**, change its assignment to **Static**, and save the change.
 
-### Task 2: Connect to the database tier Azure virtual machines
+### Task 2: Connect to the database tier Azure Virtual Machines
 
 1. From the lab computer, in the [Azure portal](https://portal.azure.com), navigate to the **az12003a-vm0** blade.
 
-1. From the **az12003a-vm0** blade, connect to the Azure virtual machine az12003a-vm0 via Remote Desktop. When prompted to authenticate, enter the username and the password you set during the deployment of this virtual machine. <TODO more granular steps?>
+1. From the **az12003a-vm0** blade, connect to the Azure Virtual Machine az12003a-vm0 via Remote Desktop. When prompted to authenticate, enter the username and the password you set during the deployment of this virtual machine. <TODO more granular steps?>
 
 1. Within the RDP session to az12003a-vm0, in Server Manager, navigate to the **Local Server** view, and turn off **IE Enhanced Security Configuration**.
 
 1. Within the RDP session to az12003a-vm0, download and install PuTTY from [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
-1. Use PuTTY to connect via SSH to **i20-db-0** Azure virtual machine. Acknowledge the security alert and, when prompted, provide the following credentials:
+1. Use PuTTY to connect via SSH to **i20-db-0** Azure Virtual Machine. Acknowledge the security alert and, when prompted, provide the following credentials:
 
     - Login as: **student**
 
     - Password: **Pa55w.rd1234**
 
-1. Use PuTTY to connect via SSH to **i20-db-1** Azure virtual machine with the same credentials.
+1. Use PuTTY to connect via SSH to **i20-db-1** Azure Virtual Machine with the same credentials.
 
-### Task 3: Examine the storage configuration of the database tier Azure virtual machines
+### Task 3: Examine the storage configuration of the database tier Azure Virtual Machines
 
-1. From within the PuTTY SSH session to i20-db-0 Azure virtual machine, run the following command to elevate privileges:
+1. From within the PuTTY SSH session to i20-db-0 Azure Virtual Machine, run the following command to elevate privileges:
 
     ```
     sudo su -
@@ -268,7 +271,7 @@ Before you start this task, make sure that the template deployments you initiate
     df -h
     ```
 
-1. Repeat the previous steps on the i20-db-1 Azure virtual machine.
+1. Repeat the previous steps on the i20-db-1 Azure Virtual Machine.
 
 ### Task 4: Enable cross-node password-less SSH access
 
@@ -417,11 +420,11 @@ Before you start this task, make sure that the template deployments you initiate
 
 ### Exercise 2 result
 
-After you complete this exercise, you have configured operating system of Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment.
+After you complete this exercise, you have configured operating system of Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
 
-## Exercise 3: Configure clustering on Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment
+## Exercise 3: Configure clustering on Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment
 
-In this exercise, you will configure clustering on Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment.
+In this exercise, you will configure clustering on Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
 
 ### Task 1: Configure clustering
 
@@ -542,9 +545,9 @@ In this exercise, you will configure clustering on Azure virtual machines runnin
 
 1. Copy the resulting **Value** to Notepad (this entry is displayed only once, after you select **Add**). This will be referred to as **password** later in this exercise.
 
-### Task 5: Grant permissions to Azure virtual machines to the service principal of the STONITH app
+### Task 5: Grant permissions to Azure Virtual Machines to the service principal of the STONITH app
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-0** Azure virtual machine
+1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-0** Azure Virtual Machine
 
 1. From the  **i20-db-0** blade, display the **i20-db-0 - Access control (IAM)** blade.
 
@@ -556,7 +559,7 @@ In this exercise, you will configure clustering on Azure virtual machines runnin
 
     - Select: **Stonith app**
 
-1. Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure virtual machine.
+1. Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure Virtual Machine.
 
 ### Task 6: Configure the STONITH cluster device
 
@@ -577,7 +580,7 @@ In this exercise, you will configure clustering on Azure virtual machines runnin
     sudo crm configure property stonith-timeout=900
     ```
 
-### Task 7: Review clustering configuration on Azure virtual machines running Linux by using Hawk
+### Task 7: Review clustering configuration on Azure Virtual Machines running Linux by using Hawk
 
 1. Within the RDP session to az12003a-vm0, start Internet Explorer and navigate to [https://i20-db-0:7630](https://i20-db-0:7630). This should display the SUSE Hawk sign-in page.
 
@@ -593,7 +596,7 @@ In this exercise, you will configure clustering on Azure virtual machines runnin
 
 ### Exercise 3 result
 
-After you complete this exercise, you have configured clustering on Azure virtual machines running Linux to support a highly available SAP NetWeaver deployment
+After you complete this exercise, you have configured clustering on Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment
 
 ## Exercise 4: Remove lab resources
 
@@ -635,7 +638,11 @@ After you complete this exercise, you have removed the resources used in this la
 
 Congratulations! Now that you have completed this lab, you know how to:
 
-- TODO.
+- Provision Azure resources necessary to support a highly available SAP NetWeaver deployment.
+
+- Configure the operating system of Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
+
+- Configure clustering on Azure Virtual Machines running Linux to support a highly available SAP NetWeaver deployment.
 
 ## Learn more with self-paced training
 

@@ -102,7 +102,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
     Get-AzVMUsage -Location $Azure_region | Where-Object {$_.Name.Value -eq 'cores'}
     ```
 
-1. Review the output to identify the current vCPU usage and the vCPU limit. Ensure that the difference between them is sufficient to accommodate vCPUs of Azure virtual machines that you will be deployed in this lab. Take into account both virtual machine family-specific and total regional vCPU numbers.
+1. Review the output to identify the current vCPU usage and the vCPU limit. Ensure that the difference between them is sufficient to accommodate vCPUs of Azure Virtual Machines that you will be deployed in this lab. Take into account both virtual machine family-specific and total regional vCPU numbers.
 
 1. If the number of vCPUs is sufficient, skip the remaining steps in this task and continue to the next task. If the number of vCPUs is not sufficient, close the Cloud Shell pane and then, in the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Quotas**.
 
@@ -133,7 +133,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. In the **Locations** drop-down list, select the target Azure region.
 
-1. In the **Quotas** drop-down list, select the Azure virtual machine series you need to increase the quota limits for.
+1. In the **Quotas** drop-down list, select the Azure Virtual Machine series you need to increase the quota limits for.
 
 1. In the **New limit** text box, enter the new quota limit, and then select **Save and Continue**.
 
@@ -628,7 +628,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
 
 1. Wait for the deployment to complete. This might take about 25 minutes. Following the deployment, either proceed to installing SAP software by using Azure Center for SAP solutions, or delete the lab resources by following the instructions in the next task.
 
-    > **Note**: The private key required to connect to the Azure virtual machines included in the deployment will be downloaded to the computer from which you are running this lab.
+    > **Note**: The private key required to connect to the Azure Virtual Machines included in the deployment will be downloaded to the computer from which you are running this lab.
 
 ### Task 2: Delete the Azure resources provisioned in this lab
 
@@ -638,7 +638,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
 
     > **Note**: If this is the first time you are launching Cloud Shell in the Azure subscription you will be using in this lab, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1. In the [Azure portal](https://portal.azure.com), in the **Cloud Shell** pane, run the following command at the PowerShell prompt to stop and deallocate all Azure virtual machines deployed in this lab:
+1. In the [Azure portal](https://portal.azure.com), in the **Cloud Shell** pane, run the following command at the PowerShell prompt to stop and deallocate all Azure Virtual Machines deployed in this lab:
 
     ```powershell
     $resourceGroupName = 'Contoso-SAP-C1S'
@@ -648,7 +648,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
     }
     ```
 
-1. Run the following command at the PowerShell prompt to detach all data disks from all Azure virtual machines deployed in this lab:
+1. Run the following command at the PowerShell prompt to detach all data disks from all Azure Virtual Machines deployed in this lab:
 
     ```powershell
     foreach ($vm in $vms) {  
@@ -660,7 +660,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
     }
     ```
 
-1. Run the following command at the PowerShell prompt, to enable the delete option for network interfaces and disks attached to all Azure virtual machines deployed in this lab:
+1. Run the following command at the PowerShell prompt, to enable the delete option for network interfaces and disks attached to all Azure Virtual Machines deployed in this lab:
 
     ```powershell
     foreach ($vm in $vms) {
@@ -672,7 +672,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
     }
     ```
 
-1. Run the following command at the PowerShell prompt, to delete all Azure virtual machines deployed in this lab:
+1. Run the following command at the PowerShell prompt, to delete all Azure Virtual Machines deployed in this lab:
 
     ```powershell
     foreach ($vm in $vms) {

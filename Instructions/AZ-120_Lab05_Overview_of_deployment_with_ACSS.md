@@ -22,7 +22,7 @@ All tasks in this lab are performed from the [Azure portal](https://portal.azure
 
 ## Lab scenario
 
-Your organization TODO.
+You're an SAP professional responsible for managing SAP workloads in your organization, Adatum Corporation. You're looking for ways to deploy and manage your SAP environment more efficiently on a secure, scalable, and reliable cloud platform.
 
 ## Interactive lab simulations
 
@@ -44,7 +44,7 @@ TODO
 
 - Exercise 3: Explore a VIS for SAP workloads in Azure by using Azure Center for SAP solutions.
 
-- Exercise 4 (optional): Maintain SAP workloads in Azure by using Azure Center for SAP solutions
+- Exercise 4 (optional): Maintain SAP workloads in Azure by using Azure Center for SAP solutions.
 
 ## Exercise 1: Implement the minimum prerequisites for evaluating deployment of SAP workloads in Azure by using Azure Center for SAP solutions
 
@@ -58,7 +58,7 @@ Implementing the prerequisites includes the following activities:
 
 - Granting the Microsoft Entra user-assigned managed identity that is used to perform the deployment access to the Azure subscription.
 
-- Creating the Azure virtual network that hosts all of the Azure virtual machines included in the deployment.
+- Creating the Azure virtual network that hosts all of the Azure Virtual Machines included in the deployment.
 
 ### Task 1: Create a Microsoft Entra user-assigned managed identity
 
@@ -157,7 +157,7 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 ### Task 4: Create the virtual network
 
-In this task, you create the Azure virtual network that hosts all of the Azure virtual machines included in the deployment. In addition, within the virtual network, you create the following subnets:
+In this task, you create the Azure virtual network that hosts all of the Azure Virtual Machines included in the deployment. In addition, within the virtual network, you create the following subnets:
 
 - **bastion**
 
@@ -187,7 +187,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure v
    |Azure Bastion host name|**acss-infra-vnet-bastion**|
    |Azure Bastion public IP address|**(New) acss-infra-bastion**|
 
-1. On the **IP addresses** tab, specify the following settings, and then select **add**:<TODO image?>
+1. On the **IP addresses** tab, specify the following settings, and then select **Add**:<TODO image?>
 
    |Setting|Value|
    |---|---|
@@ -311,7 +311,7 @@ In this exercise, you perform deployment of Azure Center for SAP solutions. This
 1. When prompted, in the **Generate new key pair** window, select **Download private key and create resource**.
 
    > **Note**:
-   >- The private key required to connect to the Azure virtual machines included in the deployment will be downloaded to the computer from which you are running this lab.
+   >- The private key required to connect to the Azure Virtual Machines included in the deployment will be downloaded to the computer from which you are running this lab.
    >- Wait only ~3 minutes for the provisioning process to proceed partially before you proceed to the next task. The entire provisioning could take 25 minutes, but we will **not wait**.
    >- Following the deployment, you could proceed to installing SAP software by using Azure Center for SAP solutions. In this lab, you will explore the capabilities of the Azure Center for SAP solutions without installing SAP software.
 
@@ -401,7 +401,7 @@ In this exercise, you review post-deployment management and monitoring of SAP wo
 
 ### Task 1: Review prerequisites for backup of SAP workloads managed by Azure Center for SAP solutions
 
-> **Note**: When you configure Azure Backup at the VIS resource level in the Azure Center for SAP solutions, you can, in one step, enable backup for Azure virtual machines hosting the database, application servers, and SAP Central Services instance, and for the HANA DB. For the HANA DB backup, Azure Center for SAP solutions automatically runs the backup pre-registration script.
+> **Note**: When you configure Azure Backup at the VIS resource level in the Azure Center for SAP solutions, you can, in one step, enable backup for Azure Virtual Machines hosting the database, application servers, and SAP Central Services instance, and for the HANA DB. For the HANA DB backup, Azure Center for SAP solutions automatically runs the backup pre-registration script.
 
 1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Azure Center for SAP Solutions**.
 
@@ -417,7 +417,7 @@ In this exercise, you review post-deployment management and monitoring of SAP wo
 
 1. On the **Backup center \| Vaults** page, select **+ Vault**.
 
-1. On the **Start: Create Vault** page, review available vault types, ensure that **Recovery services vault** (which supports **Azure virtual machines** and **SAP HANA in Azure VM** datasource types) is selected, and then select **Continue**.
+1. On the **Start: Create Vault** page, review available vault types, ensure that **Recovery services vault** (which supports **Azure Virtual Machines** and **SAP HANA in Azure VM** datasource types) is selected, and then select **Continue**.
 
 1. On the **Basics** tab of the **Create Recovery Services vault** page, specify the following settings, and then select **Next : Redundancy**.<TODO image?>
 
@@ -444,7 +444,7 @@ In this exercise, you review post-deployment management and monitoring of SAP wo
    > **Note**:
    >- The [Backup (preview)](https://learn.microsoft.com/azure/sap/center-sap-solutions/acss-backup-integration) feature of Azure Center for SAP solutions UI will become a preferred method for completing the backup configuration after it is released to *General Availability* from *Preview*.
    >- When configuring backup at the VIS level in the Azure Center for SAP solutions interface, you will be able to leverage the existing vault and its policies.
-   >- Once backup is configured at the VIS level, you can monitor the status of backup jobs of Azure virtual machines and HANA DB from the VIS interface in the [Azure portal](https://portal.azure.com).
+   >- Once backup is configured at the VIS level, you can monitor the status of backup jobs of Azure Virtual Machines and HANA DB from the VIS interface in the [Azure portal](https://portal.azure.com).
 
 ### Task 2: Review prerequisites for disaster recovery of SAP workloads managed by Azure Center for SAP solutions
 
@@ -481,7 +481,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
    > **Note**:
    >- Do not wait for the provisioning process to complete, but instead proceed to the next step. The provisioning might take about 2 minutes.
-   >- Now you will set up the disaster recovery environment in the paired up region in which you created the Recovery Services vault. This environment will include a virtual network that will host replicas of the Azure virtual machines currently hosted in the primary region where you provisioned Virtual Instance for SAP.
+   >- Now you will set up the disaster recovery environment in the paired up region in which you created the Recovery Services vault. This environment will include a virtual network that will host replicas of the Azure Virtual Machines currently hosted in the primary region where you provisioned Virtual Instance for SAP.
 
 1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Recovery Services vaults**.
 
@@ -489,7 +489,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
 1. On the **acss-dr-RSV** page, in the vertical navigation menu on the left side, in the **Getting started** section, select **Site Recovery**.
 
-1. On the **acss-dr-RSV \| Site Recovery** page, in the **Azure virtual machines** section, select **1. Enable replication**.
+1. On the **acss-dr-RSV \| Site Recovery** page, in the **Azure Virtual Machines** section, select **1. Enable replication**.
 
 1. On the **Source** tab of the **Enable replication** page, specify the following settings, and then select **Next**:<TODO image?>
 
@@ -577,7 +577,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
 1. On the **VI1 \| Quality insights \| Workbook 1** page, select the **Virtual Machine** tab and review the content of **Azure Compute**, **Compute List**, **Compute Extensions**, **Compute + OS Disk**, and **Compute + Data Disks** tabs.
 
-   > **Note**: Each of these tabs should include actual data collected from the Azure virtual machines that are part of the Virtual Instance for SAP solutions.
+   > **Note**: Each of these tabs should include actual data collected from the Azure Virtual Machines that are part of the Virtual Instance for SAP solutions.
 
 1. On the **VI1 \| Quality insights \| Workbook 1** page, select the **Configuration Checks** tab and review the content of the **Accelerated Networking**, **Public IP**, **Backup**, and **Load Balancer** tabs. This content provides a quick overview of the performance and security related settings of compute and network components of the Virtual Instance for SAP solutions. The **Load Balancer** tab includes **Load Balancer Monitor** information that displays key load balancer metrics.
 
@@ -585,7 +585,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
 1. On the **VI1 \| Azure Monitor for SAP solutions** page, note the message stating that AMS can't be set up since SAP software installation\registration for VIS isn't complete.
 
-   > **Note**: After you install SAP software, you will be able to integrate it with a new or existing Azure Monitor for SAP solutions resource. Azure Monitor for SAP solutions relies on the Azure Monitor capabilities of Log Analytics and workbooks to provide a comprehensive monitoring of SAP workloads hosted on Azure virtual machines, including support for custom visualizations, queries, and alerts.
+   > **Note**: After you install SAP software, you will be able to integrate it with a new or existing Azure Monitor for SAP solutions resource. Azure Monitor for SAP solutions relies on the Azure Monitor capabilities of Log Analytics and workbooks to provide a comprehensive monitoring of SAP workloads hosted on Azure Virtual Machines, including support for custom visualizations, queries, and alerts.
 
 ### Exercise 4 result
 
@@ -595,7 +595,13 @@ After you complete this exercise, you have TODO.
 
 Congratulations! Now that you have completed this lab, you know how to:
 
-- Deploy the infrastructure hosting SAP workloads in Azure by using Azure Center for SAP solutions.
+- Implement the minimum prerequisites for evaluating deployment of SAP workloads in Azure by using Azure Center for SAP solutions.
+
+- Deploy the infrastructure that hosts SAP workloads in Azure by using Azure Center for SAP solutions.
+
+- Explore a VIS for SAP workloads in Azure by using Azure Center for SAP solutions.
+
+- Maintain SAP workloads in Azure by using Azure Center for SAP solutions
 
 ## Learn more with self-paced training
 

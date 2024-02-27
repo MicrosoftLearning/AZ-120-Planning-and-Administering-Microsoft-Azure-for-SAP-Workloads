@@ -56,8 +56,6 @@ TODO
 
 - Exercise 4: Remove lab resources.
   
-## Exercise XX: TODO
-
 ## Exercise 1: Provision Azure resources necessary to support highly available SAP NetWeaver deployments
 
 In this exercise, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure Virtual Machines running Linux SUSE in the same availability set.

@@ -305,7 +305,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
     > **Note**: At this point you could provision both Azure Bastion and Azure Firewall, but instead you will provision them separately once the virtual network is created.
 
-1. On the **IP addresses** tab, specify the following settings, and then select **Review + create**:
+1. On the **IP addresses** tab, specify the following settings, and then select **Review + create** (leave others with their default values):
 
     |Setting|Value|
     |---|---|

@@ -62,7 +62,7 @@ TODO
   
 ## Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
 
-In this task, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure Virtual Machines running Linux SUSE in the same availability set and provisioning Azure Bastion.
+In this exercise, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure Virtual Machines running Linux SUSE in the same availability set and provisioning Azure Bastion.
 
 ### Task 1: Deploy Azure Virtual Machines running Linux SUSE
 
@@ -358,7 +358,7 @@ After you complete this exercise, you have provisioned Azure compute resources n
 
 ## Exercise 2: Configure operating system of Azure Virtual Machines running Linux to support a highly available SAP HANA installation
 
-In this task, you will configure operating system and storage on Azure Virtual Machines running SUSE Linux Enterprise Server to accommodate clustered installations of SAP HANA.
+In this exercise, you will configure operating system and storage on Azure Virtual Machines running SUSE Linux Enterprise Server to accommodate clustered installations of SAP HANA.
 
 ### Task 1: Connect to Azure Linux virtual machines
 
@@ -671,7 +671,7 @@ After you complete this exercise, you have configured an operating system of Azu
 
 ## Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
 
-In this task, you will implement Azure Load Balancers to accommodate clustered installations of SAP HANA.
+In this exercise, you will implement Azure Load Balancers to accommodate clustered installations of SAP HANA.
 
 ### Task 1: Configure Azure Virtual Machines to facilitate load balancing setup
 
@@ -745,7 +745,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **Protocol** | **TCP** |
    | **Port** | **62500** |
    | **Interval** | **5** *seconds* |
-   | **Unhealthy threshold** | **2** *consecutive failures* <TODO - I don't see this option.|
+   | **Unhealthy threshold** | **2** *consecutive failures* <TODO - I don't see this option.>|
 
 1. In the left pane, select **Load balancing rules**.
 
@@ -828,7 +828,7 @@ After you complete this exercise, you have provisioned Azure network resources n
 
 ## Exercise 4: Remove lab resources
 
-In this task, you will remove resources provisioned in this lab.
+In this exercise, you will remove resources provisioned in this lab.
 
 ### Task 1: List resource groups to be deleted
 

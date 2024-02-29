@@ -66,11 +66,11 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 1. On the lab computer, open the [Azure portal](https://portal.azure.com) in a Microsoft Edge browser window, and authenticate by using a Microsoft Account or Microsoft Entra ID account with the Owner role in the Azure subscription you use in this lab.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Managed Identities**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Managed Identities**.
 
 1. On the **Managed Identities** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + Create**:<TODO image?>
+1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + Create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -91,7 +91,7 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 1. On the **Azure role assignments** page, select **+ Add role assignment**.
 
-1. On the **Add role assignment** tab of the **Add role assignment** pane, specify the following settings, and then select **save**:<TODO image?>
+1. On the **Add role assignment** tab of the **Add role assignment** pane, specify the following settings, and then select **Save** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -101,21 +101,21 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 ### Task 3: Configure Azure role-based access control (RBAC) role assignments for the Microsoft Entra ID user account that will be used to perform the deployment
 
-#### Add identity: "Azure Center for SAP solutions service role"
-
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Subscriptions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Subscriptions**.
 
 1. On the **Subscriptions** page, select the entry representing the Azure subscription you will be using for this lab.
 
 1. On the page displaying the properties of the Azure subscription, select **Access control (IAM)**.
 
-1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
+#### Add identity: "Azure Center for SAP solutions service role"
+
+1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu, select **Add role assignment**.
 
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions service role** entry, and then select **Next**.
 
 1. On the **Members** tab of the **Add role assignment** page, for **Assign access to**, select **Managed Identity**, and then select **+ Select members**.
 
-1. In the **Select managed identities** pane, specify the following settings, and then click **Select**:<TODO image?>
+1. In the **Select managed identities** pane, specify the following settings, and then click **Select** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -127,9 +127,9 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 1. On the **Review + assign** tab, select **Review + assign**.
 
-#### Add identity: "Azure Center for SAP solutions administrator
+#### Add identity: "Azure Center for SAP solutions administrator"
 
-1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
+1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu, select **Add role assignment**.
 
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions administrator** entry, and the select **Next**.
 
@@ -143,7 +143,7 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 #### Add identity: "Managed Identity Operator"
 
-1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu select **Add role assignment**.
+1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu, select **Add role assignment**.
 
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Managed Identity Operator** entry, and the select **Next**.
 
@@ -165,11 +165,11 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
 
 - **db**: intended for hosting the SAP database tier
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Virtual networks**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual networks**.
 
 1. On the **Virtual networks** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create virtual network** page, specify the following settings, and then select **Next**:<TODO image?>
+1. On the **Basics** tab of the **Create virtual network** page, specify the following settings, and then select **Next** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -180,14 +180,14 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
 
 1. On the **Security** tab, under **Azure Bastion**, select the **Enable Azure Bastion** check box.
 
-1. Specify the following settings, and then select **Next**.<TODO image?>
+1. Specify the following settings, and then select **Next** (leave others with their default values).
 
    |Setting|Value|
    |---|---|
    |Azure Bastion host name|**acss-infra-vnet-bastion**|
    |Azure Bastion public IP address|**(New) acss-infra-bastion**|
 
-1. On the **IP addresses** tab, specify the following settings, and then select **Add**:<TODO image?>
+1. On the **IP addresses** tab, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -197,7 +197,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -207,7 +207,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -217,7 +217,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -233,7 +233,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
 
 ### Exercise 1 result
 
-After you complete this exercise, you have TODO.
+After you complete this exercise, you have implemented the minimum prerequisites for evaluating deployment of SAP workloads in Azure by using Azure Center for SAP solutions.
 
 ## Exercise 2: Deploy the infrastructure that hosts SAP workloads in Azure by using Azure Center for SAP solutions
 
@@ -243,11 +243,11 @@ In this exercise, you perform deployment of Azure Center for SAP solutions. This
 
 ### Task 1: Create Virtual Instance for SAP (VIS) solutions
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Azure Center for SAP Solutions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Azure Center for SAP Solutions**.
 
 1. On the **Azure Center for SAP Solutions \| Overview** page, select **Create a new SAP system**.
 
-1. On the **Basics** tab of the **Create Virtual Instance for SAP solutions** page, specify the following settings, and then select **Next : Virtual machines**<TODO image?>
+1. On the **Basics** tab of the **Create Virtual Instance for SAP solutions** page, specify the following settings, and then select **Next : Virtual machines** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -278,7 +278,7 @@ In this exercise, you perform deployment of Azure Center for SAP solutions. This
    |Managed identity source|**Use existing user assigned managed identity**|
    |Managed identity name|**acss-infra-MI**|
 
-1. On the **Virtual machines** tab, specify the following settings, and then select **Generate Recommendation**:<TODO image?>
+1. On the **Virtual machines** tab, specify the following settings, and then select **Generate Recommendation** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -306,7 +306,7 @@ In this exercise, you perform deployment of Azure Center for SAP solutions. This
 
 1. On the **Visualize Architecture** tab, review the diagram illustrating the recommended architecture, and then select **Review + create**.
 
-1. On the **Review + create** tab, wait for the validation process to complete, select the check box to confirm that you have ample quota available in the deployment region to avoid running into "Insufficient Quota" error, and then select **Create**.
+1. On the **Review + create** tab, wait for the validation process to complete, select the check box to confirm that you have ample quota available in the deployment region to avoid running into "Insufficient Quota" error (you may need to scroll down), and then select **Create**.
 
 1. When prompted, in the **Generate new key pair** window, select **Download private key and create resource**.
 
@@ -317,7 +317,7 @@ In this exercise, you perform deployment of Azure Center for SAP solutions. This
 
 ### Exercise 2 result
 
-After you complete this exercise, you have TODO.
+After you complete this exercise, you have deployed the infrastructure that hosts SAP workloads in Azure by using Azure Center for SAP solutions.
 
 ## Exercise 3: Explore a VIS for SAP workloads in Azure by using Azure Center for SAP solutions
 
@@ -325,9 +325,9 @@ In this exercise, you view the properties and functions within a Azure Center fo
 
 ### Task 1: Review the ACSS VIS page
 
-1. When the VIS deployment has completed, view the **VI1 Virtual Instance for SAP solutions** page and explore the available information from the Virtual Instance for SAP solutions page menu, including:<TODO image?>
+1. When the VIS deployment has completed, view the **VI1 Virtual Instance for SAP solutions** page and explore the available information from the Virtual Instance for SAP solutions page menu, including:
 
-    1. **Overview**
+    1. **Overview**:
 
         - The **Get Started** tab displays options to "Install SAP software" and to "Confirm already installed SAP software."
 
@@ -341,15 +341,17 @@ In this exercise, you view the properties and functions within a Azure Center fo
 
         - **Configuration Checks**: explore the Accelerated Networking, Public IP, Backup, and Load Balancer options.
 
-    1. **Cost Management** > **Cost analysis**
+    1. **Cost Management** > **Cost analysis**:
 
         - Expand items under the **Resource** column.
 
 ### Task 2: Connect to DB virtual machine and review ACSS configuration
 
-1. In the [Azure portal](https://portal.azure.com), select the **Virtual Machines**, and then select the database virtual machine created in ACSS, **vi1dbvm**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to  **Virtual Machines**.
 
-1. Select **Connect** > **Azure Bastion**, select the following settings, and then select **connect**:<TODO image?>
+1. Select the database virtual machine created in ACSS, **vi1dbvm**.
+
+1. Select **Connect** > **Azure Bastion**, select the following settings, and then select **Connect** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -385,7 +387,7 @@ In this exercise, you view the properties and functions within a Azure Center fo
 
 ### Exercise 3 result
 
-After you complete this exercise, you have TODO.
+After you complete this exercise, you have explored a Virtual Instance for SAP solutions (VIS) for SAP workloads in Azure, by using Azure Center for SAP solutions.
 
 ## Exercise 4 (optional): Maintain SAP workloads in Azure by using Azure Center for SAP solutions
 
@@ -403,23 +405,23 @@ In this exercise, you review post-deployment management and monitoring of SAP wo
 
 > **Note**: When you configure Azure Backup at the VIS resource level in the Azure Center for SAP solutions, you can, in one step, enable backup for Azure Virtual Machines hosting the database, application servers, and SAP Central Services instance, and for the HANA DB. For the HANA DB backup, Azure Center for SAP solutions automatically runs the backup pre-registration script.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Azure Center for SAP Solutions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Azure Center for SAP Solutions**.
 
-1. On the **Azure Center for SAP Solutions \| Overview** page, in the vertical navigation menu on the left side, select **Virtual instances for SAP solutions** and, in the list of virtual instances, select the instance you deployed in the previous exercise.
+1. In the left pane, select **Virtual instances for SAP solutions**, and then, in the list of virtual instances, select the instance that you deployed in the previous exercise.
 
-1. On the virtual instance page, in the vertical navigation menu on the left side, in the **Operations** section, select **Backup (preview)**.
+1. In the left pane, select **Backup (preview)**.
 
 1. Note the message indicating that backup can't be set up since SAP software installation/registration for this SAP system isn't complete. This is expected. You will not able to set up backup this way until the installation of SAP software is completed. However, completing the setup also involves additional prerequisites, including creation of vaults and backup policies, which we'll review here.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Backup center**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Backup center**.
 
-1. On the **Backup center** page, in the vertical navigation menu on the left side, in the **Manage** section, select **Vaults**.
+1. In the left pane, select **Vaults**.
 
 1. On the **Backup center \| Vaults** page, select **+ Vault**.
 
 1. On the **Start: Create Vault** page, review available vault types, ensure that **Recovery services vault** (which supports **Azure Virtual Machines** and **SAP HANA in Azure VM** datasource types) is selected, and then select **Continue**.
 
-1. On the **Basics** tab of the **Create Recovery Services vault** page, specify the following settings, and then select **Next : Redundancy**.<TODO image?>
+1. On the **Basics** tab of the **Create Recovery Services vault** page, specify the following settings, and then select **Next : Redundancy** (leave others with their default values).
 
    |Setting|Value|
    |---|---|
@@ -428,7 +430,7 @@ In this exercise, you review post-deployment management and monitoring of SAP wo
    |Vault name|**acss-backup-RSV**|
    |Region|the name of the Azure region hosting the ACSS-registered SAP deployment|
 
-1. On the **Redundancy** tab, specify the following settings, and then select **Next : Vault properties**.<TODO image?>
+1. On the **Redundancy** tab, specify the following settings, and then select **Next : Vault properties** (leave others with their default values).
 
    |Setting|Value|
    |---|---|
@@ -452,11 +454,11 @@ While Azure Center for SAP solutions service is a zone redundant service, there 
 
 ASR is the recommended solution for application servers and SAP Central Services instances. For database servers, you should consider using native their replication functionality.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Recovery Services vaults**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Recovery Services vaults**.
 
 1. On the **Recovery Services vaults** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create Recovery Services vault** page, specify the following settings (leave others with their default values), and then select **Next: Redundancy**.<TODO image?>
+1. On the **Basics** tab of the **Create Recovery Services vault** page, specify the following settings, and then select **Next: Redundancy** (leave others with their default values).
 
    |Setting|Value|
    |---|---|
@@ -467,7 +469,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
    > **Note**: To identify the region which is a paired up with the one hosting your production workloads, refer to MS Learn documentation describing [Azure paired regions](https://learn.microsoft.com/azure/reliability/cross-region-replication-azure#azure-paired-regions).
 
-1. On the **Redundancy** tab, specify the following settings, and then select **Next : Vault properties**:<TODO image?>
+1. On the **Redundancy** tab, specify the following settings, and then select **Next : Vault properties** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -483,15 +485,15 @@ ASR is the recommended solution for application servers and SAP Central Services
    >- Do not wait for the provisioning process to complete, but instead proceed to the next step. The provisioning might take about 2 minutes.
    >- Now you will set up the disaster recovery environment in the paired up region in which you created the Recovery Services vault. This environment will include a virtual network that will host replicas of the Azure Virtual Machines currently hosted in the primary region where you provisioned Virtual Instance for SAP.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Recovery Services vaults**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Recovery Services vaults**.
 
 1. On the **Recovery Services vaults** page, select **acss-dr-RSV**.
 
-1. On the **acss-dr-RSV** page, in the vertical navigation menu on the left side, in the **Getting started** section, select **Site Recovery**.
+1. In the left pane, select **Site Recovery**.
 
 1. On the **acss-dr-RSV \| Site Recovery** page, in the **Azure Virtual Machines** section, select **1. Enable replication**.
 
-1. On the **Source** tab of the **Enable replication** page, specify the following settings, and then select **Next**:<TODO image?>
+1. On the **Source** tab of the **Enable replication** page, specify the following settings, and then select **Next** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -555,15 +557,15 @@ ASR is the recommended solution for application servers and SAP Central Services
 
 ### Task 3: Review monitoring options for SAP workloads managed by Azure Center for SAP solutions
 
-> **Note**: As with backup, you will not be able to fully experience the monitoring capabilities of Azure Center for SAP solutions. This requires the installation of SAP software or registering an existing Azure Monitor for SAP solutions instance. Instead, in this task, you will step through the interface available in the Virtual Instance for SAP solutions to identify and review these capabilities.
+As with backup, you will not be able to fully experience the monitoring capabilities of Azure Center for SAP solutions. This requires the installation of SAP software or registering an existing Azure Monitor for SAP solutions instance. Instead, in this task, you will step through the interface available in the Virtual Instance for SAP solutions to identify and review these capabilities.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Virtual Instances for SAP solutions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual Instances for SAP solutions**.
 
 1. On the **Virtual Instances for SAP solutions** page, review the summarized status information for the **VI1** instance, including the overall health and status visual indicators.
 
 1. On the **Virtual Instances for SAP solutions** page, select **VI1**.
 
-1. On the **VI1** page, in the vertical navigation menu on the left side, select **Overview** and then, in the pane on the right side, select **Monitoring**.
+1. In the left pane, select **Overview** and then, in the pane on the right side, select **Monitoring**.
 
 1. Review the monitoring telemetry displayed in the monitoring pane.
 
@@ -581,7 +583,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
 1. On the **VI1 \| Quality insights \| Workbook 1** page, select the **Configuration Checks** tab and review the content of the **Accelerated Networking**, **Public IP**, **Backup**, and **Load Balancer** tabs. This content provides a quick overview of the performance and security related settings of compute and network components of the Virtual Instance for SAP solutions. The **Load Balancer** tab includes **Load Balancer Monitor** information that displays key load balancer metrics.
 
-1. On the **VI1** page, in the vertical navigation menu on the left side, in the **Monitoring** section, select **Azure Monitor for SAP solutions**.
+1. In the left pane, select **Azure Monitor for SAP solutions**.
 
 1. On the **VI1 \| Azure Monitor for SAP solutions** page, note the message stating that AMS can't be set up since SAP software installation\registration for VIS isn't complete.
 
@@ -589,7 +591,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
 ### Exercise 4 result
 
-After you complete this exercise, you have TODO.
+After you complete this exercise, you have reviewed maintaining SAP workloads in Azure by using Azure Center for SAP solutions.
 
 ## Key takeaways
 

@@ -66,7 +66,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab and the the Global Administrator role in the Azure AD tenant associated with your subscription.
 
-1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
+
+   ![Bash terminal](../media/az120-lab01-bash.png)
 
     > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
@@ -77,9 +79,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     ```
 
     > **Note**:
-    > Consider using **East US** or **East US2** regions for deployment of your resources.<br><br>
-    > Be sure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)<br><br>
-    > To identify Azure regions which support availability zones, refer to [Azure regions with availability zone support](https://learn.microsoft.com/azure/reliability/availability-zones-service-support#azure-regions-with-availability-zone-support)
+    >- Consider using **East US** or **East US2** regions for deployment of your resources.
+    >- Be sure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)
+    >- To identify Azure regions which support availability zones, refer to [Azure regions with availability zone support](https://learn.microsoft.com/azure/reliability/availability-zones-service-support#azure-regions-with-availability-zone-support)
 
 1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous task:
 
@@ -153,7 +155,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, complete the following steps:
     >   1. In the [Azure portal](https://portal.azure.com), on the **Deployment** blade, review the deployment details and identify the virtual machine(s) where the installation of the CustomScriptExtension failed.
-    >   1. Navigate to the blade of the virtual machine(s) you identified in the previous step, select **Extensions**, and from the **Extensions** blade, remove the CustomScript extension.
+    >   1. Navigate to the blade of the virtual machine(s) you identified in the previous step.
+    >   1. Select **Extensions** and then, from the **Extensions** blade, remove the CustomScript extension.
     >   1. Rerun the previous step of this task.
 
 ### Task 3: Deploy a jump host
@@ -162,9 +165,13 @@ Because the Azure Virtual Machines that you deployed in the previous task are no
 
 1. From the lab computer, in the [Azure portal](https://portal.azure.com), select **+ Create a resource**.
 
-1. From the **New** blade, initiate creation of a new Azure Virtual Machine based on the **Windows Server 2019 Datacenter** image. <TODO does this need a more granular step?>
+    ![The Azure services area on the Azure portal home page](../media/az120-lab02-azure-services.png)
 
-1. Provision a Azure Virtual Machine with the following settings (leave all others with their default values): <TODO image?>
+1. From the **New** blade, search for and select **Windows Server 2019 Datacenter**.
+
+1. Select **Create** to initiate creation of a new Azure Virtual Machine based on the **Windows Server 2019 Datacenter** image.
+
+1. Provision a Azure Virtual Machine with the following settings (leave all others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -174,9 +181,9 @@ Because the Azure Virtual Machines that you deployed in the previous task are no
     | **Region** | *the same Azure region where you deployed Azure Virtual Machines in the previous tasks of this exercise* |
     | **Availability options** | **No infrastructure redundancy required** |
     | **Image** | *select* **Windows Server 2019 Datacenter - Gen2** |
-    | **Size** | **Standard D2s_v3** or similar |
+    | **Size** | **Standard D2s_v3** or similar (see note below) |
     | **Username** | **Student** |
-    | **Password** | any complex password of your choice |
+    | **Password** | any complex password of your choice (see note below) |
     | **Public inbound ports** | **Allow selected ports** |
     | **Selected inbound ports** | **RDP (3389)** |
     | **Would you like to use an existing Windows Server license?** | **No** |
@@ -199,7 +206,12 @@ Because the Azure Virtual Machines that you deployed in the previous task are no
     | **Extensions** | *None* |
     | **Tags** | *None* |
 
-   > **Note**: Ensure that you remember the password you specified during deployment. You will need it later in this lab.
+   > **Note**:
+   >- To locate the size, select the **See all sizes** link, type **D2s** in the search text box, and then select **D2s_v3**.
+   >- The settings above are displayed across the **Basic**, **Disks**, **Networking**, **Management**, and **Monitoring** tabs. At the end of each tab, select **Next : [next tab]** to continue to the next tab.
+   >- Ensure that you remember the password you specified during deployment. You will need it later in this lab.
+
+1. When you have selected all of the settings, select **Review + create**, and then select **Create**.
 
 1. Wait for the provisioning to complete. This should take a few minutes.
 
@@ -213,39 +225,59 @@ In this exercise, you will configure Azure Virtual Machines running SUSE Linux E
 
 ### Task 1: Configure networking of the database tier Azure Virtual Machines
 
-Before you start this task, make sure that the template deployments you initiated in the previous exercise have completed successfully. <TODO images?>
+Before you start this task, make sure that the template deployments you initiated in the previous exercise have completed successfully.
 
-1. From the lab computer, in the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-0** Azure Virtual Machine.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **i20-db-0** Azure Virtual Machine.
 
-1. From the **i20-db-0** blade, navigate to its **Networking** blade.
+1. In the left pane, select **Network settings**.
 
-1. From the **i20-db-0 - Networking** blade, navigate to the network interface of the i20-db-0.
+    ![Network settings link](../media/az120-lab02-network-settings-link.png)
 
-1. From the blade of the network interface of the i20-db-0, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
+1. Select the entry representing the network interface of **i20-db-0**.
 
-1. On the **ipconfig1** blade, set the private IP address to **10.3.0.20**, change its assignment to **Static**, and save the change.
+   ![Virtual machine's network interface entry](../media/az120-lab02-db0-network-interface.png)
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-1** Azure Virtual Machine.
+1. In the left pane, select **IP configurations**, and then select **ipconfig1**.
 
-1. From the **i20-db-1** blade, navigate to its **Networking** blade.
+   ![The ipconfig1 link](../media/az120-lab02-ipconfig.png)
 
-1. From the **i20-db-1 - Networking** blade, navigate to the network interface of the i20-db-1.
+1. Change the private IP address assignment to **Static**, set it to **10.3.0.20**, and save the change.
 
-1. From the blade of the network interface of the i20-db-1, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **i20-db-1** Azure Virtual Machine.
 
-1. On the **ipconfig1** blade, set the private IP address to **10.3.0.21**, change its assignment to **Static**, and save the change.
+1. In the left pane, select **Network settings**.
+
+1. Select the entry representing the network interface of **i20-db-1**.
+
+1. In the left pane, select **IP configurations**, and then select **ipconfig1**.
+
+1. Change the private IP address assignment to **Static**, set it to **10.3.0.21**, and save the change.
 
 ### Task 2: Connect to the database tier Azure Virtual Machines
 
-1. From the lab computer, in the [Azure portal](https://portal.azure.com), navigate to the **az12003a-vm0** blade.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **az12003a-vm0** blade.
 
-1. From the **az12003a-vm0** blade, connect to the Azure Virtual Machine az12003a-vm0 via Remote Desktop. When prompted to authenticate, enter the username and the password you set during the deployment of this virtual machine. <TODO more granular steps?>
+1. From the **az12003a-vm0** blade, select **Connect**.
 
-1. Within the RDP session to az12003a-vm0, in Server Manager, navigate to the **Local Server** view, and turn off **IE Enhanced Security Configuration**.
+1. In the Native RDP area, click **Download RDP file**.
 
-1. Within the RDP session to az12003a-vm0, download and install PuTTY from [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+    ![The Native RDP area on the Connect screen for the virtual machine](../media/az120-lab02-native-rdp.png)
 
-1. Use PuTTY to connect via SSH to **i20-db-0** Azure Virtual Machine. Acknowledge the security alert and, when prompted, provide the following credentials:
+1. Open the downloaded RDP file.
+
+    ![Browser link to open the downloaded RDP file](../media/az120-lab02-open-rdp.png)
+
+1. If you receive a "publisher can't be identified" security warning, select **Connect**.
+
+1. When prompted to authenticate, enter the username and the password you set during the deployment of this virtual machine.
+
+1. Within the RDP session to az12003a-vm0, open **Server Manager** from the Start menu.
+
+1. Select **Local Server**, and in the **Properties** area, find and turn off **IE Enhanced Security Configuration**.
+
+1. Within the RDP session to az12003a-vm0, open a browser window, and download and install PuTTY from [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+
+1. Use PuTTY to connect via SSH to the **i20-db-0** Azure Virtual Machine. Acknowledge the security alert and, when prompted, provide the following credentials:<TODO - more granular steps? I cant get this to work>
 
     - Login as: **student**
 
@@ -511,7 +543,7 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 1. From the lab computer, in the [Azure portal](https://portal.azure.com), ensure that you are signed in with the user account that has the Global Administrator role in the Azure AD tenant associated with your subscription.
 
-1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, select the **Cloud Shell** icon to open Cloud Shell pane, and choose Bash as the shell.
 
 1. In the Cloud Shell pane, run the following command to identify the id of your Azure subscription and the id of the corresponding Azure AD tenant:
 
@@ -525,17 +557,20 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the **Azure Active Directory** blade.
 
-1. From the **Azure Active Directory** blade, navigate to the **App registrations** blade and then select **+ New registration**:
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **App registrations** blade.
 
-1. On the **Register an application** blade, specify the following settings, and select **Register**:
+1. Select **+ New registration**:
 
-    - Name: **Stonith app**
+1. On the **Register an application** blade, specify the following settings, and then select **Register**:
 
-    - Supported account type: **Accounts in this organizational directory only**
+   | Setting | Value |
+   |   --    |  --   |
+   | **Name** |  **Stonith app** |
+   | **Supported account type** | **Accounts in this organizational directory only** |
 
 1. On the **Stonith app** blade, copy the value of **Application (client) ID** to Notepad. This will be referred to as **login_id** later in this exercise.
 
-1. On the **Stonith app** blade, select **Certificates & secrets**.
+1. On the **Stonith app** blade, in the left pane, select **Certificates & secrets**.
 
 1. On the **Stonith app - Certificates & secrets** blade, select **+ New client secret**.
 
@@ -545,17 +580,19 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 ### Task 5: Grant permissions to Azure Virtual Machines to the service principal of the STONITH app
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **i20-db-0** Azure Virtual Machine
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **i20-db-0** Azure Virtual Machine
 
-1. From the  **i20-db-0** blade, display the **i20-db-0 - Access control (IAM)** blade.
+1. In the left pane, select **Access control (IAM)**.
 
-1. From the **i20-db-0 - Access control (IAM)** blade, add a role assignment with the following settings:
+1. Select **Add**, and then select **Add role assignment**.
 
-    - Role: **Virtual Machine Contributor**
+1. Add a role assignment with the following settings:
 
-    - Assign access to: **Azure AD user, group, or service principal**
-
-    - Select: **Stonith app**
+   | Setting | Value |
+   |   --    |  --   |
+   | **Role** |  **Virtual Machine Contributor** |
+   | **Assign access to:** | **User, group, or service principal** |
+   | **Select:** | **Stonith app** |
 
 1. Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure Virtual Machine.
 

@@ -114,7 +114,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. In the **Quota name** column, locate and select the virtual machine SKU name that requires a quota increase.
 
-1. In the same row, check the entry in the **Adjustable** column. The next step depends on whether the column contains **Yes** or **No**, and on the icon displayed. <TODO image?>
+1. In the same row, check the entry in the **Adjustable** column. The next steps depend on whether the column contains **Yes** or **No**, and on the icon displayed.
 
     ![Adjustable column on Quotas page](../media/az120-lab03-adjustable-quotas.png)
 

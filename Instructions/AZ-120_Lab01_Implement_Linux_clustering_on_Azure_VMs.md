@@ -72,16 +72,16 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Proximity placement groups** blade.
 
-1. On the **Proximity placement groups** blade, select **+ create**.
+1. On the **Proximity placement groups** blade, select **+ Create**.
 
-1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings, and then select **Review + create**:  <TODO image for this step?>
+1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings, and then select **Review + create**:
 
     | Setting | Value |
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
     | **Resource group** section | Select **Create new**, enter **az12001a-RG**, and then select **OK** |
-    | **Region** | *the Azure region where you have sufficient vCPU quotas* |
     | **Proximity placement group name** | Select **az12001a-ppg** |
+    | **Region** | *the Azure region where you have sufficient vCPU quotas* |
     | **Intent details** | **Standard D4s v3** |
 
    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
@@ -94,7 +94,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. Select **+ Create** and, on the drop-down menu, select **Azure Virtual Machine**.
 
-1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >** (leave all other settings with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -105,32 +105,40 @@ In this task, you will deploy Azure infrastructure compute components necessary 
     | **Availability options** | *select* **Availability set** |
     | **Availability set** | *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains* |
     | **Security type** | *select* **Standard** |
-    | **Image** | *select* **SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** |
+    | **Image** | *select* **SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** (see note below) |
     | **Run with Azure Spot Discount** | **No** |
-    | **Size** | **Standard D4s v3** |
-    | **Authentication type** | **Password** |
+    | **Size** | **Standard D4s v3** (see note below) |
+    | **Authentication type** | **Password** (see note below) |
     | **Username** | **student** |
     | **Password** | any complex password of your choice |
 
     > **Note**:
+    >- To locate the image, select the **See all images** link, type **SUSE Enterprise Linux** in the search text box, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** in the list of results, and then select **Generation 2**.
+    >- To locate the size, select the **See all sizes** link, type **D4s** in the search text box, and then **select D4s_v3**.
     >- Make sure you remember the password you specified during deployment. You will need it later in this lab.
-    >- To locate the image, select the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS**, and then select **Generation 2**.
 
-1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values):
 
     | Setting | Value |
     |   --    |  --   |
     | **OS disk type** | **Premium SSD (locally-redundant storage)**  |
     | **Key management** | **Platform-managed key** |
 
-1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Networking** tab of the **Create a virtual machine** blade, under **Virtual network**, click **Create new**.
+
+1. Specify the following settings, and then select **OK** (leave all other settings with their default values):
 
     | Setting | Value |
     |   --    |  --   |
-    | **Virtual network** | *select* **Create new** *and create a new virtual network named* **az12001a-RG-vnet**, continue next steps in "Create virtual network."  |
+    | **Name** | **az12001a-RG-vnet** |
     | **Address space** | *set the address space of the new virtual network to* **192.168.0.0/20** |
     | **Subnet name** | **subnet-0** |
-    | **Subnet address range** | **192.168.0.0/24**, select "ok" to continue on "Create a virtual machine."|
+    | **Subnet address range** | **192.168.0.0/24**|
+
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave all other settings with their default values):
+
+    | Setting | Value |
+    |   --    |  --   |
     | **Public IP address** | **none** |
     | **NIC network security group** | **Advanced**  |
     | **Enable accelerated networking** | **On** |
@@ -138,7 +146,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
     > **Note**: This image has preconfigured NSG rules.
 
-1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave all other settings with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -150,7 +158,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. On the **Monitoring** tab of the **Create a virtual machine** blade, select **Next: Advanced >** (leave all settings with their default values).
 
-1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave all other settings with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -162,9 +170,9 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Virtual machines** blade.
 
-1. On the **Virtual machines** blade, select **+ Create** and, on the drop-down menu, select **Azure Virtual Machine**. <TODO image for this step?>
+1. On the **Virtual machines** blade, select **+ Create** and, on the drop-down menu, select **Azure Virtual Machine**.
 
-1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >** (leave all other settings with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -175,23 +183,23 @@ In this task, you will deploy Azure infrastructure compute components necessary 
     | **Availability options** | *select* **Availability set** |
     | **Availability set** | **az12001a-avset** |
     | **Security type** | *select* **Standard** |
-    | **Image** | *select* ***SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** |
+    | **Image** | *select* ***SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** (see note below) |
     | **Run with Azure Spot Discount** | **No** |
     | **Size** | **Standard D4s v3** |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
     | **Password** | the same password you specified during the first deployment |
 
-   > **Note**: To locate the image, select the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux**. In the list of results, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS**, and then select **Generation 2**.
+    >- To locate the image, select the **See all images** link, type **SUSE Enterprise Linux** in the search text box, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** in the list of results, and then select **Generation 2**.
 
-1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values):
 
     | Setting | Value |
     |   --    |  --   |
-    | **OS disk type** | **Premium SSD**  |
+    | **OS disk type** | **Premium SSD**  <TODO - this isn't an option as such - have to choose locally-redundant or zone-redundant. It's locally for the first VM, same here?>|
     | **Key management** | **Platform-managed key** |
 
-1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave all other settings with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -204,7 +212,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
    > **Note**: This image has preconfigured NSG rules.
 
-1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave all other settings with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -216,7 +224,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. On the **Monitoring** tab of the **Create a virtual machine** blade, select **Next: Advanced >** (leave all settings with their default values).
 
-1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave all other settings with their default values): <TODO image for this step?>
+1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave all other settings with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -228,7 +236,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 ### Task 2: Create and configure Azure Virtual Machines disks
 
-1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
 
    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
@@ -254,9 +262,13 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the first Azure Virtual Machine you provisioned in the previous task (**az12001a-vm0**).
 
-1. From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 \| Disks** blade.
+   ![Links to recently-created virtual machines in the Resources area on the Azure portal](../media/az120-lab01-resources-vm-links.png)
 
-1. On the **az12001a-vm0 \| Disks** blade, select **Attach existing disks** and attach data disk with the following settings to az12001a-vm0: <TODO image for this step?>
+1. In the left pane, select **Disks**.
+
+   ![Link to the virtual machine's Disks blade](../media/az120-lab01-disks-link.png)
+
+1. On the **az12001a-vm0 \| Disks** blade, select **Attach existing disks** and attach a data disk with the following settings to az12001a-vm0:
 
    | Setting | Value |
    |   --    |  --   |
@@ -267,13 +279,17 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm0-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
 
-1. Save your changes.
+1. Select **Apply** to save your changes.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the second Azure Virtual Machine you provisioned in the previous task (**az12001a-vm1**).
 
-1. From the **az12001a-vm1** blade, navigate to the **az12001a-vm1 \| Disks** blade.
+   ![Links to recently-created virtual machines in the Resources area on the Azure portal](../media/az120-lab01-resources-vm-links.png)
 
-1. From the **az12001a-vm1 \| Disks** blade, attach data disks with the following settings to az12001a-vm1: <TODO image for this step?>
+1. In the left pane, select **Disks**.
+
+   ![Link to the virtual machine's Disks blade](../media/az120-lab01-disks-link.png)
+
+1. From the **az12001a-vm1 \| Disks** blade, attach a data disk with the following settings to az12001a-vm1:
 
    | Setting | Value |
    |   --    |  --   |
@@ -284,7 +300,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
 
-1. Save your changes.
+1. Select **Apply** to save your changes.
 
 ### Task 3: Provision Azure Bastion
 
@@ -294,7 +310,9 @@ Azure Bastion allows for connection to the Azure VMs (which you deployed in the 
 
 1. In the browser window displaying the Azure portal, open another tab and navigate to the [Azure portal](https://portal.azure.com).
 
-1. Open the **Cloud Shell** pane by selecting the toolbar icon directly to the right of the search textbox. <TODO image?>
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon and start a PowerShell session in Cloud Shell.
+
+   ![PowerShell terminal](../media/az120-lab01-powershell.png)
 
 1. From the PowerShell session in the Cloud Shell pane, run the following to add a subnet named **AzureBastionSubnet** to the virtual network named **az12001a-RG-vnet** you created earlier in this exercise:
 
@@ -310,11 +328,11 @@ Azure Bastion allows for connection to the Azure VMs (which you deployed in the 
 
 1. Close the Cloud Shell pane.
 
-1. In the [Azure portal](https://portal.azure.com), search for and select **Bastions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Bastions** blade.
 
 1. On the **Bastions** blade, select **+ Create**.
 
-1. On the **Basic** tab of the **Create a Bastion** blade, specify the following settings, and then select **Review + create**: <TODO image for this step?>
+1. On the **Basic** tab of the **Create a Bastion** blade, specify the following settings, and then select **Review + create**:
 
    |Setting|Value|
    |---|---|
@@ -350,7 +368,7 @@ In this task, you will configure operating system and storage on Azure Virtual M
 
 1. On the **Bastion** tab of the **az12001a-vm0** blade, provide the credentials you set when deploying the **az12001a-vm0** virtual machine.
 
-1. Leave the **Authentication type** set to **VM Password**, leave the checkbox **Open in new browser tab** enabled, and then select **Connect**.
+1. Leave the **Authentication type** set to **VM Password**, leave the **Open in new browser tab** check box enabled, and then select **Connect**.
 
 1. Repeat these steps to connect via Bastion to the **az12001a-vm1** Azure Virtual Machine.
 
@@ -478,7 +496,7 @@ In this task, you will configure operating system and storage on Azure Virtual M
    df -h
    ```
 
-1. Switch to the Bastion session to az12001a-vm1 and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
+1. Switch to the Bastion session to az12001a-vm1 and repeat all of the steps in this task to configure storage on **az12001a-vm1**.
 
 ### Task 3: Enable cross-node password-less SSH access
 
@@ -488,7 +506,7 @@ In this task, you will configure operating system and storage on Azure Virtual M
    ssh-keygen -tdsa
    ```
 
-1. When prompted, press **Enter** three times and then display the public key by running:
+1. When prompted, press **Enter** three times, and then display the public key by running:
 
    ```cli
    cat /root/.ssh/id_dsa.pub
@@ -502,17 +520,17 @@ In this task, you will configure operating system and storage on Azure Virtual M
    vi /root/.ssh/authorized_keys
    ```
 
-1. In the editor window, paste the key you generated on az12001a-vm0.
+1. In the editor window, paste the key you generated on **az12001a-vm0**.
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm1** Azure Virtual Machine, generate passphrase-less SSH key by running:
+1. Within the Bastion session to the **az12001a-vm1** Azure Virtual Machine, generate a passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -tdsa
    ```
 
-1. When prompted, press **Enter** three times and then display the public key by running:
+1. When prompted, press **Enter** three times, and then display the public key by running:
 
    ```cli
    cat /root/.ssh/id_dsa.pub
@@ -530,13 +548,13 @@ In this task, you will configure operating system and storage on Azure Virtual M
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, generate passphrase-less SSH key by running:
+1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, generate a passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -t rsa
    ```
 
-1. When prompted, press **Enter** three times and then display the public key by running:
+1. When prompted, press **Enter** three times, and then display the public key by running:
 
    ```cli
    cat /root/.ssh/id_rsa.pub
@@ -554,13 +572,13 @@ In this task, you will configure operating system and storage on Azure Virtual M
 
 1. Save the changes and close the editor.
 
-1. Within the Bastion session to the **az12001a-vm1** Azure Virtual Machine, generate passphrase-less SSH key by running:
+1. Within the Bastion session to the **az12001a-vm1** Azure Virtual Machine, generate a passphrase-less SSH key by running:
 
    ```cli
    ssh-keygen -t rsa
    ```
 
-1. When prompted, press **Enter** three times and then display the public key by running:
+1. When prompted, press **Enter** three times, and then display the public key by running:
 
    ```cli
    cat /root/.ssh/id_rsa.pub
@@ -655,15 +673,19 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 ### Task 1: Configure Azure Virtual Machines to facilitate load balancing setup
 
-<TODO images for these steps? Could use some rewrite but need to see the UI to write it>
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **az12001a-vm0** Azure Virtual Machine.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the **az12001a-vm0** Azure Virtual Machine.
+1. In the left pane, select **Network settings** to open the **az12001a-vm0 \| Network settings** blade.
 
-1. Navigate to the **az12001a-vm0 \| Networking** blade, and the select the entry representing the network interface of **az12001a-vm0**.
+1. Select the entry representing the network interface of **az12001a-vm0**.
 
-1. Navigate to the **IP configurations** blade, and then display its **ipconfig1** blade.
+   ![Virtual machine's network interface entry](../media/az120-lab01-vm1-network-interface.png)
 
-1. Set the private IP address assignment to **Static** and save the change.
+1. In the left pane, select **IP configurations**, and then select **ipconfig1**.
+
+   ![The ipconfig1 link](../media/az120-lab01-ipconfig.png)
+
+1. Set the private IP address assignment to **Static**, and then save the change.
 
 ### Task 2: Create and configure Azure Load Balancers handling inbound traffic
 
@@ -671,7 +693,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 1. On the **Load balancers** blade, select **+ Create**.
 
-1. From the **Basics** tab of the **Create load balancer** blade, specify the following settings, and then select **Review + create** (leave others with their default values): <TODO image for this step?>
+1. From the **Basics** tab of the **Create load balancer** blade, specify the following settings, and then select **Next : Frontend IP Configuration** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -682,9 +704,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **SKU** | **Standard** |
    | **Type** | **Internal** |
 
-1. Select **Next: Frontend IP Configuration**.
-
-1. On the **Frontend IP configuration** screen, select **Add a frontend IP configuration**, and then select **Add**. <TODO image for this step?>
+1. On the **Frontend IP configuration** screen, select **Add a frontend IP configuration**, specify the following settings, and then select **Add**:
 
    | Setting | Value |
    |   --    |  --   |
@@ -699,9 +719,11 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
    > **Note**: Wait until the load balancer is provisioned. This should take less than a minute.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade displaying the properties of the newly provisioned **az12001a-lb0** load balancer.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade for the newly-provisioned **az12001a-lb0** load balancer.
 
-1. On the **az12001a-lb0** blade, select **Backend pools**, select **+ Add**, and, on the **Add backend pool** specify the following settings (leave others with their default values): <TODO image for this step?>
+1. In the left pane, select **Backend pools**.
+
+1. Select **+ Add** and, on the **Add backend pool**, specify the following settings, and then select **Save** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -711,9 +733,9 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **IP address** | **192.168.0.4** Resource name: **az12001a-vm0** |
    | **IP address** | **192.168.0.5** Resource name: **az12001a-vm1** |
 
-1. On the **az12001a-lb0** blade, select **Health probes**, and then select **+ Add**.
+1. On the **az12001a-lb0** blade, in the left pane select **Health probes**.
 
-1. On the **Add health probe** blade, specify the following settings (leave others with their defaults): <TODO image for this step?>
+1. Select **+ Add** and, on the **Add health probe** blade, specify the following settings, and then select **Save** (leave others with their defaults):
 
    | Setting | Value |
    |   --    |  --   |
@@ -721,28 +743,30 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **Protocol** | **TCP** |
    | **Port** | **62500** |
    | **Interval** | **5** *seconds* |
-   | **Unhealthy threshold** | **2** *consecutive failures* |
+   | **Unhealthy threshold** | **2** *consecutive failures* <TODO - I don't see this option.|
 
-1. On the **az12001a-lb0** blade, select **Load balancing rules**, and then select **+ Add**.
+1. In the left pane, select **Load balancing rules**.
 
-1. On the **Add load balancing rule** blade, specify the following settings (leave others with their defaults): <TODO image for this step?>
+1. Select **+ Add** and, on the **Add load balancing rule** blade, specify the following settings, and then select **Save** (leave others with their defaults):
 
    | Setting | Value |
    |   --    |  --   |
    | **Name** | **az12001a-lb0-lbruleAll** |
    | **IP Version** | **IPv4** |
    | **Frontend IP address** | **192.168.0.240 (LoadBalancerFrontEnd)** |
-   | **HA Ports** | **Enabled** |
    | **Backend pool** | **az12001a-lb0-bepool (2 virtual machines)** |
+   | **High availability ports** | **Enabled** |
    | **Health probe** | **az12001a-lb0-hprobe (TCP:62500)** |
    | **Session persistence** | **None** |
    | **Idle timeout (minutes)** | **4** |
-   | **TCP reset** | **Disabled** |
-   | **Floating IP (direct server return)** | **Enabled** |
+   | **Enable TCP reset** | **Disabled** |
+   | **Enable Floating IP** | **Enabled** |
 
 ### Task 2: Create and configure Azure Load Balancers handling outbound traffic
 
-1. In the [Azure portal](https://portal.azure.com), start a Bash session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
+
+   ![Bash terminal](../media/az120-lab01-bash.png)
 
 1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the first exercise of this lab:
 
@@ -782,13 +806,13 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 1. Close the Cloud Shell pane.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the blade displaying the properties of the newly created Azure Load Balancer **az12001a-lb1**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade displaying the properties of the newly created Azure Load Balancer **az12001a-lb1**.
 
-1. On the **az12001a-lb1** blade, select **Backend pools**.
+1. In the left pane, select **Backend pools**.
 
 1. On the **az12001a-lb1 \| Backend pools** blade, select **az12001a-lb1-bepool**.
 
-1. On the **az12001a-lb1-bepool** blade, specify the following settings and select **Save**: <TODO image?>
+1. On the **az12001a-lb1-bepool** blade, specify the following settings, and then select **Save**:
 
    | Setting | Value |
    |   --    |  --   |
@@ -806,7 +830,7 @@ In this task, you will remove resources provisioned in this lab.
 
 ### Task 1: List resource groups to be deleted
 
-1. At the top of the [Azure portal](https://portal.azure.com) page, select the **Cloud Shell** icon to open Cloud Shell pane, and choose Bash as the shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
 
 1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_PREFIX` to the prefix of the name of the resource group containing the resources you provisioned in this lab:
 

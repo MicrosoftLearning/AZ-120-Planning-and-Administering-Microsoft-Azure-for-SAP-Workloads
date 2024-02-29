@@ -82,7 +82,9 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. On the lab computer, open the [Azure portal](https://portal.azure.com) in a Microsoft Edge browser window.
 
-1. In the [Azure portal](https://portal.azure.com), select the **Cloud Shell** icon and start a PowerShell session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a PowerShell session in Cloud Shell.
+
+   ![PowerShell terminal](../media/az120-lab01-powershell.png)
 
     > **Note**: If this is the first time you are launching Cloud Shell in the Azure subscription you will be using in this lab, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
@@ -104,7 +106,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. Review the output to identify the current vCPU usage and the vCPU limit. Ensure that the difference between them is sufficient to accommodate vCPUs of Azure Virtual Machines that you will be deployed in this lab. Take into account both virtual machine family-specific and total regional vCPU numbers.
 
-1. If the number of vCPUs is sufficient, skip the remaining steps in this task and continue to the next task. If the number of vCPUs is not sufficient, close the Cloud Shell pane and then, in the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Quotas**.
+1. If the number of vCPUs is sufficient, skip the remaining steps in this task and continue to the next task. If the number of vCPUs is not sufficient, close the Cloud Shell pane and then, at the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Quotas**.
 
 1. On the **Quotas** page, select **Compute**.
 
@@ -112,13 +114,17 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. In the **Quota name** column, locate and select the virtual machine SKU name that requires a quota increase.
 
-1. In the same row, check the entry in the **Adjustable** column. The next step depends on whether the column contains **Yes** or **No**. <TODO image?>
+1. In the same row, check the entry in the **Adjustable** column. The next step depends on whether the column contains **Yes** or **No**, and on the icon displayed. <TODO image?>
 
-   - If the entry is set to **Yes**, select the **Request adjustment** icon. On the **New Quota Request**, in the **New limit** text box, enter the new quota limit, and then select **Submit**.
+    ![Adjustable column on Quotas page](../media/az120-lab03-adjustable-quotas.png)
 
-   - If the entry is set to **No**, select the **Request access or get recommendations** icon. In the **Quota Recommendations** pane, select **Contact Support** option, and then select **Next**.
+   - If the entry is set to **Yes** and displays the **Request adjustment** icon, select the icon. On the **New Quota Request** window, in the **New limit** text box, enter the new quota limit, and then select **Submit**.
 
-1. On the **Problem description** tab of the **New support request** page, specify the following settings, and then select **Next**:<TODO image?>
+   - If the entry is set to **Yes** and displays the **Request access or get recommendations** icon, select the icon, and then select **Next** to see and request recommended alternatives.
+
+   - If the entry is set to **No**, select the **Create a new support request** icon. In the **Quota Recommendations** pane, select **Contact Support** option, select **Next**, and then follow the steps below:
+
+1. On the **Problem description** tab of the **New support request** page, specify the following settings, and then select **Next** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -151,11 +157,11 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. When prompted to authenticate, sign in by using the Microsoft Entra ID credentials with the Owner role in the Azure subscription you will be using for this lab.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Subscriptions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Subscriptions**.
 
 1. On the **Subscriptions** page, select the entry representing the Azure subscription you will be using for this lab.
 
-1. On the page displaying the properties of the Azure subscription, select **Access control (IAM)**.
+1. In the left pane, select **Access control (IAM)**.
 
 1. On the **Access control (IAM)** page, select **+ Add** and then, on the drop-down menu, select **Add role assignment**.
 
@@ -173,11 +179,11 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 3: Create a storage account associated with the Azure Center for SAP solutions used for the deployment
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Storage accounts**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Storage accounts**.
 
 1. On the **Storage accounts** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create a storage account** page, specify the following settings, and then select **Next: Advanced >**.<TODO image?>
+1. On the **Basics** tab of the **Create a storage account** page, specify the following settings, and then select **Next: Advanced >** (leave others with their defaults).
 
     |Setting|Value|
     |---|---|
@@ -199,11 +205,11 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 4: Create and configure a user-assigned managed identity to be used by Azure Center for SAP solutions for authentication and authorization of its automated deployment
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Managed Identities**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Managed Identities**.
 
 1. On the **Managed Identities** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + Create**:<TODO image?>
+1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + create** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -216,13 +222,15 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
     > **Note**: Wait for the provisioning of the user assigned managed identity to complete. This should take just a few seconds.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the **Managed Identities** page, and then select the **Contoso-MSI** entry.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Managed Identities** page, and then select the **Contoso-MSI** entry.
 
-1. On the **Contoso-MSI** page, select **Azure role assignments**.
+1. In the left pane, select **Azure role assignments**.
+
+    ![Azure role assignments link](../media/az120-lab03-azure-role-assignments.png)
 
 1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
 
-1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save**:<TODO image?>
+1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -230,9 +238,9 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Role|**Azure Center for SAP solutions service role**|
 
-1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
+1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)** again.
 
-1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save**:<TODO image?>
+1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -243,11 +251,11 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 5: Create a network security group (NSG) to be used within subnets of the virtual network that will host the deployment
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Network security groups**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Network security groups**.
 
 1. On the **Network security groups** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create network security group** page, specify the following settings, and then select **Review + create**:<TODO image?>
+1. On the **Basics** tab of the **Create network security group** page, specify the following settings, and then select **Review + create** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -262,11 +270,11 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 6: Create route tables to be used within subnets of the virtual network that will host the deployment
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Route tables**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Route tables**.
 
 1. On the **Route tables** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create Route table** page, specify the following settings, and then select **Review + create**:<TODO image?>
+1. On the **Basics** tab of the **Create Route table** page, specify the following settings, and then select **Review + create** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -280,11 +288,11 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 7: Create and configure the virtual network that will host the deployment
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Virtual networks**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual networks**.
 
 1. On the **Virtual networks** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create virtual network** page, specify the following settings, and then select **Next**:<TODO image?>
+1. On the **Basics** tab of the **Create virtual network** page, specify the following settings, and then select **Next** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -297,23 +305,27 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
     > **Note**: At this point you could provision both Azure Bastion and Azure Firewall, but instead you will provision them separately once the virtual network is created.
 
-1. On the **IP addresses** tab, specify the following settings, and then select **Review + create**:<TODO image?>
+1. On the **IP addresses** tab, specify the following settings, and then select **Review + create**:
 
     |Setting|Value|
     |---|---|
-    |IP address space|**10.5.0.0/16 (65,536 addresses)**|
+    |IP address space|**10.5.0.0/16** (65,536 addresses)|
 
     > **Note**: Delete any pre-created subnet entries. You will add subnets after the virtual network is created.
 
 1. On the **Review + create** tab, wait for the validation process to complete, and then select **Create**.
 
-1. Navigate back to the **Virtual networks** page, select the **CONTOSO-VNET** entry.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual networks**.
 
-1. On the **CONTOSO-VNET** page, in the vertical menu bar on the left side of the page, select **Subnets**.
+1. Select the **CONTOSO-VNET** entry.
+
+1. In the left pane, select **Subnets**.
+
+    ![Subnets link](../media/az120-lab03-subnets.png)
 
 1. On the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**.
 
-1. On the **Add subnet** pane, specify the following settings, and then select **Save**:<TODO image?>
+1. On the **Add subnet** pane, specify the following settings, and then select **Save** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -324,7 +336,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. Back on the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**.
 
-1. On the **Add subnet** pane, specify the following settings, and then select **Save**:
+1. On the **Add subnet** pane, specify the following settings, and then select **Save** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -333,7 +345,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. Back on the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**.
 
-1. On the **Add subnet** pane, specify the following settings, and then select **Save**:<TODO image?>
+1. On the **Add subnet** pane, specify the following settings, and then select **Save** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -344,7 +356,7 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 1. Back on the **CONTOSO-VNET \| Subnets** page, select **+ Subnet**.
 
-1. On the **Add subnet** pane, specify the following settings, and then select **Save**:<TODO image?>
+1. On the **Add subnet** pane, specify the following settings, and then select **Save** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -355,11 +367,11 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 Before you deploy an Azure Firewall instance, you will first create a firewall policy and a public IP address to be used by the instance.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Firewall Policies**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Firewall Policies**.
 
 1. On the **Firewall Policies** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create an Azure Firewall Policy** page, specify the following settings, and then select **Next: DNS Settings >**:<TODO image?>
+1. On the **Basics** tab of the **Create an Azure Firewall Policy** page, specify the following settings, and then select **Next: DNS Settings >** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -376,7 +388,7 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
 
 1. On the **Rules** tab, select **+ Add a rule collection**.
 
-1. On the **Add a rule collection** pane, specify the following settings:<TODO image?>
+1. On the **Add a rule collection** pane, specify the following settings (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -386,7 +398,7 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
     |Rule collection action|**Allow**|
     |Rule collection group|**DefaultNetworkRuleCollectionGroup**|
 
-1. On the **Add a rule collection** pane, in the **Rules** section, add a rule with the following settings:<TODO image?>
+1. On the **Add a rule collection** pane, in the **Rules** section, add a series of rules with the following settings (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -448,18 +460,18 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
 
     > **Note**: Wait for the provisioning of the Firewall Policy to complete. The provisioning should take about 1 minute.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Public IP addresses**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Public IP addresses**.
 
 1. On the **Public IP addresses** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create a public IP address** page, specify the following settings, and then select **Review + create**:<TODO image?>
+1. On the **Basics** tab of the **Create a public IP address** page, specify the following settings, and then select **Review + create** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
     |Subscription|The name of the Azure subscription you are using in this lab|
     |Resource group|**CONTOSO-VNET-RG**|
     |Region|the name of the Azure region in which you provisioned resources earlier in this lab|
-    |Name|**contoso-firewal-pip**|
+    |Name|**contoso-firewall-pip**|
     |IP Version|**IPv4**|
     |SKU|**Standard**|
     |Availability zone|**No zone**|
@@ -472,11 +484,11 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
 
     > **Note**: Wait for the provisioning of the public IP address to complete. The provisioning should take a few seconds.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Firewalls**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Firewalls**.
 
 1. On the **Firewalls** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create a firewall** page, specify the following settings, and then select **Review + create**:<TODO image?>
+1. On the **Basics** tab of the **Create a firewall** page, specify the following settings, and then select **Next : Tags** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -493,21 +505,27 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
     |Public IP address|**contoso-firewall-pip**|
     |Forced tunneling|**Disabled**|
 
+1. Select **Next : Review + create**, and then select **Create**.
+
     > **Note**: Wait for the provisioning of the Azure Firewall to complete. The provisioning might take about 3 minutes.
 
-1. In the [Azure portal](https://portal.azure.com), navigate back to the **Firewalls** page, and then select the **contoso-firewall** entry.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Firewalls**.
 
-1. On the **contoso-firewall** page, note the **Private IP** entry set to **10.5.3.4** representing the private IP address of the Azure Firewall instance.
+1. Select the **contoso-firewall** entry.
+
+1. On the **contoso-firewall** page, note the **Private IP** entry set to **10.5.3.4** representing the private IP address of the Azure Firewall instance.<TODO maybe I did something wrong, but the Private IP value on this page was blank for me>
 
     > **Note**: In order for the network traffic to be routed via Azure Firewall, you need to add user defined routes to the route tables associated with the app and db subnets of the virtual network that will host the SAP deployment.
 
-1. In the [Azure portal](https://portal.azure.com), in the **Search** text box, search for and select **Route tables**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Route tables**.
 
 1. On the **Route tables** page, select the **ACSS-ROUTE** entry.
 
-1. On the **ACSS-ROUTE** page, select **Routes**, and then select **+ Add**.
+1. In the left pane, select **Routes**, and then select **+ Add**.
 
-1. On the **Add route** pane, specify the following settings, and then select **Add**:<TODO image?>
+    ![Routes link](../media/az120-lab03-routes.png)
+
+1. On the **Add route** pane, specify the following settings, and then select **Add** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -519,11 +537,11 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
 
 ### Task 9: Deploy Azure Bastion into the virtual network that will host the deployment
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Bastions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Bastions**.
 
 1. On the **Bastions** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Bastions** page, specify the following settings, and then select **Next : Tags >**:<TODO image?>
+1. On the **Basics** tab of the **Bastions** page, specify the following settings, and then select **Next : Advanced >** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -538,9 +556,7 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
     |Public IP address|**Create new**|
     |Public IP address name|**ACSS-BASTION-PIP**|
 
-1. On the **Tags** tab, select **Next : Advanced >**
-
-1. On the **Advanced** tab, review the available settings without making any changes, and then select **Next : Review + create >**
+1. On the **Advanced** tab, review the available settings without making any changes, and then select **Review + create >**
 
 1. On the **Review + create** tab, wait for the validation process to complete, and then select **Create**.
 
@@ -548,7 +564,7 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
 
 ### Exercise 1 result
 
-After you complete this exercise, you have TODO.
+After you complete this exercise, you have implemented the prerequisites for deploying SAP workloads in Azure by using Azure Center for SAP solutions.
 
 ## Exercise 2: Deploy the infrastructure that will host SAP workloads in Azure by using Azure Center for SAP solutions
 
@@ -558,11 +574,13 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
 
 ### Task 1: Create Virtual Instance for SAP solutions
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Azure Center for SAP Solutions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Azure Center for SAP Solutions**.
 
 1. On the **Azure Center for SAP Solutions \| Overview** page, select **Create a new SAP system**.
 
-1. On the **Basics** tab of the **Create Virtual Instance for SAP solutions** page, specify the following settings, and then select **Next : Virtual machines**:<TODO image?>
+    ![Link to create a new SAP system](../media/az120-lab03-create-new-sap-system.png)
+
+1. On the **Basics** tab of the **Create Virtual Instance for SAP solutions** page, specify the following settings, and then select **Next : Virtual machines** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -592,7 +610,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
     |Managed identity source|**Use existing user assigned managed identity**|
     |Managed identity name|**Contoso-MSI**|
 
-1. On the **Virtual machines** tab, specify the following settings, and then select **Generate Recommendation**:<TODO image?>
+1. On the **Virtual machines** tab, specify the following settings, and then select **Generate Recommendation** (leave others with their defaults):
 
     |Setting|Value|
     |---|---|
@@ -622,7 +640,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
 
 1. On the **Visualize Architecture** tab, review the diagram illustrating the recommended architecture, and then select **Review + create**.
 
-1. On the **Review + create** tab, wait for the validation process to complete, select the check box to confirm that you have ample quota available in the deployment region to avoid running into an "Insufficient Quota" error, and then select **Create**.
+1. On the **Review + create** tab, wait for the validation process to complete, select the check box to confirm that you have ample quota available in the deployment region to avoid running into an "Insufficient Quota" error (you may need to scroll down), and then select **Create**.
 
 1. When prompted, in the **Generate new key pair** window, select **Download private key and create resource**.
 
@@ -634,8 +652,10 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
 
 > **Important**: The cost of the resources you deployed is significant, so ensure that you deprovision the lab if you don't intend to use it beyond this point. Deleting the virtual instance for SAP solutions will not delete the underlying infrastructure resources. To delete the resources, you should use the procedure described in this task, which targets resources in the **Contoso-SAP-C1S**, **CONTOSO-VNET-RG**, and **ACSS-DEMO** resource groups.
 
-1. In the Microsoft Edge window displaying the [Azure portal](https://portal.azure.com), select the **Cloud Shell** icon and start a PowerShell session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon and start a PowerShell session in Cloud Shell.
 
+   ![PowerShell terminal](../media/az120-lab01-powershell.png)
+   
     > **Note**: If this is the first time you are launching Cloud Shell in the Azure subscription you will be using in this lab, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
 1. In the [Azure portal](https://portal.azure.com), in the **Cloud Shell** pane, run the following command at the PowerShell prompt to stop and deallocate all Azure Virtual Machines deployed in this lab:
@@ -702,7 +722,7 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
 
 ### Exercise 2 result
 
-After you complete this exercise, you have TODO.
+After you complete this exercise, you have deployed the infrastructure that will host SAP workloads in Azure by using Azure Center for SAP solutions.
 
 ## Key takeaways
 

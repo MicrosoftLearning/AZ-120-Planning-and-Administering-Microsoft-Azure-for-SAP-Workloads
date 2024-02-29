@@ -64,11 +64,11 @@ In this exercise, you create a Microsoft Entra user-assigned managed identity to
 
 1. On the lab computer, open the [Azure portal](https://portal.azure.com) in a Microsoft Edge browser window, and authenticate by using a Microsoft Account or Microsoft Entra ID account with the Owner role in the Azure subscription you use in this lab.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Managed Identities**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Managed Identities**.
 
 1. On the **Managed Identities** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + Create**:<TODO image?>
+1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + Create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -101,11 +101,11 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 - **db**: intended for hosting the SAP database tier
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Virtual networks**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual networks**.
 
 1. On the **Virtual networks** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create virtual network** page, specify the following settings, and then select **Next**:<TODO image?>
+1. On the **Basics** tab of the **Create virtual network** page, specify the following settings, and then select **Next** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -116,9 +116,9 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. On the **Security** tab, accept the default settings, and then select **Next**.
 
-   > **Note**: You could provision at this point both Azure Bastion and Azure Firewall, however you will provision them separately once the virtual network is created.
+   > **Note**: At this point you could provision both Azure Bastion and Azure Firewall. Instead, you will provision them separately once the virtual network is created.
 
-1. On the **IP addresses** tab, specify the following subnet settings and then select **Review + create**:
+1. On the **IP addresses** tab, specify the following subnet settings and then select **Review + create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -128,7 +128,7 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -139,7 +139,7 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -151,7 +151,7 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -163,7 +163,7 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -173,7 +173,7 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. Select **+ Add a subnet**.
 
-1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):<TODO image?>
+1. In the **Add a subnet** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -183,7 +183,7 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. On the **IP addresses** tab, select **Review + create**:
 
-1. On the **Review + create** tab, wait for the validation process to complete and then select **Create**.
+1. On the **Review + create** tab, wait for the validation process to complete, and then select **Create**.
 
    > **Note**: Do not wait for the provisioning process to complete but instead proceed to the next task. The provisioning should take just a few seconds.
 
@@ -195,11 +195,11 @@ After you complete this exercise, you have create the Azure virtual network that
 
 In this exercise, you create an Azure Bastion resource to secure connectivity to Azure Virtual Machines from the internet.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Bastions**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Bastions**.
 
 1. On the **Bastions** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Bastions** page, specify the following settings, and then select **Next : Advanced >**:<TODO image?>
+1. On the **Basics** tab of the **Bastions** page, specify the following settings, and then select **Next : Advanced >** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -228,11 +228,11 @@ After you complete this exercise, you have created an Azure Bastion resource to 
 
 In this exercise, you create an Azure Storage General Purpose v2 account that is associated with the Azure Center for SAP solutions used for the deployment. This storage account is used to host the SAP installation media to accommodate installing SAP software through the Azure Center for SAP solutions.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Storage accounts**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Storage accounts**.
 
 1. On the **Storage accounts** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create a storage account** page, specify the following settings, and then select **Next: Advanced >**.<TODO image?>
+1. On the **Basics** tab of the **Create a storage account** page, specify the following settings, and then select **Next: Advanced >** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -262,11 +262,11 @@ In this exercise, you create an Azure Storage General Purpose v2 account that is
 
 1. On the **Your deployment is complete** page, select **Go to resource**.
 
-1. On the storage account page, in the vertical navigation menu on the left side, in the **Data storage** section, select **Containers**.
+1. In the left pane, select **Containers**.
 
 1. Select **+ Container**.
 
-1. In the **New container** pane, in the **Name** text box, enter **sapbits**, and then select **Create**.
+1. In the **Name** text box, enter **sapbits**, and then select **Create**.
 
    > **Note**: The **sapbits** container will host the SAP installation media.
 
@@ -278,15 +278,15 @@ After you complete this exercise, you have created an Azure Storage General Purp
 
 In this exercise, you use an Azure role-based access control (RBAC) role assignment to grant the Microsoft Entra user-assigned managed identity. The managed identity is used to perform the deployment access to the Azure subscription and the Azure Storage General Purpose v2 account created in the previous task.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Managed Identities**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Managed Identities**.
 
 1. On the Managed Identities page and, select the **acss-infra-MI** entry.
 
-1. On the **acss-infra-MI** page, in the vertical navigation menu on the left side, select **Azure role assignments**.
+1. In the left pane, select **Azure role assignments**.
 
 1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
 
-1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save**:<TODO image?>
+1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -296,7 +296,7 @@ In this exercise, you use an Azure role-based access control (RBAC) role assignm
 
 1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
 
-1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save**:<TODO image?>
+1. On the **+ Add role assignment (Preview)** pane, specify the following settings, and then select **Save** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -313,11 +313,11 @@ After you complete this exercise, you have used an Azure role-based access contr
 
 In this exercise, you create an Azure Premium file shares account used to implement SAP Transport Directory.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Storage accounts**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Storage accounts**.
 
 1. On the **Storage accounts** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create a storage account** page, specify the following settings, and then select **Next: Advanced >**.<TODO image?>
+1. On the **Basics** tab of the **Create a storage account** page, specify the following settings, and then select **Next: Advanced >** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -345,15 +345,15 @@ In this exercise, you create an Azure Premium file shares account used to implem
 
    > **Note**: In general, avoid allowing access to your internal resources from perimeter subnets. In this case, the only reason to do so is to allow for validating this access later in this lab.
 
-1. On the **Review** tab, wait for the validation process to complete and select **Create**.
+1. On the **Review** tab, wait for the validation process to complete, and then select **Create**.
 
    > **Note**: Wait for the provisioning process to complete. The provisioning should take less than 1 minute.
 
 1. On the **Your deployment is complete** page, select **Go to resource**.
 
-1. On the storage account page, in the vertical navigation menu on the left side, in the **Data storage** section, select **File shares**, and then select **+ File share**.
+1. In the left pane, select **File shares**, and then select **+ File share**.
 
-1. On the **Basics** tab of the **New file share** page, specify the following settings, and then select **Review + create**:<TODO image?>
+1. On the **Basics** tab of the **New file share** page, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -366,7 +366,7 @@ In this exercise, you create an Azure Premium file shares account used to implem
 
    > **Note**: Wait for the provisioning of the file share to complete. The provisioning should take just a few seconds.
 
-1. On the **Connect to this NFS share from Linux** page, in the **Select your linux distribution** drop-down list, select **SUSE** in the Linux distribution drop-down list, and review the sample commands to mount this NFS share.
+1. On the **Connect to this NFS share from Linux** page, in the **Select your linux distribution** drop-down list, select **SUSE** in the Linux distribution drop-down list, and review the sample commands to mount this NFS share.<TODO complex instruction, check against UI and simplify>
 
 ### Exercise 6 result
 
@@ -388,11 +388,11 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 > **Note**: In general, you should consider using Azure Firewall instead of NSGs to secure network connectivity for your SAP deployment. This lab covers both options.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Network security groups**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Network security groups**.
 
 1. On the **Network security groups** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create network security group** page, specify the following settings, and then select **Review + create**:<TODO image?>
+1. On the **Basics** tab of the **Create network security group** page, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -409,11 +409,11 @@ In this exercise, you create and configure a network security group (NSG) used t
 
    > **Note**: By default, the built-in rules of network security groups allow all outbound traffic, all traffic within the same virtual network, as well as all traffic between peered virtual networks. From the security standpoint, you should consider restricting this default behavior. The proposed configuration restricts outbound connectivity to the internet and Azure. You can also use NSG rules to restrict connectivity within a virtual network.
 
-1. On the **acss-infra-NSG** page, in the vertical navigation menu on the left side, in the **Settings** section, select **Outbound security rules**.
+1. In the left pane, select **Outbound security rules**.
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
-1. On the **Add outbound security rule** pane, specify the following settings, and then select **Add**:<TODO image?>
+1. On the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -435,7 +435,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
-1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add**:<TODO image?>
+1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -457,7 +457,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
-1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add**:<TODO image?>
+1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -479,7 +479,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
-1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add**:<TODO image?>
+1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -499,7 +499,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
-1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add**:<TODO image?>
+1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -519,7 +519,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
-1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add**:
+1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -539,7 +539,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
-1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add**:<TODO image?>
+1. In the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -557,7 +557,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
    > **Note**: This rule explicitly blocks connectivity to the internet.
 
-1. Finally, you need to assign the NSG to the relevant subnets of the virtual network that will host the SAP deployment. In the **Add outbound security rule** pane, in the vertical navigation menu on the left side, in the **Settings** section, select **Subnets**.
+1. Finally, you need to assign the NSG to the relevant subnets of the virtual network that will host the SAP deployment. In the left pane, select **Subnets**.
 
 1. On the **acss-infra-NSG \| Subnets** page, select **+ Associate**.
 
@@ -577,11 +577,11 @@ After you complete this exercise, you have created and configured a network secu
 
 In this exercise, you create an Azure Virtual Machine used for SAP software installation as part of an Azure Center for SAP solutions deployment.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual machines**.
 
 1. On the **Virtual machines** page, select **+ Create** and, in the drop-down menu, select **Azure Virtual Machine**.
 
-1. On the **Basics** tab of the **Create a virtual machine** page, specify the following settings, and then select **Next: Disks >** (leave all other settings with their default value):<TODO image?>
+1. On the **Basics** tab of the **Create a virtual machine** page, specify the following settings, and then select **Next: Disks >** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -604,7 +604,7 @@ In this exercise, you create an Azure Virtual Machine used for SAP software inst
 
 1. On the **Disks** tab, accept the default values, and then select **Next: Networking >**.
 
-1. On the **Networking** tab, specify the following settings, and then select **Next: Management >** (leave all other settings with their default value):<TODO image?>
+1. On the **Networking** tab, specify the following settings, and then select **Next: Management >** (leave others with their default values):
 
    |Setting|Value |
    |---|---|
@@ -615,11 +615,11 @@ In this exercise, you create an Azure Virtual Machine used for SAP software inst
    |Delete NIC when VM is deleted|enabled|
    |Load balancing Options|**None**|
 
-1. On the **Management** tab, leave all settings with their default value, and then select **Next: Monitoring >**.
+1. On the **Management** tab, leave all settings with their default values, and then select **Next: Monitoring >**.
 
-1. On the **Monitoring** tab, set **Boot diagnostics** to **Disable**, and then select **Next: Advanced >** (leave all other settings with their default value)
+1. On the **Monitoring** tab, set **Boot diagnostics** to **Disable**, and then select **Next: Advanced >** (leave all other settings with their default values).
 
-1. On the **Advanced** tab, select **Review + create** (leave all settings with their default value).
+1. On the **Advanced** tab, leave all settings with their default values, and then select **Review + create**.
 
 1. On the **Review + create** tab of the **Create a virtual machine** menu, select **Create**.
 
@@ -633,23 +633,23 @@ After you complete this exercise, you have created an Azure Virtual Machine used
 
 In this exercise, you connect to the Azure Virtual Machine by using Azure Bastion, and configure it for the SAP software installation.
 
-> **Note**: Before you start this exercise, ensure that the Azure Bastion provisioning has completed. Also ensure that your web browser does not block pop-up windows and, if so, disable the pop-up blocker functionality.
+> **Note**: Before you start this exercise, ensure that the Azure Bastion provisioning has completed. Also, disable your web browser's pop-up blocker functionality, if it has it.
 
-1. In the **Search** text box on the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual machines**.
 
 1. On the **Virtual machines** page, select the **acss-infra-vm0** entry.
 
-1. On the **acss-infra-vm0** page, in the toolbar, select **Connect** and, in the drop-down menu, select **Connect via Bastion**.
+1. On the **acss-infra-vm0** page, select **Connect** and, in the drop-down menu, select **Connect via Bastion**.
 
 1. On the **acss-infra-vm0 \| Bastion** page, ensure that the **Authentication Type** is set to **VM Password**.
 
-1. In the **Username** and **Password** text boxes, enter the username and password you set when provisioning the Azure Virtual Machine, ensure that the **Open in new browser tab** checkbox is enabled, and then select **Connect**.
+1. In the **Username** and **Password** text boxes, enter the username and password you set when provisioning the Azure Virtual Machine.
 
-   > **Note**:
-   >- This should open another web browser window tab displaying the shell session running in the Azure Virtual Machine.
-   >- To prepare the Ubuntu server for the upload of SAP installation media, you will install Azure CLI.
+1. Ensure that the **Open in new browser tab** checkbox is enabled, and then select **Connect**.
 
-1. In the newly opened browser tab, within the shell session, run the following command to install Azure CLI:
+   > **Note**: This should open another web browser window tab displaying the shell session running in the Azure Virtual Machine.
+
+1. To prepare the Ubuntu server for the upload of SAP installation media, you will install Azure CLI. In the newly opened browser tab, within the shell session, run the following command to install Azure CLI:
 
    ```bash
    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -705,9 +705,11 @@ After you complete this exercise, you have connected to the Azure Virtual Machin
 
 In this exercise, you remove all Azure resources provisioned in this lab.
 
-1. In the Microsoft Edge window displaying the [Azure portal](https://portal.azure.com), select the **Cloud Shell** icon and start a PowerShell session in Cloud Shell. If needed, select **Bash** to start a Bash shell session.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a PowerShell session in Cloud Shell.
 
-   > **Note**: If this is the first time you are launching Cloud Shell in the Azure subscription you were using in this lab, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
+   ![PowerShell terminal](../media/az120-lab01-powershell.png)
+
+   > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
 1. In the Cloud Shell pane, run the following command to delete the resource group **acss-infra-RG** and all of its resources.
 

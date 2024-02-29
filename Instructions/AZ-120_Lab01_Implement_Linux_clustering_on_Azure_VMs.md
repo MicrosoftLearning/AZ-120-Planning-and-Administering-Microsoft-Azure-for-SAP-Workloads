@@ -46,9 +46,7 @@ There are several interactive lab simulations that you might find useful for thi
   
 ## Architecture diagram
 
-![TODO](../media/az120-lab01-architecture.png)
-
-TODO
+![TODO Placeholder image update to have proper names and numbers](../media/az120-lab01-ha-hana-replication.png)
 
 ## Job skills
 

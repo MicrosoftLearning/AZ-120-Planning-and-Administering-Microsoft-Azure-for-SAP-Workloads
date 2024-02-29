@@ -74,7 +74,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. On the **Proximity placement groups** blade, select **+ Create**.
 
-1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings, and then select **Review + create**:
+1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings, and then select **Review + create** (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -94,7 +94,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. Select **+ Create** and, on the drop-down menu, select **Azure Virtual Machine**.
 
-1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >** (leave all other settings with their default values):
+1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >**  (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -117,7 +117,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
     >- To locate the size, select the **See all sizes** link, type **D4s** in the search text box, and then select **D4s_v3**.
     >- Make sure you remember the password you specified during deployment. You will need it later in this lab.
 
-1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values):
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -126,7 +126,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. On the **Networking** tab of the **Create a virtual machine** blade, under **Virtual network**, click **Create new**.
 
-1. Specify the following settings, and then select **OK** (leave all other settings with their default values):
+1. Specify the following settings, and then select **OK** (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -135,7 +135,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
     | **Subnet name** | **subnet-0** |
     | **Subnet address range** | **192.168.0.0/24**|
 
-1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave all other settings with their default values):
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -146,7 +146,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
     > **Note**: This image has preconfigured NSG rules.
 
-1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave all other settings with their default values):
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -158,7 +158,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. On the **Monitoring** tab of the **Create a virtual machine** blade, select **Next: Advanced >** (leave all settings with their default values).
 
-1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave all other settings with their default values):
+1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -172,7 +172,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. On the **Virtual machines** blade, select **+ Create** and, on the drop-down menu, select **Azure Virtual Machine**.
 
-1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >** (leave all other settings with their default values):
+1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Disks >** (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -192,14 +192,14 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
     >- To locate the image, select the **See all images** link, type **SUSE Enterprise Linux** in the search text box, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** in the list of results, and then select **Generation 2**.
 
-1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values):
+1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
     | **OS disk type** | **Premium SSD**  <TODO - this isn't an option as such - have to choose locally-redundant or zone-redundant. It's locally for the first VM, same here?>|
     | **Key management** | **Platform-managed key** |
 
-1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave all other settings with their default values):
+1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -212,7 +212,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
    > **Note**: This image has preconfigured NSG rules.
 
-1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave all other settings with their default values):
+1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -224,7 +224,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
 1. On the **Monitoring** tab of the **Create a virtual machine** blade, select **Next: Advanced >** (leave all settings with their default values).
 
-1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave all other settings with their default values):
+1. On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -334,7 +334,7 @@ Azure Bastion allows for connection to the Azure VMs (which you deployed in the 
 
 1. On the **Bastions** blade, select **+ Create**.
 
-1. On the **Basic** tab of the **Create a Bastion** blade, specify the following settings, and then select **Review + create**:
+1. On the **Basic** tab of the **Create a Bastion** blade, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -706,7 +706,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
    | **SKU** | **Standard** |
    | **Type** | **Internal** |
 
-1. On the **Frontend IP configuration** screen, select **Add a frontend IP configuration**, specify the following settings, and then select **Add**:
+1. On the **Frontend IP configuration** screen, select **Add a frontend IP configuration**, specify the following settings, and then select **Add** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -737,7 +737,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 1. On the **az12001a-lb0** blade, in the left pane select **Health probes**.
 
-1. Select **+ Add** and, on the **Add health probe** blade, specify the following settings, and then select **Save** (leave others with their defaults):
+1. Select **+ Add** and, on the **Add health probe** blade, specify the following settings, and then select **Save** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -749,7 +749,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 1. In the left pane, select **Load balancing rules**.
 
-1. Select **+ Add** and, on the **Add load balancing rule** blade, specify the following settings, and then select **Save** (leave others with their defaults):
+1. Select **+ Add** and, on the **Add load balancing rule** blade, specify the following settings, and then select **Save** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -814,7 +814,7 @@ In this task, you will implement Azure Load Balancers to accommodate clustered i
 
 1. On the **az12001a-lb1 \| Backend pools** blade, select **az12001a-lb1-bepool**.
 
-1. On the **az12001a-lb1-bepool** blade, specify the following settings, and then select **Save**:
+1. On the **az12001a-lb1-bepool** blade, specify the following settings, and then select **Save** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |

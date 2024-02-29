@@ -171,7 +171,7 @@ Because the Azure Virtual Machines that you deployed in the previous task are no
 
 1. Select **Create** to initiate creation of a new Azure Virtual Machine based on the **Windows Server 2019 Datacenter** image.
 
-1. Provision a Azure Virtual Machine with the following settings (leave all others with their default values):
+1. Provision a Azure Virtual Machine with the following settings (leave others with their default values):
 
     | Setting | Value |
     |   --    |  --   |
@@ -561,7 +561,7 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 1. Select **+ New registration**:
 
-1. On the **Register an application** blade, specify the following settings, and then select **Register**:
+1. On the **Register an application** blade, specify the following settings, and then select **Register** (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |
@@ -586,7 +586,7 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 1. Select **Add**, and then select **Add role assignment**.
 
-1. Add a role assignment with the following settings:
+1. Add a role assignment with the following settings (leave others with their default values):
 
    | Setting | Value |
    |   --    |  --   |

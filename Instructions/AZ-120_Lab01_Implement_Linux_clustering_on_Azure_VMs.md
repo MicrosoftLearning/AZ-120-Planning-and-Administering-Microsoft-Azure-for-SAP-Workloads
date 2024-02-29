@@ -114,7 +114,7 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 
     > **Note**:
     >- To locate the image, select the **See all images** link, type **SUSE Enterprise Linux** in the search text box, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** in the list of results, and then select **Generation 2**.
-    >- To locate the size, select the **See all sizes** link, type **D4s** in the search text box, and then **select D4s_v3**.
+    >- To locate the size, select the **See all sizes** link, type **D4s** in the search text box, and then select **D4s_v3**.
     >- Make sure you remember the password you specified during deployment. You will need it later in this lab.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave all other settings with their default values):
@@ -237,6 +237,8 @@ In this task, you will deploy Azure infrastructure compute components necessary 
 ### Task 2: Create and configure Azure Virtual Machines disks
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
+
+   ![Bash terminal](../media/az120-lab01-bash.png)
 
    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 

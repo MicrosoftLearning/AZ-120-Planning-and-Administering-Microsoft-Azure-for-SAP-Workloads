@@ -70,7 +70,7 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 1. On the **Managed Identities** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + Create** (leave others with their default values):
+1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -81,17 +81,17 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 1. On the **Review** tab, wait for the validation process to complete, and then select **Create**.
 
-1. Wait for the provisioning process to complete, and then select **Go to resource** to prepare for the next task. The provisioning should take just a few seconds.
-
 ### Task 2: Configure Azure role-based access control (RBAC) subscription contributor
 
 In this task, you will TODO.
 
-1. Continue in the [Azure portal](https://portal.azure.com) on the Managed Identity overview page for **acss-infra-MI** from the completion of the last task.
+1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Managed Identities**, and then select the **acss-infra-MI** entry.
 
-1. On the **acss-infra-MI** Managed Identity page menu, select **Azure role assignments**.
+1. In the left pane, select **Azure role assignments**.
 
-1. On the **Azure role assignments** page, select **+ Add role assignment**.
+   ![Azure role assignments link](../media/az120-lab03-azure-role-assignments.png)
+
+1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
 
 1. On the **Add role assignment** tab of the **Add role assignment** pane, specify the following settings, and then select **Save** (leave others with their default values):
 
@@ -109,15 +109,17 @@ In this task, you will TODO.
 
 1. On the **Subscriptions** page, select the entry representing the Azure subscription you will be using for this lab.
 
-1. On the page displaying the properties of the Azure subscription, select **Access control (IAM)**.
+1. In the left pane, select **Access control (IAM)**.
+
+   ![Access control (IAM) link](../media/az120-lab05-access-control-iam.png)
 
 #### Add identity: "Azure Center for SAP solutions service role"
 
 1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu, select **Add role assignment**.
 
-1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions service role** entry, and then select **Next**.
+1. On the **Role** tab, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions service role** entry, and then select **Next**.
 
-1. On the **Members** tab of the **Add role assignment** page, for **Assign access to**, select **Managed Identity**, and then select **+ Select members**.
+1. On the **Members** tab, for **Assign access to**, select **Managed identity**, and then select **+ Select members**.
 
 1. In the **Select managed identities** pane, specify the following settings, and then click **Select** (leave others with their default values):
 
@@ -135,9 +137,9 @@ In this task, you will TODO.
 
 1. On the **Access control (IAM)** page, select **+ Add** and then, in the drop-down menu, select **Add role assignment**.
 
-1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions administrator** entry, and the select **Next**.
+1. On the **Role** tab, in the listing of **Job function roles**, search for and select the **Azure Center for SAP solutions administrator** entry, and then select **Next**.
 
-1. On the **Members** tab, for **Assign access to**, select **User, Group, or Service principle**, and then select **+ Select members**.
+1. On the **Members** tab, for **Assign access to**, select **User, group, or service principal**, and then select **+ Select members**.
 
 1. In the **Select members** pane, in the **Select** text box, enter the name of the Microsoft Entra ID user account you used to access the Azure subscription you are using for this lab, select it in the list of results matching your entry, and then click **Select**.
 
@@ -151,7 +153,7 @@ In this task, you will TODO.
 
 1. On the **Role** tab of the **Add role assignment** page, in the listing of **Job function roles**, search for and select the **Managed Identity Operator** entry, and the select **Next**.
 
-1. On the **Members** tab, for **Assign access to**, select **User, Group, or Service principle**, and then select **+ Select members**.
+1. On the **Members** tab, for **Assign access to**, select **User, group, or service principal**, and then select **+ Select members**.
 
 1. In the **Select members** pane, in the **Select** text box, enter the name of the Microsoft Entra ID user account you used to access the Azure subscription you are using for this lab, select it in the list of results matching your entry, and then click **Select**.
 
@@ -189,7 +191,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
    |Setting|Value|
    |---|---|
    |Azure Bastion host name|**acss-infra-vnet-bastion**|
-   |Azure Bastion public IP address|**(New) acss-infra-bastion**|
+   |Azure Bastion public IP address|**(New) acss-infra-vnet-bastion**|
 
 1. On the **IP addresses** tab, specify the following settings, and then select **Add** (leave others with their default values):
 
@@ -229,7 +231,7 @@ In this task, you create the Azure virtual network that hosts all of the Azure V
    |Starting address|**10.0.3.0**|
    |Size|**/24 (256 addresses)**|
 
-1. On the **IP addresses** tab, select **Review + create**:
+1. On the **IP addresses** tab, select **Review + create**.
 
 1. On the **Review + create** tab, wait for the validation process to complete, and then select **Create**.
 
@@ -252,6 +254,8 @@ In this task, you will TODO.
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Azure Center for SAP Solutions**.
 
 1. On the **Azure Center for SAP Solutions \| Overview** page, select **Create a new SAP system**.
+
+    ![Link to create a new SAP system](../media/az120-lab03-create-new-sap-system.png)
 
 1. On the **Basics** tab of the **Create Virtual Instance for SAP solutions** page, specify the following settings, and then select **Next : Virtual machines** (leave others with their default values):
 
@@ -423,11 +427,15 @@ In this task, you will TODO.
 
 1. In the left pane, select **Backup (preview)**.
 
+   ![Link to Backup (preview)](../media/az120-lab05-backup-preview.png)
+
 1. Note the message indicating that backup can't be set up since SAP software installation/registration for this SAP system isn't complete. This is expected. You will not able to set up backup this way until the installation of SAP software is completed. However, completing the setup also involves additional prerequisites, including creation of vaults and backup policies, which we'll review here.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Backup center**.
 
 1. In the left pane, select **Vaults**.
+
+   ![Vaults link](../media/az120-lab05-vaults.png)
 
 1. On the **Backup center \| Vaults** page, select **+ Vault**.
 
@@ -442,12 +450,14 @@ In this task, you will TODO.
    |Vault name|**acss-backup-RSV**|
    |Region|the name of the Azure region hosting the ACSS-registered SAP deployment|
 
-1. On the **Redundancy** tab, specify the following settings, and then select **Next : Vault properties** (leave others with their default values).
+1. On the **Redundancy** tab, specify the following settings, and then select **Next: Encryption** (leave others with their default values).
 
    |Setting|Value|
    |---|---|
    |Backup Storage Redundancy|**Geo-redundant**|
-   |Cross Region Restore|**Enable**|
+   |Cross Region Restore|**Enable** <TODO - I don't see this option>|
+
+1. On the **Encryption** tab, leave the settings as their defaults, and select **Next: Vault properties**.
 
 1. On the **Vault properties** tab, review the **Enable immutability** setting without enabling it, and then select **Next : Networking**.
 
@@ -487,7 +497,11 @@ ASR is the recommended solution for application servers and SAP Central Services
    |---|---|
    |Backup Storage Redundancy|**Locally-redundant**|
 
-1. On the **Vault properties** tab, review the **Enable immutability** setting without enabling it, and then select **Next : Networking**.
+1. On the **Vault properties** tab, review the **Enable immutability** setting without enabling it, and then select **Next : Encryption**.
+
+1. On the **Encryption** tab, leave the settings as their defaults, and select **Next: Vault properties**.
+
+1. On the **Vault properties** tab, leave the settings as their defaults, and select **Next: Networking**.
 
 1. On the **Networking** tab, accept the default option to **Allow public access from all networks**, and then select **Review + create**.
 
@@ -509,7 +523,7 @@ ASR is the recommended solution for application servers and SAP Central Services
 
    |Setting|Value|
    |---|---|
-   |Region|the name of the Azure region hosting your Virtual Instance for SAP (VIS)|
+   |Region|The name of the Azure region hosting your Virtual Instance for SAP (VIS)|
    |Subscription|The name of the Azure subscription used in this lab|
    |Resource group|**acss-vi-RG**|
    |Virtual machine deployment model|**Resource Manager**|
@@ -549,22 +563,20 @@ ASR is the recommended solution for application servers and SAP Central Services
 
    1. In the **Availability options** section, select the **View/edit availability options** link.
 
-   1. On the **Availability options** page you have the option of implementing proximity placement groups for target resources but don't make any changes, and then select **Cancel**.
+   1. On the **Availability options** page, you have the option of implementing proximity placement groups for target resources. Don't make any changes, and select **Cancel**.
 
-   > **Note**:
-   >- You also have the option of configuring capacity reservation.
-   >- You also have the option of configuring replication policy settings.
+   > **Note**: You also have the option of configuring capacity reservation and replication policy settings.
 
    > **Important**: Note that the IP address spaces differ between the virtual network in the primary and secondary regions. This is intentional, since it will allow connecting the two virtual networks together, which is necessary in order to configure replication between database servers hosted in the two regions. Such connection can be established by using virtual network peering.
 
 1. On the **Replication settings** tab of the **Enable replication** page, select **Next**.
 
-1. On the **Manage** tab of the **Enable replication** page, select **Next**.
+1. On the **Manage** tab page, select **Next**.
 
-1. On the **Review** tab of the **Enable replication** page, review the settings. For this exercise, we will **not enable** replication.
+1. On the **Review** tab, review the settings. For this exercise, we will **not enable** replication.
 
    > **Note**:
-   >- Initial replication usually takes aconsiderable time to complete. Considering the limited time allocated to this lab, refer to the instructor regarding any extra steps to be performed as part of this task. In absence of any specific guidance, proceed directly to the next task.
+   >- Initial replication usually takes a considerable time to complete. Considering the limited time allocated to this lab, refer to the instructor regarding any extra steps to be performed as part of this task. In absence of any specific guidance, proceed directly to the next task.
    >- At this point you could provision both Azure Bastion and Azure Firewall. However, you should instead automate their provisioning as part of your disaster recovery failover procedure. This will minimize charges associated with maintaining the disaster recovery environment. The same should apply to other components of that environment that mirror the configuration of the primary Virtual Instance for SAP, such as Azure Premium file shares and custom routing.
 
 ### Task 3: Review monitoring options for SAP workloads managed by Azure Center for SAP solutions
@@ -578,6 +590,8 @@ As with backup, you will not be able to fully experience the monitoring capabili
 1. On the **Virtual Instances for SAP solutions** page, select **VI1**.
 
 1. In the left pane, select **Overview** and then, in the pane on the right side, select **Monitoring**.
+
+   ![Overview link](../media/az120-lab05-overview.png)
 
 1. Review the monitoring telemetry displayed in the monitoring pane.
 
@@ -596,6 +610,8 @@ As with backup, you will not be able to fully experience the monitoring capabili
 1. On the **VI1 \| Quality insights \| Workbook 1** page, select the **Configuration Checks** tab and review the content of the **Accelerated Networking**, **Public IP**, **Backup**, and **Load Balancer** tabs. This content provides a quick overview of the performance and security related settings of compute and network components of the Virtual Instance for SAP solutions. The **Load Balancer** tab includes **Load Balancer Monitor** information that displays key load balancer metrics.
 
 1. In the left pane, select **Azure Monitor for SAP solutions**.
+
+   ![Azure Monitor for SAP solutions link](../media/az120-lab05-azure-monitor-for-sap-solutions.png)
 
 1. On the **VI1 \| Azure Monitor for SAP solutions** page, note the message stating that AMS can't be set up since SAP software installation\registration for VIS isn't complete.
 

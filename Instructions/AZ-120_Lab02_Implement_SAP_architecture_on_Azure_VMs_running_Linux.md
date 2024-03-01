@@ -62,6 +62,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Create a virtual network that will host a highly available SAP NetWeaver deployment
 
+In this task, you will TODO.
+
 1. From the lab computer, start a Web browser, and navigate to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
 1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab and the the Global Administrator role in the Azure AD tenant associated with your subscription.
@@ -116,6 +118,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     ```
 
 ### Task 2: Deploy a Bicep template that provisions Azure Virtual Machines running Linux SUSE which will host a highly available SAP NetWeaver deployment
+
+In this task, you will TODO.
 
 1. On the lab computer, in the Cloud Shell pane, run the following commands. This will create a shallow clone of the repository hosting the Bicep template, that you will use for deployment of a pair of Azure Virtual Machines that will host a highly available installation of SAP HANA. It will also set the current directory to the location of that template and its parameter file:
 
@@ -225,7 +229,7 @@ In this exercise, you will configure Azure Virtual Machines running SUSE Linux E
 
 ### Task 1: Configure networking of the database tier Azure Virtual Machines
 
-Before you start this task, make sure that the template deployments you initiated in the previous exercise have completed successfully.
+In this task, you will TODO. Before you start this task, make sure that the template deployments you initiated in the previous exercise have completed successfully.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **i20-db-0** Azure Virtual Machine.
 
@@ -254,6 +258,8 @@ Before you start this task, make sure that the template deployments you initiate
 1. Change the private IP address assignment to **Static**, set it to **10.3.0.21**, and save the change.
 
 ### Task 2: Connect to the database tier Azure Virtual Machines
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **az12003a-vm0** blade.
 
@@ -287,6 +293,8 @@ Before you start this task, make sure that the template deployments you initiate
 
 ### Task 3: Examine the storage configuration of the database tier Azure Virtual Machines
 
+In this task, you will TODO.
+
 1. From within the PuTTY SSH session to i20-db-0 Azure Virtual Machine, run the following command to elevate privileges:
 
     ```
@@ -304,6 +312,8 @@ Before you start this task, make sure that the template deployments you initiate
 1. Repeat the previous steps on the i20-db-1 Azure Virtual Machine.
 
 ### Task 4: Enable cross-node password-less SSH access
+
+In this task, you will TODO.
 
 1. In the SSH session to i20-db-0, generate a passphrase-less SSH key by running:
 
@@ -387,6 +397,8 @@ Before you start this task, make sure that the template deployments you initiate
 
 ### Task 5: Add YaST packages, update the Linux operating system, and install HA Extensions
 
+In this task, you will TODO.
+
 1. In the SSH session to i20-db-0, run the following to launch YaST:
 
     ```
@@ -458,6 +470,8 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 ### Task 1: Configure clustering
 
+In this task, you will TODO.
+
 1. Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, run the following to initiate configuration of an HA cluster on i20-db-0:
 
     ```
@@ -502,6 +516,8 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 ### Task 2: Review corosync configuration
 
+In this task, you will TODO.
+
 1. Within the RDP session to az12003a-vm0, in the PuTTY-based SSH session to i20-db-0, open the **/etc/corosync/corosync.conf** file by running:
 
     ```
@@ -541,6 +557,8 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 ### Task 3: Identify the value of the Azure subscription Id and the Azure AD tenant Id
 
+In this task, you will TODO.
+
 1. From the lab computer, in the [Azure portal](https://portal.azure.com), ensure that you are signed in with the user account that has the Global Administrator role in the Azure AD tenant associated with your subscription.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, select the **Cloud Shell** icon to open Cloud Shell pane, and choose Bash as the shell.
@@ -554,6 +572,8 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 1. Copy the resulting values to Notepad. You will need them in the next task.
 
 ### Task 4: Create an Azure AD application for the STONITH device
+
+In this task, you will TODO.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the **Azure Active Directory** blade.
 
@@ -580,6 +600,8 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 
 ### Task 5: Grant permissions to Azure Virtual Machines to the service principal of the STONITH app
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **i20-db-0** Azure Virtual Machine
 
 1. In the left pane, select **Access control (IAM)**.
@@ -597,6 +619,8 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
 1. Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure Virtual Machine.
 
 ### Task 6: Configure the STONITH cluster device
+
+In this task, you will TODO.
 
 1. Within the RDP session to az12003a-vm0, switch to the PuTTY-based SSH session to i20-db-0.
 
@@ -616,6 +640,8 @@ In this exercise, you will configure clustering on Azure Virtual Machines runnin
     ```
 
 ### Task 7: Review clustering configuration on Azure Virtual Machines running Linux by using Hawk
+
+In this task, you will TODO.
 
 1. Within the RDP session to az12003a-vm0, start Internet Explorer and navigate to [https://i20-db-0:7630](https://i20-db-0:7630). This should display the SUSE Hawk sign-in page.
 

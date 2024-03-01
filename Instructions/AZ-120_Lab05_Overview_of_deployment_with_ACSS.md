@@ -85,6 +85,8 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
 
 ### Task 2: Configure Azure role-based access control (RBAC) subscription contributor
 
+In this task, you will TODO.
+
 1. Continue in the [Azure portal](https://portal.azure.com) on the Managed Identity overview page for **acss-infra-MI** from the completion of the last task.
 
 1. On the **acss-infra-MI** Managed Identity page menu, select **Azure role assignments**.
@@ -100,6 +102,8 @@ In this task, you create a Microsoft Entra user-assigned managed identity to be 
    |Role|**Contributor**|
 
 ### Task 3: Configure Azure role-based access control (RBAC) role assignments for the Microsoft Entra ID user account that will be used to perform the deployment
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Subscriptions**.
 
@@ -243,6 +247,8 @@ In this exercise, you perform deployment of Azure Center for SAP solutions. This
 
 ### Task 1: Create Virtual Instance for SAP (VIS) solutions
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Azure Center for SAP Solutions**.
 
 1. On the **Azure Center for SAP Solutions \| Overview** page, select **Create a new SAP system**.
@@ -325,6 +331,8 @@ In this exercise, you view the properties and functions within a Azure Center fo
 
 ### Task 1: Review the ACSS VIS page
 
+In this task, you will TODO.
+
 1. When the VIS deployment has completed, view the **VI1 Virtual Instance for SAP solutions** page and explore the available information from the Virtual Instance for SAP solutions page menu, including:
 
     1. **Overview**:
@@ -346,6 +354,8 @@ In this exercise, you view the properties and functions within a Azure Center fo
         - Expand items under the **Resource** column.
 
 ### Task 2: Connect to DB virtual machine and review ACSS configuration
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to  **Virtual Machines**.
 
@@ -402,6 +412,8 @@ In this exercise, you review post-deployment management and monitoring of SAP wo
 - Deleting all of the Azure resources provisioned in this lab.
 
 ### Task 1: Review prerequisites for backup of SAP workloads managed by Azure Center for SAP solutions
+
+In this task, you will TODO.
 
 > **Note**: When you configure Azure Backup at the VIS resource level in the Azure Center for SAP solutions, you can, in one step, enable backup for Azure Virtual Machines hosting the database, application servers, and SAP Central Services instance, and for the HANA DB. For the HANA DB backup, Azure Center for SAP solutions automatically runs the backup pre-registration script.
 

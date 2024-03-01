@@ -68,7 +68,7 @@ In this exercise, you create a Microsoft Entra user-assigned managed identity to
 
 1. On the **Managed Identities** page, select **+ Create**.
 
-1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + Create** (leave others with their default values):
+1. On the **Basics** tab of the **Create User Assigned Managed Identity** page, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    |Setting|Value|
    |---|---|
@@ -116,7 +116,7 @@ In this exercise, you create the Azure virtual network that hosts all of the Azu
 
 1. On the **Security** tab, accept the default settings, and then select **Next**.
 
-   > **Note**: At this point you could provision both Azure Bastion and Azure Firewall. Instead, you will provision them separately once the virtual network is created.
+   > **Note**: At this point you could provision both Azure Bastion and Azure Firewall. Instead, you will provision them separately after the virtual network is created.
 
 1. On the **IP addresses** tab, specify the following subnet settings and then select **Review + create** (leave others with their default values):
 
@@ -264,6 +264,8 @@ In this exercise, you create an Azure Storage General Purpose v2 account that is
 
 1. In the left pane, select **Containers**.
 
+   ![Containers link](../media/az120-lab04-containers.png)
+
 1. Select **+ Container**.
 
 1. In the **Name** text box, enter **sapbits**, and then select **Create**.
@@ -283,6 +285,8 @@ In this exercise, you use an Azure role-based access control (RBAC) role assignm
 1. On the Managed Identities page and, select the **acss-infra-MI** entry.
 
 1. In the left pane, select **Azure role assignments**.
+
+   ![Azure role assignments link](../media/az120-lab04-azure-role-assignments.png)
 
 1. On the **Azure role assignments** page, select **+ Add role assignment (Preview)**.
 
@@ -353,6 +357,8 @@ In this exercise, you create an Azure Premium file shares account used to implem
 
 1. In the left pane, select **File shares**, and then select **+ File share**.
 
+   ![File shares link](../media/az120-lab04-containers.png)
+
 1. On the **Basics** tab of the **New file share** page, specify the following settings, and then select **Review + create** (leave others with their default values):
 
    |Setting|Value|
@@ -360,13 +366,15 @@ In this exercise, you create an Azure Premium file shares account used to implem
    |Name|**trans**|
    |Provisioned capacity|**128**|
    |Protocol|**NFS**|
-   |Root Squash|*No Root Squash**|
+   |Root Squash|**No Root Squash**|
 
 1. On the **Review + create** tab, wait for the validation process to complete, and then select **Create**.
 
    > **Note**: Wait for the provisioning of the file share to complete. The provisioning should take just a few seconds.
 
-1. On the **Connect to this NFS share from Linux** page, in the **Select your linux distribution** drop-down list, select **SUSE** in the Linux distribution drop-down list, and review the sample commands to mount this NFS share.<TODO complex instruction, check against UI and simplify>
+1. On the **Connect to this NFS share from Linux** page, select **SUSE** in the **Select your linux distribution** drop-down list.
+
+1. Review the sample commands to mount this NFS share.
 
 ### Exercise 6 result
 
@@ -411,6 +419,8 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. In the left pane, select **Outbound security rules**.
 
+   ![Outbound security rules link](../media/az120-lab04-outbound-security-rules.png)
+
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
 1. On the **Add outbound security rule** pane, specify the following settings, and then select **Add** (leave others with their default values):
@@ -453,7 +463,7 @@ In this exercise, you create and configure a network security group (NSG) used t
 
    > **Note**:
    >- This rule explicitly allows connectivity to SUSE update infrastructure endpoints.
-   >- To identify the IP addresses to use for SUSE, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network#allowlist-suse-or-red-hat-endpoints)
+   >- To identify the IP addresses to use for SUSE, refer to [Prepare network for infrastructure deployment](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/prepare-network#allowlist-suse-or-red-hat-endpoints).
 
 1. On the **acss-infra-NSG \| Outbound security rules** page, select **+ Add**.
 
@@ -559,11 +569,15 @@ In this exercise, you create and configure a network security group (NSG) used t
 
 1. Finally, you need to assign the NSG to the relevant subnets of the virtual network that will host the SAP deployment. In the left pane, select **Subnets**.
 
+   ![Subnets link](../media/az120-lab04-outbound-security-rules.png)
+
 1. On the **acss-infra-NSG \| Subnets** page, select **+ Associate**.
 
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**.
 
 1. In the **Subnet** drop-down list, select **app**, and then select **OK**.
+
+1. On the **acss-infra-NSG \| Subnets** page, select **+ Associate**.
 
 1. In the **Associate subnet** pane, in the **Virtual network** drop-down list, select **acss-intra-VNET (acss-infra-RG)**
 
@@ -594,13 +608,15 @@ In this exercise, you create an Azure Virtual Machine used for SAP software inst
    |Image|**Ubuntu Server 20.04 LTS - x64 Gen2**|
    |VM architecture|**x64**|
    |Run with Azure Spot Discount|disabled|
-   |Size|**Standard_B2ms**|
+   |Size|**Standard_B2ms** (see note below)|
    |Authentication type|**Password**|
    |Username|any valid user name|
-   |Password|any complex password of your choice|
+   |Password|any complex password of your choice (see note below)|
    |Public inbound ports|**None**|
 
-    > **Note**: Make sure you remember the username and password you specified. You will need it later in this lab.
+    > **Note**:
+    >- To locate the size, select the **See all sizes** link, type **B2ms** in the search text box, and then select **B2ms**.
+    >- Make sure you remember the username and password you specified. You will need it later in this lab.
 
 1. On the **Disks** tab, accept the default values, and then select **Next: Networking >**.
 
@@ -621,7 +637,7 @@ In this exercise, you create an Azure Virtual Machine used for SAP software inst
 
 1. On the **Advanced** tab, leave all settings with their default values, and then select **Review + create**.
 
-1. On the **Review + create** tab of the **Create a virtual machine** menu, select **Create**.
+1. On the **Review + create** tab, select **Create**.
 
    > **Note**: Wait for the provisioning to complete. The provisioning might take about 3 minutes.
 
@@ -660,6 +676,8 @@ In this exercise, you connect to the Azure Virtual Machine by using Azure Bastio
    ```bash
    sudo apt install python3-pip
    ```
+
+   > **Note**: If you are prompted, press **y** and then press **Enter** to confirm.
 
 1. Within the shell session, run the following command to install Ansible 2.13.19:
 
@@ -705,9 +723,9 @@ After you complete this exercise, you have connected to the Azure Virtual Machin
 
 In this exercise, you remove all Azure resources provisioned in this lab.
 
-1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a PowerShell session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
 
-   ![PowerShell terminal](../media/az120-lab01-powershell.png)
+   ![Bash terminal](../media/az120-lab01-bash.png)
 
    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 

@@ -153,6 +153,8 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 2: Configure Azure role-based access control (RBAC) role assignments for the Microsoft Entra ID user account that will be used to perform the deployment
 
+In this task, you will TODO.
+
 1. On the lab computer, open the [Azure portal](https://portal.azure.com) in a browser window.
 
 1. When prompted to authenticate, sign in by using the Microsoft Entra ID credentials with the Owner role in the Azure subscription you will be using for this lab.
@@ -179,6 +181,8 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 3: Create a storage account associated with the Azure Center for SAP solutions used for the deployment
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Storage accounts**.
 
 1. On the **Storage accounts** page, select **+ Create**.
@@ -204,6 +208,8 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
     > **Note**: Do not wait for the provisioning of the Azure Storage account to complete. Instead, proceed to the next task. The provisioning might take about 2 minutes.
 
 ### Task 4: Create and configure a user-assigned managed identity to be used by Azure Center for SAP solutions for authentication and authorization of its automated deployment
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Managed Identities**.
 
@@ -251,6 +257,8 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 5: Create a network security group (NSG) to be used within subnets of the virtual network that will host the deployment
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Network security groups**.
 
 1. On the **Network security groups** page, select **+ Create**.
@@ -270,6 +278,8 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 
 ### Task 6: Create route tables to be used within subnets of the virtual network that will host the deployment
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Route tables**.
 
 1. On the **Route tables** page, select **+ Create**.
@@ -287,6 +297,8 @@ To complete this lab (as described), you will need a Microsoft Azure subscriptio
 1. On the **Review + create** tab, wait for the validation process to complete, and then select **Create**.
 
 ### Task 7: Create and configure the virtual network that will host the deployment
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Virtual networks**.
 
@@ -537,6 +549,8 @@ Before you deploy an Azure Firewall instance, you will first create a firewall p
 
 ### Task 9: Deploy Azure Bastion into the virtual network that will host the deployment
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Bastions**.
 
 1. On the **Bastions** page, select **+ Create**.
@@ -573,6 +587,8 @@ In this exercise, you will use Azure Center for SAP solutions to deploy the infr
 > **Note**: For information regarding installing SAP software by using Azure Center for SAP solutions, refer to the Microsoft Learn documentation that describes how to [Get SAP installation media](https://learn.microsoft.com/azure/sap/center-sap-solutions/get-sap-installation-media) and [Install SAP software](https://learn.microsoft.com/azure/sap/center-sap-solutions/install-software). Instructions for deleting the Azure resources provisioned in this lab are included in the second task of this exercise.
 
 ### Task 1: Create Virtual Instance for SAP solutions
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to **Azure Center for SAP Solutions**.
 

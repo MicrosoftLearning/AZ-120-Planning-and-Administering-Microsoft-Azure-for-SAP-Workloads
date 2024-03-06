@@ -64,6 +64,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Deploy Azure Virtual Machines running Linux SUSE
 
+In this task, you will TODO.
+
 1. From the lab computer, open a Web browser and navigate to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
 1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab.
@@ -234,6 +236,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 2: Create and configure Azure Virtual Machines disks
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
 
    ![Bash terminal](../media/az120-shell-icon.png)
@@ -307,7 +311,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 3: Provision Azure Bastion
 
-Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.
+In this task, you will TODO. Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.
 
 > **Note**: To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
 
@@ -363,6 +367,8 @@ In this exercise, you will configure operating system and storage on Azure Virtu
 
 ### Task 1: Connect to Azure Linux virtual machines
 
+In this task, you will TODO.
+
 1. From your lab computer, in the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**.
 
 1. On the **Virtual machines** blade, select the **az12001a-vm0** entry. This will open the **az12001a-vm0** blade.
@@ -376,6 +382,8 @@ In this exercise, you will configure operating system and storage on Azure Virtu
 1. Repeat these steps to connect via Bastion to the **az12001a-vm1** Azure Virtual Machine.
 
 ### Task 2: Configure storage of Azure Virtual Machines running Linux
+
+In this task, you will TODO.
 
 1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, run the following command to elevate privileges:
 
@@ -502,6 +510,8 @@ In this exercise, you will configure operating system and storage on Azure Virtu
 1. Switch to the Bastion session to az12001a-vm1 and repeat all of the steps in this task to configure storage on **az12001a-vm1**.
 
 ### Task 3: Enable cross-node password-less SSH access
+
+In this task, you will TODO.
 
 1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, generate passphrase-less SSH key by running:
 
@@ -676,6 +686,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 ### Task 1: Configure Azure Virtual Machines to facilitate load balancing setup
 
+In this task, you will TODO.
+
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **az12001a-vm0** Azure Virtual Machine.
 
 1. In the left pane, select **Network settings** to open the **az12001a-vm0 \| Network settings** blade.
@@ -691,6 +703,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 1. Set the private IP address assignment to **Static**, and then save the change.
 
 ### Task 2: Create and configure Azure Load Balancers handling inbound traffic
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Load balancers** blade.
 
@@ -766,6 +780,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    | **Enable Floating IP** | **Enabled** |
 
 ### Task 2: Create and configure Azure Load Balancers handling outbound traffic
+
+In this task, you will TODO.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
 

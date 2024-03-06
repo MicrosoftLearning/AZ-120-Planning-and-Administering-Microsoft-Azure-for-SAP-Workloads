@@ -298,7 +298,10 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    | **Resource group** | *select the name of the resource group you used earlier in this task* |
    | **HOST CACHING** | **Read-only** |
 
-1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
+1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8).
+    - Assign the LUN number matching the last character of the disk name.
+    - Set HOST CACHING of the disk with LUN **1** to **Read-only**
+    - Set HOST CACHING of the remaining disks to **None**.
 
 1. Select **Apply** to save your changes.
 
@@ -312,7 +315,7 @@ Azure Bastion allows for connection to the Azure VMs (which you deployed in the 
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon and start a PowerShell session in Cloud Shell.
 
-   ![PowerShell terminal](../media/az120-lab01-powershell.png)
+   ![PowerShell terminal](../media/az120-shell-icon.png)
 
 1. From the PowerShell session in the Cloud Shell pane, run the following to add a subnet named **AzureBastionSubnet** to the virtual network named **az12001a-RG-vnet** you created earlier in this exercise:
 

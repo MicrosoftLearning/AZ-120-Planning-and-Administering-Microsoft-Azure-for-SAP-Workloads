@@ -64,7 +64,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Deploy Azure Virtual Machines running Linux SUSE
 
-In this task, you will TODO.
+In this task, you set up a new Azure Virtual Machine with a SUSE Linux Enterprise image configured for SAP applications to ensure high availability through an availability set and proximity placement group. This setup aims to provide a robust and optimized environment for SAP workloads with minimized latency and increased resilience.
 
 1. From the lab computer, open a Web browser and navigate to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
@@ -236,7 +236,7 @@ In this task, you will TODO.
 
 ### Task 2: Create and configure Azure Virtual Machines disks
 
-In this task, you will TODO.
+In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual Machine **managed disks** and attach them to your SUSE Linux VMs from Task 1. This process involves initializing the disks, setting appropriate LUN values, and configuring host caching to optimize performance for your SAP applications.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
 
@@ -311,7 +311,7 @@ In this task, you will TODO.
 
 ### Task 3: Provision Azure Bastion
 
-In this task, you will TODO. Azure Bastion allows for connection to the Azure VMs (which you deployed in the previous task of this exercise) without using public endpoints, while providing protection against brute force exploits that target operating system level credentials.
+In this task, you provision Azure Bastion to securely connect to your SUSE Linux Azure VMs without exposing them to public endpoints, thereby enhancing protection against brute force attacks. You configure a dedicated subnet and deploy the Bastion service, ensuring secure access to my virtual machines within the Azure portal.
 
 > **Note**: To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
 
@@ -359,7 +359,7 @@ In this task, you will TODO. Azure Bastion allows for connection to the Azure VM
 
 ### Exercise 1 result
 
-After you complete this exercise, you have provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
+In exercise 1, you provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
 
 ## Exercise 2: Configure operating system of Azure Virtual Machines running Linux to support a highly available SAP HANA installation
 
@@ -367,7 +367,7 @@ In this exercise, you will configure operating system and storage on Azure Virtu
 
 ### Task 1: Connect to Azure Linux virtual machines
 
-In this task, you will TODO.
+In task 1, you establish remote connections to your Azure Linux virtual machines using the Azure portal's Bastion service. You will access both az12001a-vm0 and az12001a-vm1 virtual machines securely to prepare for the configuration needed for a highly available SAP HANA installation.
 
 1. From your lab computer, in the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**.
 
@@ -383,7 +383,7 @@ In this task, you will TODO.
 
 ### Task 2: Configure storage of Azure Virtual Machines running Linux
 
-In this task, you will TODO.
+In this task, you partition and format a new disk, create mount point directories, and configure the system to automatically mount the new volumes at boot by editing the `/etc/fstab` file. The task is completed on the **az12001a-vm0** virtual machine and then repeated on the second VM, **az12001a-vm1**, to ensure both have the necessary storage configurations.
 
 1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, run the following command to elevate privileges:
 
@@ -511,7 +511,7 @@ In this task, you will TODO.
 
 ### Task 3: Enable cross-node password-less SSH access
 
-In this task, you will TODO.
+In this task, you configure password-less SSH access between two Azure Virtual Machines by generating and exchanging RSA keys, adjusting SSH daemon settings to permit root login with these keys, and verifying that secure, password-free connections can be established successfully.
 
 1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, generate passphrase-less SSH key by running:
 
@@ -678,7 +678,7 @@ In this task, you will TODO.
 
 ### Exercise 2 result
 
-After you complete this exercise, you have configured an operating system of Azure Virtual Machines running Linux to support a highly available SAP HANA installation.
+In this exercise, connecting via Azure Bastion you have configured Azure Virtual Machines running Linux with shared storage, and enabled password-less SSH access between nodes to support a highly available SAP HANA installation.
 
 ## Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
 
@@ -686,7 +686,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 ### Task 1: Configure Azure Virtual Machines to facilitate load balancing setup
 
-In this task, you will TODO.
+In task 1, you configure the network settings of an Azure Virtual Machine to enable load balancing for SAP HANA clusters. You modify the IP configuration to a static assignment, ensuring stable connectivity for the load balancer setup.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the blade of the **az12001a-vm0** Azure Virtual Machine.
 
@@ -704,7 +704,7 @@ In this task, you will TODO.
 
 ### Task 2: Create and configure Azure Load Balancers handling inbound traffic
 
-In this task, you will TODO.
+In this task, you configure an Azure Load Balancer with static IP, backend pools, health probes, and load balancing rules to ensure efficient traffic distribution for your SAP HANA cluster.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **Load balancers** blade.
 
@@ -779,9 +779,9 @@ In this task, you will TODO.
    | **Enable TCP reset** | **Disabled** |
    | **Enable Floating IP** | **Enabled** |
 
-### Task 2: Create and configure Azure Load Balancers handling outbound traffic
+### Task 3: Create and configure Azure Load Balancers handling outbound traffic
 
-In this task, you will TODO.
+In this task, you set up an Azure Load Balancer to manage outbound traffic for your resources. You create a public IP, configure the load balancer with backend pools, and define an outbound rule to control traffic flow from your virtual machines to the internet.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
 
@@ -841,7 +841,7 @@ In this task, you will TODO.
 
 ### Exercise 3 result
 
-After you complete this exercise, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments.
+After you complete this exercise, you have provisioned Azure Load Balancers to manage both inbound and outbound traffic for a highly available setup, ensuring efficient distribution and control of network flow for your virtual machine resources.
 
 ## Exercise 4: Remove lab resources
 

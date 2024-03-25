@@ -8,6 +8,8 @@ lab:
 
 This lab is part of **AZ-120: Planning and Administering Microsoft Azure for SAP Workloads**.
 
+   > **Note**: AI assisted content. This module was partially created with the help of artificial intelligence. [Learn more](https://learn.microsoft.com/principles-for-ai-generated-content)
+
 ## Lab introduction
 
 After completing this lab, you will be able to:

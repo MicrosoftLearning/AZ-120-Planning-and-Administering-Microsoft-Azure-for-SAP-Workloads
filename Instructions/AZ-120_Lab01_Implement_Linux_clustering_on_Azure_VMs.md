@@ -48,6 +48,16 @@ There are several interactive lab simulations that you might find useful for thi
 
 ![TODO Placeholder image update to have proper names and numbers](../media/az120-lab01-ha-hana-replication.png)
 
+**The clustering architecture** resulting from this exercise is a high-availability (HA) cluster designed to support SAP HANA deployments on Azure. This HA cluster is implemented using Linux clustering on Azure Virtual Machines running the SUSE distribution of Linux.
+
+The cluster consists of a pair of Azure Virtual Machines configured in the same availability set, which ensures that at least one of the VMs is available during planned or unplanned maintenance. The VMs are also placed in the same proximity placement group to minimize network latency.
+
+The VMs are configured with shared storage and password-less SSH access between nodes, enabling them to work together as a single system and share workloads. If one VM fails, the other can take over its tasks, ensuring high availability of the SAP HANA installation.
+
+The cluster's network traffic is managed by two Azure Load Balancers, one for inbound traffic and one for outbound traffic. These load balancers distribute network traffic efficiently across the VMs and control the flow of traffic from the VMs to the internet, further enhancing the high availability and resilience of the SAP HANA deployment.
+
+In summary, the resulting clustering architecture is a high-availability Linux cluster optimized for SAP HANA deployments on Azure, providing robust performance, minimized latency, and increased resilience.
+
 ## Job skills
 
 - Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments.
@@ -196,7 +206,7 @@ In this task, you set up a new Azure Virtual Machine with a SUSE Linux Enterpris
 
     | Setting | Value |
     |   --    |  --   |
-    | **OS disk type** | **Premium SSD**  <TODO - this isn't an option as such - have to choose locally-redundant or zone-redundant. It's locally for the first VM, same here?>|
+    | **OS disk type** | **Premium SSD (locally-redundant storage)** |
     | **Key management** | **Platform-managed key** |
 
 1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Management >** (leave others with their default values):

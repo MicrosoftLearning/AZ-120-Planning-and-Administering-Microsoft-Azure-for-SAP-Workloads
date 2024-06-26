@@ -24,7 +24,7 @@ This lab requires:
 
 - A lab computer with an Azure Cloud Shell-compatible web browser and access to Azure.
 
-All tasks in this lab are performed from the [Azure portal](https://portal.azure.com) (including the Bash Cloud Shell session)  
+All tasks in this lab are performed from the [Azure portal](https://portal.azure.com) (including the **Bash** Cloud Shell session)  
 
    > **Note**: When not using Cloud Shell, the lab virtual machine must have Azure CLI installed [**https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows**](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows) and include an SSH client e.g. PuTTY, available from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
@@ -38,13 +38,25 @@ In preparation for deployment of SAP NetWeaver on Azure, Adatum Corporation want
 
 There are several interactive lab simulations that you might find useful for this topic. The simulation lets you click through a similar scenario at your own pace. There are differences between the interactive simulation and this lab, but many of the core concepts are the same. An Azure subscription is not required.
 
-- [TODO](https://TODO). TODO.
+- [Create a simple virtual network](https://mslearn.cloudguides.com/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%204). Create a virtual network with two virtual machines. Demonstrate the virtual machines can communicate.
+- [Design and implement a virtual network in Azure](https://mslabs.cloudguides.com/guides/AZ-700%20Lab%20Simulation%20-%20Design%20and%20implement%20a%20virtual%20network%20in%20Azure). Create a resource group and create virtual networks with subnets.
+- [Create and configure and Azure load balancer](https://mslabs.cloudguides.com/guides/AZ-700%20Lab%20Simulation%20-%20Create%20and%20configure%20an%20Azure%20load%20balancer). Create a virtual network, backend servers, load balancer, and then test the load balancer.
+- [Create a virtual machine with PowerShell](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%2010). Use Azure PowerShell to deploy a virtual machine. Review Azure Advisor recommendations.
+- [Create a virtual machine with the CLI](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%2011). Use the CLI to deploy a virtual machine. Review Azure Advisor recommendations.
   
 ## Architecture diagram
 
 ![TODO](../media/az120-lab02-architecture.png)
 
-TODO
+**The clustering architecture** resulting from this lab is a high-availability (HA) cluster designed to support your highly available SAP NetWeaver deployment on Azure Virtual Machines with Linux. This HA cluster is implemented with a pair of Azure Virtual Machines running SUSE Linux within the same availability set. These VMs form the core of your highly available SAP NetWeaver deployment.
+
+The VMs connect to a virtual network specifically configured to host the SAP NetWeaver deployment and effectively communication between the VMs and other necessary resources, providing the backbone for your high-availability configuration.
+
+Additionally, the architecture includes a Microsoft Entra ID application registration for the [STB fencing mechanism](https://documentation.suse.com/sle-ha/12-SP5/html/SLE-HA-all/cha-ha-storage-protect.html) that ensures that a cluster reaches a known state even when nodes fail or become unresponsive. You grant this application specific permissions to the Azure Virtual Machines via the service principal of the fencing app. This setup allows for effective fencing mechanisms in your cluster, contributing to the overall high availability of the system.
+
+Finally, you configure the fencing cluster device within this architecture. You can review its configuration using Hawk, a web-based GUI for managing and monitoring High Availability clusters.
+
+Overall, this architecture provides a robust, highly available environment for running SAP NetWeaver on Azure Virtual Machines with Linux.
 
 ## Job skills
 
@@ -66,22 +78,22 @@ In this task, you will TODO.
 
 1. From the lab computer, start a Web browser, and navigate to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
-1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab and the the Global Administrator role in the Azure AD tenant associated with your subscription.
+1. If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab and the the Global Administrator role in the Microsoft Entra ID tenant associated with your subscription.
 
-1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a Bash session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon to start a **Bash** session in Cloud Shell.
 
    ![Bash terminal](../media/az120-lab01-bash.png)
 
     > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
 
-1. In the Cloud Shell pane, run the following command to specify the Azure region that supports availability zones and where you want to create resources for this lab (replace `<region>` with the name of the Azure region which supports availablity zones):
+1. In the **Bash** Cloud Shell pane, run the following command to specify the Azure region that supports availability zones and where you want to create resources for this lab (replace `<region>` with the name of the Azure region which supports availability zones -  i.e.:  eastus, westus2, brazilsouth, westeurope, germanywestcentral, southeastasiastage):
 
     ```cli
     LOCATION='<region>'
     ```
 
     > **Note**:
-    >- Consider using **East US** or **East US2** regions for deployment of your resources.
+    >- Consider using **East US** (`LOCATION='eastus'`) or **East US2** (eastus2) regions for deployment of your resources.
     >- Be sure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)
     >- To identify Azure regions which support availability zones, refer to [Azure regions with availability zone support](https://learn.microsoft.com/azure/reliability/availability-zones-service-support#azure-regions-with-availability-zone-support)
 
@@ -130,21 +142,38 @@ In this task, you will TODO.
     cd ./azure-quickstart-templates/application-workloads/sap/sap-3-tier-marketplace-image-md/
     ```
 
-1. In the Cloud Shell pane, run the following commands to set the name of the administrative user account and its password:
+1. The following commands to set the name of the administrative user account and its password.
 
+    > **Note:**
+    > - The script generates a random password, be sure to record it in a safe location.
+    > &nbsp;
+
+    In the Cloud Shell pane, run the following to set `ADMINUSERNAME` and `ADMINPASSWORD`. **Be sure to record the value for the `ADMINPASSWORD`**.
+    &nbsp;
     ```cli
     ADMINUSERNAME='student'
-    ADMINPASSWORD='Pa55w.rd1234'
+    
+    # Generate a random password with at least one symbol
+    SYMBOLS="@#*+-"
+    PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 10 ; echo '')
+    SYMBOL1=$(echo $SYMBOLS | fold -w1 | shuf | head -c 1)
+    SYMBOL2=$(echo $SYMBOLS | fold -w1 | shuf | head -c 1)
+    
+    RND1=$(( RANDOM % 11 ))
+    RND2=$(( RANDOM % 11 ))
+    ADMINPASSWORD=${PASSWORD:0:$RND1}$SYMBOL1${PASSWORD:$RND1:$RND2-$RND1}$SYMBOL2${PASSWORD:$RND2}
+    
+    echo "ADMINPASSWORD: $ADMINPASSWORD"
     ```
 
-1. In the Cloud Shell pane, run the following command to identify resources that will be included in the upcoming deployment:
+1. In the Cloud Shell pane, run the following command `what-if` test to identify resources that will be included in the upcoming deployment:
 
     ```cli
     DEPLOYMENT_NAME='az1203a-'$RANDOM
     az deployment group what-if --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file ./main.bicep --parameters ./azuredeploy.parameters03a.json --parameters adminUsername=$ADMINUSERNAME adminPasswordOrKey=$ADMINPASSWORD subnetId=$SUBNET_ID
     ```
 
-1. Review the output of the command and verify that it does not include any errors (ignore any warnings).
+1. Review the output of the `what-if` test from the above command and verify that it does not include any errors (ignore any warnings).
 
 1. In the Cloud Shell pane, run the following command to start the deployment:
 
@@ -202,7 +231,7 @@ Because the Azure Virtual Machines that you deployed in the previous task are no
     | **Enable accelerated networking** | **On** |
     | **Load balancing Options** | **None** |
     | **Enable system assigned managed identity** | **Off** |
-    | **Login with Azure AD** | **Off** |
+    | **Login with Microsoft Entra ID** | **Off** |
     | **Enable auto-shutdown** | **Off** |
     | **Patch orchestration options** | **Manual Updates** |
     | **Boot diagnostics** | **Disable** |
@@ -555,15 +584,15 @@ In this task, you will TODO.
 
 1. Repeat the previous steps on i20-db-1.
 
-### Task 3: Identify the value of the Azure subscription Id and the Azure AD tenant Id
+### Task 3: Identify the value of the Azure subscription Id and the Microsoft Entra ID tenant Id
 
 In this task, you will TODO.
 
-1. From the lab computer, in the [Azure portal](https://portal.azure.com), ensure that you are signed in with the user account that has the Global Administrator role in the Azure AD tenant associated with your subscription.
+1. From the lab computer, in the [Azure portal](https://portal.azure.com), ensure that you are signed in with the user account that has the Global Administrator role in the Microsoft Entra ID tenant associated with your subscription.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, select the **Cloud Shell** icon to open Cloud Shell pane, and choose Bash as the shell.
 
-1. In the Cloud Shell pane, run the following command to identify the id of your Azure subscription and the id of the corresponding Azure AD tenant:
+1. In the Cloud Shell pane, run the following command to identify the id of your Azure subscription and the id of the corresponding Microsoft Entra ID tenant:
 
     ```cli
     az account show --query '{id:id, tenantId:tenantId}' --output json
@@ -571,11 +600,11 @@ In this task, you will TODO.
 
 1. Copy the resulting values to Notepad. You will need them in the next task.
 
-### Task 4: Create an Azure AD application for the STONITH device
+### Task 4: Create an Microsoft Entra ID application for the fencing device
 
 In this task, you will TODO.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the **Azure Active Directory** blade.
+1. In the [Azure portal](https://portal.azure.com), navigate to the **Microsoft Entra ID** blade.
 
 1. At the top of the [Azure portal](https://portal.azure.com) page, use the **Search resources, services, and docs** text box to search for and navigate to the **App registrations** blade.
 
@@ -585,20 +614,20 @@ In this task, you will TODO.
 
    | Setting | Value |
    |   --    |  --   |
-   | **Name** |  **Stonith app** |
+   | **Name** |  **fencing app** |
    | **Supported account type** | **Accounts in this organizational directory only** |
 
-1. On the **Stonith app** blade, copy the value of **Application (client) ID** to Notepad. This will be referred to as **login_id** later in this exercise.
+1. On the **fencing app** blade, copy the value of **Application (client) ID** to Notepad. This will be referred to as **login_id** later in this exercise.
 
-1. On the **Stonith app** blade, in the left pane, select **Certificates & secrets**.
+1. On the **fencing app** blade, in the left pane, select **Certificates & secrets**.
 
-1. On the **Stonith app - Certificates & secrets** blade, select **+ New client secret**.
+1. On the **fencing app - Certificates & secrets** blade, select **+ New client secret**.
 
-1. In the **Add a client secret** pane, in the **Description** text box, type **STONITH app key**, in the **Expires** section, leave the default **Recommended: 6 months**, and then select **Add**.
+1. In the **Add a client secret** pane, in the **Description** text box, type **fencing app key**, in the **Expires** section, leave the default **Recommended: 6 months**, and then select **Add**.
 
 1. Copy the resulting **Value** to Notepad (this entry is displayed only once, after you select **Add**). This will be referred to as **password** later in this exercise.
 
-### Task 5: Grant permissions to Azure Virtual Machines to the service principal of the STONITH app
+### Task 5: Grant permissions to Azure Virtual Machines to the service principal of the fencing app
 
 In this task, you will TODO.
 
@@ -614,11 +643,11 @@ In this task, you will TODO.
    |   --    |  --   |
    | **Role** |  **Virtual Machine Contributor** |
    | **Assign access to:** | **User, group, or service principal** |
-   | **Select:** | **Stonith app** |
+   | **Select:** | **fencing app** |
 
-1. Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure Virtual Machine.
+1. Repeat the previous steps to assign the fencing app the Virtual Machine Contributor role to the **i20-db-1** Azure Virtual Machine.
 
-### Task 6: Configure the STONITH cluster device
+### Task 6: Configure the STB fencing cluster device
 
 In this task, you will TODO.
 
@@ -651,7 +680,7 @@ In this task, you will TODO.
 
     - Username: **hacluster**
 
-    - Password: **Pa55w.rd1234**
+    - Password: ***[create and save a strong password]***
 
 1. Verify that the cluster status is healthy. If you are seeing a message indicating that one of two cluster nodes is unclean, restart that node from the [Azure portal](https://portal.azure.com).
 

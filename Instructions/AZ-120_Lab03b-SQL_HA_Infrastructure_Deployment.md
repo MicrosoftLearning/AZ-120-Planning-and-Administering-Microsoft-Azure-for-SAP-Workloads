@@ -305,7 +305,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
     | **Enable accelerated networking** | **Off** |
     | **Load balancing Options** | **None** |
     | **Enable system assigned managed identity** | **Off** |
-    | **Login with Azure AD** | **Off** |
+    | **Login with Microsoft Entra ID** | **Off** |
     | **Enable auto-shutdown** | **Off** |
     | **Patch orchestration options** | **Manual Updates** |
     | **Boot diagnostics** | **Disable** |
@@ -316,7 +316,6 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 1. Wait for the provisioning to complete. This should take a few minutes.
 
 > **Result**: After you completed this exercise, you have provisioned Azure resources necessary to support highly available SAP NetWeaver deployments
-
 
 ## Exercise 2: Configure operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
@@ -462,7 +461,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
     Install-Module -Name Az -Force
     ```
 
-1. Within the Windows PowerShell ISE session, authenticate by using your Azure AD credentials by running the following:
+1. Within the Windows PowerShell ISE session, authenticate by using your Microsoft Entra ID credentials by running the following:
 
     ```
     Add-AzAccount
@@ -545,7 +544,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
     Install-Module -Name Az -Force
     ```
 
-1. Within the Windows PowerShell ISE session, authenticate by using your Azure AD credentials by running the following:
+1. Within the Windows PowerShell ISE session, authenticate by using your Microsoft Entra ID credentials by running the following:
 
     ```
     Add-AzAccount

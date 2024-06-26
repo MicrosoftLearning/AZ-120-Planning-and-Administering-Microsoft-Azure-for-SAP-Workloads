@@ -32,7 +32,7 @@ All tasks in this lab are performed from the [Azure portal](https://portal.azure
 
 ## Lab scenario
 
-In preparation for deployment of SAP HANA on Azure, Adatum Corporation wants to explore the process of implementing clustering on Azure Virtual Machines running the SUSE distribution of Linux.
+Adatum Corporation, is preparing to migrate their SAP HANA deployment to Azure. In your role at Adatum, you are part of the IT team responsible for high availability and disaster recovery for their mission-critical SAP applications. The team decided to implement a Linux cluster on Azure Virtual Machines (VMs) running the SUSE distribution of Linux. This setup will provide the robustness and reliability needed for the SAP HANA deployment.
 
 ## Interactive lab simulations
 
@@ -48,7 +48,7 @@ There are several interactive lab simulations that you might find useful for thi
 
 ![TODO Placeholder image update to have proper names and numbers](../media/az120-lab01-ha-hana-replication.png)
 
-**The clustering architecture** resulting from this exercise is a high-availability (HA) cluster designed to support SAP HANA deployments on Azure. This HA cluster is implemented using Linux clustering on Azure Virtual Machines running the SUSE distribution of Linux.
+**The clustering architecture** resulting from this lab is a high-availability (HA) cluster designed to support SAP HANA deployments on Azure. This HA cluster is implemented using Linux clustering on Azure Virtual Machines running the SUSE distribution of Linux.
 
 The cluster consists of a pair of Azure Virtual Machines configured in the same availability set, which ensures that at least one of the VMs is available during planned or unplanned maintenance. The VMs are also placed in the same proximity placement group to minimize network latency.
 
@@ -74,7 +74,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Deploy Azure Virtual Machines running Linux SUSE
 
-In this task, you set up a new Azure Virtual Machine with a SUSE Linux Enterprise image configured for SAP applications to ensure high availability through an availability set and proximity placement group. This setup aims to provide a robust and optimized environment for SAP workloads with minimized latency and increased resilience.
+In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise image configured for SAP applications to ensure high availability through an availability set and proximity placement group. This setup aims to provide a robust and optimized environment for SAP workloads with minimized latency and increased resilience.
 
 1. From the lab computer, open a Web browser and navigate to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 

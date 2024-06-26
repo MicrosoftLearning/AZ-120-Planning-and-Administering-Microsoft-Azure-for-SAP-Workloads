@@ -46,7 +46,7 @@ There are several interactive lab simulations that you might find useful for thi
   
 ## Architecture diagram
 
-![TODO](../media/az120-lab02-architecture.png)
+![Architecture diagram](../media/az120-lab02-architecture-diagram.png)
 
 **The clustering architecture** resulting from this lab is a high-availability (HA) cluster designed to support your highly available SAP NetWeaver deployment on Azure Virtual Machines with Linux. This HA cluster is implemented with a pair of Azure Virtual Machines running SUSE Linux within the same availability set. These VMs form the core of your highly available SAP NetWeaver deployment.
 

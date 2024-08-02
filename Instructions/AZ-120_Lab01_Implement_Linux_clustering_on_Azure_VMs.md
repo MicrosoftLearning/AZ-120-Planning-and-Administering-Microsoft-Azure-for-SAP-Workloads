@@ -770,7 +770,6 @@ In this task, you configure an Azure Load Balancer with static IP, backend pools
    | **Protocol** | **TCP** |
    | **Port** | **62500** |
    | **Interval** | **5** *seconds* |
-   | **Unhealthy threshold** | **2** *consecutive failures* <TODO - I don't see this option.>|
 
 1. In the left pane, select **Load balancing rules**.
 

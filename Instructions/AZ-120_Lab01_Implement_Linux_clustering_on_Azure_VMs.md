@@ -92,7 +92,8 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
     | **Resource group** section | Select **Create new**, enter **az12001a-RG**, and then select **OK** |
     | **Proximity placement group name** | Select **az12001a-ppg** |
     | **Region** | *the Azure region where you have sufficient vCPU quotas* |
-    | **Intent details** | **Standard D4s v3** |
+    | **VM Sizes** | **Standard_D4s_v3** |
+    | **Zone** | **No zone preference** |
 
    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
 
@@ -110,10 +111,10 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
     | **Resource group** | *select the name of the resource group you used earlier in this task* |
-    | **Virtual machine name** | *select* **az12001a-vm0** |
+    | **Virtual machine name** | **az12001a-vm0** |
     | **Region** | *the **same Azure region** you chose when creating the proximity placement group* |
     | **Availability options** | *select* **Availability set** |
-    | **Availability set** | *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains* |
+    | **Availability set** | **Create new** *availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains* |
     | **Security type** | *select* **Standard** |
     | **Image** | *select* **SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** (see note below) |
     | **Run with Azure Spot Discount** | **No** |
@@ -154,7 +155,7 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
     | **Enable accelerated networking** | **On** |
     | **Load balancing Options** | **None** |
 
-    > **Note**: This image has preconfigured NSG rules.
+    > **Note**: This image has preconfigured Azure network security group (NSG) rules.
 
 1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Monitoring >** (leave others with their default values):
 
@@ -162,7 +163,8 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
    |   --    |  --   |
    | **Enable system assigned managed identity** | **Off** |
    | **Enable auto-shutdown** | **Off** |
-   | **Enable basic plan for free** | **No**  |
+   | **Enable basic plan for free** | **No** (see note below) |
+   | **Enable backup** | **off**  |
 
    > **Note**: The **basic plan for free** setting is not available if you have already enabled Microsoft Defender for Cloud in your subscription.
 
@@ -188,10 +190,10 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
     | **Resource group** | *select the name of the resource group you used earlier in this task* |
-    | **Virtual machine name** | *select* **az12001a-vm1** |
+    | **Virtual machine name** | **az12001a-vm1** |
     | **Region** | *the same Azure region you chose when creating the proximity placement group* |
     | **Availability options** | *select* **Availability set** |
-    | **Availability set** | **az12001a-avset** |
+    | **Availability set** | *select* **az12001a-avset** |
     | **Security type** | *select* **Standard** |
     | **Image** | *select* ***SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** (see note below) |
     | **Run with Azure Spot Discount** | **No** |
@@ -200,7 +202,7 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
     | **Username** | **student** |
     | **Password** | the same password you specified during the first deployment |
 
-    >- To locate the image, select the **See all images** link, type **SUSE Enterprise Linux** in the search text box, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** in the list of results, and then select **Generation 2**.
+    > To locate the image, select the **See all images** link, type **SUSE Enterprise Linux** in the search text box, select **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** in the list of results, and then select **Generation 2**.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings, and then select **Next: Networking >** (leave others with their default values):
 
@@ -229,6 +231,7 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
    | **Enable system assigned managed identity** | **Off** |
    | **Enable auto-shutdown** | **Off** |
    | **Enable basic plan for free** | **No**  |
+   | **Enable backup** | **off**  |
 
    > **Note**: The **basic plan for free** setting is not available if you have already selected the Azure Security Center plan.
 
@@ -278,7 +281,7 @@ In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual 
 
    ![Links to recently-created virtual machines in the Resources area on the Azure portal](../media/az120-lab01-resources-vm-links.png)
 
-1. In the left pane, select **Disks**.
+1. In the left pane, select **settings**, then select **Disks**.
 
    ![Link to the virtual machine's Disks blade](../media/az120-lab01-disks-link.png)
 
@@ -287,11 +290,13 @@ In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual 
    | Setting | Value |
    |   --    |  --   |
    | **LUN** | **0** |
-   | **Disk name** | **az12001a-vm0-DataDisk0** |
+   | **Disk name** | select **az12001a-vm0-DataDisk0** |
    | **Resource group** | *select the name of the resource group you used earlier in this task* |
    | **HOST CACHING** | **Read-only** |
 
 1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm0-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
+
+   ![Links to recently-created virtual machines in the Resources area on the Azure portal](../media/az120-lab01-attach-disks-vm0.png)
 
 1. Select **Apply** to save your changes.
 
@@ -332,8 +337,21 @@ In this task, you provision Azure Bastion to securely connect to your SUSE Linux
    ![PowerShell terminal](../media/az120-shell-icon.png)
 
 1. From the PowerShell session in the Cloud Shell pane, run the following to add a subnet named **AzureBastionSubnet** to the virtual network named **az12001a-RG-vnet** you created earlier in this exercise:
+   ```bash
+   resourceGroupName='az12001a-RG'
+   vnetName='az12001a-RG-vnet'
+   subnetName='AzureBastionSubnet'
+   addressPrefix='192.168.15.0/24'
+    
+   # Get the virtual network
+   vnetId=$(az network vnet show --resource-group $resourceGroupName --name $vnetName --query id --output tsv)
+    
+   # Add the subnet configuration
+   az network vnet subnet create --resource-group $resourceGroupName --vnet-name $vnetName --name $subnetName --address-prefix $addressPrefix
+   ```
 
-   ```powershell
+   <!-- TODO Delete this after BASH version tested
+     ```powershell
    $resourceGroupName = 'az12001a-RG'
    $vnet = Get-AzVirtualNetwork -ResourceGroupName $resourceGroupName -Name 'az12001a-RG-vnet'
    $subnetConfig = Add-AzVirtualNetworkSubnetConfig `
@@ -341,7 +359,7 @@ In this task, you provision Azure Bastion to securely connect to your SUSE Linux
      -AddressPrefix 192.168.15.0/24 `
      -VirtualNetwork $vnet
    $vnet | Set-AzVirtualNetwork
-   ```
+   ``` -->
 
 1. Close the Cloud Shell pane.
 
@@ -369,7 +387,7 @@ In this task, you provision Azure Bastion to securely connect to your SUSE Linux
 
 ### Exercise 1 result
 
-In exercise 1, you provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
+In exercise 1, you provisioned Azure compute, storage and network resources necessary to support highly available SAP HANA deployments. Furthermore, you deployed Azure Bastion to securely connect to your SUSE Linux Azure VMs.
 
 ## Exercise 2: Configure operating system of Azure Virtual Machines running Linux to support a highly available SAP HANA installation
 
@@ -400,6 +418,8 @@ In this task, you partition and format a new disk, create mount point directorie
    ```cli
    sudo su -
    ```
+
+<!-- TODO: Steps to paste text -->
 
 1. Run the following command to identify the mapping between the newly attached devices and their LUN numbers:
 
@@ -452,7 +472,7 @@ In this task, you partition and format a new disk, create mount point directorie
    fdisk /dev/sdi
    ```
 
-1. When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice, and then type `w` to complete the write.
+1. When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice more, and then type `w` to complete the write.
 
 1. Partition the **/dev/sdj** disk by running:
 
@@ -462,7 +482,7 @@ In this task, you partition and format a new disk, create mount point directorie
 
 1. When prompted, type, in sequence, `n`, `p`, `1` (followed by the **Enter** key each time) press the **Enter** key twice, and then type `w` to complete the write.
 
-1. Format the newly created partition by running (type `y` and press the **Enter** key when prompted for confirmation):
+1. Format the newly created partition by running (type `y` and press the **Enter** key if prompted for confirmation):
 
    ```cli
    mkfs.xfs /dev/sdi -m crc=1 -f
@@ -479,13 +499,15 @@ In this task, you partition and format a new disk, create mount point directorie
    mkdir -p /usr/sap
    ```
 
-1. Display the ids of logical volumes by running:
+1. Display the ids of logical volumes, to gather the **UUID** values associated with the new volume groups and partitions, by running:
 
    ```cli
    blkid
    ```
 
    > **Note**: Identify the **UUID** values associated with the newly created volume groups and partitions, including **/dev/sdi** (to be used for **/hana/shared**) and **dev/sdj** (to be used for **/usr/sap**).
+
+<!-- TODO: explain what to copy from output above -->
 
 1. Open **/etc/fstab** in the vi editor (you are free to use any other editor) by running:
 
@@ -526,18 +548,26 @@ In this task, you configure password-less SSH access between two Azure Virtual M
 1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, generate passphrase-less SSH key by running:
 
    ```cli
-   ssh-keygen -tdsa
+   ssh-keygen -t rsa
    ```
 
 1. When prompted, press **Enter** three times, and then display the public key by running:
 
    ```cli
-   cat /root/.ssh/id_dsa.pub
+   cat /root/.ssh/id_rsa.pub
    ```
 
 1. Copy the value of the key into Clipboard.
 
-1. Switch to the Bastion session to the **az12001a-vm1** Azure Virtual Machine and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. Switch to the Bastion session to the **az12001a-vm1** Azure Virtual Machine.
+
+1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, run the following command to elevate privileges:
+
+   ```cli
+   sudo su -
+   ```
+
+1. create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
 
    ```cli
    vi /root/.ssh/authorized_keys
@@ -550,13 +580,13 @@ In this task, you configure password-less SSH access between two Azure Virtual M
 1. Within the Bastion session to the **az12001a-vm1** Azure Virtual Machine, generate a passphrase-less SSH key by running:
 
    ```cli
-   ssh-keygen -tdsa
+   ssh-keygen -t rsa
    ```
 
 1. When prompted, press **Enter** three times, and then display the public key by running:
 
    ```cli
-   cat /root/.ssh/id_dsa.pub
+   cat /root/.ssh/id_rsa.pub
    ```
 
 1. Copy the value of the key into Clipboard.
@@ -640,7 +670,7 @@ In this task, you configure password-less SSH access between two Azure Virtual M
    systemctl restart sshd
    ```
 
-1. Repeat the previous four steps on **az12001a-vm1**.
+1. Repeat the previous four steps starting with `vi /etc/ssh/sshd_config` on **az12001a-vm1**.
 
 1. To verify that the configuration was successful, in the Bastion session to the **az12001a-vm0** Azure Virtual Machine, establish an SSH session as **root** from az12001a-vm0 to az12001a-vm1 by running:
 

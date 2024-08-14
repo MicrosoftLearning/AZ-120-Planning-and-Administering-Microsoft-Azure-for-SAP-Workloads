@@ -45,8 +45,8 @@ There are several interactive lab simulations that you might find useful for thi
 - [Create a virtual machine with the CLI](https://mslearn.cloudguides.com/en-us/guides/AZ-900%20Exam%20Guide%20-%20Azure%20Fundamentals%20Exercise%2011). Use the CLI to deploy a virtual machine. Review Azure Advisor recommendations.
   
 ## Architecture diagram
-
-![TODO Placeholder image update to have proper names and numbers](../media/az120-lab01-ha-hana-replication.png)
+<!-- TODO Placeholder image - update to have proper names and numbers -->
+![Diagram of lab Azure architecture.](../media/az120-lab01-ha-hana-replication.png)
 
 **The clustering architecture** resulting from this lab is a high-availability (HA) cluster designed to support SAP HANA deployments on Azure. This HA cluster is implemented using Linux clustering on Azure Virtual Machines running the SUSE distribution of Linux.
 
@@ -279,11 +279,11 @@ In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual 
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the first Azure Virtual Machine you provisioned in the previous task (**az12001a-vm0**).
 
-   ![Links to recently-created virtual machines in the Resources area on the Azure portal](../media/az120-lab01-resources-vm-links.png)
+   ![Screenshot of recently-created virtual machines in the Resources area on the Azure portal.](../media/az120-lab01-resources-vm-links.png)
 
 1. In the left pane, select **settings**, then select **Disks**.
 
-   ![Link to the virtual machine's Disks blade](../media/az120-lab01-disks-link.png)
+   ![Screenshot of the virtual machine's Disks blade.](../media/az120-lab01-disks-link.png)
 
 1. On the **az12001a-vm0 \| Disks** blade, select **Attach existing disks** and attach a data disk with the following settings to az12001a-vm0:
 
@@ -296,17 +296,17 @@ In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual 
 
 1. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm0-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
 
-   ![Links to recently-created virtual machines in the Resources area on the Azure portal](../media/az120-lab01-attach-disks-vm0.png)
+   ![Screenshot of completed data disks settings in Azure.](../media/az120-lab01-attach-disks-vm0.png)
 
 1. Select **Apply** to save your changes.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the second Azure Virtual Machine you provisioned in the previous task (**az12001a-vm1**).
 
-   ![Links to recently-created virtual machines in the Resources area on the Azure portal](../media/az120-lab01-resources-vm-links.png)
+   ![Screenshot of recently-created virtual machines in the Resources area on the Azure portal.](../media/az120-lab01-resources-vm-links.png)
 
 1. In the left pane, select **Disks**.
 
-   ![Link to the virtual machine's Disks blade](../media/az120-lab01-disks-link.png)
+   ![Screenshot of the Azure virtual machine's Disks blade.](../media/az120-lab01-disks-link.png)
 
 1. From the **az12001a-vm1 \| Disks** blade, attach a data disk with the following settings to az12001a-vm1:
 
@@ -734,11 +734,11 @@ In task 1, you configure the network settings of an Azure Virtual Machine to ena
 
 1. Select the entry representing the network interface of **az12001a-vm0**.
 
-   ![Virtual machine's network interface entry](../media/az120-lab01-vm1-network-interface.png)
+   ![Screenshot of Azure virtual machine's network interface entry.](../media/az120-lab01-vm1-network-interface.png)
 
 1. In the left pane, select **IP configurations**, and then select **ipconfig1**.
 
-   ![The ipconfig1 link](../media/az120-lab01-ipconfig.png)
+   ![Screenshot of example of ipconfig1 properties.](../media/az120-lab01-ipconfig.png)
 
 1. Set the private IP address assignment to **Static**, and then save the change.
 

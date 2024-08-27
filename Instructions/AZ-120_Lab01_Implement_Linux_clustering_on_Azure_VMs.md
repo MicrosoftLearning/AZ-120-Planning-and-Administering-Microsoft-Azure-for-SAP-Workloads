@@ -85,7 +85,7 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
 1. On the **Proximity placement groups** blade, select **+ Create**.
 
 1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings, and then select **Review + create** (leave others with their default values):
-
+<!-- TODO below confirm PPG step -->
     | Setting | Value |
     |   --    |  --   |
     | **Subscription** | *the name of your Azure subscription*  |
@@ -247,7 +247,7 @@ In this task, you set up new Azure Virtual Machines with a SUSE Linux Enterprise
 
    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
-### Task 2: Create and configure Azure Virtual Machines disks
+### Task 2: Create and configure Azure Virtual Machine disks
 
 In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual Machine **managed disks** and attach them to your SUSE Linux VMs from Task 1. This process involves initializing the disks, setting appropriate LUN values, and configuring host caching to optimize performance for your SAP applications.
 
@@ -326,13 +326,13 @@ In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual 
 
 ### Task 3: Provision Azure Bastion
 
-In this task, you provision Azure Bastion to securely connect to your SUSE Linux Azure VMs without exposing them to public endpoints, thereby enhancing protection against brute force attacks. You configure a dedicated subnet and deploy the Bastion service, ensuring secure access to my virtual machines within the Azure portal.
+In this task, you'll use Azure Bastion to securely connect to your SUSE Linux Azure virtual machines. You'll set up a dedicated subnet and deploy the Bastion service for secure virtual machine access within the Azure portal, minimizing exposure to public endpoints and increasing protection against brute force attacks.
 
 > **Note**: To use Azure Bastion, ensure that your browser has the pop-up functionality enabled.
 
 1. In the browser window displaying the Azure portal, open another tab and navigate to the [Azure portal](https://portal.azure.com).
 
-1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon and start a PowerShell session in Cloud Shell.
+1. At the top of the [Azure portal](https://portal.azure.com) page, click the Cloud Shell icon and start a bash session in Cloud Shell.
 
    ![PowerShell terminal](../media/az120-shell-icon.png)
 
@@ -389,11 +389,11 @@ In this task, you provision Azure Bastion to securely connect to your SUSE Linux
 
 In exercise 1, you provisioned Azure compute, storage and network resources necessary to support highly available SAP HANA deployments. Furthermore, you deployed Azure Bastion to securely connect to your SUSE Linux Azure VMs.
 
-## Exercise 2: Configure operating system of Azure Virtual Machines running Linux to support a highly available SAP HANA installation
+## Exercise 2: Configuring Linux OS on Azure Virtual Machines for High Availability SAP HANA Installation
 
 In this exercise, you will configure operating system and storage on Azure Virtual Machines running SUSE Linux Enterprise Server to accommodate clustered installations of SAP HANA.
 
-### Task 1: Connect to Azure Linux virtual machines
+### Task 1: Connect to Linux virtual machines
 
 In task 1, you establish remote connections to your Azure Linux virtual machines using the Azure portal's Bastion service. You will access both az12001a-vm0 and az12001a-vm1 virtual machines securely to prepare for the configuration needed for a highly available SAP HANA installation.
 
@@ -419,7 +419,7 @@ In this task, you partition and format a new disk, create mount point directorie
    sudo su -
    ```
 
-<!-- TODO: Steps to paste text -->
+<!-- TODO: Steps to paste text in session-->
 
 1. Run the following command to identify the mapping between the newly attached devices and their LUN numbers:
 
@@ -545,6 +545,8 @@ In this task, you partition and format a new disk, create mount point directorie
 
 In this task, you configure password-less SSH access between two Azure Virtual Machines by generating and exchanging RSA keys, adjusting SSH daemon settings to permit root login with these keys, and verifying that secure, password-free connections can be established successfully.
 
+   | **az12001a-vm0** Azure Virtual Machine Bastion session |
+
 1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, generate passphrase-less SSH key by running:
 
    ```cli
@@ -561,7 +563,7 @@ In this task, you configure password-less SSH access between two Azure Virtual M
 
 1. Switch to the Bastion session to the **az12001a-vm1** Azure Virtual Machine.
 
-1. Within the Bastion session to the **az12001a-vm0** Azure Virtual Machine, run the following command to elevate privileges:
+1. Within the Bastion session to the **az12001a-vm1** Azure Virtual Machine, run the following command to elevate privileges:
 
    ```cli
    sudo su -

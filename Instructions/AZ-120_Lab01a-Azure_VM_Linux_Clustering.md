@@ -49,15 +49,15 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1. In the Azure portal, use the **Search resources, services, and docs** text box at the top of the Azure portal page to search for and navigate to the **Proximity placement groups** blade and, on the **Proximity placement groups** blade, select **+ create**.
 
-1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings and select **Review + create**:
+1. On the **Basics** tab of the **Create Proximity Placement Groups** blade, specify the following settings and select **Review + create** (leave others with their defaults):
 
     | Setting | Value |
     |   --    |  --   |
-    | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** section | Select **Create new**, enter **az12001a-RG**, and then select **OK** |
-    | **Region** | *the Azure region where you have sufficient vCPU quotas* |
-    | **Proximity placement group name** | Select **az12001a-ppg** |
-    | **Intent details** | **Standard D4s v3** |
+    | **Subscription** | the name of your Azure subscription |
+    | **Resource group** section | select **Create new**, enter **az12001a-RG**, and then select **OK** |
+    | **Proximity placement group name** | **az12001a-ppg** |
+    | **Region** | the Azure region where you have sufficient vCPU quotas |
+    | **VM sizes** | **Standard D4s v3** |
 
    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources.
 
@@ -71,23 +71,23 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     | Setting | Value |
     |   --    |  --   |
-    | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** | *select the name of the resource group you used earlier in this task* |
-    | **Virtual machine name** | *select* **az12001a-vm0** |
-    | **Region** | *the **same Azure region** you chose when creating the proximity placement group* |
-    | **Availability options** | *select* **Availability set** |
-    | **Availability set** | *a new availability set named* **az12001a-avset** *with 2 fault domains and 5 update domains* |
-    | **Security type** | *select* **Standard** |
-    | **Image** | *select* **SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** |
-    | **Run with Azure Spot Discount** | **No** |
-    | **Size** | **Standard D4s v3** |
+    | **Subscription** | the name of your Azure subscription |
+    | **Resource group** | the name of the resource group you created earlier in this task |
+    | **Virtual machine name** | **az12001a-vm0** |
+    | **Region** | the name of the Azure region you chose when creating the proximity placement group |
+    | **Availability options** | **Availability set** |
+    | **Availability set** | a new availability set named **az12001a-avset** with 2 fault domains and 5 update domains |
+    | **Security type** | **Standard** |
+    | **Image** | **SUSE Enterprise Linux for SAP 15 SP5 - BYOS - x64 Gen 2** |
+    | **Run with Azure Spot Discount** | disabled |
+    | **Size** | **Standard_D4s_v3** |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
     | **Password** | any complex password of your choice |
    
     > **Note**: Make sure you remember the password you specified during deployment. You will need it later in this lab.
 
-    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** and select **Generation 2**.
+    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP5 - BYOS** and select **Generation 2**.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
 
@@ -96,28 +96,34 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     | **OS disk type** | **Premium SSD (locally-redundant storage)**  |
     | **Key management** | **Platform-managed key** |
 
-1. On the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
+1. On the **Networking** tab of the **Create a virtual machine** blade, in the **Network interface** section, directly below the **Virtual network** textbox, select **Create new**. 
+1. In the **Create virtual network** pane, specify the following settings and select **OK**:
 
     | Setting | Value |
     |   --    |  --   |
-    | **Virtual network** | *select* **Create new** *and create a new virtual network named* **az12001a-RG-vnet**, continue next steps in "Create virtual network."  |
-    | **Address space** | *set the address space of the new virtual network to* **192.168.0.0/20** |
+    | **Name** | **az12001a-RG-vnet** |
+    | **Address space** | **192.168.0.0/20** |
     | **Subnet name** | **subnet-0** |
-    | **Subnet address range** | **192.168.0.0/24**, select "ok" to continue on "Create a virtual machine."|
-    | **Public IP address** | **none** |
+    | **Address range** | **192.168.0.0/24** |
+
+1. Back on the **Networking** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Management >** (leave all other settings with their default value):
+
+    | Setting | Value |
+    |   --    |  --   |
+    | **Public IP address** | **None** |
     | **NIC network security group** | **Advanced**  |
-    | **Enable accelerated networking** | **On** |
+    | **Enable accelerated networking** | enabled |
     | **Load balancing Options** | **None** |
     
-    > **Note**: This image has preconfigured NSG rules.
+    > **Note**: This deployment has preconfigured NSG rules.
 
 1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Monitoring >** (leave all other settings with their default value):
    
    | Setting | Value |
    |   --    |  --   |
-   | **Enable system assigned managed identity** | **Off** |
-   | **Enable auto-shutdown** | **Off** |
-   | **Enable basic plan for free** | **No**  |
+   | **Enable basic plan for free** | disabled |
+   | **Enable system assigned managed identity** | disabled |
+   | **Enable auto-shutdown** | disabled  |
 
    > **Note**: The **basic plan for free** setting is not available if you have already enabled Microsoft Defender for Cloud in your subscription.
 
@@ -139,21 +145,21 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    
     | Setting | Value |
     |   --    |  --   |
-    | **Subscription** | *the name of your Azure subscription*  |
-    | **Resource group** | *select the name of the resource group you used earlier in this task* |
-    | **Virtual machine name** | *select* **az12001a-vm1** |
-    | **Region** | *the same Azure region you chose when creating the proximity placement group* |
-    | **Availability options** | *select* **Availability set** |
+    | **Subscription** | the name of your Azure subscription |
+    | **Resource group** | the name of the resource group you created earlier in this task |
+    | **Virtual machine name** | **az12001a-vm1** |
+    | **Region** | the name of the Azure region you chose when creating the proximity placement group |
+    | **Availability options** | **Availability set** |
     | **Availability set** | **az12001a-avset** |
-    | **Security type** | *select* **Standard** |
-    | **Image** | *select* ***SUSE Enterprise Linux for SAP 15 SP3 - BYOS - x64 Gen 2** |
-    | **Run with Azure Spot Discount** | **No** |
-    | **Size** | **Standard D4s v3** |
+    | **Security type** | **Standard** |
+    | **Image** | **SUSE Enterprise Linux for SAP 15 SP5 - BYOS - x64 Gen 2** |
+    | **Run with Azure Spot Discount** | disabled |
+    | **Size** | **Standard_D4s_v3** |
     | **Authentication type** | **Password** |
     | **Username** | **student** |
     | **Password** | the same password you specified during the first deployment |
    
-   > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP3 - BYOS** and select **Generation 2**.
+    > **Note**: To locate the image, click the **See all images** link, on the **Select an image** blade, in the search text box, type **SUSE Enterprise Linux** and, in the list of results, click **SUSE Enterprise Linux for SAP 15 SP5 - BYOS** and select **Generation 2**.
 
 1. On the **Disks** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Networking >** (leave all other settings with their default value):
 
@@ -168,26 +174,24 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     |   --    |  --   |
     | **Virtual network** | **az12001a-RG-vnet** |
     | **Subnet** | **subnet-0 (192.168.0.0/24)** |
-    | **Public IP address** | **none** |
+    | **Public IP address** | **None** |
     | **NIC network security group** | **Advanced**  |
     | **Enable accelerated networking** | **On** |
     | **Load balancing Options** | **None** |
-
-   > **Note**: This image has preconfigured NSG rules.
 
 1. On the **Management** tab of the **Create a virtual machine** blade, specify the following settings and select **Next: Monitoring >** (leave all other settings with their default value):
     
    | Setting | Value |
    |   --    |  --   |
-   | **Enable system assigned managed identity** | **Off** |
-   | **Enable auto-shutdown** | **Off** |
-   | **Enable basic plan for free** | **No**  |
+   | **Enable basic plan for free** | disabled |
+   | **Enable system assigned managed identity** | disabled |
+   | **Enable auto-shutdown** | disabled |
 
    > **Note**: The **basic plan for free** setting is not available if you have already selected the Azure Security Center plan.
 
 1.  On the **Monitoring** tab of the **Create a virtual machine** blade, select **Next: Advanced >** (leave all settings with their default value)
 
-1.  On the **Advanced** tab of the **Create a virtual machine** blade, specify the following settings and select **Review + create** (leave all other settings with their default value):
+1.  On the **Advanced** tab of the **Create a virtual machine** blade, ensure that the following setting is configured and select **Review + create** (leave all other settings with their default value):
     
    | Setting | Value |
    |   --    |  --   |
@@ -224,6 +228,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm1-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
    ```
 
+1. Close the Cloud Shell pane.
+
 1. In the Azure portal, navigate to the blade of the first Azure VM you provisioned in the previous task (**az12001a-vm0**).
 
 1. From the **az12001a-vm0** blade, navigate to the **az12001a-vm0 \| Disks** blade.
@@ -234,7 +240,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    |   --    |  --   |
    | **LUN** | **0** |
    | **Disk name** | **az12001a-vm0-DataDisk0** |
-   | **Resource group** | *select the name of the resource group you used earlier in this task* |
+   | **Resource group** | the name of the resource group you used earlier in this task |
    | **HOST CACHING** | **Read-only** |
 
 2. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm0-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
@@ -251,10 +257,10 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    |   --    |  --   |
    | **LUN** | **0** |
    | **Disk name** | **az12001a-vm1-DataDisk0** |
-   | **Resource group** | *select the name of the resource group you used earlier in this task* |
+   | **Resource group** | the name of the resource group you used earlier in this task |
    | **HOST CACHING** | **Read-only** |
 
-7. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
+7. Repeat the previous step to attach the remaining 7 disks with the prefix **az12001a-vm1-DataDisk** (for the total of 8). Assign the LUN number matching the last character of the disk name. Set HOST CACHING of the disk with LUN \ **1** to **Read-only** and, for all the remaining ones, set HOST CACHING to **None**.
 
 8. Save your changes. 
 
@@ -298,7 +304,6 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
    > **Note**: Wait for the deployment to complete before you proceed to the next task of this exercise. The deployment might take about 5 minutes.
 
-
 > **Result**: After you completed this exercise, you have provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
 
 
@@ -320,19 +325,19 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Within the Bastion session to the **az12001a-vm0** Azure VM, run the following command to elevate privileges: 
 
-   ```cli
+   ```sh
    sudo su -
    ```
 
 1. Run the following command to identify the mapping between the newly attached devices and their LUN numbers:
    
-   ```cli
+   ```sh
    lsscsi
    ```
 
 1. Create physical volumes for 6 (out of 8) data disks by running:
    
-   ```cli
+   ```sh
    pvcreate /dev/sdc
    pvcreate /dev/sdd
    pvcreate /dev/sde
@@ -343,7 +348,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Create volume groups by running:
    
-   ```cli
+   ```sh
    vgcreate vg_hana_data /dev/sdc /dev/sdd
    vgcreate vg_hana_log /dev/sde /dev/sdf
    vgcreate vg_hana_backup /dev/sdg /dev/sdh
@@ -351,7 +356,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Create logical volumes by running:
 
-   ```cli
+   ```sh
    lvcreate -l 100%FREE -n hana_data vg_hana_data
    lvcreate -l 100%FREE -n hana_log vg_hana_log
    lvcreate -l 100%FREE -n hana_backup vg_hana_backup
@@ -361,7 +366,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Format the logical volumes by running:
 
-   ```cli
+   ```sh
    mkfs.xfs /dev/vg_hana_data/hana_data -m crc=1
    mkfs.xfs /dev/vg_hana_log/hana_log -m crc=1
    mkfs.xfs /dev/vg_hana_backup/hana_backup -m crc=1
@@ -371,7 +376,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Partition the **/dev/sdi** disk by running:
 
-   ```cli
+   ```sh
    fdisk /dev/sdi
    ```
 
@@ -379,7 +384,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Partition the **/dev/sdj** disk by running:
 
-   ```cli
+   ```sh
    fdisk /dev/sdj
    ```
 
@@ -387,14 +392,14 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Format the newly created partition by running (type `y` and press the **Enter** key when prompted for confirmation):
 
-   ```cli
+   ```sh
    mkfs.xfs /dev/sdi -m crc=1 -f
    mkfs.xfs /dev/sdj -m crc=1 -f
    ```
 
 1. Create the directories that will serve as mount points by running:
 
-   ```cli
+   ```sh
    mkdir -p /hana/data
    mkdir -p /hana/log
    mkdir -p /hana/backup
@@ -404,7 +409,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Display the ids of logical volumes by running:
 
-   ```cli
+   ```sh
    blkid
    ```
 
@@ -413,13 +418,17 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Open **/etc/fstab** in the vi editor (you are free to use any other editor) by running:
 
-   ```cli
+   ```sh
    vi /etc/fstab
    ```
 
+   > **Note**: If you are using the vi editor, press the **i** key to enter the INSERT mode.
+
+   ![vi editor INSERT mode indicator](../media/az120-lab01-vieditor-insert.png)
+
 1. In the editor, add the following entries to **/etc/fstab** (where `\<UUID of /dev/vg\_hana\_data-hana\_data\>`, `\<UUID of /dev/vg\_hana\_log-hana\_log\>`, `\<UUID of /dev/vg\_hana\_backup-hana\_backup\>`, `\<UUID of /dev/vg_hana_shared-hana_shared (/dev/sdi)\>`, and `\<UUID of /dev/vg_usr_sap-usr_sap (/dev/sdj)\>`, represent the ids you identified in the previous step):
 
-   ```cli
+   ```sh
    /dev/disk/by-uuid/<UUID of /dev/vg_hana_data-hana_data> /hana/data xfs  defaults,nofail  0  2
    /dev/disk/by-uuid/<UUID of /dev/vg_hana_log-hana_log> /hana/log xfs  defaults,nofail  0  2
    /dev/disk/by-uuid/<UUID of /dev/vg_hana_backup-hana_backup> /hana/backup xfs  defaults,nofail  0  2
@@ -431,181 +440,93 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 
 1. Mount the new volumes by running:
 
-   ```cli
+   ```sh
    mount -a
    ```
 
 1. Verify that the mount was successful by running:
 
-   ```cli
+   ```sh
    df -h
    ```
 
-1. Switch to the Bastion session to az12001a-vm1 and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
+   ![df-h output](../media/az120-lab01-df-output.png)
+1. Exit the privilaged mode by running:
+
+   ```sh
+   exit
+   ```
+
+1. Switch to the Bastion session to **az12001a-vm1** and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
 
 
 ### Task 3: Enable cross-node password-less SSH access
 
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, generate passphrase-less SSH key by running:
+1. Within the Bastion session to **az12001a-vm1**, generate passphrase-less SSH key pair by running:
 
-   ```cli
-   ssh-keygen -tdsa
+      ```sh
+   ssh-keygen -trsa
    ```
 
-1. When prompted, press **Enter** three times and then display the public key by running: 
+1. When prompted, press the **Enter** key three times.
 
-   ```cli
-   cat /root/.ssh/id_dsa.pub
+1. Copy the public key of the newly generated key pair to **az12001a-vm0** by running:
+
+      ```sh
+   ssh-copy-id -i /home/student/.ssh/id_rsa.pub student@az12001a-vm0
    ```
 
-1. Copy the value of the key into Clipboard.
+1. When prompted to confirm whether you want to continue connecting, enter **yes** and press the **Enter** key.
 
-1. Switch to the Bastion session to the **az12001a-vm1** Azure VM and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
+1. When prompted to authenticate, enter the password you set when provisioning **az12001a-vm0** earlier in this lab.
 
-   ```cli
-   vi /root/.ssh/authorized_keys
+1. Switch to the Bastion session to the **az12001a-vm0** Azure VM.
+
+1. Within the Bastion session to **az12001a-vm0**, generate passphrase-less SSH key pair by running:
+
+      ```sh
+   ssh-keygen -trsa
    ```
 
-1. In the editor window, paste the key you generated on az12001a-vm0.
+1. When prompted, press the **Enter** key three times.
 
-1. Save the changes and close the editor.
+1. Copy the public key of the newly generated key pair to **az12001a-vm1** by running:
 
-1. Within the Bastion session to the **az12001a-vm1** Azure VM, generate passphrase-less SSH key by running:
-
-   ```cli
-   ssh-keygen -tdsa
+      ```sh
+   ssh-copy-id -i /home/student/.ssh/id_rsa.pub student@az12001a-vm1
    ```
 
-1. When prompted, press **Enter** three times and then display the public key by running: 
+1. When prompted to confirm whether you want to continue connecting, enter **yes** and press the **Enter** key.
 
-   ```cli
-   cat /root/.ssh/id_dsa.pub
+1. When prompted to authenticate, enter the password you set when provisioning **az12001a-vm1** earlier in this lab.
+
+1. To verify that the configuration was successful, within the Bastion session to the **az12001a-vm0** Azure VM,  establish an SSH session as **student** to **az12001a-vm1** by running: 
+
+   ```sh
+   ssh student@az12001a-vm1
    ```
-
-1. Copy the value of the key into Clipboard.
-
-1. Switch to the Bastion session to the **az12001a-vm0** Azure VM and create a file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
-
-   ```cli
-   vi /root/.ssh/authorized_keys
-   ```
-
-1. In the editor window, paste the key you generated on az12001a-vm1.
-
-1. Save the changes and close the editor.
-
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, generate passphrase-less SSH key by running:
-
-   ```cli
-   ssh-keygen -t rsa
-   ```
-
-1. When prompted, press **Enter** three times and then display the public key by running: 
-
-   ```cli
-   cat /root/.ssh/id_rsa.pub
-   ```
-
-1. Copy the value of the key into Clipboard.
-
-1. Switch to the Bastion session to the **az12001a-vm1** Azure VM, and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
-
-   ```cli
-   vi /root/.ssh/authorized_keys
-   ```
-
-1. In the editor window, starting from a new line, paste the key you generated on az12001a-vm0.
-
-1. Save the changes and close the editor.
-
-1. Within the Bastion session to the **az12001a-vm1** Azure VM, generate passphrase-less SSH key by running:
-
-   ```cli
-   ssh-keygen -t rsa
-   ```
-
-1. When prompted, press **Enter** three times and then display the public key by running: 
-
-   ```cli
-   cat /root/.ssh/id_rsa.pub
-   ```
-
-1. Copy the value of the key into Clipboard.
-
-1. Switch to the Bastion session to the **az12001a-vm0** Azure VM and open the file **/root/.ssh/authorized\_keys** in the vi editor (you are free to use any other editor) by running:
-
-   ```cli
-   vi /root/.ssh/authorized_keys
-   ```
-
-1. In the editor window, starting from a new line, paste the key you generated on az12001a-vm1.
-
-1. Save the changes and close the editor.
-
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, open the file **/etc/ssh/sshd\_config** in the vi editor (you are free to use any other editor) by running:
-
-   ```cli
-   vi /etc/ssh/sshd_config
-   ```
-
-1. In the **/etc/ssh/sshd\_config** file, locate the **PermitRootLogin** and **AuthorizedKeysFile** entries, and configure them as follows (remove the leading **#** character if needed:
-
-   ```cli
-   PermitRootLogin yes
-   AuthorizedKeysFile  /root/.ssh/authorized_keys
-   ```
-
-1. Save the changes and close the editor.
-
-1. Within the Bastion session to the **az12001a-vm0** Azure VM, restart sshd daemon by running:
-
-   ```cli
-   systemctl restart sshd
-   ```
-
-1. Repeat the previous four steps on az12001a-vm1.
-
-1. To verify that the configuration was successful, in the Bastion session to the **az12001a-vm0** Azure VM,  establish an SSH session as **root** from az12001a-vm0 to az12001a-vm1 by running: 
-
-   ```cli
-   ssh root@az12001a-vm1
-   ```
-
-1. When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
 
 1. Ensure that you are not prompted for the password.
 
-1. Close the SSH session from az12001a-vm0 to az12001a-vm1 by running: 
+1. Close the SSH session from **az12001a-vm0** to **az12001a-vm1** by running: 
 
-   ```cli
+   ```sh
    exit
    ```
 
-1. Sign out from az12001a-vm0 by running the following twice:
+1. Switch to the Bastion session to the **az12001a-vm1** Azure VM.
 
-   ```cli
-   exit
+1. Within the Bastion session to **az12001a-vm1**, establish an SSH session as **student** to **az12001a-vm0** by running: 
+
+   ```sh
+   ssh student@az12001a-vm0
    ```
-
-1. To verify that the configuration was successful, in the Bastion session to **az12001a-vm1**, establish an SSH session as **root** from az12001a-vm1 to az12001a-vm0 by running: 
-
-   ```cli
-   ssh root@az12001a-vm0
-   ```
-
-1. When prompted whether you are sure to continue connecting, type `yes` and press the **Enter** key. 
 
 1. Ensure that you are not prompted for the password.
 
-1. Close the SSH session from az12001a-vm1 to az12001a-vm0 by running: 
+1. Close the SSH session from **az12001a-vm1** to **az12001a-vm0** by running: 
 
-   ```cli
-   exit
-   ```
-
-1. Sign out from az12001a-vm1 by running the following twice:
-
-   ```cli
+   ```sh
    exit
    ```
 
@@ -650,10 +571,10 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     
    | Setting | Value |
    |   --    |  --   |
-   | **Subscription** | *the name of your Azure subscription* |
-   | **Resource group** | *select the name of the resource group you used earlier in this lab* |
+   | **Subscription** | the name of your Azure subscription |
+   | **Resource group** | **az12001a-RG** |
    | **Name** | **az12001a-lb0** |
-   | **Region** | *the same Azure region where you deployed Azure VMs in the first exercise of this lab* |
+   | **Region** | the same Azure region where you deployed Azure VMs in the first exercise of this lab |
    | **SKU** | **Standard** |
    | **Type** | **Internal** |
 
@@ -692,7 +613,6 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    | **Protocol** | **TCP** |
    | **Port** | **62500** |
    | **Interval** | **5** *seconds* |
-   | **Unhealthy threshold** | **2** *consecutive failures* |
 
 1. On the **az12001a-lb0** blade, select **Load balancing rules**, select **+ Add**, and, on the **Add load balancing rule** blade, specify the following settings (leave others with their defaults):
     
@@ -701,13 +621,13 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
    | **Name** | **az12001a-lb0-lbruleAll** |
    | **IP Version** | **IPv4** |
    | **Frontend IP address** | **192.168.0.240 (LoadBalancerFrontEnd)** |
-   | **HA Ports** | **Enabled** |
+   | **HA Ports** | enabled |
    | **Backend pool** | **az12001a-lb0-bepool (2 virtual machines)** |
    | **Health probe** | **az12001a-lb0-hprobe (TCP:62500)** |
    | **Session persistence** | **None** |
    | **Idle timeout (minutes)** | **4** |
-   | **TCP reset** | **Disabled** |
-   | **Floating IP (direct server return)** | **Enabled** |
+   | **TCP reset** | disabled |
+   | **Floating IP (direct server return)** | enabled |
 
 ### Task 3: Create and configure Azure Load Balancers handling outbound traffic
 

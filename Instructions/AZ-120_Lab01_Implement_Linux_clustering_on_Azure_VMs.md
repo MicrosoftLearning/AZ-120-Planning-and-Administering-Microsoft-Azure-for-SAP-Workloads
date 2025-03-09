@@ -276,6 +276,7 @@ In this task, you use the Azure Cloud Shell to provision a set of Azure Virtual 
    ```cli
    for I in {0..7}; do az disk create --resource-group $RESOURCE_GROUP_NAME --name az12001a-vm1-DataDisk$I --size-gb 128 --location $LOCATION --sku Premium_LRS; done
    ```
+1. Close the Cloud Shell pane.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the blade of the first Azure Virtual Machine you provisioned in the previous task (**az12001a-vm0**).
 
@@ -524,8 +525,12 @@ In this task, you partition and format a new disk, create mount point directorie
    /dev/disk/by-uuid/<UUID of /dev/vg_hana_shared-hana_shared (/dev/sdi)> /hana/shared xfs  defaults,nofail  0  2
    /dev/disk/by-uuid/<UUID of /dev/vg_usr_sap-usr_sap (/dev/sdj)> /usr/sap xfs  defaults,nofail  0  2
    ```
+   > **Note**: To edit the file with vi editor, press i to enter INSERT mode.
+
+   ![vi editor](../media/az120-lab01-vieditor-insert.png)
 
 1. Save the changes and close the editor.
+   > **Note**: Press Esc to exit INSERT mode and type :wq to save.
 
 1. Mount the new volumes by running:
 
@@ -538,6 +543,7 @@ In this task, you partition and format a new disk, create mount point directorie
    ```cli
    df -h
    ```
+   ![df-h output](../media/az120-lab01-df-output.png)
 
 1. Switch to the Bastion session to az12001a-vm1 and repeat all of the steps in this task to configure storage on **az12001a-vm1**.
 
@@ -802,7 +808,6 @@ In this task, you configure an Azure Load Balancer with static IP, backend pools
    | **Protocol** | **TCP** |
    | **Port** | **62500** |
    | **Interval** | **5** *seconds* |
-   | **Unhealthy threshold** | **2** *consecutive failures* <TODO - I don't see this option.>|
 
 1. In the left pane, select **Load balancing rules**.
 

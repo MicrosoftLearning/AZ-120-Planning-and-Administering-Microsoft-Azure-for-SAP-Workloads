@@ -228,9 +228,9 @@ This activity corresponds to the following task of this exercise:
     |Application subnet|**app**|
     |Database subnet|**db**|
     |Application OS image options|**Use a marketplace image**|
-    |Application OS image|**Red Hat Enterprise Linux 8.6 for SAP Applications - x64 Gen2 latest**|
+    |Application OS image|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 latest**|
     |Database OS image options|**Use a marketplace image**|
-    |Database OS image|**Red Hat Enterprise Linux 8.6 for SAP Applications - x64 Gen2 latest**|
+    |Database OS image|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 latest**|
     |SAP transport option|**Create a new SAP transport directory**|
     |Transport resource group|**acss-infra-RG**|
     |Storage account name|*blank*|
@@ -241,6 +241,8 @@ This activity corresponds to the following task of this exercise:
     |SQP FQDN|**sap.contoso.com**|
     |Managed identity source|**Use existing user assigned managed identity**|
     |Managed identity name|**acss-infra-MI**|
+
+    >**Note**: Make sure to select **Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 latest**.
 
 1. On the **Virtual machines** tab, specify the following settings:
 

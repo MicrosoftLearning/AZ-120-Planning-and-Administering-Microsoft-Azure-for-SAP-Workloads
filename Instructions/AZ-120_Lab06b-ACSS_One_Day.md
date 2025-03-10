@@ -402,9 +402,9 @@ This activity corresponds to the following task of this exercise:
    |Application subnet|**app (10.0.2.0/24)**|
    |Database subnet|**db (10.0.3.0/24)**|
    |Application OS image options|**Use a marketplace image**|
-   |Application OS image|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 latest**|
+   |Application OS image|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 latest**|
    |Database OS image options|**Use a marketplace image**|
-   |Database OS image|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 latest**|
+   |Database OS image|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 latest**|
    |SAP transport option|**Don't include SAP transport directory**|
    |Authentication type|**SSH public**|
    |Username|**contososapadmin**|

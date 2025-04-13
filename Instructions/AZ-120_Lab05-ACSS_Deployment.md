@@ -487,8 +487,8 @@ The exercise consists of the following task:
     |Virtual network|**CONTOSO-VNET**|
     |Application subnet|**app (10.5.0.0/24)**|
     |Database subnet|**db (10.5.2.0/24)**|
-    |Application OS image|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 latest**|
-    |Database OS image|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 latest**|
+    |Application OS image|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 latest**|
+    |Database OS image|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 latest**|
     |SAP transport option|**Create a new SAP transport directory**|
     |Transport resource group|**ACSS-DEMO**|
     |Storage account name|no entry|

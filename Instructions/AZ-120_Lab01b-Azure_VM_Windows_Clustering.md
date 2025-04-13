@@ -107,7 +107,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: If the deployment fails with an error including the statement `PowerShell DSC resource MSFT_xADDomainController failed to execute Set-TargetResource functionality with error message: Domain 'adatum.com' could not be found`, use the following steps to remediate this issue:
 
-    - In the Azure portal, navigate to the blade of the **adBDC** VM, in the vertical navigation menu on the left side, in the **Settings** section, select **Extensions + applications**, in the **Extensions + applications** pane, select **PrepareBDC**, and, in the **Prepare BDC** pane, select **Uninstall**. 
+    - In the Azure portal, navigate to the blade of the **adVNET**, in the vertical navigation menu on the left side, in the **Settings** section, select **DNS servers**, on the **adVNET \| DNS servers** page, delete the **10.0.0.5** entry and then select **Save**.
+      
+    - Navigate to the blade of the **adBDC** VM, in the vertical navigation menu on the left side, in the **Settings** section, select **Extensions + applications**, in the **Extensions + applications** pane, select **PrepareBDC**, and, in the **Prepare BDC** pane, select **Uninstall**. 
 
     - Navigate back to the **adBDC** VM blade and restart the Azure VM.
 

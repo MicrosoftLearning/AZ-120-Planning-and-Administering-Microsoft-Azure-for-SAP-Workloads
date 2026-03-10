@@ -1,7 +1,14 @@
 ---
 lab:
-    title: '04b - Implement SAP architecture on Azure VMs running Windows'
-    module: 'Module 04 - Deploy SAP on Azure'
+  title: 04b - Implement SAP architecture on Azure VMs running Windows
+  module: Module 04 - Deploy SAP on Azure
+  description: 'Estimated Time: 150 minutes'
+  duration: 150 minutes
+  level: 500
+  islab: true
+  primarytopics:
+  - Azure
+  - Windows
 ---
 
 # AZ 120 Module 4: Deploy SAP on Azure

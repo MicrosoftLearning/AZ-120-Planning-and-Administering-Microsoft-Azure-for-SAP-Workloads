@@ -1,7 +1,14 @@
 ---
 lab:
-    title: '01b - Implement Windows clustering on Azure VMs'
-    module: 'Module 01 - Explore the foundations of IaaS for SAP on Azure'
+  title: 01b - Implement Windows clustering on Azure VMs
+  module: Module 01 - Explore the foundations of IaaS for SAP on Azure
+  description: 'Estimated Time: 120 minutes'
+  duration: 120 minutes
+  level: 500
+  islab: true
+  primarytopics:
+  - Azure
+  - Windows
 ---
 
 # AZ 120 Module 1: Explore the foundations of IaaS for SAP on Azure

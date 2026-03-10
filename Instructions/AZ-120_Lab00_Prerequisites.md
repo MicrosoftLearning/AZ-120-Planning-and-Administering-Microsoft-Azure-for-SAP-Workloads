@@ -1,7 +1,11 @@
 ---
 lab:
-    title: '00 - Lab prerequisites'
-    module: 'Module 00 - Lab prerequisites'
+  title: 00 - Lab prerequisites
+  module: Module 00 - Lab prerequisites
+  description: 'Timeframe: 30 minutes'
+  duration: 30 minutes
+  level: 200
+  islab: true
 ---
 
 # AZ 120: Lab prerequisites

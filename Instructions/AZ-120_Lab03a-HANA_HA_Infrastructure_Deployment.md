@@ -1,7 +1,13 @@
 ---
 lab:
-    title: '04a - Implement SAP architecture on Azure VMs running Linux'
-    module: 'Module 04 - Deploy SAP on Azure'
+  title: 04a - Implement SAP architecture on Azure VMs running Linux
+  module: Module 04 - Deploy SAP on Azure
+  description: 'Estimated Time: 100 minutes'
+  duration: 100 minutes
+  level: 500
+  islab: true
+  primarytopics:
+  - Azure
 ---
 
 # AZ 120 Module 4: Deploy SAP on Azure

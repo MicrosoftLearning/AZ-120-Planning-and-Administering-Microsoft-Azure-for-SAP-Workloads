@@ -1,7 +1,14 @@
 ---
 lab:
-    title: '06b - Overview of deployment and maintenance of Azure Center for SAP solutions (ACSS)'
-    module: 'Design and implement an infrastructure to support SAP workloads on Azure'
+  title: 06b - Overview of deployment and maintenance of Azure Center for SAP solutions
+    (ACSS)
+  module: Design and implement an infrastructure to support SAP workloads on Azure
+  description: 'Estimated Time: 100 minutes'
+  duration: 100 minutes
+  level: 500
+  islab: true
+  primarytopics:
+  - Azure
 ---
 
 # AZ 1006 Module: Design and implement an infrastructure to support SAP workloads on Azure

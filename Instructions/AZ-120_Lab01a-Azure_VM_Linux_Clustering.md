@@ -1,7 +1,13 @@
 ---
 lab:
-    title: '02a - Implement Linux clustering on Azure VMs'
-    module: 'Module 02 - Explore the foundations of IaaS for SAP on Azure'
+  title: 02a - Implement Linux clustering on Azure VMs
+  module: Module 02 - Explore the foundations of IaaS for SAP on Azure
+  description: 'Estimated Time: 90 minutes'
+  duration: 90 minutes
+  level: 500
+  islab: true
+  primarytopics:
+  - Azure
 ---
 
 # AZ 120 Module 2: Explore the foundations of IaaS for SAP on Azure

@@ -1,7 +1,13 @@
 ---
 lab:
-    title: '06c - Overview of deployment Azure Center for SAP solutions'
-    module: 'Design and implement an infrastructure to support SAP workloads on Azure'
+  title: 06c - Overview of deployment Azure Center for SAP solutions
+  module: Design and implement an infrastructure to support SAP workloads on Azure
+  description: 'Estimated Time: 60 minutes'
+  duration: 60 minutes
+  level: 500
+  islab: true
+  primarytopics:
+  - Azure
 ---
 
 # AZ 1006 Module: Design and implement an infrastructure to support SAP workloads on Azure
